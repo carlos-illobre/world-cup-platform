@@ -1,0 +1,38 @@
+# Docker Compose Override para PRODUCCIÓN
+# Usar: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+# Asegúrate de actualizar .env con tus dominios reales
+
+services:
+  traefik:
+    command:
+      - "--configFile=/traefik/traefik-prod.yml"
+      - "--api.dashboard=true"
+      - "--api.insecure=false"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik-prod.yml:/traefik/traefik-prod.yml:ro
+      - traefik-data:/data
+
+  injury-api:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`${INJURY_API_HOST_INTERNAL}`)"
+      - "traefik.http.routers.api.entrypoints=websecure"
+      - "traefik.http.routers.api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.api.loadbalancer.server.port=8000"
+
+  dashboard:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard-app.rule=Host(`${DASHBOARD_HOST_INTERNAL}`)"
+      - "traefik.http.routers.dashboard-app.entrypoints=websecure"
+      - "traefik.http.routers.dashboard-app.tls.certresolver=letsencrypt"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=3000"
+
+volumes:
+  traefik-data:
+    driver: local

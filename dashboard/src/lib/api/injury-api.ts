@@ -1,0 +1,65 @@
+import { INJURY_API_BASE_URL } from "@/lib/api/config";
+import type {
+  MatchDate,
+  MatchListItem,
+  PlayerOption,
+  PredictionResponse,
+} from "@/lib/predictions.types";
+
+async function fetchJson<T>(path: string, signal?: AbortSignal): Promise<T> {
+  const response = await fetch(`${INJURY_API_BASE_URL}${path}`, { signal });
+  if (!response.ok) {
+    throw new Error(`Request failed (${response.status})`);
+  }
+  return response.json() as Promise<T>;
+}
+
+/** Fechas de jornada para el carrusel superior. */
+export async function fetchMatchDates(signal?: AbortSignal): Promise<MatchDate[]> {
+  const payload = await fetchJson<{ data: MatchDate[] }>(
+    "/api/v2/match-dates",
+    signal,
+  );
+  return payload.data;
+}
+
+/** Partidos de una fecha concreta (YYYY-MM-DD). */
+export async function fetchMatchesByDate(
+  kickoffDate: string,
+  signal?: AbortSignal,
+): Promise<MatchListItem[]> {
+  const payload = await fetchJson<{ data: MatchListItem[] }>(
+    `/api/v2/match-dates/${encodeURIComponent(kickoffDate)}/matches`,
+    signal,
+  );
+  return payload.data;
+}
+
+/** Jugadores elegibles para un partido, con filtro opcional server-side. */
+export async function fetchPlayersByMatch(
+  matchNumber: number,
+  searchQuery?: string,
+  signal?: AbortSignal,
+): Promise<PlayerOption[]> {
+  const params = new URLSearchParams();
+  if (searchQuery?.trim()) {
+    params.set("q", searchQuery.trim());
+  }
+  const query = params.toString();
+  const path = `/api/v2/matches/${matchNumber}/players${query ? `?${query}` : ""}`;
+  const payload = await fetchJson<{ data: PlayerOption[] }>(path, signal);
+  return payload.data;
+}
+
+/** Informe de preparación enriquecido para el dashboard. */
+export async function fetchReadinessReport(
+  matchNumber: number,
+  playerId: string,
+  signal?: AbortSignal,
+): Promise<PredictionResponse> {
+  const encodedPlayerId = encodeURIComponent(playerId);
+  return fetchJson<PredictionResponse>(
+    `/api/v2/matches/${matchNumber}/players/${encodedPlayerId}/readiness-report`,
+    signal,
+  );
+}

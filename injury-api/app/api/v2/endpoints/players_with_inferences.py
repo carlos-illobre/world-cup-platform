@@ -1,6 +1,7 @@
 """Endpoint REST v2: jugadores de ambas selecciones con inferencia IA pre-calculada."""
 
 import logging
+import asyncio
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel  
 from functools import lru_cache
@@ -8,12 +9,14 @@ from datetime import timedelta
 from typing import Optional  
 
 from app.api.dependencies import get_dashboard_catalog_service, get_dashboard_prediction_service
-from app.core.exceptions import MatchNotFoundError, PlayerNotFoundError
+from app.core.exceptions import MatchNotFoundError
 from app.domain.dashboard_schemas import (
     MatchTeamSchema,
     PlayerWithInferenceSchema,
-    PlayerOptionSchema,
     AiInferenceSchema,
+    MatchPlayersWithInferencesResponseSchema,
+    MatchPlayersWithInferencesDataSchema,
+    TeamPlayersSchema
 )
 from app.services.dashboard_catalog_service import DashboardCatalogService
 from app.services.dashboard_prediction_service import DashboardPredictionService
@@ -22,93 +25,36 @@ from app.core.team_flags import build_flag_url
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/matches", tags=["matches-v2"])
 
-
-# Definir los schemas aquí mismo para evitar duplicación con dashboard_schemas.py
-class PlayerWithInferenceSchema(PlayerOptionSchema):
-    """Extiende PlayerOptionSchema para incluir la inferencia IA."""
-    ai_inference: AiInferenceSchema
-
-
-class TeamPlayersSchema(BaseModel):
-    """Equipo con su lista de jugadores e inferencias."""
-    team: MatchTeamSchema
-    players: list[PlayerWithInferenceSchema]
-
-
-class MatchPlayersWithInferencesDataSchema(BaseModel):
-    """Respuesta completa del endpoint."""
-    match_number: int
-    home: TeamPlayersSchema
-    away: TeamPlayersSchema
-
-
-class MatchPlayersWithInferencesResponseSchema(BaseModel):
-    """Wrapper de respuesta."""
-    data: MatchPlayersWithInferencesDataSchema
-
-
-# Cache simple en memoria
-_cache: dict[int, tuple] = {}  # match_number -> (timestamp, response)
-
-
-def _is_cache_valid(match_number: int, ttl_seconds: int = 300) -> bool:
-    """Verifica si el cache para match_number sigue vigente (TTL por defecto 5 minutos)."""
-    if match_number not in _cache:
-        return False
-    timestamp, _ = _cache[match_number]
-    from time import time
-    return (time() - timestamp) < ttl_seconds
-
-
-def _get_cached_response(match_number: int):
-    if _is_cache_valid(match_number):
-        return _cache[match_number][1]
-    return None
-
-
-def _set_cached_response(match_number: int, response):
-    from time import time
-    _cache[match_number] = (time(), response)
-
 @router.get(
     "/{match_number}/players-with-inferences",
     response_model=MatchPlayersWithInferencesResponseSchema,
     status_code=status.HTTP_200_OK,
-    summary="Listar jugadores de ambas selecciones con inferencia IA pre-calculada",
+    summary="Listar jugadores con inferencia IA optimizada"
 )
-def get_players_with_inferences(
+async def get_players_with_inferences(
     match_number: int,
     catalog_service: DashboardCatalogService = Depends(get_dashboard_catalog_service),
     dashboard_service: DashboardPredictionService = Depends(get_dashboard_prediction_service),
 ) -> MatchPlayersWithInferencesResponseSchema:
-    # Verificar cache a nivel de partido completo
-    cached = _get_cached_response(match_number)
-    if cached is not None:
-        logger.info(f"📦 Respuesta completa cacheada para partido {match_number}")
-        return cached
-
     # Obtener todos los jugadores del partido
     try:
         players, home_code, away_code = catalog_service.build_player_options_for_match(
-            match_number=match_number,
-            query=None,
+            match_number=match_number, query=None,
         )
     except MatchNotFoundError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail={"error": "match_not_found", "message": exc.message},
-        ) from exc
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail={"error": "match_not_found", "message": exc.message})
 
-    # Extraer solo los nombres de los jugadores
+    # 2. Inferencia y Mapeo en hilo separado (CPU Bound)
+    # Gracias al caché implementado en el servicio, esto será instantáneo si ya fue calculado.
     player_names = [player.name for player in players]
-    
-    # PROCESAMIENTO BATCH: una sola llamada para todos los jugadores
     logger.info(f"🚀 Procesando batch de {len(player_names)} jugadores para partido {match_number}")
-    predictions = dashboard_service.build_batch_dashboard_predictions(
-        player_names=player_names,
-        match_number=match_number,
+    predictions = await asyncio.to_thread(
+        dashboard_service.build_batch_dashboard_predictions,
+        player_names,
+        match_number
     )
-    
+
+    # 3. Construcción del response (Transformación final)    
     # Obtener fila del partido
     fixture_df = catalog_service._fixture
     match_row = fixture_df[fixture_df["match_number"] == match_number]
@@ -174,8 +120,5 @@ def get_players_with_inferences(
             away=TeamPlayersSchema(team=away_team, players=away_players),
         )
     )
-    
-    # Cachear respuesta completa
-    _set_cached_response(match_number, response)
     
     return response

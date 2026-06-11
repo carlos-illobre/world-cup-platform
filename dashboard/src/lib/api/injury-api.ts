@@ -7,7 +7,11 @@ import type {
 } from "@/lib/predictions.types";
 
 async function fetchJson<T>(path: string, signal?: AbortSignal): Promise<T> {
-  const response = await fetch(`${INJURY_API_BASE_URL}${path}`, { signal });
+  const response = await fetch(`${INJURY_API_BASE_URL}${path}`, {
+    signal,
+    // Evita la página de advertencia de ngrok en planes gratuitos.
+    headers: { "ngrok-skip-browser-warning": "true" },
+  });
   if (!response.ok) {
     throw new Error(`Request failed (${response.status})`);
   }

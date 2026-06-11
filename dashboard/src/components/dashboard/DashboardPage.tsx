@@ -3,6 +3,7 @@ import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardEmptyState } from "@/components/dashboard/DashboardEmptyState";
 import { DashboardContent } from "@/components/dashboard/DashboardContent";
 import { PlayerSelectionBar } from "@/components/dashboard/PlayerSelectionBar";
+import { MatchSquadInferencePanel } from "@/components/dashboard/MatchSquadInferencePanel";
 import { ErrorBanner } from "@/components/dashboard/ErrorBanner";
 import { UI_LABELS } from "@/constants/ui-labels";
 import { useMatchDates } from "@/hooks/useMatchDates";
@@ -70,6 +71,16 @@ export function DashboardPage() {
           loading={playersLoading}
           onPlayerChange={setSelectedPlayerName}
         />
+
+        {selectedMatchNumber && (
+          <MatchSquadInferencePanel
+            matchNumber={selectedMatchNumber}
+            selectedPlayerId={selectedPlayerName}
+            onPlayerSelect={setSelectedPlayerName}
+          />
+        )}
+
+
 
         {catalogError && (
           <ErrorBanner

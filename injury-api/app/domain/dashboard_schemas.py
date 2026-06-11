@@ -156,3 +156,25 @@ class PlayerListMetaSchema(BaseModel):
 class PlayerListResponseSchema(BaseModel):
     data: list[PlayerOptionSchema]
     meta: PlayerListMetaSchema
+
+class PlayerWithInferenceSchema(PlayerOptionSchema):
+    """Jugador con inferencia IA incluida."""
+    ai_inference: AiInferenceSchema
+
+
+class TeamPlayersSchema(BaseModel):
+    """Equipo con su lista de jugadores e inferencias."""
+    team: MatchTeamSchema
+    players: list[PlayerWithInferenceSchema]
+
+
+class MatchPlayersWithInferencesDataSchema(BaseModel):
+    """Datos completos del endpoint players-with-inferences."""
+    match_number: int
+    home: TeamPlayersSchema
+    away: TeamPlayersSchema
+
+
+class MatchPlayersWithInferencesResponseSchema(BaseModel):
+    """Respuesta del endpoint players-with-inferences."""
+    data: MatchPlayersWithInferencesDataSchema

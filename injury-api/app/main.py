@@ -7,6 +7,9 @@ from collections.abc import AsyncIterator
 from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
+import os
+from pathlib import Path
 
 from app.api.v1.router import api_v1_router
 from app.api.v2.router import api_v2_router
@@ -104,6 +107,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+static_dir = Path(__file__).parent.parent / "static"
+if static_dir.exists():
+    app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+    logger.info(f"📁 Sirviendo archivos estáticos desde: {static_dir}")
+else:
+    logger.warning(f"⚠️ Directorio estático no encontrado: {static_dir}")
+
 
 app.include_router(api_v1_router, prefix=API_V1_PREFIX)
 app.include_router(api_v2_router, prefix=API_V2_PREFIX)

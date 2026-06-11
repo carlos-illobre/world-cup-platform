@@ -16,6 +16,7 @@ RUN pip install --no-cache-dir .
 
 # Datasets del Mundial 2026
 COPY data ./data
+COPY static ./static
 
 # Variables de entorno para ejecución en contenedor
 ENV PYTHONUNBUFFERED=1 \

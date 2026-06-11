@@ -1,6 +1,7 @@
 """Carga y transformación de archivos CSV del Mundial 2026."""
 
 import logging
+import os
 from pathlib import Path
 
 import numpy as np
@@ -17,6 +18,10 @@ from app.core.constants import (
     TeamColumns,
 )
 
+from app.config import SERVER_HOST, SERVER_PORT
+
+BACKEND_URL = os.getenv("BACKEND_URL", f"http://localhost:{SERVER_PORT}")
+
 logger = logging.getLogger(__name__)
 
 
@@ -24,7 +29,7 @@ class FixtureRepository:
     """Construye el fixture relacional unificado a partir de múltiples CSV."""
 
     def __init__(self, data_dir: Path | None = None) -> None:
-        self._data_dir = data_dir or DATA_DIR
+        self._data_dir = data_dir or DATA_DIR  # <-- AGREGAR ESTO
 
     def load_unified_fixture(self) -> pd.DataFrame:
         """Une partidos, ciudades, equipos, etapas y geolocalización."""
@@ -53,7 +58,10 @@ class FixtureRepository:
             columns={"id": FixtureColumns.STAGE_ID}
         )
         geo_data = pd.read_csv(self._data_dir / DataFiles.CITY_GEO_DATA)
-
+        
+        # NUEVO: Cargar mapping de estadios
+        stadium_mapping = pd.read_csv(self._data_dir / "stadium_mapping.csv")
+        
         fixture = matches.merge(cities, on=FixtureColumns.CITY_ID)
         fixture = fixture.merge(
             home_teams[
@@ -77,6 +85,18 @@ class FixtureRepository:
         )
         fixture = fixture.merge(stages, on=FixtureColumns.STAGE_ID)
         fixture = fixture.merge(geo_data, on=FixtureColumns.CITY_ID)
+        
+        # NUEVO: Merge con stadium_mapping para obtener el filename
+        fixture = fixture.merge(
+            stadium_mapping[['stadium_name', 'filename']],
+            left_on=FixtureColumns.VENUE_NAME,
+            right_on='stadium_name',
+            how='left'
+        )
+        
+        fixture['stadium_url'] = fixture['filename'].apply(
+            lambda x: f"{BACKEND_URL}/static/stadiums/{x}" if pd.notna(x) else None
+        )
 
         logger.info(
             "Fixture unificado correctamente. Total de partidos mapeados: %d",
@@ -89,7 +109,7 @@ class MedicalDataRepository:
     """Procesa y sanitiza el dataset médico multimodal."""
 
     def __init__(self, data_dir: Path | None = None) -> None:
-        self._data_dir = data_dir or DATA_DIR
+        self._data_dir = data_dir or DATA_DIR  # <-- AGREGAR ESTO
 
     def load_soccer_sensor_matrix(self) -> pd.DataFrame:
         """Filtra fútbol, imputa faltantes y crea llaves de cruce."""
@@ -122,7 +142,7 @@ class PlayerRepository:
     """Carga jugadores FIFA y calcula métricas morfológicas."""
 
     def __init__(self, data_dir: Path | None = None) -> None:
-        self._data_dir = data_dir or DATA_DIR
+        self._data_dir = data_dir or DATA_DIR  # <-- AGREGAR ESTO
 
     def load_players_with_bmi(self) -> pd.DataFrame:
         """Calcula BMI y llaves sintéticas para el join fisiológico."""

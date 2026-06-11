@@ -83,7 +83,7 @@ class MatchContextSchema(BaseModel):
     label: str
     opponent: str
     venue: str
-    stadium_url: str
+    stadium_url: str | None = None
     home: MatchTeamSchema
     away: MatchTeamSchema
     weather: MatchWeatherSchema

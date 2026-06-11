@@ -224,12 +224,17 @@ class DashboardPredictionService:
         )
 
         venue = f"{core_prediction.match.venue_name}, {core_prediction.match.city_name}"
+        stadium_url = str(match_row.get('stadium_url', '')) or None
+        
+        logger.info(f"🔍 DEBUG - match_number={match_number}, stadium_url_raw={match_row.get('stadium_url')}, stadium_url_final={stadium_url}")
+        logger.info(f"🔍 DEBUG - columnas disponibles en match_row: {match_row.index.tolist()}")
+        
         match_context = MatchContextSchema(
             id=str(match_number),
             label=f"{home.code} vs {away.code}",
             opponent=opponent,
             venue=venue,
-            stadium_url=f"https://picsum.photos/seed/worldcup-{match_number}/900/500",
+            stadium_url=stadium_url,
             home=home,
             away=away,
             weather=MatchWeatherSchema(
@@ -398,12 +403,18 @@ class DashboardPredictionService:
             )
 
             venue = f"{core_prediction.match.venue_name}, {core_prediction.match.city_name}"
+            stadium_url = str(match_row.get('stadium_url', '')) or None
+
+            logger.info(f"🔍 DEBUG - match_number={match_number}, stadium_url_raw={match_row.get('stadium_url')}, stadium_url_final={stadium_url}")
+            logger.info(f"🔍 DEBUG - columnas disponibles en match_row: {match_row.index.tolist()}")
+
+
             match_context = MatchContextSchema(
                 id=str(match_number),
                 label=f"{home.code} vs {away.code}",
                 opponent=opponent,
                 venue=venue,
-                stadium_url=f"https://picsum.photos/seed/worldcup-{match_number}/900/500",
+                stadium_url=stadium_url,
                 home=home,
                 away=away,
                 weather=MatchWeatherSchema(

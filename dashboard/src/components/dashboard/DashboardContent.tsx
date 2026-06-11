@@ -21,6 +21,17 @@ export function DashboardContent({ data, loading }: DashboardContentProps) {
 
   return (
     <>
+
+      {showSkeleton || !data ? (
+        <div className="glass-panel space-y-3 rounded-2xl px-7 py-5">
+          <Skeleton className="mx-auto h-7 w-2/3" />
+          <Skeleton className="mx-auto h-4 w-5/6" />
+          <Skeleton className="mx-auto h-4 w-3/4" />
+        </div>
+      ) : (
+        <AIInferenceBar inference={data.ai_inference} />
+      )}
+
       <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-[1fr_320px]">
         <PhysiologicalPanel player={player} loading={showSkeleton} />
 
@@ -40,15 +51,6 @@ export function DashboardContent({ data, loading }: DashboardContentProps) {
         </div>
       </div>
 
-      {showSkeleton || !data ? (
-        <div className="glass-panel space-y-3 rounded-2xl px-7 py-5">
-          <Skeleton className="mx-auto h-7 w-2/3" />
-          <Skeleton className="mx-auto h-4 w-5/6" />
-          <Skeleton className="mx-auto h-4 w-3/4" />
-        </div>
-      ) : (
-        <AIInferenceBar inference={data.ai_inference} />
-      )}
     </>
   );
 }

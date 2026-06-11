@@ -25,9 +25,9 @@ export function PhysiologicalPanel({ player, loading }: PhysiologicalPanelProps)
 
   return (
     <Panel title={UI_LABELS.panels.physiological}>
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-[200px_1fr] xl:grid-cols-[210px_1fr_230px]">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-[240px_1fr] xl:grid-cols-[252px_1fr_230px]">
         <div className="flex flex-col gap-4">
-          <div className="mx-auto aspect-square w-full max-w-[210px]">
+          <div className="mx-auto aspect-square w-full max-w-[252px]">
             {loading || !player ? (
               <Skeleton className="h-full w-full rounded-full" />
             ) : (

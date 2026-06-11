@@ -1,7 +1,10 @@
 """Servicio que arma la respuesta completa del dashboard a partir del modelo y los CSV."""
 
 import math
-from dataclasses import dataclass
+import logging  # <-- AGREGAR ESTA LÍNEA
+from dataclasses import dataclass, field
+from time import time
+from typing import Dict, Tuple, Optional
 
 import pandas as pd
 
@@ -28,6 +31,16 @@ from app.domain.dashboard_schemas import (
     TrainingSeriesSchema,
 )
 from app.services.injury_prediction_service import InjuryPredictionService
+
+# <-- AGREGAR ESTA LÍNEA PARA CREAR EL LOGGER
+logger = logging.getLogger(__name__)
+
+
+class CachedPrediction:
+    """Estructura para almacenar predicción con timestamp."""
+    def __init__(self, prediction: DashboardPredictionResponseSchema):
+        self.prediction = prediction
+        self.timestamp = time()
 
 
 def _to_percent(value: float) -> int:
@@ -98,13 +111,44 @@ class DashboardPredictionService:
     injury_prediction_service: InjuryPredictionService
     players_dataframe: pd.DataFrame
     nationality_to_fifa: dict[str, str]
-
+    
+    # Configuración de TTL (en segundos)
+    PREDICTION_TTL_SECONDS: int = 300  # 5 minutos
+    
+    # Caché con TTL
+    _prediction_cache: Dict[Tuple[str, int], CachedPrediction] = field(default_factory=dict, init=False, repr=False)
+    
     def build_dashboard_prediction(
         self,
         player_name: str,
         match_number: int,
     ) -> DashboardPredictionResponseSchema:
-        """Ejecuta inferencia y mapea el resultado al payload del dashboard."""
+        """Ejecuta inferencia y mapea el resultado al payload del dashboard, con caché y TTL."""
+        
+        cache_key = (player_name, match_number)
+        current_time = time()
+        
+        # Verificar si tenemos predicción cacheada y si aún es válida
+        if cache_key in self._prediction_cache:
+            cached = self._prediction_cache[cache_key]
+            age = current_time - cached.timestamp
+            
+            if age < self.PREDICTION_TTL_SECONDS:
+                logger.debug(
+                    f"📦 Predicción cacheada para {player_name} - partido {match_number} "
+                    f"(edad: {age:.0f} segundos, TTL: {self.PREDICTION_TTL_SECONDS}s)"
+                )
+                return cached.prediction
+            else:
+                logger.info(
+                    f"⏰ Predicción expirada para {player_name} - partido {match_number} "
+                    f"(edad: {age:.0f}s > TTL: {self.PREDICTION_TTL_SECONDS}s) - recalculando..."
+                )
+                del self._prediction_cache[cache_key]
+        
+        # Si no está en caché o expiró, calcular
+        logger.info(f"🔮 Calculando predicción para {player_name} - partido {match_number}")
+        
         core_prediction = self.injury_prediction_service.predict_match_injury_risk(
             player_name=player_name,
             match_number=match_number,
@@ -208,13 +252,18 @@ class DashboardPredictionService:
             ),
         )
 
-        return DashboardPredictionResponseSchema(
+        result = DashboardPredictionResponseSchema(
             data=DashboardPredictionDataSchema(
                 player=player_data,
                 match_context=match_context,
                 ai_inference=ai_inference,
             )
         )
+        
+        # Guardar en caché con timestamp
+        self._prediction_cache[cache_key] = CachedPrediction(result)
+        
+        return result
 
     def _find_player_row(self, player_name: str) -> pd.Series:
         players = self.players_dataframe[
@@ -230,3 +279,164 @@ class DashboardPredictionService:
             == player_name.strip().lower()
         ]
         return profiles.iloc[0]
+    
+    # Método opcional para limpiar caché manualmente
+    def clear_prediction_cache(self) -> None:
+        """Limpia el caché de predicciones (útil para testing o recarga forzada)."""
+        self._prediction_cache.clear()
+        logger.info("🧹 Caché de predicciones limpiado")
+
+    def build_batch_dashboard_predictions(
+        self,
+        player_names: list[str],
+        match_number: int,
+    ) -> dict[str, DashboardPredictionResponseSchema]:
+        """
+        Construye predicciones para múltiples jugadores en el mismo partido.
+        Usa procesamiento batch para máxima eficiencia.
+        """
+        # Verificar caché primero
+        results = {}
+        players_to_process = []
+        
+        for player_name in player_names:
+            cache_key = (player_name, match_number)
+            if cache_key in self._prediction_cache:
+                cached = self._prediction_cache[cache_key]
+                current_time = time()
+                age = current_time - cached.timestamp
+                if age < self.PREDICTION_TTL_SECONDS:
+                    results[player_name] = cached.prediction
+                    continue
+                else:
+                    del self._prediction_cache[cache_key]
+            players_to_process.append(player_name)
+        
+        if not players_to_process:
+            return results
+        
+        # Procesar batch de jugadores restantes
+        logger.info(f"🚀 Procesando batch de {len(players_to_process)} jugadores para partido {match_number}")
+        
+        # Obtener predicciones core en batch
+        core_predictions = self.injury_prediction_service.predict_batch_injury_risk(
+            player_names=players_to_process,
+            match_number=match_number,
+        )
+        
+        # Construir respuestas del dashboard para cada uno
+        for player_name, core_prediction in core_predictions.items():
+            # Obtener datos del jugador y sensores (estos no se pueden batch fácilmente por ahora)
+            player_row = self._find_player_row(player_name)
+            sensor_row = self._find_sensor_row(player_name)
+            risk_level = InjuryRiskLevel(core_prediction.injury_risk.risk_level)
+
+            sleep_quality = _to_percent(sensor_row["sleep_quality"])
+            hydration = _to_percent(sensor_row["hydration_level"])
+            fatigue_index = _to_percent(sensor_row["fatigue_index"])
+            heart_rate = int(round(float(sensor_row["heart_rate"])))
+
+            nationality = str(player_row[PlayerColumns.NATIONALITY_NAME])
+            team_code = self.nationality_to_fifa.get(nationality, "UNK")
+            jersey_number = player_row.get(PlayerColumns.NATION_JERSEY_NUMBER)
+            if pd.isna(jersey_number):
+                jersey_number = player_row.get("club_jersey_number", 0)
+
+            match_row = self.injury_prediction_service._find_match(match_number)
+            home = MatchTeamSchema(
+                name=str(match_row[FixtureColumns.HOME_TEAM_NAME]),
+                code=str(match_row[FixtureColumns.HOME_FIFA_CODE]),
+                flag_url=build_flag_url(str(match_row[FixtureColumns.HOME_FIFA_CODE])),
+            )
+            away = MatchTeamSchema(
+                name=str(match_row[FixtureColumns.AWAY_TEAM_NAME]),
+                code=str(match_row[FixtureColumns.AWAY_FIFA_CODE]),
+                flag_url=build_flag_url(str(match_row[FixtureColumns.AWAY_FIFA_CODE])),
+            )
+            opponent = (
+                away.name if team_code == str(match_row[FixtureColumns.HOME_FIFA_CODE]) else home.name
+            )
+
+            altitude_m = float(match_row.get(FixtureColumns.ALTITUDE, sensor_row.get("altitude", 0)))
+
+            player_data = PlayerDataSchema(
+                id=player_name,
+                name=player_name,
+                number=int(jersey_number),
+                national_team=nationality,
+                team_code=team_code,
+                flag_url=build_flag_url(
+                    team_code,
+                    player_row.get(PlayerColumns.NATION_FLAG_URL),
+                ),
+                face_url=str(player_row.get(PlayerColumns.PLAYER_FACE_URL, "")),
+                rating_label=_rating_label(sleep_quality),
+                stats=PlayerStatsSchema(
+                    sleep_quality=sleep_quality,
+                    hydration=hydration,
+                    body_temp=round(float(sensor_row["body_temperature"]), 1),
+                    stress=_stress_label(float(sensor_row["stress_level"])),
+                    fatigue_index=fatigue_index,
+                    heart_rate_bpm=heart_rate,
+                    heart_rate_series=[
+                        int(round(heart_rate + math.sin(index / 2.2) * 7))
+                        for index in range(48)
+                    ],
+                    training=TrainingSeriesSchema(
+                        duration=_series_around(float(sensor_row["training_duration"]), 8, 30),
+                        load=_series_around(float(sensor_row["training_load"]), 7, 40),
+                        intensity=_series_around(float(sensor_row["training_intensity"]), 7, 35),
+                    ),
+                ),
+                radar=RadarMetricsSchema(
+                    cardio=_to_percent(sensor_row["heart_rate"] / 2),
+                    endurance=_to_percent(sensor_row["recovery_score"]),
+                    engagement=_to_percent(sensor_row["training_intensity"]),
+                    respiratory=_to_percent(sensor_row["altitude"]),
+                    recovery=_to_percent(sensor_row["recovery_score"]),
+                ),
+            )
+
+            venue = f"{core_prediction.match.venue_name}, {core_prediction.match.city_name}"
+            match_context = MatchContextSchema(
+                id=str(match_number),
+                label=f"{home.code} vs {away.code}",
+                opponent=opponent,
+                venue=venue,
+                stadium_url=f"https://picsum.photos/seed/worldcup-{match_number}/900/500",
+                home=home,
+                away=away,
+                weather=MatchWeatherSchema(
+                    temp_c=core_prediction.weather.ambient_temperature_celsius,
+                    humidity=core_prediction.weather.humidity_percent,
+                    altitude=altitude_m,
+                ),
+            )
+
+            ai_inference = AiInferenceSchema(
+                class_=int(risk_level),
+                label=(
+                    f"{DASHBOARD_AI_STATUS_LABELS[risk_level]} / "
+                    f"{DASHBOARD_AI_VERDICTS[risk_level]}"
+                ),
+                justification=_build_justification(
+                    risk_level,
+                    altitude_m,
+                    fatigue_index,
+                ),
+            )
+
+            result = DashboardPredictionResponseSchema(
+                data=DashboardPredictionDataSchema(
+                    player=player_data,
+                    match_context=match_context,
+                    ai_inference=ai_inference,
+                )
+            )
+            
+            # Guardar en caché individual
+            cache_key = (player_name, match_number)
+            self._prediction_cache[cache_key] = CachedPrediction(result)
+            results[player_name] = result
+        
+        return results

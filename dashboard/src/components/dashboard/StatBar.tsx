@@ -23,7 +23,7 @@ export function StatBar({ label, value, valueLabel, rightTag }: StatBarProps) {
           )}
         </span>
       </div>
-      <div className="h-2.5 w-full overflow-hidden rounded-full bg-secondary/70">
+      <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary/70">
         <div
           className="h-full rounded-full transition-[width] duration-700 ease-out"
           style={{

@@ -5,12 +5,7 @@ import logging
 import numpy as np
 import requests
 
-from app.config import (
-    WEATHER_ARCHIVE_BASE_URL,
-    WEATHER_FALLBACK_HUMIDITY,
-    WEATHER_FALLBACK_TEMPERATURE,
-    WEATHER_HISTORICAL_YEARS,
-)
+from app.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -49,10 +44,10 @@ class HistoricalWeatherClient:
             month_day,
         )
 
-        for year in WEATHER_HISTORICAL_YEARS:
+        for year in settings.WEATHER_HISTORICAL_YEARS:
             historical_date = f"{year}-{month_day}"
             url = (
-                f"{WEATHER_ARCHIVE_BASE_URL}"
+                f"{settings.WEATHER_ARCHIVE_BASE_URL}"
                 f"?latitude={latitude}&longitude={longitude}"
                 f"&start_date={historical_date}&end_date={historical_date}"
                 f"&hourly=temperature_2m,relative_humidity_2m"
@@ -80,4 +75,4 @@ class HistoricalWeatherClient:
         logger.warning(
             "Usando valores de contingencia climática por falla en la API histórica."
         )
-        return WEATHER_FALLBACK_TEMPERATURE, WEATHER_FALLBACK_HUMIDITY
+        return settings.WEATHER_FALLBACK_TEMPERATURE, settings.WEATHER_FALLBACK_HUMIDITY

@@ -8,12 +8,7 @@ from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-from app.config import (
-    ML_N_ESTIMATORS,
-    ML_RANDOM_STATE,
-    ML_TEST_SIZE,
-)
-from app.config import DATA_DIR
+from app.config import settings
 from app.core.application_state import WorldCupInjuryContext
 from app.core.constants import DataFiles, MedicalColumns, ModelFeatures, TeamColumns
 from app.core.exceptions import DataPipelineError
@@ -71,7 +66,7 @@ class WorldCupDataPipeline:
                 detail=str(exc),
             ) from exc
 
-        teams_dataframe = pd.read_csv(DATA_DIR / DataFiles.TEAMS)
+        teams_dataframe = pd.read_csv(settings.DATA_DIR / DataFiles.TEAMS)
         nationality_to_fifa = dict(
             zip(
                 teams_dataframe[TeamColumns.TEAM_NAME],
@@ -110,15 +105,15 @@ class WorldCupDataPipeline:
         train_x, test_x, train_y, test_y = train_test_split(
             scaled_features,
             target_labels,
-            test_size=ML_TEST_SIZE,
+            test_size=settings.ML_TEST_SIZE,
             stratify=target_labels,
-            random_state=ML_RANDOM_STATE,
+            random_state=settings.ML_RANDOM_STATE,
         )
 
         classifier = RandomForestClassifier(
-            n_estimators=ML_N_ESTIMATORS,
+            n_estimators=settings.ML_N_ESTIMATORS,
             class_weight="balanced",
-            random_state=ML_RANDOM_STATE,
+            random_state=settings.ML_RANDOM_STATE,
         )
         classifier.fit(train_x, train_y)
 

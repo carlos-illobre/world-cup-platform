@@ -7,7 +7,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from app.config import DATA_DIR
+from app.config import settings
+
 from app.core.constants import (
     DataFiles,
     FixtureColumns,
@@ -18,18 +19,13 @@ from app.core.constants import (
     TeamColumns,
 )
 
-from app.config import SERVER_HOST, SERVER_PORT
-
-BACKEND_URL = os.getenv("BACKEND_URL", f"http://localhost:{SERVER_PORT}")
-
 logger = logging.getLogger(__name__)
-
 
 class FixtureRepository:
     """Construye el fixture relacional unificado a partir de múltiples CSV."""
 
     def __init__(self, data_dir: Path | None = None) -> None:
-        self._data_dir = data_dir or DATA_DIR  # <-- AGREGAR ESTO
+        self._data_dir = data_dir or settings.DATA_DIR
 
     def load_unified_fixture(self) -> pd.DataFrame:
         """Une partidos, ciudades, equipos, etapas y geolocalización."""
@@ -95,7 +91,7 @@ class FixtureRepository:
         )
         
         fixture['stadium_url'] = fixture['filename'].apply(
-            lambda x: f"{BACKEND_URL}/static/stadiums/{x}" if pd.notna(x) else None
+            lambda x: f"{settings.BACKEND_URL}/static/stadiums/{x}" if pd.notna(x) else None
         )
 
         logger.info(
@@ -109,7 +105,7 @@ class MedicalDataRepository:
     """Procesa y sanitiza el dataset médico multimodal."""
 
     def __init__(self, data_dir: Path | None = None) -> None:
-        self._data_dir = data_dir or DATA_DIR  # <-- AGREGAR ESTO
+        self._data_dir = data_dir or settings.DATA_DIR  # <-- AGREGAR ESTO
 
     def load_soccer_sensor_matrix(self) -> pd.DataFrame:
         """Filtra fútbol, imputa faltantes y crea llaves de cruce."""
@@ -142,7 +138,7 @@ class PlayerRepository:
     """Carga jugadores FIFA y calcula métricas morfológicas."""
 
     def __init__(self, data_dir: Path | None = None) -> None:
-        self._data_dir = data_dir or DATA_DIR  # <-- AGREGAR ESTO
+        self._data_dir = data_dir or settings.DATA_DIR
 
     def load_players_with_bmi(self) -> pd.DataFrame:
         """Calcula BMI y llaves sintéticas para el join fisiológico."""

@@ -1,51 +1,63 @@
-"""Configuración centralizada de la aplicación (single source of truth para rutas y parámetros)."""
-
-import os
 from pathlib import Path
+from typing import List, Any
+from pydantic import Field, field_validator
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# Raíz del proyecto: directorio que contiene app/, data/ y archivos de configuración
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+class Settings(BaseSettings):
+    # Rutas
+    PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent
+    DATA_DIR: Path = Field(default=Path("./data"), env="DATA_DIR")
+    
+    # ML - Parámetros del modelo
+    ML_TEST_SIZE: float = 0.3
+    ML_RANDOM_STATE: int = 42
+    ML_N_ESTIMATORS: int = 100
+    
+    # API de clima histórico
+    WEATHER_ARCHIVE_BASE_URL: str = "https://archive-api.open-meteo.com/v1/archive"
+    WEATHER_HISTORICAL_YEARS: tuple = (2023, 2024, 2025)
+    WEATHER_FALLBACK_TEMPERATURE: float = 28.5
+    WEATHER_FALLBACK_HUMIDITY: float = 60.0
+    
+    # Metadatos de la API
+    API_TITLE: str = "World Cup 2026 Injury Risk API"
+    API_DESCRIPTION: str = "API para pronosticar el riesgo de lesión por fatiga extrema."
+    API_VERSION: str = "1.0.0"
+    API_V1_PREFIX: str = "/api/v1"
+    API_V2_PREFIX: str = "/api/v2"
+    
+    # Documentación OpenAPI / Swagger UI
+    OPENAPI_URL: str = "/openapi.json"
+    OPENAPI_DOCS_URL: str = "/docs"
+    OPENAPI_REDOC_URL: str = "/redoc"
+    
+    # Servidor
+    SERVER_HOST: str = "127.0.0.1"
+    SERVER_PORT: int = 8000
+    SERVER_RELOAD: bool = True
 
-# Directorio de datasets CSV (configurable vía variable de entorno para Docker)
-DATA_DIR = Path(os.getenv("DATA_DIR", str(PROJECT_ROOT / "data")))
+    @property
+    def BACKEND_URL(self) -> str:
+        # Si tienes una variable de entorno definida, la usa; si no, arma la URL
+        return f"http://{self.SERVER_HOST}:{self.SERVER_PORT}"
+    
+    CORS_ORIGINS: Any = [
+        "http://localhost:3000", 
+        "http://127.0.0.1:3000", 
+    ]
 
-# Parámetros del modelo de machine learning
-ML_TEST_SIZE = 0.3
-ML_RANDOM_STATE = 42
-ML_N_ESTIMATORS = 100
+    @field_validator("CORS_ORIGINS", mode="before")
+    @classmethod
+    def assemble_cors_origins(cls, v: Any) -> List[str]:
+        # Si ya viene como lista, lo devolvemos tal cual
+        if isinstance(v, list):
+            return v
+        # Si viene como string (lo que viene de Docker), hacemos split
+        if isinstance(v, str):
+            # Limpiamos espacios y saltos de línea (el uso de > en YAML suele añadir \n)
+            return [item.strip() for item in v.split(",") if item.strip()]
+        return []
 
-# API de clima histórico (Open-Meteo)
-WEATHER_ARCHIVE_BASE_URL = "https://archive-api.open-meteo.com/v1/archive"
-WEATHER_HISTORICAL_YEARS = (2023, 2024, 2025)
-WEATHER_FALLBACK_TEMPERATURE = 28.5
-WEATHER_FALLBACK_HUMIDITY = 60.0
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-# Metadatos de la API REST
-API_TITLE = "World Cup 2026 Injury Risk API"
-API_DESCRIPTION = (
-    "API para pronosticar el riesgo de lesión por fatiga extrema "
-    "de jugadores en partidos del Mundial de Fútbol 2026."
-)
-API_VERSION = "1.0.0"
-API_V1_PREFIX = "/api/v1"
-API_V2_PREFIX = "/api/v2"
-
-# Documentación OpenAPI / Swagger UI
-OPENAPI_URL = "/openapi.json"
-OPENAPI_DOCS_URL = "/docs"
-OPENAPI_REDOC_URL = "/redoc"
-
-# Servidor (usado por `python -m app`, Docker y el script `start`)
-SERVER_HOST = os.getenv("SERVER_HOST", "127.0.0.1")
-SERVER_PORT = int(os.getenv("SERVER_PORT", "8000"))
-SERVER_RELOAD = os.getenv("SERVER_RELOAD", "true").lower() in ("1", "true", "yes")
-
-# CORS para el dashboard React (orígenes separados por coma)
-CORS_ORIGINS = [
-    origin.strip()
-    for origin in os.getenv(
-        "CORS_ORIGINS",
-        "http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173",
-    ).split(",")
-    if origin.strip()
-]
+settings = Settings()

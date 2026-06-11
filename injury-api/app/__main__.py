@@ -2,16 +2,16 @@
 
 import uvicorn
 
-from app.config import SERVER_HOST, SERVER_PORT, SERVER_RELOAD
+from app.config import settings
 
 
 def main() -> None:
     """Arranca el servidor Uvicorn con la configuración centralizada del proyecto."""
     uvicorn.run(
         "app.main:app",
-        host=SERVER_HOST,
-        port=SERVER_PORT,
-        reload=SERVER_RELOAD,
+        host=settings.SERVER_HOST,
+        port=settings.SERVER_PORT,
+        reload=settings.SERVER_RELOAD,
     )
 
 

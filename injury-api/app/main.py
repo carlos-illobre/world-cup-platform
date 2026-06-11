@@ -13,17 +13,7 @@ from pathlib import Path
 
 from app.api.v1.router import api_v1_router
 from app.api.v2.router import api_v2_router
-from app.config import (
-    API_DESCRIPTION,
-    API_TITLE,
-    API_V1_PREFIX,
-    API_V2_PREFIX,
-    API_VERSION,
-    CORS_ORIGINS,
-    OPENAPI_DOCS_URL,
-    OPENAPI_REDOC_URL,
-    OPENAPI_URL,
-)
+from app.config import settings
 from app.core.exceptions import DataPipelineError
 from app.core.startup_log import StartupLogStore, capture_startup_logs
 from app.domain.schemas import HealthCheckResponse
@@ -88,13 +78,13 @@ OPENAPI_TAGS = [
 ]
 
 app = FastAPI(
-    title=API_TITLE,
-    description=API_DESCRIPTION,
-    version=API_VERSION,
+    title=settings.API_TITLE,
+    description=settings.API_DESCRIPTION,
+    version=settings.API_VERSION,
     lifespan=lifespan,
-    openapi_url=OPENAPI_URL,
-    docs_url=OPENAPI_DOCS_URL,
-    redoc_url=OPENAPI_REDOC_URL,
+    openapi_url=settings.OPENAPI_URL,
+    docs_url=settings.OPENAPI_DOCS_URL,
+    redoc_url=settings.OPENAPI_REDOC_URL,
     openapi_tags=OPENAPI_TAGS,
 )
 
@@ -116,14 +106,14 @@ else:
     logger.warning(f"⚠️ Directorio estático no encontrado: {static_dir}")
 
 
-app.include_router(api_v1_router, prefix=API_V1_PREFIX)
-app.include_router(api_v2_router, prefix=API_V2_PREFIX)
+app.include_router(api_v1_router, prefix=settings.API_V1_PREFIX)
+app.include_router(api_v2_router, prefix=settings.API_V2_PREFIX)
 
 
 @app.get("/", include_in_schema=False)
 def redirect_to_openapi_docs() -> RedirectResponse:
     """Redirige la raíz hacia Swagger UI para facilitar las pruebas manuales."""
-    return RedirectResponse(url=OPENAPI_DOCS_URL)
+    return RedirectResponse(url=settings.OPENAPI_DOCS_URL)
 
 
 @app.get(

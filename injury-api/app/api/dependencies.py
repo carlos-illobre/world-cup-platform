@@ -8,7 +8,10 @@ from app.infrastructure.weather_client import HistoricalWeatherClient
 from app.services.dashboard_catalog_service import DashboardCatalogService
 from app.services.dashboard_prediction_service import DashboardPredictionService
 from app.services.injury_prediction_service import InjuryPredictionService
+from app.config import settings
 
+def get_settings():
+    return settings
 
 def get_startup_log_store(request: Request) -> StartupLogStore:
     """Obtiene el registro de arranque precargado durante el lifespan."""

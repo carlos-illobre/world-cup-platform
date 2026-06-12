@@ -3,11 +3,9 @@
 from dataclasses import dataclass
 
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import MinMaxScaler
 
 from app.domain.dashboard_schemas import MatchDaySchema, PlayerOptionSchema
-
+from app.ml.strategies import InjuryRiskStrategy
 
 @dataclass(frozen=True)
 class WorldCupInjuryContext:
@@ -19,8 +17,7 @@ class WorldCupInjuryContext:
     fixture_dataframe: pd.DataFrame
     combined_dataframe: pd.DataFrame
     players_dataframe: pd.DataFrame
-    injury_classifier: RandomForestClassifier
-    feature_scaler: MinMaxScaler
+    active_strategy: InjuryRiskStrategy
     player_options: list[PlayerOptionSchema]
     match_days: list[MatchDaySchema]
     nationality_to_fifa: dict[str, str]

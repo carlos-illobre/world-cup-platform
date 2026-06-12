@@ -2,13 +2,9 @@
 
 import logging
 from dataclasses import dataclass, field
-from typing import Tuple
 import pandas as pd
 from cachetools import TTLCache, cached
 from cachetools.keys import hashkey
-
-# Caché global para el clima: 1 hora (3600 segundos), máximo 100 partidos
-weather_cache = TTLCache(maxsize=100, ttl=3600)
 
 from app.core.application_state import WorldCupInjuryContext
 from app.core.constants import (
@@ -29,7 +25,7 @@ from app.domain.schemas import (
 from app.infrastructure.weather_client import HistoricalWeatherClient
 
 logger = logging.getLogger(__name__)
-
+weather_cache = TTLCache(maxsize=100, ttl=3600)
 
 @dataclass(frozen=True)
 class InjuryPredictionService:
@@ -58,55 +54,92 @@ class InjuryPredictionService:
             kickoff_date=kickoff_date,
         )
 
-
     def predict_match_injury_risk(
         self,
         player_name: str,
         match_number: int,
     ) -> InjuryPredictionResponse:
         """Pronostica el riesgo de lesión de un jugador para un partido específico."""
+        batch_result = self.predict_batch_injury_risk([player_name], match_number)
+        if player_name not in batch_result:
+            # Si llegó aquí sin error previo, hubo una falla interna
+            raise PlayerNotFoundError(f"No se pudo generar el pronóstico para {player_name}")
+            
+        return batch_result[player_name]
+    
+    def predict_batch_injury_risk(
+        self,
+        player_names: list[str],
+        match_number: int,
+    ) -> dict[str, InjuryPredictionResponse]:
+        """
+        Predice el riesgo de lesión para múltiples jugadores en el mismo partido.
+        """
+        # 1. Obtener el partido una sola vez
         match_row = self._find_match(match_number)
-        
-        # Usar el método cacheado con TTL
-        ambient_temperature, humidity = self._get_weather_for_match(match_number, match_row)
-
-        player_profile = self._find_player_profile(player_name)
-        sensor_record = player_profile.iloc[0].copy()
-        sensor_record[ModelFeatures.AMBIENT_TEMPERATURE] = ambient_temperature
-        sensor_record[ModelFeatures.HUMIDITY] = humidity
-
-        risk_level = self._run_classifier(sensor_record)
-        injury_risk_enum = InjuryRiskLevel(risk_level)
-        
         kickoff_date = match_row[FixtureColumns.KICKOFF_AT].split()[0]
+        
+        # 2. Obtener clima una sola vez (ya cacheado automáticamente)
+        ambient_temperature, humidity = self._get_weather_for_match(match_number, match_row)
+        
+        # 3. Preparar batch de features para todos los jugadores
+        all_features = []
+        valid_players = []
+        
+        for player_name in player_names:
+            try:
+                player_profile = self._find_player_profile(player_name).iloc[0]
 
-        logger.info(
-            "Predicción completada — jugador=%s, partido=%d, riesgo=%s",
-            player_name,
-            match_number,
-            injury_risk_enum.name,
-        )
+                # Construimos el vector de features al vuelo como lista (performance)
+                features = []
+                for feature in ModelFeatures.FEATURES:
+                    if feature == ModelFeatures.AMBIENT_TEMPERATURE:
+                        features.append(ambient_temperature)
+                    elif feature == ModelFeatures.HUMIDITY:
+                        features.append(humidity)
+                    else:
+                        features.append(player_profile[feature])
 
-        return InjuryPredictionResponse(
-            player_name=player_name.strip(),
-            match=MatchContextResponse(
-                match_number=match_number,
-                stage_name=str(match_row[FixtureColumns.STAGE_NAME]),
-                city_name=str(match_row[FixtureColumns.CITY_NAME]),
-                venue_name=str(match_row[FixtureColumns.VENUE_NAME]),
-                kickoff_date=kickoff_date,
-            ),
-            weather=WeatherContextResponse(
-                ambient_temperature_celsius=ambient_temperature,
-                humidity_percent=humidity,
-            ),
-            injury_risk=InjuryRiskResponse(
-                risk_level=risk_level,
-                risk_label=INJURY_RISK_LABELS[injury_risk_enum],
-                description=INJURY_RISK_DESCRIPTIONS[injury_risk_enum],
-            ),
-        )
+                all_features.append(features)
+                valid_players.append(player_name)
+            except PlayerNotFoundError:
+                logger.warning(f"Jugador no encontrado: {player_name}")
+                continue
+        
+        if not all_features:
+            return {}
+        
+        # Inferencia vectorizada delegada a la Estrategia (Scikit-learn Pipeline)
+        predictions = self.context.active_strategy.predict(all_features)
 
+        # Construir resultados
+        results = {}
+        for player_name, risk_level in zip(valid_players, predictions):
+            injury_risk_enum = InjuryRiskLevel(int(risk_level))
+            
+            results[player_name] = InjuryPredictionResponse(
+                player_name=player_name.strip(),
+                match=MatchContextResponse(
+                    match_number=match_number,
+                    stage_name=str(match_row[FixtureColumns.STAGE_NAME]),
+                    city_name=str(match_row[FixtureColumns.CITY_NAME]),
+                    venue_name=str(match_row[FixtureColumns.VENUE_NAME]),
+                    kickoff_date=kickoff_date,
+                ),
+                weather=WeatherContextResponse(
+                    ambient_temperature_celsius=ambient_temperature,
+                    humidity_percent=humidity,
+                ),
+                injury_risk=InjuryRiskResponse(
+                    risk_level=int(risk_level),
+                    risk_label=INJURY_RISK_LABELS[injury_risk_enum],
+                    description=INJURY_RISK_DESCRIPTIONS[injury_risk_enum],
+                ),
+            )
+        
+        logger.info(f"Batch prediction completado: {len(results)} jugadores en partido {match_number}")
+        return results
+    
     def _find_match(self, match_number: int) -> pd.Series:
         """Localiza un partido en el fixture precargado."""
         matches = self.context.fixture_dataframe[
@@ -137,93 +170,6 @@ class InjuryPredictionService:
 
         return profiles
 
-    def _run_classifier(self, sensor_record: pd.Series) -> int:
-        """Estructura el vector de features, escala y ejecuta la predicción."""
-        import pandas as pd
-        
-        input_dict = {feature: [sensor_record[feature]] for feature in ModelFeatures.FEATURES}
-        input_df = pd.DataFrame(input_dict)
-        scaled_input = self.context.feature_scaler.transform(input_df)
-        return int(self.context.injury_classifier.predict(scaled_input)[0])
-    
-    # Método opcional para limpiar caché manualmente
-    def clear_weather_cache(self) -> None:
-        """Limpia el caché de clima (útil para testing o recarga forzada)."""
-        self._weather_cache.clear()
-        logger.info("🧹 Caché de clima limpiado")
-
-    def predict_batch_injury_risk(
-        self,
-        player_names: list[str],
-        match_number: int,
-    ) -> dict[str, InjuryPredictionResponse]:
-        """
-        Predice el riesgo de lesión para múltiples jugadores en el mismo partido.
-        Optimizado: clima se consulta una sola vez, features se procesan en batch.
-        """
-        # 1. Obtener el partido una sola vez
-        match_row = self._find_match(match_number)
-        kickoff_date = match_row[FixtureColumns.KICKOFF_AT].split()[0]
-        
-        # 2. Obtener clima una sola vez (ya cacheado automáticamente)
-        ambient_temperature, humidity = self._get_weather_for_match(match_number, match_row)
-        
-        # 3. Preparar batch de features para todos los jugadores
-        all_features = []
-        valid_players = []
-        
-        for player_name in player_names:
-            try:
-                player_profile = self._find_player_profile(player_name)
-                sensor_record = player_profile.iloc[0].copy()
-                sensor_record[ModelFeatures.AMBIENT_TEMPERATURE] = ambient_temperature
-                sensor_record[ModelFeatures.HUMIDITY] = humidity
-                
-                # Extraer features como lista
-                features = [sensor_record[feature] for feature in ModelFeatures.FEATURES]
-                all_features.append(features)
-                valid_players.append(player_name)
-            except PlayerNotFoundError:
-                logger.warning(f"Jugador no encontrado: {player_name}")
-                continue
-        
-        if not all_features:
-            return {}
-        
-        # 4. Escalar TODOS los features en UNA sola operación
-        scaled_features = self.context.feature_scaler.transform(all_features)
-        
-        # 5. Predecir TODOS los jugadores en UNA sola operación
-        predictions = self.context.injury_classifier.predict(scaled_features)
-        
-        # 6. Construir resultados
-        results = {}
-        for player_name, risk_level in zip(valid_players, predictions):
-            injury_risk_enum = InjuryRiskLevel(int(risk_level))
-            
-            results[player_name] = InjuryPredictionResponse(
-                player_name=player_name.strip(),
-                match=MatchContextResponse(
-                    match_number=match_number,
-                    stage_name=str(match_row[FixtureColumns.STAGE_NAME]),
-                    city_name=str(match_row[FixtureColumns.CITY_NAME]),
-                    venue_name=str(match_row[FixtureColumns.VENUE_NAME]),
-                    kickoff_date=kickoff_date,
-                ),
-                weather=WeatherContextResponse(
-                    ambient_temperature_celsius=ambient_temperature,
-                    humidity_percent=humidity,
-                ),
-                injury_risk=InjuryRiskResponse(
-                    risk_level=int(risk_level),
-                    risk_label=INJURY_RISK_LABELS[injury_risk_enum],
-                    description=INJURY_RISK_DESCRIPTIONS[injury_risk_enum],
-                ),
-            )
-        
-        logger.info(f"Batch prediction completado: {len(results)} jugadores en partido {match_number}")
-        return results
-    
     def clear_weather_cache(self) -> None:
         """Limpia el caché de clima."""
         weather_cache.clear()

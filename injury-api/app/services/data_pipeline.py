@@ -3,10 +3,8 @@
 import logging
 
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
 
 from app.config import settings
 from app.core.application_state import WorldCupInjuryContext
@@ -19,6 +17,8 @@ from app.infrastructure.csv_loader import (
     build_combined_player_sensor_matrix,
 )
 from app.services.dashboard_catalog_service import DashboardCatalogService
+from app.ml.registry import get_strategy
+from app.ml.strategies import InjuryRiskStrategy
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +59,7 @@ class WorldCupDataPipeline:
                 players, soccer_sensors
             )
             logger.info("[Paso 4] Configurando y entrenando el modelo analítico predictivo...")
-            classifier, scaler = self._train_injury_classifier(combined_dataframe)
+            strategy = self._train_and_evaluate_strategy(combined_dataframe)
         except Exception as exc:
             raise DataPipelineError(
                 "Error crítico durante la inicialización del pipeline de datos.",
@@ -84,45 +84,39 @@ class WorldCupDataPipeline:
             fixture_dataframe=fixture_dataframe,
             combined_dataframe=combined_dataframe,
             players_dataframe=players,
-            injury_classifier=classifier,
-            feature_scaler=scaler,
+            active_strategy=strategy,
             player_options=catalog_service.build_player_options(),
             match_days=catalog_service.build_match_days(),
             nationality_to_fifa=nationality_to_fifa,
         )
 
-    def _train_injury_classifier(
+    def _train_and_evaluate_strategy(
         self,
         combined_dataframe: pd.DataFrame,
-    ) -> tuple[RandomForestClassifier, MinMaxScaler]:
+    ) -> InjuryRiskStrategy:
         """Entrena y evalúa el clasificador de riesgo de lesión."""
         feature_matrix = combined_dataframe[list(ModelFeatures.FEATURES)]
         target_labels = combined_dataframe[MedicalColumns.INJURY_OCCURRED]
 
-        scaler = MinMaxScaler()
-        scaled_features = scaler.fit_transform(feature_matrix)
-
+        # Dividimos los datos ANTES de escalar para evitar fuga de datos (Data Leakage)
         train_x, test_x, train_y, test_y = train_test_split(
-            scaled_features,
+            feature_matrix,
             target_labels,
             test_size=settings.ML_TEST_SIZE,
             stratify=target_labels,
             random_state=settings.ML_RANDOM_STATE,
         )
 
-        classifier = RandomForestClassifier(
-            n_estimators=settings.ML_N_ESTIMATORS,
-            class_weight="balanced",
-            random_state=settings.ML_RANDOM_STATE,
-        )
-        classifier.fit(train_x, train_y)
+        strategy = get_strategy("random_forest")
+        strategy.train(train_x, train_y)
 
-        predictions = classifier.predict(test_x)
+        # Evaluación post-entrenamiento
+        predictions = strategy.predict(test_x.values.tolist())
         report = classification_report(
             test_y,
             predictions,
             target_names=["healthy", "low_risk", "critical_risk"],
         )
-        logger.info("REPORTE DE EVALUACIÓN DEL CLASIFICADOR:\n%s", report)
+        logger.info("REPORTE DE EVALUACIÓN DEL ALGORITMO:\n%s", report)
 
-        return classifier, scaler
+        return strategy

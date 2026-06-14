@@ -59,8 +59,6 @@ export function InjuryRiskPage() {
 
         <PlayerSelectionBar />
 
-        {numeroPartido && <SquadInferencePanel />}
-
         {mensajeErrorCatalogo && <ErrorBanner message={mensajeErrorCatalogo} />}
 
         {mensajeErrorDiagnostico && <ErrorBanner message={mensajeErrorDiagnostico} />}
@@ -68,6 +66,8 @@ export function InjuryRiskPage() {
         {!seleccionCompleta && !mensajeErrorDiagnostico && <SelectionGuide />}
 
         {seleccionCompleta && <InjuryRiskDashboard />}
+
+        {numeroPartido && <SquadInferencePanel />}
       </div>
     </main>
   );

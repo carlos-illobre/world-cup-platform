@@ -28,13 +28,10 @@ export function MatchDateChip({
       <CalendarDays
         className={`h-4 w-4 ${isActive ? "text-neon-blue" : "text-muted-foreground"}`}
       />
-      <span className="flex flex-col text-left leading-tight">
+      <span className="flex flex-col text-left leading-tight gap-1">
         <span
           className={`text-sm font-bold ${isActive ? "text-glow-blue" : "text-foreground/90"}`}
         >
-          {fechaJornada.label}
-        </span>
-        <span className="text-[11px] font-medium text-muted-foreground">
           {fechaJornada.date}
         </span>
       </span>

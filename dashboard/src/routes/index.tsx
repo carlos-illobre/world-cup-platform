@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { DashboardPage } from "@/components/dashboard/DashboardPage";
-import { UI_LABELS } from "@/constants/ui-labels";
+import { InjuryRiskPage } from "@/pages/InjuryRiskPage";
+import { UI_LABELS } from "@/shared/constants/uiLabels";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -12,5 +12,5 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: DashboardPage,
+  component: InjuryRiskPage,
 });

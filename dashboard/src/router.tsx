@@ -1,20 +1,10 @@
-import { QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
+/** Crea el router de TanStack para la aplicación de riesgo de lesiones. */
 export const getRouter = () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000,
-        refetchOnWindowFocus: false,
-      },
-    },
-  });
-
   const router = createRouter({
     routeTree,
-    context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
   });

@@ -33,9 +33,9 @@ services:
       SERVER_RELOAD: ${SERVER_RELOAD:-false}
       CORS_ORIGINS: "${CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173,http://${INJURY_API_HOST_INTERNAL:-api.localhost}}"
       INJURY_API_URL: "${INJURY_API_URL:-http://localhost:8000}"
-    command: ["/bin/sh", "-c", "echo \"Injury API disponible en ${INJURY_API_URL:-http://localhost:8000}\" && exec python -m app"]
+    command: [ "/bin/sh", "-c", "echo \"Injury API disponible en ${INJURY_API_URL:-http://localhost:8000}\" && exec python -m app" ]
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://127.0.0.1:${INJURY_API_CONTAINER_PORT:-8000}/health"]
+      test: [ "CMD", "curl", "-f", "http://127.0.0.1:${INJURY_API_CONTAINER_PORT:-8000}/health" ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -48,14 +48,17 @@ services:
     build:
       context: ./dashboard
       dockerfile: Dockerfile
+      target: development
       args:
         VITE_INJURY_API_BASE_URL: "${VITE_INJURY_API_BASE_URL:-http://localhost:8000}"
     container_name: injury-dashboard
     ports:
       - "${DASHBOARD_HOST_PORT:-3000}:${DASHBOARD_CONTAINER_PORT:-3000}"
+    volumes:
+      - ./dashboard/src:/app/src
     environment:
       DASHBOARD_URL: "${DASHBOARD_URL:-http://localhost:3000}"
-    command: ["/bin/sh", "-c", "echo \"Dashboard disponible en ${DASHBOARD_URL:-http://localhost:3000}\" && exec node /app/.output/server/index.mjs"]
+    command: [ "/bin/sh", "-c", "echo \"Dashboard dev disponible en ${DASHBOARD_URL:-http://localhost:3000}\" && exec npm run dev -- --host 0.0.0.0 --port ${DASHBOARD_CONTAINER_PORT:-3000}" ]
     depends_on:
       injury-api:
         condition: service_healthy

@@ -94,7 +94,6 @@ export async function fetchMatchPlayersInferences(
     `${INJURY_API_BASE_URL}/api/v3/mundial/partidos/${matchNumber}/plantilla-con-diagnostico`,
     {
       signal,
-      headers: { "ngrok-skip-browser-warning": "true" },
     },
   );
   if (!response.ok) {

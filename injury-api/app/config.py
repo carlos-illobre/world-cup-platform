@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     API_VERSION: str = "1.0.0"
     API_V1_PREFIX: str = "/api/v1"
     API_V2_PREFIX: str = "/api/v2"
-    API_V3_PREFIX: str = "/api/v3/mundial"
+    API_V3_PREFIX: str = "/api/v3"
     
     # Documentación OpenAPI / Swagger UI
     OPENAPI_URL: str = "/openapi.json"
@@ -37,9 +37,13 @@ class Settings(BaseSettings):
     SERVER_PORT: int = 8000
     SERVER_RELOAD: bool = True
 
+    INJURY_API_URL: str | None = Field(default=None, env="INJURY_API_URL")
+
     @property
     def BACKEND_URL(self) -> str:
         # Si tienes una variable de entorno definida, la usa; si no, arma la URL
+        if self.INJURY_API_URL:
+            return self.INJURY_API_URL
         return f"http://{self.SERVER_HOST}:{self.SERVER_PORT}"
     
     CORS_ORIGINS: Any = [

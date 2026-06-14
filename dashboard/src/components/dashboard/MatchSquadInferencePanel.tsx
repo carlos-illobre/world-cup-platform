@@ -121,11 +121,10 @@ function TeamColumn({
               <button
                 type="button"
                 onClick={() => onPlayerSelect(player.id)}
-                className={`flex w-full items-center gap-2.5 rounded-lg border px-2.5 py-1.5 text-left transition-colors ${
-                  isSelected
+                className={`flex w-full items-center gap-2.5 rounded-lg border px-2.5 py-1.5 text-left transition-colors ${isSelected
                     ? "border-neon-blue/70 bg-neon-blue/10"
                     : "border-transparent hover:border-neon-blue/40 hover:bg-secondary/40"
-                }`}
+                  }`}
                 style={
                   isSelected
                     ? { boxShadow: "0 0 0 1px var(--neon-blue) inset" }

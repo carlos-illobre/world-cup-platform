@@ -60,7 +60,7 @@ export function MatchSquadInferencePanel({
           <p className="mt-1 text-muted-foreground">
             Esperando{" "}
             <code className="rounded bg-secondary/60 px-1.5 py-0.5 text-[11px]">
-              GET /api/v2/matches/{matchNumber}/players-with-inferences
+              GET /api/v3/mundial/partidos/{matchNumber}/plantilla-con-diagnostico
             </code>
             . Detalle: {error}
           </p>

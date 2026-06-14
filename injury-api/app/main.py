@@ -8,16 +8,16 @@ from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
-import os
 from pathlib import Path
 
 from app.api.v1.router import api_v1_router
 from app.api.v2.router import api_v2_router
+from app.api.v3.router import api_v3_router
 from app.config import settings
 from app.core.exceptions import DataPipelineError
 from app.core.startup_log import StartupLogStore, capture_startup_logs
 from app.domain.schemas import HealthCheckResponse
-from app.services.data_pipeline import WorldCupDataPipeline
+from app.datascience.pipeline.data_pipeline import WorldCupDataPipeline
 
 logging.basicConfig(
     level=logging.INFO,
@@ -75,6 +75,22 @@ OPENAPI_TAGS = [
         "name": "matches-v2",
         "description": "Jugadores por partido e informe de preparación (API v2).",
     },
+    {
+        "name": "algoritmos-v3",
+        "description": "Gestión de algoritmos de predicción (listar y seleccionar).",
+    },
+    {
+        "name": "jugadores-v3",
+        "description": "Catálogo de jugadores del Mundial 2026 (API v3).",
+    },
+    {
+        "name": "fixture-v3",
+        "description": "Fixture del Mundial: jornadas y partidos (API v3).",
+    },
+    {
+        "name": "diagnostico-v3",
+        "description": "Diagnóstico de riesgo de lesión por jugador y partido (API v3).",
+    },
 ]
 
 app = FastAPI(
@@ -108,6 +124,7 @@ else:
 
 app.include_router(api_v1_router, prefix=settings.API_V1_PREFIX)
 app.include_router(api_v2_router, prefix=settings.API_V2_PREFIX)
+app.include_router(api_v3_router, prefix=settings.API_V3_PREFIX)
 
 
 @app.get("/", include_in_schema=False)

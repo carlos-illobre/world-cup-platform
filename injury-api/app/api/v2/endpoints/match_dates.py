@@ -1,8 +1,9 @@
 """Endpoints REST v2: fechas y partidos del fixture."""
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, status
 
 from app.api.dependencies import get_dashboard_catalog_service
+from app.api.error_handlers import raise_http_from_domain_error
 from app.core.exceptions import MatchDateNotFoundError
 from app.domain.dashboard_schemas import MatchDateListResponseSchema, MatchListResponseSchema
 from app.services.dashboard_catalog_service import DashboardCatalogService
@@ -37,9 +38,6 @@ def list_matches_by_date(
     try:
         matches = catalog_service.build_matches_for_date(kickoff_date)
     except MatchDateNotFoundError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail={"error": "match_date_not_found", "message": exc.message},
-        ) from exc
+        raise_http_from_domain_error(exc)
 
     return MatchListResponseSchema(data=matches)

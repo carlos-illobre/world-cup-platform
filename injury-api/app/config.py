@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     API_VERSION: str = "1.0.0"
     API_V1_PREFIX: str = "/api/v1"
     API_V2_PREFIX: str = "/api/v2"
+    API_V3_PREFIX: str = "/api/v3/mundial"
     
     # Documentación OpenAPI / Swagger UI
     OPENAPI_URL: str = "/openapi.json"

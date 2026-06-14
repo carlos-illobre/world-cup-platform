@@ -4,9 +4,9 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.datascience.inference.injury_risk_predictor import InjuryRiskPredictor
+from app.datascience.pipeline.data_pipeline import WorldCupDataPipeline
 from app.infrastructure.weather_client import HistoricalWeatherClient
-from app.services.data_pipeline import WorldCupDataPipeline
-from app.services.injury_prediction_service import InjuryPredictionService
 
 
 @pytest.fixture(scope="module")
@@ -17,8 +17,8 @@ def injury_context():
 
 @pytest.fixture(scope="module")
 def prediction_service(injury_context):
-    """Servicio de predicción con datos reales precargados."""
-    return InjuryPredictionService(
+    """Predictor de riesgo con datos reales precargados."""
+    return InjuryRiskPredictor(
         context=injury_context,
         weather_client=HistoricalWeatherClient(),
     )

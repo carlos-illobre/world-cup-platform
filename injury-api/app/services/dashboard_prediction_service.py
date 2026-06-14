@@ -2,22 +2,23 @@
 
 import math
 import logging
-from dataclasses import dataclass, field
-from typing import Dict
+from dataclasses import dataclass
 import pandas as pd
 from cachetools import TTLCache, cached
 from cachetools.keys import hashkey
 
-from app.core.constants import (
+from app.core.flag_url_builder import build_flag_url
+from app.core.risk_level import (
     DASHBOARD_AI_STATUS_LABELS,
     DASHBOARD_AI_VERDICTS,
-    FixtureColumns,
     InjuryRiskLevel,
-    ModelFeatures,
-    PlayerColumns,
-    TeamColumns,
 )
-from app.core.team_flags import build_flag_url
+from app.datascience.inference.injury_risk_predictor import (
+    InjuryPredictionResult,
+    InjuryRiskPredictor,
+)
+from app.datascience.schema.columns import FixtureColumns, PlayerColumns, SensorColumns
+from app.datascience.schema.feature_vector import FeatureVector
 from app.domain.dashboard_schemas import (
     AiInferenceSchema,
     DashboardPredictionDataSchema,
@@ -30,12 +31,12 @@ from app.domain.dashboard_schemas import (
     RadarMetricsSchema,
     TrainingSeriesSchema,
 )
-from app.services.injury_prediction_service import InjuryPredictionService
 
 logger = logging.getLogger(__name__)
 
 # Caché global para predicciones: 5 minutos (300 segundos), máximo 500 predicciones
-dashboard_prediction_cache = TTLCache(maxsize=500, ttl=300)
+_dashboard_prediction_cache: TTLCache = TTLCache(maxsize=500, ttl=300)
+
 
 def _to_percent(value: float) -> int:
     """Normaliza métricas del sensor a porcentaje 0-100."""
@@ -45,7 +46,7 @@ def _to_percent(value: float) -> int:
     return int(max(0, min(100, round(numeric))))
 
 
-def _stress_label(stress_value: float) -> str:
+def _classify_stress_level(stress_value: float) -> str:
     percent = _to_percent(stress_value)
     if percent < 40:
         return "LOW"
@@ -54,7 +55,7 @@ def _stress_label(stress_value: float) -> str:
     return "HIGH"
 
 
-def _rating_label(sleep_quality_percent: int) -> str:
+def _classify_sleep_rating(sleep_quality_percent: int) -> str:
     if sleep_quality_percent >= 85:
         return "EXCELLENT"
     if sleep_quality_percent >= 70:
@@ -62,7 +63,7 @@ def _rating_label(sleep_quality_percent: int) -> str:
     return "FAIR"
 
 
-def _series_around(base: float, count: int, spread: float) -> list[int]:
+def _generate_time_series(base: float, count: int, spread: float) -> list[int]:
     return [
         int(max(0, round(base + math.sin(index / 2.2) * spread)))
         for index in range(count)
@@ -75,7 +76,11 @@ def _build_justification(
     fatigue_percent: int,
 ) -> str:
     fatigue_word = (
-        "Moderate" if fatigue_percent < 40 else "Elevated" if fatigue_percent < 60 else "High"
+        "Moderate"
+        if fatigue_percent < 40
+        else "Elevated"
+        if fatigue_percent < 60
+        else "High"
     )
     altitude_text = f"{int(altitude):,}m"
 
@@ -102,10 +107,10 @@ def _build_justification(
 class DashboardPredictionService:
     """Adapta la inferencia del microservicio al contrato del dashboard React."""
 
-    injury_prediction_service: InjuryPredictionService
+    injury_risk_predictor: InjuryRiskPredictor
     players_dataframe: pd.DataFrame
     nationality_to_fifa: dict[str, str]
-    
+
     def _find_player_row(self, player_name: str) -> pd.Series:
         players = self.players_dataframe[
             self.players_dataframe[PlayerColumns.SHORT_NAME].str.strip().str.lower()
@@ -114,37 +119,37 @@ class DashboardPredictionService:
         return players.iloc[0]
 
     def _find_sensor_row(self, player_name: str) -> pd.Series:
-        combined = self.injury_prediction_service.context.combined_dataframe
+        combined = self.injury_risk_predictor.context.combined_player_sensor_matrix
         profiles = combined[
             combined[PlayerColumns.SHORT_NAME].str.strip().str.lower()
             == player_name.strip().lower()
         ]
         return profiles.iloc[0]
-     
+
     def _map_to_dashboard_schema(
         self,
         player_name: str,
         match_number: int,
-        core_prediction: "InjuryPredictionResponse"
+        prediction: InjuryPredictionResult,
     ) -> DashboardPredictionResponseSchema:
         """Centraliza la transformación de datos hacia el frontend (Single Source of Truth)."""
         player_row = self._find_player_row(player_name)
         sensor_row = self._find_sensor_row(player_name)
-        risk_level = InjuryRiskLevel(core_prediction.injury_risk.risk_level)
+        risk_level = InjuryRiskLevel(prediction.risk_level)
 
-        sleep_quality = _to_percent(sensor_row["sleep_quality"])
-        hydration = _to_percent(sensor_row["hydration_level"])
-        fatigue_index = _to_percent(sensor_row["fatigue_index"])
-        heart_rate = int(round(float(sensor_row["heart_rate"])))
+        sleep_quality = _to_percent(sensor_row[SensorColumns.SLEEP_QUALITY])
+        hydration = _to_percent(sensor_row[SensorColumns.HYDRATION_LEVEL])
+        fatigue_index = _to_percent(sensor_row[SensorColumns.FATIGUE_INDEX])
+        heart_rate = int(round(float(sensor_row[SensorColumns.HEART_RATE])))
 
         nationality = str(player_row[PlayerColumns.NATIONALITY_NAME])
         team_code = self.nationality_to_fifa.get(nationality, "UNK")
         jersey_number = player_row.get(PlayerColumns.NATION_JERSEY_NUMBER)
         if pd.isna(jersey_number):
-            jersey_number = player_row.get("club_jersey_number", 0)
+            jersey_number = player_row.get(PlayerColumns.CLUB_JERSEY_NUMBER, 0)
 
-        match_row = self.injury_prediction_service._find_match(match_number)
-        
+        match_row = self.injury_risk_predictor.find_match(match_number)
+
         home = MatchTeamSchema(
             name=str(match_row[FixtureColumns.HOME_TEAM_NAME]),
             code=str(match_row[FixtureColumns.HOME_FIFA_CODE]),
@@ -155,8 +160,17 @@ class DashboardPredictionService:
             code=str(match_row[FixtureColumns.AWAY_FIFA_CODE]),
             flag_url=build_flag_url(str(match_row[FixtureColumns.AWAY_FIFA_CODE])),
         )
-        opponent = away.name if team_code == str(match_row[FixtureColumns.HOME_FIFA_CODE]) else home.name
-        altitude_m = float(match_row.get(FixtureColumns.ALTITUDE, sensor_row.get("altitude", 0)))
+        opponent = (
+            away.name
+            if team_code == str(match_row[FixtureColumns.HOME_FIFA_CODE])
+            else home.name
+        )
+        altitude_m = float(
+            match_row.get(
+                FixtureColumns.ALTITUDE,
+                sensor_row.get(SensorColumns.ALTITUDE, 0),
+            )
+        )
 
         player_data = PlayerDataSchema(
             id=player_name,
@@ -164,36 +178,45 @@ class DashboardPredictionService:
             number=int(jersey_number),
             national_team=nationality,
             team_code=team_code,
-            flag_url=build_flag_url(team_code, player_row.get(PlayerColumns.NATION_FLAG_URL)),
+            flag_url=build_flag_url(
+                team_code, player_row.get(PlayerColumns.NATION_FLAG_URL)
+            ),
             face_url=str(player_row.get(PlayerColumns.PLAYER_FACE_URL, "")),
-            rating_label=_rating_label(sleep_quality),
+            rating_label=_classify_sleep_rating(sleep_quality),
             stats=PlayerStatsSchema(
                 sleep_quality=sleep_quality,
                 hydration=hydration,
-                body_temp=round(float(sensor_row["body_temperature"]), 1),
-                stress=_stress_label(float(sensor_row["stress_level"])),
+                body_temp=round(float(sensor_row[SensorColumns.BODY_TEMPERATURE]), 1),
+                stress=_classify_stress_level(float(sensor_row[SensorColumns.STRESS_LEVEL])),
                 fatigue_index=fatigue_index,
                 heart_rate_bpm=heart_rate,
                 heart_rate_series=[
-                    int(round(heart_rate + math.sin(index / 2.2) * 7)) for index in range(48)
+                    int(round(heart_rate + math.sin(index / 2.2) * 7))
+                    for index in range(48)
                 ],
                 training=TrainingSeriesSchema(
-                    duration=_series_around(float(sensor_row["training_duration"]), 8, 30),
-                    load=_series_around(float(sensor_row["training_load"]), 7, 40),
-                    intensity=_series_around(float(sensor_row["training_intensity"]), 7, 35),
+                    duration=_generate_time_series(
+                        float(sensor_row[SensorColumns.TRAINING_DURATION]), 8, 30
+                    ),
+                    load=_generate_time_series(
+                        float(sensor_row[SensorColumns.TRAINING_LOAD]), 7, 40
+                    ),
+                    intensity=_generate_time_series(
+                        float(sensor_row[SensorColumns.TRAINING_INTENSITY]), 7, 35
+                    ),
                 ),
             ),
             radar=RadarMetricsSchema(
-                cardio=_to_percent(sensor_row["heart_rate"] / 2),
-                endurance=_to_percent(sensor_row["recovery_score"]),
-                engagement=_to_percent(sensor_row["training_intensity"]),
-                respiratory=_to_percent(sensor_row["altitude"]),
-                recovery=_to_percent(sensor_row["recovery_score"]),
+                cardio=_to_percent(sensor_row[SensorColumns.HEART_RATE] / 2),
+                endurance=_to_percent(sensor_row[SensorColumns.RECOVERY_SCORE]),
+                engagement=_to_percent(sensor_row[SensorColumns.TRAINING_INTENSITY]),
+                respiratory=_to_percent(sensor_row[SensorColumns.ALTITUDE]),
+                recovery=_to_percent(sensor_row[SensorColumns.RECOVERY_SCORE]),
             ),
         )
 
-        venue = f"{core_prediction.match.venue_name}, {core_prediction.match.city_name}"
-        stadium_url = str(match_row.get('stadium_url', '')) or None
+        venue = f"{prediction.venue_name}, {prediction.city_name}"
+        stadium_url = str(match_row.get(FixtureColumns.STADIUM_URL, "")) or None
 
         match_context = MatchContextSchema(
             id=str(match_number),
@@ -204,8 +227,8 @@ class DashboardPredictionService:
             home=home,
             away=away,
             weather=MatchWeatherSchema(
-                temp_c=core_prediction.weather.ambient_temperature_celsius,
-                humidity=core_prediction.weather.humidity_percent,
+                temp_c=prediction.ambient_temperature_celsius,
+                humidity=prediction.humidity_percent,
                 altitude=altitude_m,
             ),
         )
@@ -218,13 +241,17 @@ class DashboardPredictionService:
 
         return DashboardPredictionResponseSchema(
             data=DashboardPredictionDataSchema(
-                player=player_data, match_context=match_context, ai_inference=ai_inference
+                player=player_data,
+                match_context=match_context,
+                ai_inference=ai_inference,
             )
         )
-    
+
     @cached(
-        cache=dashboard_prediction_cache, 
-        key=lambda self, player_name, match_number, *args, **kwargs: hashkey(player_name, match_number)
+        cache=_dashboard_prediction_cache,
+        key=lambda self, player_name, match_number, *a, **kw: hashkey(
+            player_name, match_number
+        ),
     )
     def build_dashboard_prediction(
         self,
@@ -232,14 +259,17 @@ class DashboardPredictionService:
         match_number: int,
     ) -> DashboardPredictionResponseSchema:
         """Ejecuta inferencia individual y la mapea (con caché automático)."""
-        logger.info(f"🔮 Calculando predicción individual para {player_name} - partido {match_number}")
-        
-        core_prediction = self.injury_prediction_service.predict_match_injury_risk(
+        logger.info(
+            "🔮 Calculando predicción individual para %s - partido %d",
+            player_name,
+            match_number,
+        )
+        prediction = self.injury_risk_predictor.predict_single(
             player_name=player_name,
             match_number=match_number,
         )
-        return self._map_to_dashboard_schema(player_name, match_number, core_prediction)
-    
+        return self._map_to_dashboard_schema(player_name, match_number, prediction)
+
     def build_batch_dashboard_predictions(
         self,
         player_names: list[str],
@@ -248,37 +278,42 @@ class DashboardPredictionService:
         """Inferencia masiva combinando hit de caché y predicción ML optimizada en bloque."""
         results = {}
         players_to_process = []
-        
+
         # 1. Separar Hits de Misses en el caché
         for player_name in player_names:
             key = hashkey(player_name, match_number)
-            if key in dashboard_prediction_cache:
-                results[player_name] = dashboard_prediction_cache[key]
+            if key in _dashboard_prediction_cache:
+                results[player_name] = _dashboard_prediction_cache[key]
             else:
                 players_to_process.append(player_name)
-        
+
         if not players_to_process:
             return results
-            
-        logger.info(f"🚀 Procesando batch ML para {len(players_to_process)} jugadores faltantes en caché (partido {match_number})")
-        
+
+        logger.info(
+            "🚀 Procesando batch ML para %d jugadores faltantes en caché (partido %d)",
+            len(players_to_process),
+            match_number,
+        )
+
         # 2. Inferencia en bloque (sólo para los que no estaban en caché)
-        core_predictions = self.injury_prediction_service.predict_batch_injury_risk(
+        predictions = self.injury_risk_predictor.predict_batch(
             player_names=players_to_process,
             match_number=match_number,
         )
-        
-        # 3. Mapear resultados y popular el caché manualmente para futuras peticiones
-        for player_name, core_prediction in core_predictions.items():
-            mapped_result = self._map_to_dashboard_schema(player_name, match_number, core_prediction)
-            
+
+        # 3. Mapear resultados y popular el caché manualmente
+        for player_name, prediction in predictions.items():
+            mapped_result = self._map_to_dashboard_schema(
+                player_name, match_number, prediction
+            )
             key = hashkey(player_name, match_number)
-            dashboard_prediction_cache[key] = mapped_result  # Guardado en caché
+            _dashboard_prediction_cache[key] = mapped_result
             results[player_name] = mapped_result
-            
+
         return results
-    
+
     def clear_prediction_cache(self) -> None:
         """Limpia el caché de predicciones."""
-        dashboard_prediction_cache.clear()
+        _dashboard_prediction_cache.clear()
         logger.info("🧹 Caché de predicciones limpiado")

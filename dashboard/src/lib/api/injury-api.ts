@@ -21,7 +21,7 @@ async function fetchJson<T>(path: string, signal?: AbortSignal): Promise<T> {
 /** Fechas de jornada para el carrusel superior. */
 export async function fetchMatchDates(signal?: AbortSignal): Promise<MatchDate[]> {
   const payload = await fetchJson<{ data: MatchDate[] }>(
-    "/api/v2/match-dates",
+    "/api/v3/mundial/fixture/jornadas",
     signal,
   );
   return payload.data;
@@ -33,7 +33,7 @@ export async function fetchMatchesByDate(
   signal?: AbortSignal,
 ): Promise<MatchListItem[]> {
   const payload = await fetchJson<{ data: MatchListItem[] }>(
-    `/api/v2/match-dates/${encodeURIComponent(kickoffDate)}/matches`,
+    `/api/v3/mundial/fixture/jornadas/${encodeURIComponent(kickoffDate)}/partidos`,
     signal,
   );
   return payload.data;
@@ -50,7 +50,7 @@ export async function fetchPlayersByMatch(
     params.set("q", searchQuery.trim());
   }
   const query = params.toString();
-  const path = `/api/v2/matches/${matchNumber}/players${query ? `?${query}` : ""}`;
+  const path = `/api/v3/mundial/partidos/${matchNumber}/plantilla${query ? `?${query}` : ""}`;
   const payload = await fetchJson<{ data: PlayerOption[] }>(path, signal);
   return payload.data;
 }
@@ -63,7 +63,7 @@ export async function fetchReadinessReport(
 ): Promise<PredictionResponse> {
   const encodedPlayerId = encodeURIComponent(playerId);
   return fetchJson<PredictionResponse>(
-    `/api/v2/matches/${matchNumber}/players/${encodedPlayerId}/readiness-report`,
+    `/api/v3/mundial/partidos/${matchNumber}/jugadores/${encodedPlayerId}/diagnostico`,
     signal,
   );
 }

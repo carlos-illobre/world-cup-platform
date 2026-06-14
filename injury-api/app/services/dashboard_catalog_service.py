@@ -4,12 +4,9 @@ from datetime import datetime
 
 import pandas as pd
 
-from app.core.constants import (
-    FixtureColumns,
-    PlayerColumns,
-)
 from app.core.exceptions import MatchDateNotFoundError, MatchNotFoundError
-from app.core.team_flags import build_flag_url
+from app.core.flag_url_builder import build_flag_url
+from app.datascience.schema.columns import FixtureColumns, PlayerColumns
 from app.domain.dashboard_schemas import (
     MatchDateSchema,
     MatchDaySchema,
@@ -87,7 +84,9 @@ class DashboardCatalogService:
 
         return [
             self._to_match_list_item(row)
-            for _, row in day_matches.sort_values(FixtureColumns.MATCH_NUMBER).iterrows()
+            for _, row in day_matches.sort_values(
+                FixtureColumns.MATCH_NUMBER
+            ).iterrows()
         ]
 
     def build_match_days(self) -> list[MatchDaySchema]:
@@ -102,7 +101,9 @@ class DashboardCatalogService:
             parsed_date = datetime.strptime(str(kickoff_date), "%Y-%m-%d")
             match_options = [
                 self._to_match_option(row)
-                for _, row in day_matches.sort_values(FixtureColumns.MATCH_NUMBER).iterrows()
+                for _, row in day_matches.sort_values(
+                    FixtureColumns.MATCH_NUMBER
+                ).iterrows()
             ]
             match_days.append(
                 MatchDaySchema(
@@ -115,11 +116,17 @@ class DashboardCatalogService:
 
         return match_days
 
-    def is_player_eligible_for_match(self, player_name: str, match_number: int) -> bool:
+    def is_player_eligible_for_match(
+        self, player_name: str, match_number: int
+    ) -> bool:
         """Verifica si el jugador pertenece a alguna de las selecciones del partido."""
         players, _, _ = self.build_player_options_for_match(match_number)
         normalized_name = player_name.strip().lower()
-        return any(player.name.strip().lower() == normalized_name for player in players)
+        return any(
+            player.name.strip().lower() == normalized_name for player in players
+        )
+
+    # --- Métodos internos ---
 
     def _with_kickoff_date(self) -> pd.DataFrame:
         fixture = self._fixture.copy()
@@ -153,7 +160,10 @@ class DashboardCatalogService:
             nationality = str(row[PlayerColumns.NATIONALITY_NAME])
             team_code = self._nationality_to_fifa.get(nationality, "UNK")
 
-            if eligible_team_codes is not None and team_code not in eligible_team_codes:
+            if (
+                eligible_team_codes is not None
+                and team_code not in eligible_team_codes
+            ):
                 continue
 
             short_name = str(row[PlayerColumns.SHORT_NAME])

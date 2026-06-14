@@ -40,11 +40,11 @@ export interface MatchPlayersInferencesResponse {
  * ──────────────────────────────────────────────────────────────────────────
  *  DISEÑO DE ENDPOINT PROPUESTO (a implementar en el backend FastAPI):
  *
- *  GET /api/v2/matches/{match_number}/players-with-inferences
+ *  GET /api/v3/mundial/partidos/{match_number}/plantilla-con-diagnostico
  *
  *  Path params:
  *    - match_number: int  (número de partido, igual al usado en
- *                          /api/v2/matches/{match_number}/players)
+ *                          /api/v3/mundial/partidos/{match_number}/plantilla)
  *
  *  Response 200 application/json:
  *  {
@@ -91,7 +91,7 @@ export async function fetchMatchPlayersInferences(
   signal?: AbortSignal,
 ): Promise<MatchPlayersInferencesResponse["data"]> {
   const response = await fetch(
-    `${INJURY_API_BASE_URL}/api/v2/matches/${matchNumber}/players-with-inferences`,
+    `${INJURY_API_BASE_URL}/api/v3/mundial/partidos/${matchNumber}/plantilla-con-diagnostico`,
     {
       signal,
       headers: { "ngrok-skip-browser-warning": "true" },

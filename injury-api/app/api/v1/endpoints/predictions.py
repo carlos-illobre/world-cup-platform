@@ -1,33 +1,27 @@
 """Endpoints REST para pronóstico de riesgo de lesión en el Mundial 2026."""
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, Query, status
 
 from app.api.dependencies import (
     get_dashboard_prediction_service,
-    get_injury_prediction_service,
+    get_injury_risk_predictor,
 )
+from app.api.error_handlers import raise_http_from_domain_error
 from app.core.exceptions import MatchNotFoundError, PlayerNotFoundError
+from app.core.risk_level import INJURY_RISK_LABELS, INJURY_RISK_DESCRIPTIONS, InjuryRiskLevel
+from app.datascience.inference.injury_risk_predictor import InjuryRiskPredictor
 from app.domain.dashboard_schemas import DashboardPredictionResponseSchema
 from app.domain.openapi_examples import NOT_FOUND_ERROR_EXAMPLE
-from app.domain.schemas import InjuryPredictionRequest, InjuryPredictionResponse
+from app.domain.schemas import (
+    InjuryPredictionRequest,
+    InjuryPredictionResponse,
+    InjuryRiskResponse,
+    MatchContextResponse,
+    WeatherContextResponse,
+)
 from app.services.dashboard_prediction_service import DashboardPredictionService
-from app.services.injury_prediction_service import InjuryPredictionService
 
 router = APIRouter(prefix="/injury-predictions", tags=["injury-predictions"])
-
-
-def _handle_prediction_errors(exc: Exception) -> None:
-    if isinstance(exc, MatchNotFoundError):
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail={"error": "match_not_found", "message": exc.message},
-        ) from exc
-    if isinstance(exc, PlayerNotFoundError):
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail={"error": "player_not_found", "message": exc.message},
-        ) from exc
-    raise exc
 
 
 @router.get(
@@ -57,7 +51,7 @@ def get_dashboard_injury_prediction(
             match_number=match_number,
         )
     except (MatchNotFoundError, PlayerNotFoundError) as exc:
-        _handle_prediction_errors(exc)
+        raise_http_from_domain_error(exc)
         raise
 
 
@@ -75,7 +69,7 @@ def get_dashboard_injury_prediction(
 )
 def predict_match_injury_risk(
     payload: InjuryPredictionRequest,
-    prediction_service: InjuryPredictionService = Depends(get_injury_prediction_service),
+    predictor: InjuryRiskPredictor = Depends(get_injury_risk_predictor),
 ) -> InjuryPredictionResponse:
     """
     Evalúa el riesgo de lesión por fatiga extrema para un jugador en un partido.
@@ -84,10 +78,31 @@ def predict_match_injury_risk(
     este endpoint solo ejecuta la inferencia sobre esos artefactos en memoria.
     """
     try:
-        return prediction_service.predict_match_injury_risk(
+        result = predictor.predict_single(
             player_name=payload.player_name,
             match_number=payload.match_number,
         )
     except (MatchNotFoundError, PlayerNotFoundError) as exc:
-        _handle_prediction_errors(exc)
+        raise_http_from_domain_error(exc)
         raise
+
+    risk_level = InjuryRiskLevel(result.risk_level)
+    return InjuryPredictionResponse(
+        player_name=result.player_name,
+        match=MatchContextResponse(
+            match_number=result.match_number,
+            stage_name=result.stage_name,
+            city_name=result.city_name,
+            venue_name=result.venue_name,
+            kickoff_date=result.kickoff_date,
+        ),
+        weather=WeatherContextResponse(
+            ambient_temperature_celsius=result.ambient_temperature_celsius,
+            humidity_percent=result.humidity_percent,
+        ),
+        injury_risk=InjuryRiskResponse(
+            risk_level=result.risk_level,
+            risk_label=INJURY_RISK_LABELS[risk_level],
+            description=INJURY_RISK_DESCRIPTIONS[risk_level],
+        ),
+    )

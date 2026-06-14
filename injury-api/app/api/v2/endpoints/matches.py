@@ -1,11 +1,12 @@
 """Endpoints REST v2: jugadores por partido e informe de preparación."""
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, Query, status
 
 from app.api.dependencies import (
     get_dashboard_catalog_service,
     get_dashboard_prediction_service,
 )
+from app.api.error_handlers import raise_http_from_domain_error
 from app.core.exceptions import MatchNotFoundError, PlayerNotFoundError
 from app.domain.dashboard_schemas import (
     DashboardPredictionResponseSchema,
@@ -41,10 +42,8 @@ def list_players_for_match(
             query=q,
         )
     except MatchNotFoundError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail={"error": "match_not_found", "message": exc.message},
-        ) from exc
+        raise_http_from_domain_error(exc)
+        raise
 
     return PlayerListResponseSchema(
         data=players,
@@ -86,13 +85,6 @@ def get_player_readiness_report(
             player_name=player_id,
             match_number=match_number,
         )
-    except MatchNotFoundError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail={"error": "match_not_found", "message": exc.message},
-        ) from exc
-    except PlayerNotFoundError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail={"error": "player_not_found", "message": exc.message},
-        ) from exc
+    except (MatchNotFoundError, PlayerNotFoundError) as exc:
+        raise_http_from_domain_error(exc)
+        raise

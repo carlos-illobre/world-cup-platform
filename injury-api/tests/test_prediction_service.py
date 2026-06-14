@@ -1,27 +1,28 @@
 """Pruebas de integración del servicio y la API REST."""
 
+import pytest
+
 
 class TestInjuryPredictionService:
-    """Pruebas del servicio de inferencia (capa de negocio)."""
+    """Pruebas del predictor de riesgo (capa de ciencia de datos)."""
 
     def test_predict_known_player_and_match(self, prediction_service):
-        result = prediction_service.predict_match_injury_risk(
+        result = prediction_service.predict_single(
             player_name="K. De Bruyne",
             match_number=1,
         )
 
         assert result.player_name == "K. De Bruyne"
-        assert result.match.match_number == 1
-        assert result.match.venue_name == "Estadio Azteca"
-        assert result.injury_risk.risk_level in (0, 1, 2)
-        assert result.injury_risk.risk_label in ("healthy", "low_risk", "critical_risk")
-        assert result.weather.ambient_temperature_celsius > 0
+        assert result.match_number == 1
+        assert result.venue_name == "Estadio Azteca"
+        assert result.risk_level in (0, 1, 2)
+        assert result.ambient_temperature_celsius > 0
 
     def test_match_not_found_raises(self, prediction_service):
         from app.core.exceptions import MatchNotFoundError
 
         with pytest.raises(MatchNotFoundError):
-            prediction_service.predict_match_injury_risk(
+            prediction_service.predict_single(
                 player_name="K. De Bruyne",
                 match_number=99999,
             )
@@ -30,7 +31,7 @@ class TestInjuryPredictionService:
         from app.core.exceptions import PlayerNotFoundError
 
         with pytest.raises(PlayerNotFoundError):
-            prediction_service.predict_match_injury_risk(
+            prediction_service.predict_single(
                 player_name="Jugador Inexistente XYZ",
                 match_number=1,
             )

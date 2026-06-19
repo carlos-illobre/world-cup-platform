@@ -7,6 +7,8 @@ http:
     api:
       rule: "Host(`api.localhost`) || Host(`localhost`) && PathPrefix(`/api`)"
       service: injury-api-service
+      middlewares:
+        - "compression"
       entryPoints:
         - web
 
@@ -14,6 +16,9 @@ http:
     dashboard:
       rule: "Host(`dashboard.localhost`) || Host(`localhost:3000`)"
       service: dashboard-service
+      middlewares:
+        - "compression"
+        - "static-cache"
       entryPoints:
         - web
 
@@ -23,6 +28,14 @@ http:
       service: "api@internal"
       entryPoints:
         - web
+
+  middlewares:
+    compression:
+      compress: {}
+    static-cache:
+      headers:
+        customResponseHeaders:
+          Cache-Control: "public, max-age=31536000"
 
   services:
     injury-api-service:

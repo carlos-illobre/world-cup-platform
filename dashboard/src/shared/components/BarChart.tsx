@@ -46,7 +46,7 @@ export function BarChart({ title, series }: BarChartProps) {
         {series.map((s) => (
           <div key={s.label} className="flex-1">
             {renderizarBarras(s.values, s.tint)}
-            <p className="mt-1.5 text-center text-[0.6rem] font-semibold tracking-[0.2em] text-muted-foreground">
+            <p className="mt-1.5 text-center text-xs font-semibold tracking-[0.2em] text-muted-foreground">
               {s.label}
             </p>
           </div>

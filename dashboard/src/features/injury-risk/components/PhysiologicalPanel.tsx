@@ -5,7 +5,6 @@ import { RadarChart } from "@/shared/components/RadarChart";
 import { InfoBox } from "@/shared/components/InfoBox";
 import { Skeleton } from "@/shared/components/Skeleton";
 import { PlayerProfileCard } from "@/features/injury-risk/components/PlayerProfileCard";
-import { TrainingLoadCharts } from "@/features/injury-risk/components/TrainingLoadCharts";
 import { STRESS_LEVEL_META } from "@/shared/constants/stressLevels";
 import { UI_LABELS } from "@/shared/constants/uiLabels";
 import { traducirCalificacion, traducirNivelEstres } from "@/shared/lib/displayMappers";
@@ -103,12 +102,6 @@ export function PhysiologicalPanel({ jugador, loading }: PhysiologicalPanelProps
         {/* Perfil del jugador con foto y gauge de fatiga */}
         <PlayerProfileCard jugador={jugador} loading={loading} />
       </div>
-
-      {/* Gráficos de carga de entrenamiento */}
-      <TrainingLoadCharts
-        entrenamiento={jugador?.stats.training}
-        loading={loading}
-      />
     </GlassPanel>
   );
 }

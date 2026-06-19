@@ -10,8 +10,10 @@ interface TeamSquadColumnProps {
 /** Ordena jugadores: mayor riesgo (2) → precaución (1) → seguro (0), luego alfabético. */
 function ordenarPorNivelRiesgo(jugadores: JugadorConInferencia[]): JugadorConInferencia[] {
   return [...jugadores].sort((a, b) => {
-    if (a.ai_inference.class !== b.ai_inference.class) {
-      return b.ai_inference.class - a.ai_inference.class;
+    const classA = a.ai_inference?.class ?? -1;
+    const classB = b.ai_inference?.class ?? -1;
+    if (classA !== classB) {
+      return classB - classA;
     }
     return a.name.localeCompare(b.name);
   });
@@ -33,7 +35,7 @@ export function TeamSquadColumn({ plantilla }: TeamSquadColumnProps) {
         <h3 className="font-display text-sm font-extrabold tracking-wide text-foreground">
           {plantilla.team.name}
         </h3>
-        <span className="ml-auto text-[11px] font-semibold text-muted-foreground">
+        <span className="ml-auto text-xs font-semibold text-muted-foreground">
           {UI_LABELS.squad.playerCount(plantilla.players.length)}
         </span>
       </header>

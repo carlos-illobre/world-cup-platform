@@ -1,10 +1,12 @@
 /** Formatea temperatura en grados Celsius. */
-export function formatearTemperatura(celsius: number): string {
+export function formatearTemperatura(celsius: number | undefined | null): string {
+  if (celsius === undefined || celsius === null) return "N/A";
   return `${celsius.toFixed(1)}°C`;
 }
 
 /** Formatea altitud en metros con separador de miles. */
-export function formatearAltitud(metros: number): string {
+export function formatearAltitud(metros: number | undefined | null): string {
+  if (metros === undefined || metros === null) return "N/A";
   return `${metros.toLocaleString("es-AR")}m`;
 }
 
@@ -19,6 +21,7 @@ export function formatearFrecuenciaCardiaca(lpm: number): string {
 }
 
 /** Formatea humedad como porcentaje con un decimal. */
-export function formatearHumedad(porcentaje: number): string {
+export function formatearHumedad(porcentaje: number | undefined | null): string {
+  if (porcentaje === undefined || porcentaje === null) return "N/A";
   return `${porcentaje.toFixed(1)}%`;
 }

@@ -1,4 +1,4 @@
-import { CheckCircle2, AlertTriangle, ShieldAlert, type LucideIcon } from "lucide-react";
+import { CheckCircle2, AlertTriangle, ShieldAlert, HelpCircle, type LucideIcon } from "lucide-react";
 import type { ClaseRiesgo } from "@/shared/types/injuryRisk.types";
 
 export interface EstiloNivelRiesgo {
@@ -14,6 +14,13 @@ export interface EstiloNivelRiesgo {
  * Clase 0 = seguro (verde), 1 = precaución (amarillo), 2 = riesgo (rojo).
  */
 export const ESTILOS_NIVEL_RIESGO: Record<ClaseRiesgo, EstiloNivelRiesgo> = {
+  [-1]: {
+    accent: "hsl(var(--muted-foreground))",
+    glow: "transparent",
+    Icon: HelpCircle,
+    etiquetaEstado: "SIN DATOS",
+    etiquetaVeredicto: "INFORMACIÓN NO DISPONIBLE",
+  },
   0: {
     accent: "var(--neon-green)",
     glow: "var(--glow-green)",

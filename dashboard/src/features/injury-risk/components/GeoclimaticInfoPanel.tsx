@@ -50,7 +50,7 @@ export function GeoclimaticInfoPanel({
       {/* Foto del estadio */}
       {loading || !contextoPartido ? (
         <Skeleton className="mb-4 h-28 w-full rounded-xl" />
-      ) : (
+      ) : contextoPartido.stadium_url ? (
         <img
           src={contextoPartido.stadium_url}
           alt={UI_LABELS.geo.stadiumAlt(contextoPartido.venue)}
@@ -59,6 +59,10 @@ export function GeoclimaticInfoPanel({
           height={500}
           className="mb-4 h-28 w-full rounded-xl object-cover ring-1 ring-border"
         />
+      ) : (
+        <div className="mb-4 flex h-28 w-full items-center justify-center rounded-xl bg-secondary/40 text-xs text-muted-foreground ring-1 ring-border">
+          Sin imagen de estadio
+        </div>
       )}
 
       {/* Datos geoclimáticos */}
@@ -73,19 +77,19 @@ export function GeoclimaticInfoPanel({
           icon={<Mountain className="h-4 w-4 text-neon-blue" />}
           label={UI_LABELS.geo.altitude}
           loading={loading}
-          value={contextoPartido ? formatearAltitud(contextoPartido.weather.altitude) : ""}
+          value={contextoPartido?.weather?.altitude != null ? formatearAltitud(contextoPartido.weather.altitude) : "—"}
         />
         <GeoInfoRow
           icon={<Thermometer className="h-4 w-4 text-neon-blue" />}
           label={UI_LABELS.geo.temperature}
           loading={loading}
-          value={contextoPartido ? formatearTemperatura(contextoPartido.weather.temp_c) : ""}
+          value={contextoPartido?.weather?.temp_c != null ? formatearTemperatura(contextoPartido.weather.temp_c) : "—"}
         />
         <GeoInfoRow
           icon={<Droplets className="h-4 w-4 text-neon-blue" />}
           label={UI_LABELS.geo.humidity}
           loading={loading}
-          value={contextoPartido ? formatearHumedad(contextoPartido.weather.humidity) : ""}
+          value={contextoPartido?.weather?.humidity != null ? formatearHumedad(contextoPartido.weather.humidity) : "—"}
         />
       </ul>
     </GlassPanel>

@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { StartupScreen } from "@/shared/components/StartupScreen";
 
 import appCss from "../styles.css?url";
 
@@ -135,8 +136,9 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   return (
     <Provider store={store}>
-      {/* Required: nested routes render here */}
-      <Outlet />
+      <StartupScreen>
+        <Outlet />
+      </StartupScreen>
     </Provider>
   );
 }

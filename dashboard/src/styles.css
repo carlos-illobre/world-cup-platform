@@ -65,13 +65,13 @@
   --secondary: oklch(0.27 0.03 252);
   --secondary-foreground: oklch(0.97 0.01 240);
   --muted: oklch(0.26 0.025 252);
-  --muted-foreground: oklch(0.68 0.03 245);
+  --muted-foreground: oklch(0.78 0.02 245);
   --accent: oklch(0.3 0.04 252);
   --accent-foreground: oklch(0.97 0.01 240);
   --destructive: oklch(0.62 0.24 25);
   --destructive-foreground: oklch(0.98 0.01 240);
-  --border: oklch(0.35 0.04 250 / 35%);
-  --input: oklch(0.3 0.04 250 / 50%);
+  --border: oklch(0.40 0.04 250 / 45%);
+  --input: oklch(0.35 0.04 250 / 55%);
   --ring: oklch(0.7 0.18 230);
 
   /* Neon accents */
@@ -119,6 +119,11 @@
 }
 
 @layer base {
+  html {
+    /* 125% = 20px root. text-sm→17.5px, text-base→20px, text-xs→15px. Mejora legibilidad. */
+    font-size: 125%;
+  }
+
   * {
     border-color: var(--color-border);
   }
@@ -129,6 +134,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
   }
 }
 

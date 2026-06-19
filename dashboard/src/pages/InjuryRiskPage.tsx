@@ -5,6 +5,7 @@ import { FixtureSelector } from "@/features/fixture/components/FixtureSelector";
 import { PlayerSelectionBar } from "@/features/squad/components/PlayerSelectionBar";
 import { SquadInferencePanel } from "@/features/squad/components/SquadInferencePanel";
 import { InjuryRiskDashboard } from "@/features/injury-risk/components/InjuryRiskDashboard";
+import { WhatIfSimulator } from "@/features/injury-risk/components/WhatIfSimulator";
 import { SelectionGuide } from "@/features/onboarding/components/SelectionGuide";
 import { selectNumeroPartidoSeleccionado } from "@/features/fixture/fixtureSlice";
 import { selectJugadorSeleccionadoId } from "@/features/squad/squadSlice";
@@ -35,6 +36,7 @@ export function InjuryRiskPage() {
     { matchNumber: numeroPartido! },
     { skip: !numeroPartido },
   );
+
   const { error: errorDiagnostico } = useGetReportePreparacionQuery(
     { matchNumber: numeroPartido!, jugadorId: jugadorId! },
     { skip: !seleccionCompleta },
@@ -63,9 +65,15 @@ export function InjuryRiskPage() {
 
         {mensajeErrorDiagnostico && <ErrorBanner message={mensajeErrorDiagnostico} />}
 
-        {!seleccionCompleta && !mensajeErrorDiagnostico && <SelectionGuide />}
+        {!seleccionCompleta && !mensajeErrorDiagnostico && (
+          <div className="mx-auto w-full max-w-4xl">
+            <SelectionGuide />
+          </div>
+        )}
 
         {seleccionCompleta && <InjuryRiskDashboard />}
+
+        {seleccionCompleta && <WhatIfSimulator />}
 
         {numeroPartido && <SquadInferencePanel />}
       </div>

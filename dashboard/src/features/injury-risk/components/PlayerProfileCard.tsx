@@ -4,6 +4,9 @@ import { UI_LABELS } from "@/shared/constants/uiLabels";
 import { traducirCalificacion } from "@/shared/lib/displayMappers";
 import type { DatosJugador } from "@/shared/types/injuryRisk.types";
 
+import { useState, useEffect } from "react";
+import { UserRound } from "lucide-react";
+
 interface PlayerProfileCardProps {
   jugador: DatosJugador | undefined;
   loading: boolean;
@@ -13,6 +16,12 @@ interface PlayerProfileCardProps {
  * Card de perfil del jugador: foto con dorsal y medidor circular de índice de fatiga.
  */
 export function PlayerProfileCard({ jugador, loading }: PlayerProfileCardProps) {
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    setImageError(false);
+  }, [jugador?.face_url]);
+
   return (
     <div className="relative flex flex-col items-center justify-center md:col-span-2 xl:col-span-1 xl:col-auto">
       {/* Foto del jugador con dorsal */}
@@ -21,13 +30,20 @@ export function PlayerProfileCard({ jugador, loading }: PlayerProfileCardProps) 
           <Skeleton className="h-[200px] w-[200px] rounded-2xl" />
         ) : (
           <>
-            <img
-              src={jugador.face_url}
-              alt={jugador.name}
-              width={220}
-              height={220}
-              className="h-auto max-h-[220px] w-auto rounded-2xl object-cover ring-2 ring-neon-blue/40 drop-shadow-[0_10px_30px_oklch(0.1_0.02_250_/_0.6)]"
-            />
+            {!jugador.face_url || imageError ? (
+              <div className="flex h-[200px] w-[200px] items-center justify-center rounded-2xl bg-secondary/80 ring-2 ring-neon-blue/40 drop-shadow-[0_10px_30px_oklch(0.1_0.02_250_/_0.6)]">
+                <UserRound className="h-1/2 w-1/2 text-muted-foreground" />
+              </div>
+            ) : (
+              <img
+                src={jugador.face_url}
+                alt={jugador.name}
+                width={220}
+                height={220}
+                onError={() => setImageError(true)}
+                className="h-auto max-h-[220px] w-auto rounded-2xl object-cover ring-2 ring-neon-blue/40 drop-shadow-[0_10px_30px_oklch(0.1_0.02_250_/_0.6)]"
+              />
+            )}
             <span className="absolute bottom-1 right-2 font-display text-5xl font-black text-foreground/90 drop-shadow-[0_0_12px_oklch(0.72_0.18_232_/_0.5)]">
               {jugador.number}
             </span>

@@ -7,8 +7,8 @@
 // Clasificación de riesgo IA (resultado de inferencia)
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Clase de riesgo: 0 = seguro, 1 = precaución, 2 = riesgo */
-export type ClaseRiesgo = 0 | 1 | 2;
+/** Clase de riesgo: -1 = sin datos, 0 = seguro, 1 = precaución, 2 = riesgo */
+export type ClaseRiesgo = -1 | 0 | 1 | 2;
 
 /** Nivel de estrés fisiológico del jugador */
 export type NivelEstres = "LOW" | "MODERATE" | "HIGH";
@@ -130,7 +130,9 @@ export interface PartidoResumido {
   home: EquipoNacional;
   away: EquipoNacional;
   venue: string;
+  stadium_url?: string;
   kickoff_at: string;
+  weather?: CondicionesClimaticas;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

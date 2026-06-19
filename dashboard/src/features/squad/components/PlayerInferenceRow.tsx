@@ -13,7 +13,8 @@ interface PlayerInferenceRowProps {
 export function PlayerInferenceRow({ jugador }: PlayerInferenceRowProps) {
   const dispatch = useAppDispatch();
   const jugadorSeleccionadoId = useAppSelector(selectJugadorSeleccionadoId);
-  const estilo = ESTILOS_NIVEL_RIESGO[jugador.ai_inference.class];
+  const inferenceClass = jugador.ai_inference?.class ?? -1;
+  const estilo = ESTILOS_NIVEL_RIESGO[inferenceClass] || ESTILOS_NIVEL_RIESGO[-1];
   const isSelected = jugador.id === jugadorSeleccionadoId;
 
   return (
@@ -39,7 +40,7 @@ export function PlayerInferenceRow({ jugador }: PlayerInferenceRowProps) {
         />
         {/* Badge de nivel de riesgo */}
         <span
-          className="shrink-0 rounded-md px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider"
+          className="shrink-0 rounded-md px-2 py-0.5 text-xs font-extrabold uppercase tracking-wider"
           style={{
             color: estilo.accent,
             border: `1px solid ${estilo.accent}`,
@@ -47,7 +48,7 @@ export function PlayerInferenceRow({ jugador }: PlayerInferenceRowProps) {
           }}
           title={`${estilo.etiquetaEstado} — ${estilo.etiquetaVeredicto}`}
         >
-          C{jugador.ai_inference.class}
+          {inferenceClass === -1 ? 'N/A' : `C${inferenceClass}`}
         </span>
       </button>
     </li>

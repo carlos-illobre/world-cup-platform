@@ -137,7 +137,7 @@ export function PlayerSearchCombobox({
                     teamName={nombreEquipo}
                     size="xs"
                   />
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                     {nombreEquipo}
                   </span>
                 </div>

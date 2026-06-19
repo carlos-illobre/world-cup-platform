@@ -12,6 +12,15 @@ const HR_HEIGHT = 70;
 
 /** Monitor de frecuencia cardíaca con gráfico de línea y valor actual. */
 export function HeartRateMonitor({ series, frecuenciaActual }: HeartRateMonitorProps) {
+  if (!series || series.length === 0) {
+    return (
+      <div className="flex h-[115px] flex-col items-center justify-center text-xs text-muted-foreground gap-2">
+        <Activity className="h-5 w-5 opacity-40" />
+        <span>Sin datos de ritmo cardíaco</span>
+      </div>
+    );
+  }
+
   const max = Math.max(...series);
   const min = Math.min(...series);
   const range = Math.max(max - min, 1);
@@ -27,7 +36,7 @@ export function HeartRateMonitor({ series, frecuenciaActual }: HeartRateMonitorP
   return (
     <div>
       <div className="flex items-stretch gap-3">
-        <div className="flex flex-col justify-between py-1 text-[0.55rem] font-semibold text-muted-foreground">
+        <div className="flex flex-col justify-between py-1 text-xs font-semibold text-muted-foreground">
           <span>500</span>
           <span>300</span>
           <span>200</span>
@@ -66,7 +75,7 @@ export function HeartRateMonitor({ series, frecuenciaActual }: HeartRateMonitorP
         </svg>
       </div>
       <div className="mt-2 flex items-center justify-between">
-        <span className="text-[0.6rem] font-semibold tracking-[0.2em] text-muted-foreground">
+        <span className="text-xs font-semibold tracking-[0.2em] text-muted-foreground">
           {UI_LABELS.heartRate.load}
         </span>
         <span className="flex items-baseline gap-2">

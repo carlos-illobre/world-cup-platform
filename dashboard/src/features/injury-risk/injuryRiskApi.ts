@@ -17,7 +17,7 @@ export const injuryRiskApi = createApi({
       { matchNumber: number; jugadorId: string }
     >({
       query: ({ matchNumber, jugadorId }) =>
-        `/api/v3/mundial/partidos/${matchNumber}/jugadores/${encodeURIComponent(jugadorId)}/diagnostico`,
+        `/api/v1/injuries/risk/${encodeURIComponent(jugadorId)}?match=${matchNumber}`,
       transformResponse: (response: ReportePreparacionResponse) => response.data,
       providesTags: (_result, _error, { matchNumber, jugadorId }) => [
         { type: "ReportePreparacion", id: `${matchNumber}-${jugadorId}` },

@@ -47,13 +47,13 @@ export function CircularGauge({ value, topLabel, bottomLabel }: CircularGaugePro
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-glow-green text-[0.65rem] font-bold tracking-[0.2em]">
+        <span className="text-glow-green text-xs font-bold tracking-[0.2em]">
           {topLabel}
         </span>
         <span className="font-display text-4xl font-extrabold text-neon-yellow drop-shadow-[0_0_14px_oklch(0.88_0.18_100_/_0.5)]">
           {Math.round(clamped)}%
         </span>
-        <span className="text-[0.6rem] font-semibold tracking-[0.25em] text-muted-foreground">
+        <span className="text-xs font-semibold tracking-[0.25em] text-muted-foreground">
           {bottomLabel}
         </span>
       </div>

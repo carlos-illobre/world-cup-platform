@@ -25,8 +25,9 @@ export const squadApi = createApi({
         if (searchQuery?.trim()) {
           params.set("q", searchQuery.trim());
         }
+        params.set("_t", Date.now().toString());
         const query = params.toString();
-        return `/api/v3/mundial/partidos/${matchNumber}/plantilla${query ? `?${query}` : ""}`;
+        return `/api/v1/matches/${matchNumber}/squad?${query}`;
       },
       transformResponse: (response: { data: OpcionJugador[] }) => response.data,
       providesTags: (_result, _error, { matchNumber }) => [
@@ -38,7 +39,7 @@ export const squadApi = createApi({
     /** Obtiene el plantel completo de ambos equipos con inferencia de riesgo pre-calculada. */
     getInferenciaPlantilla: builder.query<InferenciaPlantillaPartido, number>({
       query: (matchNumber) =>
-        `/api/v3/mundial/partidos/${matchNumber}/plantilla-con-diagnostico`,
+        `/api/v1/matches/${matchNumber}/squad/inference?_t=${Date.now()}`,
       transformResponse: (response: InferenciaPlantillaResponse) => response.data,
       providesTags: (_result, _error, matchNumber) => [
         { type: "InferenciaPlantilla", id: matchNumber },

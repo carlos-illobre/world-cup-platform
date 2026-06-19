@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
-import type { FechaJornada, PartidoResumido } from "@/shared/types/injuryRisk.types";
+import type { FechaJornada, PartidoResumido, ContextoPartido } from "@/shared/types/injuryRisk.types";
 
 /**
  * API RTK Query para el fixture del Mundial.
@@ -9,7 +9,7 @@ import type { FechaJornada, PartidoResumido } from "@/shared/types/injuryRisk.ty
 export const fixtureApi = createApi({
   reducerPath: "fixtureApi",
   baseQuery: fetchBaseQuery({ baseUrl: INJURY_API_BASE_URL }),
-  tagTypes: ["FechasJornada", "Partidos"],
+  tagTypes: ["FechasJornada", "Partidos", "ContextoPartido"],
   endpoints: (builder) => ({
     /** Obtiene todas las fechas de jornada disponibles. */
     getFechasJornada: builder.query<FechaJornada[], void>({
@@ -27,7 +27,15 @@ export const fixtureApi = createApi({
       providesTags: (_result, _error, fechaId) => [{ type: "Partidos", id: fechaId }],
       keepUnusedDataFor: 5 * 60,
     }),
+
+    /** Obtiene el contexto geoclimático de un partido. */
+    getPartidoContexto: builder.query<ContextoPartido, number>({
+      query: (matchNumber) => `/api/v3/mundial/partidos/${matchNumber}/contexto`,
+      transformResponse: (response: { data: ContextoPartido }) => response.data,
+      providesTags: (_result, _error, matchNumber) => [{ type: "ContextoPartido", id: matchNumber }],
+      keepUnusedDataFor: 5 * 60,
+    }),
   }),
 });
 
-export const { useGetFechasJornadaQuery, useGetPartidosPorFechaQuery } = fixtureApi;
+export const { useGetFechasJornadaQuery, useGetPartidosPorFechaQuery, useGetPartidoContextoQuery } = fixtureApi;

@@ -6,11 +6,13 @@ import { PlayerSelectionBar } from "@/features/squad/components/PlayerSelectionB
 import { SquadInferencePanel } from "@/features/squad/components/SquadInferencePanel";
 import { InjuryRiskDashboard } from "@/features/injury-risk/components/InjuryRiskDashboard";
 import { SelectionGuide } from "@/features/onboarding/components/SelectionGuide";
+import { GeoclimaticInfoPanel } from "@/features/injury-risk/components/GeoclimaticInfoPanel";
 import { selectNumeroPartidoSeleccionado } from "@/features/fixture/fixtureSlice";
 import { selectJugadorSeleccionadoId } from "@/features/squad/squadSlice";
 import {
   useGetFechasJornadaQuery,
   useGetPartidosPorFechaQuery,
+  useGetPartidoContextoQuery,
 } from "@/features/fixture/fixtureApi";
 import { useGetJugadoresPorPartidoQuery } from "@/features/squad/squadApi";
 import { useGetReportePreparacionQuery } from "@/features/injury-risk/injuryRiskApi";
@@ -35,12 +37,19 @@ export function InjuryRiskPage() {
     { matchNumber: numeroPartido! },
     { skip: !numeroPartido },
   );
+  
+  // Query para obtener el contexto del partido independientemente del jugador
+  const { data: contextoPartido, isLoading: isLoadingContexto, error: errorContexto } = useGetPartidoContextoQuery(
+    numeroPartido!,
+    { skip: !numeroPartido || seleccionCompleta }, // Skip if match not selected or player is selected (since dashboard handles it)
+  );
+
   const { error: errorDiagnostico } = useGetReportePreparacionQuery(
     { matchNumber: numeroPartido!, jugadorId: jugadorId! },
     { skip: !seleccionCompleta },
   );
 
-  const errorCatalogo = errorFechas ?? errorPartidos ?? errorJugadores;
+  const errorCatalogo = errorFechas ?? errorPartidos ?? errorJugadores ?? errorContexto;
 
   const mensajeErrorCatalogo = errorCatalogo
     ? `${UI_LABELS.errors.catalogLoadFailed} ${errorCatalogo instanceof Error ? errorCatalogo.message : String(errorCatalogo)}`
@@ -63,7 +72,12 @@ export function InjuryRiskPage() {
 
         {mensajeErrorDiagnostico && <ErrorBanner message={mensajeErrorDiagnostico} />}
 
-        {!seleccionCompleta && !mensajeErrorDiagnostico && <SelectionGuide />}
+        {!seleccionCompleta && !mensajeErrorDiagnostico && (
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-[1fr_320px]">
+            <SelectionGuide />
+            <GeoclimaticInfoPanel contextoPartido={contextoPartido} loading={isLoadingContexto && Boolean(numeroPartido)} />
+          </div>
+        )}
 
         {seleccionCompleta && <InjuryRiskDashboard />}
 

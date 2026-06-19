@@ -58,10 +58,10 @@ export function ScoutingPage() {
         const query = new URLSearchParams({ limit: "100" });
         if (debouncedSearchTerm) query.append("name", debouncedSearchTerm);
         if (country) query.append("country", country);
-        
+
         const data = await fetchJson(`/api/v1/players?${query.toString()}`);
         setPlayers(data.items || []);
-        
+
         // Auto-seleccionar primer jugador para el Radar si hay datos
         if (data.items && data.items.length > 0) {
           setSelectedPlayerForRadar(data.items[0]);
@@ -99,7 +99,7 @@ export function ScoutingPage() {
     <main className="min-h-screen bg-[#0a0a0a] text-white">
       <AppHeader />
       <div className="mx-auto max-w-7xl px-4 py-8">
-        
+
         {/* Header Section */}
         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
@@ -116,13 +116,13 @@ export function ScoutingPage() {
 
           {/* View Toggles */}
           <div className="flex bg-black/40 p-1 rounded-xl border border-white/10 shrink-0">
-            <button 
+            <button
               onClick={() => setViewMode("grid")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${viewMode === "grid" ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]" : "text-gray-300 hover:text-white"}`}
             >
               <LayoutGrid className="w-4 h-4" /> Grid de Jugadores
             </button>
-            <button 
+            <button
               onClick={() => setViewMode("analytics")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${viewMode === "analytics" ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]" : "text-gray-300 hover:text-white"}`}
             >
@@ -135,15 +135,15 @@ export function ScoutingPage() {
         <div className="bg-[#141414] border border-white/10 rounded-2xl p-4 mb-8 flex flex-col md:flex-row gap-4 relative z-40 shadow-lg">
           <div className="relative flex-1 group" ref={searchRef}>
             <Search className="absolute left-4 top-3.5 h-5 w-5 text-gray-300 group-focus-within:text-neon-blue transition-colors" />
-            <input 
-              type="text" 
-              placeholder="Buscar jugador por nombre... (Impacta los gráficos)" 
+            <input
+              type="text"
+              placeholder="Buscar jugador por nombre... (Impacta los gráficos)"
               className="w-full bg-black/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-neon-blue focus:border-transparent transition-all shadow-inner"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onFocus={() => { if (searchTerm) setShowAutocomplete(true); }}
             />
-            
+
             {/* Dropdown de Autocompletado */}
             {showAutocomplete && players.length > 0 && viewMode === "grid" && (
               <div className="absolute z-50 w-full mt-2 bg-[#1a1a1a] border border-white/10 rounded-xl shadow-2xl overflow-hidden max-h-64 overflow-y-auto custom-scrollbar">
@@ -216,7 +216,7 @@ export function ScoutingPage() {
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-4 bg-black/30 border border-white/5 p-4 rounded-xl">
                   <span className="text-sm font-bold text-gray-300">Seleccionar Clúster para Ranking Mundial:</span>
-                  <select 
+                  <select
                     className="bg-black/50 border border-white/10 rounded-lg py-2 px-4 text-white focus:ring-2 focus:ring-neon-blue outline-none"
                     value={selectedCluster}
                     onChange={(e) => setSelectedCluster(e.target.value)}
@@ -232,7 +232,7 @@ export function ScoutingPage() {
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-4 bg-black/30 border border-white/5 p-4 rounded-xl">
                   <span className="text-sm font-bold text-gray-300">Seleccionar Jugador para Radar:</span>
-                  <select 
+                  <select
                     className="flex-1 bg-black/50 border border-white/10 rounded-lg py-2 px-4 text-white focus:ring-2 focus:ring-neon-blue outline-none"
                     value={selectedPlayerForRadar?.id || ""}
                     onChange={(e) => {
@@ -252,6 +252,67 @@ export function ScoutingPage() {
         )}
 
         {/* ===================== VIEW MODE: GRID ===================== */}
+
+        {/* Data Legend - explains what each metric means */}
+        {viewMode === "grid" && !loading && players.length > 0 && (
+          <div className="mb-6 bg-[#141414] border border-white/5 rounded-xl p-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Impact Score */}
+              <div className="bg-black/30 rounded-xl p-5 border border-neon-blue/20">
+                <h4 className="text-lg font-display font-bold text-neon-blue mb-3 flex items-center gap-2">
+                  ⚡ Impact Score
+                </h4>
+                <p className="text-base text-gray-200 leading-relaxed mb-3">
+                  Es una <strong className="text-white">métrica compuesta</strong> que cuantifica cuánto aporta un jugador a su equipo
+                  en relación al promedio. No es un dato de FIFA ni de ningún portal — se <strong className="text-white">calcula con ciencia de datos</strong>.
+                </p>
+                <div className="bg-black/40 rounded-lg p-3 border border-white/5 mb-3">
+                  <p className="text-sm text-purple-300 font-mono">
+                    Impact Score = Z(G+A/90) + Z(PPM) + Z(On/Off)
+                  </p>
+                </div>
+                <div className="space-y-2 text-sm text-gray-300">
+                  <p><strong className="text-white">G+A/90:</strong> Goles + Asistencias por cada 90 minutos jugados. Fuente: FBref (estadísticas reales de todas las competiciones).</p>
+                  <p><strong className="text-white">PPM:</strong> Points Per Match — puntos promedio que obtiene el equipo cuando este jugador juega. Fuente: FBref.</p>
+                  <p><strong className="text-white">On/Off:</strong> Diferencial de goles del equipo cuando el jugador está en cancha vs cuando no está. Fuente: FBref.</p>
+                  <p><strong className="text-white">Z(...):</strong> Estandarización Z-score = (valor - media) / desviación estándar. Garantiza que ninguna métrica domine por tener mayor magnitud.</p>
+                </div>
+                <div className="mt-3 pt-3 border-t border-white/5 text-sm text-gray-300">
+                  <p><strong className="text-green-400">Positivo (&gt; 0):</strong> El jugador aporta más que el promedio de los 1,257 jugadores del dataset.</p>
+                  <p><strong className="text-red-400">Negativo (&lt; 0):</strong> El jugador está por debajo del promedio en contribución combinada.</p>
+                </div>
+              </div>
+
+              {/* Cluster */}
+              <div className="bg-black/30 rounded-xl p-5 border border-purple-500/20">
+                <h4 className="text-lg font-display font-bold text-purple-400 mb-3 flex items-center gap-2">
+                  🎯 Cluster (Perfil Táctico K-Means)
+                </h4>
+                <p className="text-base text-gray-200 leading-relaxed mb-3">
+                  Es el <strong className="text-white">grupo táctico</strong> al que pertenece el jugador, asignado automáticamente
+                  por el algoritmo <strong className="text-white">K-Means (k=5)</strong> — un método de Machine Learning no supervisado
+                  que agrupa jugadores con estilos de juego similares, sin importar su posición nominal.
+                </p>
+                <p className="text-sm text-gray-300 mb-3">
+                  <strong className="text-white">¿Cómo funciona?</strong> El algoritmo recibe 10 estadísticas por 90 minutos
+                  (goles, asistencias, tiros, entradas, centros, intercepciones, faltas, etc.) y busca patrones:
+                  los jugadores que juegan de forma similar terminan en el mismo cluster, aunque uno sea "mediocampista" y el otro "delantero".
+                </p>
+                <div className="space-y-1.5 text-sm">
+                  <p><span className="inline-block w-4 h-4 rounded-full bg-[#10b981] mr-2 align-middle"></span><strong className="text-white">Cluster 0:</strong> <span className="text-gray-200">Defensor Posicional — baja participación ofensiva, domina la organización táctica</span></p>
+                  <p><span className="inline-block w-4 h-4 rounded-full bg-[#3b82f6] mr-2 align-middle"></span><strong className="text-white">Cluster 1:</strong> <span className="text-gray-200">Carrilero / Extremo — alto volumen de centros y regates</span></p>
+                  <p><span className="inline-block w-4 h-4 rounded-full bg-[#8b5cf6] mr-2 align-middle"></span><strong className="text-white">Cluster 2:</strong> <span className="text-gray-200">Destructor / Recuperador — muchas entradas ganadas e intercepciones</span></p>
+                  <p><span className="inline-block w-4 h-4 rounded-full bg-[#f43f5e] mr-2 align-middle"></span><strong className="text-white">Cluster 3:</strong> <span className="text-gray-200">Atacante Eficiente / Creador — alta producción de goles y asistencias por minuto</span></p>
+                  <p><span className="inline-block w-4 h-4 rounded-full bg-[#eab308] mr-2 align-middle"></span><strong className="text-white">Cluster 4:</strong> <span className="text-gray-200">Goleador / Delantero de Área — muchos tiros, fueras de juego y goles</span></p>
+                </div>
+                <div className="mt-3 pt-3 border-t border-white/5 text-sm text-gray-400">
+                  <p><strong className="text-gray-200">Fuente:</strong> Estadísticas de juego de FBref procesadas en <code className="text-purple-300">model_clustering.py</code> con StandardScaler + KMeans(n_clusters=5, n_init=15).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {viewMode === "grid" && !loading && players.length === 0 ? (
           <div className="text-center py-20 bg-black/20 rounded-xl border border-white/5 flex flex-col items-center justify-center">
             <Search className="w-12 h-12 text-gray-600 mb-4" />
@@ -263,7 +324,7 @@ export function ScoutingPage() {
             {players.map((p: any) => (
               <div key={p.id} className="group relative bg-[#141414] border border-white/5 rounded-2xl p-5 hover:bg-[#1a1a1a] hover:border-neon-blue/40 hover:shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all duration-300 overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-neon-blue/5 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none group-hover:bg-neon-blue/10 transition-colors"></div>
-                
+
                 <div className="relative z-10 flex items-start gap-4 mb-5">
                   {p.photo_url ? (
                     <img src={p.photo_url} alt={p.name} className="w-16 h-16 rounded-full object-cover border-2 border-white/10 group-hover:border-neon-blue/50 transition-colors bg-black/50" />

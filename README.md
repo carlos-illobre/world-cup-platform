@@ -27,7 +27,7 @@
 El proyecto implementa una arquitectura de Data Lake por capas semánticas que garantiza la **inmutabilidad de los datos crudos** y la **reproducibilidad** de todo el pipeline. Un científico de datos que reciba este repositorio puede regenerar cualquier artefacto ejecutando los scripts en orden.
 
 ```
-world_cup_scraper/
+scraper/
 │
 ├── data/
 │   ├── 1_raw/           → Archivos CSV originales (solo lectura — fuente de verdad)

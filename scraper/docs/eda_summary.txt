@@ -1,0 +1,108 @@
+EDA Summary Report on Injuries
+==============================
+
+1. Positions getting injured most:
+Posicion
+DF       1640
+MF       1638
+FW,MF    1607
+DF,MF    1338
+FW        666
+GK        531
+DF,FW     131
+
+2. Seasonality (Injuries by month):
+Month
+1     906
+2     891
+3     870
+4     862
+5     608
+6     237
+7     321
+8     637
+9     789
+10    904
+11    832
+12    754
+
+3. Most Frequent Injuries:
+Tipo_Lesion
+Unknown Injury       729
+Hamstring Injury     662
+Muscle Injury        530
+Ill                  391
+Ankle Injury         357
+Knee Injury          344
+Corona Virus         327
+Muscular Problems    307
+Knock                258
+Fitness              214
+Knee Problems        189
+Thigh Problems       163
+Calf Injury          163
+Shoulder Injury      148
+Rest                 145
+
+Most Severe Injuries (Avg Days Out):
+Tipo_Lesion
+Cruciate Ligament Tear        258.876543
+Cruciate Ligament Injury      217.400000
+Broken Fibula                 148.454545
+Meniscus Tear                 123.850000
+Knee Surgery                  111.775000
+Torn Lateral Knee Ligament     90.733333
+Metatarsal Fracture            89.666667
+Syndesmotic Ligament Tear      77.000000
+Ankle Surgery                  76.142857
+Syndesmosis Ligament Tear      71.083333
+Meniscus Injury                68.727273
+Groin Surgery                  63.764706
+Surgery                        60.888889
+Achilles Tendon Problems       55.258065
+Knee Injury                    53.720930
+
+4. Age vs Injury Frequency:
+Correlation between Age and Total Injuries: 0.238
+
+5. Average Injuries by League (Top 15):
+League
+1.de     11.882353
+1.it     11.470588
+1.tr     10.534884
+1.es     10.414634
+1.eng    10.329268
+1.ar     10.285714
+1.br     10.272727
+2.de      8.750000
+1.fr      8.703704
+1.at      8.428571
+1.co      8.000000
+1.rs      8.000000
+1.nl      7.181818
+1.cy      7.083333
+1.pt      6.535714
+
+Average Injuries by Country (Top 20):
+Country
+Argentina        24.730769
+Germany          22.296296
+France           20.230769
+Brazil           19.925926
+Austria          11.269231
+Switzerland      11.230769
+Türkiye          11.153846
+Uruguay          10.653846
+Netherlands      10.538462
+Belgium           9.076923
+Spain             8.769231
+Portugal          8.769231
+Croatia           8.500000
+Scotland          8.074074
+England           7.769231
+United States     7.730769
+Colombia          7.615385
+Czechia           7.423077
+Norway            6.884615
+Morocco           6.615385
+

@@ -1,0 +1,33 @@
+==================================================
+  REPORTE DE CLUSTERING - PERFILES DE JUGADORES  
+==================================================
+
+Total de jugadores analizados: 1257
+ - Porteros: 146
+ - Jugadores de campo con stats suficientes: 1022
+ - Jugadores de campo con minutos bajos (imputados): 89
+
+Distribución de Perfiles:
+ - Defensor / Mediocampista Posicional: 541 jugadores (43.0%)
+ - Destructor / Recuperador           : 239 jugadores (19.0%)
+ - Guardameta / Portero               : 146 jugadores (11.6%)
+ - Atacante Eficiente / Creador       : 141 jugadores (11.2%)
+ - Carrilero / Extremo de Volumen     :  99 jugadores (7.9%)
+ - Goleador / Delantero de Área       :  91 jugadores (7.2%)
+
+Centros de los Clústeres (Medias de Features):
+                                     goals_per_90  assists_per_90  shots_per_90  sot_per_90  tackles_won_per_90  interceptions_per_90  crosses_per_90  fouls_committed_per_90  fouls_drawn_per_90  offsides_per_90
+Player_Profile                                                                                                                                                                                                    
+Atacante Eficiente / Creador               0.6225          0.3855        1.0072      0.3777              0.1987                0.0923          0.7440                  0.7568              0.4126           0.0772
+Carrilero / Extremo de Volumen             0.2185          0.3071        4.9675      1.8165              2.3201                1.3198         12.0387                  2.4483              3.9195           0.3491
+Defensor / Mediocampista Posicional        0.0853          0.0417        0.4643      0.1011              0.3665                0.2743          0.5245                  0.4546              0.3903           0.0215
+Destructor / Recuperador                   0.0732          0.0738        1.9402      0.5641              2.7769                2.5054          2.2300                  3.2066              2.3963           0.1675
+Goleador / Delantero de Área               0.5774          0.1595        7.5955      3.4089              1.1477                0.6118          2.3561                  2.9898              2.9159           1.2647
+
+Explicación Táctica de Perfiles:
+1. Guardameta / Portero: Especialistas de portería, excluidos del clustering de campo.
+2. Defensor / Mediocampista Posicional: Jugadores conservadores, con baja participación en eventos ofensivos directos. Dominan la organización táctica.
+3. Destructor / Recuperador: Jugadores defensivos muy activos. Alta tasa de entradas ganadas, intercepciones y faltas cometidas.
+4. Carrileros / Extremos de Volumen: Jugadores de banda extremadamente activos. Elevado volumen de centros, regates y faltas sufridas.
+5. Goleador / Delanteros de Área: Finalizadores netos. Alto volumen de disparos, tiros a puerta, fueras de juego y goles.
+6. Atacante Eficiente / Creador: Mediapuntas o creadores de juego altamente resolutivos. Registran alta producción de goles y asistencias por minuto sin requerir alto volumen de disparos.

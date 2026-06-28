@@ -1,0 +1,7 @@
+Feature 1,Feature 2,Correlation
+is_future,Captain_Gustavo Gómez,0.91004949289329
+is_future,Comp_World Cup,0.9229983651599439
+is_future,Round_Group stage,0.9229983651599439
+Country_FIFA_Rank,Country_FIFA_Points,0.9602011125122796
+Opponent_FIFA_Rank,Opponent_FIFA_Points,0.9811403141431931
+h2h_wins,h2h_goals_for,0.9077533123138629

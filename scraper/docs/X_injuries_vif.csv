@@ -1,0 +1,51 @@
+Feature,VIF
+#,3.298898094282954
+injury_severity_score,3.268941706886852
+Performance_OG_allcomps,1.0603479866693901
+GK_Performance_Saves,6.340809824114982
+Per 90 Minutes_Gls,inf
+Per 90 Minutes_G+A,inf
+Team Success_+/-,1.8539513242971917
+GK_Performance_SoTA,7.039484584683995
+Performance_Fls_allcomps,1.8734778306499569
+Performance_L_allcomps,2.4812384660954345
+Performance_CS_allcomps,2.2889816685386997
+Performance_CS%_allcomps,1.4238871529363948
+Penalty Kicks_PKatt_allcomps,2.313963968878728
+Penalty Kicks_Save%_allcomps,1.4994322945441536
+prior_injuries,2.3504496168485356
+MarketValue_EUR,1.6534911705141129
+MP,7.158616625447845
+Performance_CrdR,1.0372622029311127
+Performance_Crs,1.680163074377984
+Subs_unSub,13.180533120257502
+Team Success_+/-90,1.7358555289471405
+GK_Performance_L,1.6600170448115037
+Performance_G-PK_allcomps,2.1586150715972496
+Performance_PKatt_allcomps,inf
+Performance_CrdY_allcomps,1.5441100999999722
+Per 90 Minutes_Gls_allcomps,1.9395327048451523
+Standard_G/SoT_allcomps,1.6195535495008637
+Standard_PKatt_allcomps,inf
+Performance_Crs_allcomps,1.534867770035128
+Playing Time_Mn/MP_allcomps,2.256181201247469
+Team Success_+/-_allcomps,2.261629390457907
+Team Success_+/-90_allcomps,1.8278755896404881
+is_recurrent,1.2482457306212373
+months_since_last_injury,445.85027715591366
+Dias_Baja,5.8822330862841445
+Partidos_Perdidos,5.844928774018471
+prior_days_out,2.0756364081904937
+days_since_last_injury,448.20481440666634
+Age,1.662892936209569
+Playing Time_Starts,17.662105660546963
+Playing Time_Min,27.64111767798398
+Playing Time_90s,inf
+Performance_Gls,2.20633852308716
+Performance_PK,inf
+Performance_PKatt,inf
+Performance_CrdY,1.2426949333694306
+Per 90 Minutes_Ast,inf
+Per 90 Minutes_G-PK,inf
+Per 90 Minutes_G+A-PK,inf
+90s,inf

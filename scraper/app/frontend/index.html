@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup 2026 - AI Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar glass-panel">
+            <div class="logo">
+                <h1>WC26<span>.AI</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-tab="squad-builder">Squad Builder</li>
+                <li data-tab="player-explorer">Player Explorer</li>
+                <li data-tab="match-predictor">Match Predictor</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Squad Builder View -->
+            <section id="squad-builder" class="view active-view">
+                <header>
+                    <h2>Optimized Squad Builder</h2>
+                    <p>AI-driven 26-man roster maximizing impact score while minimizing injury risk.</p>
+                </header>
+                
+                <div class="controls glass-panel">
+                    <input type="text" id="country-input" placeholder="Enter Country (e.g., Argentina, Brazil)" value="Argentina">
+                    <button id="btn-load-squad" class="btn-primary">Generate Squad</button>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="squad-summary glass-panel">
+                        <h3>Squad Summary</h3>
+                        <div id="squad-stats" class="stats-container">
+                            <!-- Injected via JS -->
+                            <p>Load a squad to see stats.</p>
+                        </div>
+                    </div>
+                    <div class="squad-list glass-panel">
+                        <h3>Roster List</h3>
+                        <div class="table-responsive">
+                            <table id="roster-table">
+                                <thead>
+                                    <tr>
+                                        <th>Player</th>
+                                        <th>Pos</th>
+                                        <th>Age</th>
+                                        <th>Club</th>
+                                        <th>Impact</th>
+                                        <th>Injuries</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Injected via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Player Explorer View -->
+            <section id="player-explorer" class="view">
+                <header>
+                    <h2>Player AI Explorer</h2>
+                    <p>Search a player to see their cluster profile and impact metrics.</p>
+                </header>
+                <div class="controls glass-panel" style="flex-wrap: wrap;">
+                    <select id="filter-nationality" style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white; margin-right: 10px;">
+                        <option value="All">All Nationalities</option>
+                    </select>
+                    <div style="position: relative; flex-grow: 1; max-width: 400px;">
+                        <input type="text" id="player-input" placeholder="Search Player Name (e.g. Messi)..." autocomplete="off" style="width: 100%;">
+                        <div id="autocomplete-list" style="position: absolute; top: 100%; left: 0; right: 0; background: rgba(30,30,30,0.95); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; max-height: 200px; overflow-y: auto; z-index: 1000; display: none;"></div>
+                    </div>
+                    <button id="btn-search-player" class="btn-primary">Search</button>
+                </div>
+                <div class="player-card glass-panel" id="player-card">
+                    <p>Search a player to display their AI profile.</p>
+                </div>
+            </section>
+
+            <!-- Match Predictor View -->
+            <section id="match-predictor" class="view">
+                <header>
+                    <h2>Match Predictor</h2>
+                    <p>XGBoost powered head-to-head predictions.</p>
+                </header>
+                <div class="controls glass-panel" style="flex-direction:column; gap:15px;">
+                    <div style="display:flex; gap:10px; align-items:center; width:100%; justify-content:center;">
+                        <input type="text" id="team-a" placeholder="Team A (e.g. Argentina)">
+                        <span class="vs">VS</span>
+                        <input type="text" id="team-b" placeholder="Team B (e.g. France)">
+                    </div>
+                    <div style="display:flex; gap:15px; align-items:center; width:100%; justify-content:center; background:rgba(0,0,0,0.2); padding:10px; border-radius:8px;">
+                        <div>
+                            <label style="font-size:0.8rem; color:var(--text-secondary);">Temp (°C)</label>
+                            <input type="number" id="weather-temp" value="20" style="width:70px;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; color:var(--text-secondary);">Rain (mm)</label>
+                            <input type="number" id="weather-rain" value="0" style="width:70px;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; color:var(--text-secondary);">Wind (km/h)</label>
+                            <input type="number" id="weather-wind" value="10" style="width:70px;">
+                        </div>
+                    </div>
+                    <button id="btn-predict" class="btn-primary" style="margin-top:10px;">Simulate Weather Match</button>
+                </div>
+                <div class="prediction-result glass-panel" id="prediction-result">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js?v=2"></script>
+</body>
+</html>

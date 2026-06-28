@@ -1,0 +1,23 @@
+Match Outcome Prediction Metrics
+================================
+Baseline (Random Forest):
+Accuracy: 0.5827
+F1-Macro: 0.4920
+Log Loss: 0.9027
+
+XGBoost:
+Accuracy: 0.4964
+F1-Macro: 0.4133
+Log Loss: 0.9507
+
+XGBoost Classification Report:
+              precision    recall  f1-score   support
+
+           L       0.33      0.14      0.20        36
+           D       0.29      0.44      0.35        34
+           W       0.68      0.71      0.70        69
+
+    accuracy                           0.50       139
+   macro avg       0.43      0.43      0.41       139
+weighted avg       0.49      0.50      0.48       139
+

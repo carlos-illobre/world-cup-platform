@@ -1,0 +1,49 @@
+﻿Country,Category,Player,Pos,Age,Playing Time_MP,Playing Time_Starts,Playing Time_Min,Playing Time_90s,Performance_GA,Performance_GA90,Performance_SoTA,Performance_Saves,Performance_Save%,Performance_W,Performance_D,Performance_L,Performance_CS,Performance_CS%,Penalty Kicks_PKatt,Penalty Kicks_PKA,Penalty Kicks_PKsv,Penalty Kicks_PKm,Penalty Kicks_Save%,Matches
+Australia,world_cup,Patrick Beach,GK,22-312,1,1,90,1.0,0,0.0,8,8,100.0,1,0,0,1,100.0,0,0,0,0,,Matches
+Australia,world_cup,Squad Total,,25.1,1,1,90,1.0,0,0.0,8,8,100.0,1,0,0,1,100.0,0,0,0,0,,
+Australia,world_cup,Opponent Total,,27.6,1,1,90,1.0,2,2.0,4,2,50.0,0,0,1,0,0.0,0,0,0,0,,
+Bosnia-Herzegovina,world_cup,Nikola Vasilj,GK,30-194,1,1,90,1.0,1,1.0,2,1,50.0,0,1,0,0,0.0,0,0,0,0,,Matches
+Bosnia-Herzegovina,world_cup,Squad Total,,26.2,1,1,90,1.0,1,1.0,2,1,50.0,0,1,0,0,0.0,0,0,0,0,,
+Bosnia-Herzegovina,world_cup,Opponent Total,,27.3,1,1,90,1.0,1,1.0,3,2,66.7,0,1,0,0,0.0,0,0,0,0,,
+Brazil,world_cup,Alisson,GK,33-255,1,1,90,1.0,1,1.0,3,2,66.7,0,1,0,0,0.0,0,0,0,0,,Matches
+Brazil,world_cup,Squad Total,,29.8,1,1,90,1.0,1,1.0,3,2,66.7,0,1,0,0,0.0,0,0,0,0,,
+Brazil,world_cup,Opponent Total,,25.8,1,1,90,1.0,1,1.0,5,4,80.0,0,1,0,0,0.0,0,0,0,0,,
+Canada,world_cup,Maxime Crépeau,GK,32-034,1,1,90,1.0,1,1.0,3,2,66.7,0,1,0,0,0.0,0,0,0,0,,Matches
+Canada,world_cup,Squad Total,,27.3,1,1,90,1.0,1,1.0,3,2,66.7,0,1,0,0,0.0,0,0,0,0,,
+Canada,world_cup,Opponent Total,,26.2,1,1,90,1.0,1,1.0,2,1,50.0,0,1,0,0,0.0,0,0,0,0,,
+Czechia,world_cup,Matej Kovar,GK,26-028,1,1,90,1.0,2,2.0,6,4,66.7,0,0,1,0,0.0,0,0,0,0,,Matches
+Czechia,world_cup,Squad Total,,28.2,1,1,90,1.0,2,2.0,6,4,66.7,0,0,1,0,0.0,0,0,0,0,,
+Czechia,world_cup,Opponent Total,,28.7,1,1,90,1.0,1,1.0,4,3,75.0,1,0,0,0,0.0,0,0,0,0,,
+Haiti,world_cup,Johny Placide,GK,38-136,1,1,90,1.0,1,1.0,2,1,50.0,0,0,1,0,0.0,0,0,0,0,,Matches
+Haiti,world_cup,Squad Total,,29.1,1,1,90,1.0,1,1.0,2,1,50.0,0,0,1,0,0.0,0,0,0,0,,
+Haiti,world_cup,Opponent Total,,29.4,1,1,90,1.0,0,0.0,2,2,100.0,1,0,0,1,100.0,0,0,0,0,,
+Korea Republic,world_cup,Kim Seung-gyu,GK,35-257,1,1,90,1.0,1,1.0,4,3,75.0,1,0,0,0,0.0,0,0,0,0,,Matches
+Korea Republic,world_cup,Squad Total,,28.7,1,1,90,1.0,1,1.0,4,3,75.0,1,0,0,0,0.0,0,0,0,0,,
+Korea Republic,world_cup,Opponent Total,,28.2,1,1,90,1.0,2,2.0,6,4,66.7,0,0,1,0,0.0,0,0,0,0,,
+Mexico,world_cup,Raúl Rangel,GK,26-109,1,1,90,1.0,0,0.0,2,2,100.0,1,0,0,1,100.0,0,0,0,0,,Matches
+Mexico,world_cup,Squad Total,,28.1,1,1,90,1.0,0,0.0,2,2,100.0,1,0,0,1,100.0,0,0,0,0,,
+Mexico,world_cup,Opponent Total,,28.2,1,1,90,1.0,2,2.0,4,2,50.0,0,0,1,0,0.0,0,0,0,0,,
+Morocco,world_cup,Yassine Bounou,GK,35-070,1,1,90,1.0,1,1.0,5,4,80.0,0,1,0,0,0.0,0,0,0,0,,Matches
+Morocco,world_cup,Squad Total,,25.8,1,1,90,1.0,1,1.0,5,4,80.0,0,1,0,0,0.0,0,0,0,0,,
+Morocco,world_cup,Opponent Total,,29.8,1,1,90,1.0,1,1.0,3,2,66.7,0,1,0,0,0.0,0,0,0,0,,
+Paraguay,world_cup,Orlando Gill,GK,26-003,1,1,90,1.0,4,4.0,7,3,42.9,0,0,1,0,0.0,0,0,0,0,,Matches
+Paraguay,world_cup,Squad Total,,28.4,1,1,90,1.0,4,4.0,7,3,42.9,0,0,1,0,0.0,0,0,0,0,,
+Paraguay,world_cup,Opponent Total,,27.2,1,1,90,1.0,1,1.0,1,0,0.0,1,0,0,0,0.0,0,0,0,0,,
+Qatar,world_cup,Mahmoud Abunada,GK,26-129,1,1,90,1.0,1,1.0,5,5,100.0,0,1,0,0,0.0,1,1,0,0,0.0,Matches
+Qatar,world_cup,Squad Total,,29.7,1,1,90,1.0,1,1.0,5,5,100.0,0,1,0,0,0.0,1,1,0,0,0.0,
+Qatar,world_cup,Opponent Total,,29.9,1,1,90,1.0,1,1.0,4,3,75.0,0,1,0,0,0.0,0,0,0,0,,
+Scotland,world_cup,Angus Gunn,GK,30-143,1,1,90,1.0,0,0.0,2,2,100.0,1,0,0,1,100.0,0,0,0,0,,Matches
+Scotland,world_cup,Squad Total,,29.4,1,1,90,1.0,0,0.0,2,2,100.0,1,0,0,1,100.0,0,0,0,0,,
+Scotland,world_cup,Opponent Total,,29.1,1,1,90,1.0,1,1.0,2,1,50.0,0,0,1,0,0.0,0,0,0,0,,
+South Africa,world_cup,Ronwen Williams,GK,34-144,1,1,90,1.0,2,2.0,4,2,50.0,0,0,1,0,0.0,0,0,0,0,,Matches
+South Africa,world_cup,Squad Total,,28.2,1,1,90,1.0,2,2.0,4,2,50.0,0,0,1,0,0.0,0,0,0,0,,
+South Africa,world_cup,Opponent Total,,28.1,1,1,90,1.0,0,0.0,2,2,100.0,1,0,0,1,100.0,0,0,0,0,,
+Switzerland,world_cup,Gregor Kobel,GK,28-190,1,1,90,1.0,1,1.0,4,3,75.0,0,1,0,0,0.0,0,0,0,0,,Matches
+Switzerland,world_cup,Squad Total,,29.9,1,1,90,1.0,1,1.0,4,3,75.0,0,1,0,0,0.0,0,0,0,0,,
+Switzerland,world_cup,Opponent Total,,29.7,1,1,90,1.0,1,1.0,5,5,100.0,0,1,0,0,0.0,1,1,0,0,0.0,
+Türkiye,world_cup,Uğurcan Çakır,GK,30-070,1,1,90,1.0,2,2.0,4,2,50.0,0,0,1,0,0.0,0,0,0,0,,Matches
+Türkiye,world_cup,Squad Total,,27.6,1,1,90,1.0,2,2.0,4,2,50.0,0,0,1,0,0.0,0,0,0,0,,
+Türkiye,world_cup,Opponent Total,,25.1,1,1,90,1.0,0,0.0,8,8,100.0,1,0,0,1,100.0,0,0,0,0,,
+United States,world_cup,Matt Freese,GK,27-285,1,1,90,1.0,1,1.0,1,0,0.0,1,0,0,0,0.0,0,0,0,0,,Matches
+United States,world_cup,Squad Total,,27.2,1,1,90,1.0,1,1.0,1,0,0.0,1,0,0,0,0.0,0,0,0,0,,
+United States,world_cup,Opponent Total,,28.4,1,1,90,1.0,4,4.0,7,3,42.9,0,0,1,0,0.0,0,0,0,0,,

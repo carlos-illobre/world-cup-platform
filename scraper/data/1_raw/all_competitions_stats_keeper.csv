@@ -1,0 +1,613 @@
+﻿Country,Category,Player,Pos,Age,Playing Time_MP,Playing Time_Starts,Playing Time_Min,Playing Time_90s,Performance_GA,Performance_GA90,Performance_SoTA,Performance_Saves,Performance_Save%,Performance_W,Performance_D,Performance_L,Performance_CS,Performance_CS%,Penalty Kicks_PKatt,Penalty Kicks_PKA,Penalty Kicks_PKsv,Penalty Kicks_PKm,Penalty Kicks_Save%,Matches
+Algeria,all_competitions,Alexis Guendouz,GK,30.0,5.0,5.0,450,5.0,3.0,0.6,,,,4.0,1.0,0.0,2,40.0,0,0,0,0,,Matches
+Algeria,all_competitions,Anthony Mandrea,GK,29.0,4.0,4.0,360,4.0,4.0,1.0,,,,3.0,0.0,1.0,1,25.0,0,0,0,0,,Matches
+Algeria,all_competitions,Luca Zidane,GK,27.0,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Algeria,all_competitions,Squad Total,,28.6,10.0,10.0,900,10.0,8.0,0.8,,,,8.0,1.0,1.0,3,30.0,0,0,0,0,,
+Algeria,all_competitions,Opponent Total,,28.6,10.0,10.0,900,10.0,25.0,2.5,,,,1.0,1.0,8.0,1,10.0,2,2,0,0,0.0,
+Algeria,all_competitions,Luca Zidane,GK,28-032,2.0,2.0,180,2.0,0.0,0.0,,,,1.0,1.0,0.0,2,100.0,0,0,0,0,,Matches
+Algeria,all_competitions,Melvin Mastil,GK,26-115,2.0,1.0,135,1.5,0.0,0.0,,,,1.0,0.0,0.0,2,200.0,0,0,0,0,,Matches
+Algeria,all_competitions,Oussama Benbot,GK,31-246,1.0,1.0,45,0.5,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Algeria,all_competitions,Squad Total,,27.0,4.0,4.0,360,4.0,0.0,0.0,,,,3.0,1.0,0.0,4,100.0,0,0,0,0,,
+Algeria,all_competitions,Opponent Total,,26.6,4.0,4.0,360,4.0,12.0,3.0,,,,0.0,1.0,3.0,1,25.0,1,1,0,0,0.0,
+Algeria,all_competitions,Alexis Guendouz,GK,30-139,5.0,5.0,450,5.0,3.0,0.6,,,,4.0,1.0,0.0,2,40.0,0,0,0,0,,Matches
+Algeria,all_competitions,Anthony Mandrea,GK,29-171,4.0,4.0,360,4.0,4.0,1.0,,,,3.0,0.0,1.0,1,25.0,0,0,0,0,,Matches
+Algeria,all_competitions,Luca Zidane,GK,28-032,3.0,3.0,270,3.0,1.0,0.33,,,,2.0,1.0,0.0,2,66.7,0,0,0,0,,Matches
+Algeria,all_competitions,Melvin Mastil,GK,26-115,2.0,1.0,135,1.5,0.0,0.0,,,,1.0,0.0,0.0,2,200.0,0,0,0,0,,Matches
+Algeria,all_competitions,Oussama Benbot,GK,31-246,1.0,1.0,45,0.5,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Argentina,all_competitions,Emiliano Martínez,GK,33-285,2.0,2.0,163,1.8,1.0,0.55,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,Matches
+Argentina,all_competitions,Juan Musso,GK,32-039,2.0,1.0,97,1.1,0.0,0.0,,,,1.0,0.0,0.0,2,200.0,0,0,0,0,,Matches
+Argentina,all_competitions,Gerónimo Rulli,GK,34-025,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Argentina,all_competitions,Santiago Beltrán,GK,21-253,1.0,0.0,10,0.1,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Argentina,all_competitions,Squad Total,,28.6,4.0,4.0,360,4.0,1.0,0.25,,,,4.0,0.0,0.0,3,75.0,0,0,0,0,,
+Argentina,all_competitions,Opponent Total,,26.4,4.0,4.0,360,4.0,12.0,3.0,,,,0.0,0.0,4.0,0,0.0,3,3,0,0,0.0,
+Argentina,all_competitions,Emiliano Martínez,GK,33.0,16.0,16.0,"1,440",16.0,9.0,0.56,31.0,24.0,77.4,11.0,1.0,4.0,10,62.5,2,2,0,0,0.0,Matches
+Argentina,all_competitions,Gerónimo Rulli,GK,33.0,2.0,2.0,180,2.0,1.0,0.5,7.0,6.0,85.7,1.0,1.0,0.0,1,50.0,0,0,0,0,,Matches
+Argentina,all_competitions,Squad Total,,30.2,18.0,18.0,"1,620",18.0,10.0,0.56,38.0,30.0,78.9,12.0,2.0,4.0,11,61.1,2,2,0,0,0.0,
+Argentina,all_competitions,Opponent Total,,29.3,18.0,18.0,"1,620",18.0,31.0,1.72,80.0,49.0,61.3,4.0,2.0,12.0,2,11.1,0,0,0,0,,
+Argentina,all_competitions,Emiliano Martínez,GK,33-285,18.0,18.0,"1,603",17.8,10.0,0.56,31.0,24.0,77.4,13.0,1.0,4.0,11,61.1,2,2,0,0,0.0,Matches
+Argentina,all_competitions,Gerónimo Rulli,GK,34-025,3.0,3.0,270,3.0,1.0,0.33,7.0,6.0,85.7,2.0,1.0,0.0,2,66.7,0,0,0,0,,Matches
+Argentina,all_competitions,Juan Musso,GK,32-039,2.0,1.0,97,1.1,0.0,0.0,,,,1.0,0.0,0.0,2,200.0,0,0,0,0,,Matches
+Argentina,all_competitions,Santiago Beltrán,GK,21-253,1.0,0.0,10,0.1,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Australia,all_competitions,Patrick Beach,GK,22-312,1.0,1.0,90,1.0,0.0,0.0,8.0,8.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Australia,all_competitions,Squad Total,,25.1,1.0,1.0,90,1.0,0.0,0.0,8.0,8.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,
+Australia,all_competitions,Opponent Total,,27.6,1.0,1.0,90,1.0,2.0,2.0,4.0,2.0,50.0,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+Australia,all_competitions,Patrick Beach,GK,22-312,1.0,1.0,90,1.0,1.0,1.0,,,,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Australia,all_competitions,Mathew Ryan,GK,34-067,1.0,1.0,90,1.0,1.0,1.0,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Australia,all_competitions,Squad Total,,26.4,2.0,2.0,180,2.0,2.0,1.0,,,,0.0,1.0,1.0,0,0.0,0,0,0,0,,
+Australia,all_competitions,Opponent Total,,28.7,2.0,2.0,180,2.0,1.0,0.5,,,,1.0,1.0,0.0,1,50.0,0,0,0,0,,
+Australia,all_competitions,Mathew Ryan,GK,33.0,11.0,11.0,990,11.0,5.0,0.45,17.0,13.0,70.6,8.0,2.0,1.0,7,63.6,2,0,1,1,100.0,Matches
+Australia,all_competitions,Joe Gauci,GK,25.0,5.0,5.0,450,5.0,2.0,0.4,6.0,4.0,66.7,3.0,2.0,0.0,3,60.0,0,0,0,0,,Matches
+Australia,all_competitions,Squad Total,,29.5,16.0,16.0,"1,440",16.0,7.0,0.44,23.0,17.0,69.6,11.0,4.0,1.0,10,62.5,2,0,1,1,100.0,
+Australia,all_competitions,Opponent Total,,28.6,16.0,16.0,"1,440",16.0,38.0,2.37,33.0,18.0,-6.1,1.0,4.0,11.0,3,18.8,4,3,1,0,25.0,
+Australia,all_competitions,Mathew Ryan,GK,34-067,12.0,12.0,"1,080",12.0,6.0,0.5,17.0,13.0,70.6,8.0,2.0,2.0,7,58.3,2,0,1,1,100.0,Matches
+Australia,all_competitions,Joe Gauci,GK,25-345,5.0,5.0,450,5.0,2.0,0.4,6.0,4.0,66.7,3.0,2.0,0.0,3,60.0,0,0,0,0,,Matches
+Australia,all_competitions,Patrick Beach,GK,22-312,2.0,2.0,180,2.0,1.0,0.5,8.0,8.0,100.0,1.0,1.0,0.0,1,50.0,0,0,0,0,,Matches
+Austria,all_competitions,Alexander Schlager,GK,30-133,2.0,2.0,135,1.5,0.0,0.0,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,Matches
+Austria,all_competitions,Patrick Pentz,GK,29-163,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Austria,all_competitions,Florian Wiegele,GK,25-085,1.0,0.0,45,0.5,1.0,2.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Austria,all_competitions,Squad Total,,28.8,3.0,3.0,270,3.0,1.0,0.33,,,,3.0,0.0,0.0,2,66.7,0,0,0,0,,
+Austria,all_competitions,Opponent Total,,27.6,3.0,3.0,270,3.0,7.0,2.33,,,,0.0,0.0,3.0,0,0.0,1,1,0,0,0.0,
+Austria,all_competitions,Alexander Schlager,GK,29.0,5.0,5.0,450,5.0,3.0,0.6,10.0,7.0,70.0,3.0,1.0,1.0,2,40.0,0,0,0,0,,Matches
+Austria,all_competitions,Patrick Pentz,GK,29.0,3.0,3.0,225,2.5,1.0,0.4,5.0,4.0,80.0,3.0,0.0,0.0,2,66.7,0,0,0,0,,Matches
+Austria,all_competitions,Tobias Lawal,GK,25.0,1.0,0.0,45,0.5,0.0,0.0,1.0,1.0,100.0,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Austria,all_competitions,Squad Total,,29.1,8.0,8.0,720,8.0,4.0,0.5,16.0,12.0,75.0,6.0,1.0,1.0,4,50.0,0,0,0,0,,
+Austria,all_competitions,Opponent Total,,27.2,8.0,8.0,720,8.0,22.0,2.75,50.0,30.0,60.0,1.0,1.0,6.0,1,12.5,3,2,0,1,0.0,
+Austria,all_competitions,Alexander Schlager,GK,30-133,7.0,7.0,585,6.5,3.0,0.46,10.0,7.0,70.0,5.0,1.0,1.0,3,42.9,0,0,0,0,,Matches
+Austria,all_competitions,Patrick Pentz,GK,29-163,4.0,4.0,315,3.5,1.0,0.29,5.0,4.0,80.0,4.0,0.0,0.0,3,75.0,0,0,0,0,,Matches
+Austria,all_competitions,Florian Wiegele,GK,25-085,1.0,0.0,45,0.5,1.0,2.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Austria,all_competitions,Tobias Lawal,GK,26-007,1.0,0.0,45,0.5,0.0,0.0,1.0,1.0,100.0,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Belgium,all_competitions,Thibaut Courtois,GK,34-034,2.0,2.0,180,2.0,0.0,0.0,,,,2.0,0.0,0.0,2,100.0,0,0,0,0,,Matches
+Belgium,all_competitions,Senne Lammens,GK,23-342,1.0,1.0,90,1.0,2.0,2.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Belgium,all_competitions,Matz Sels,GK,34-108,1.0,1.0,90,1.0,1.0,1.0,,,,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Belgium,all_competitions,Squad Total,,28.1,4.0,4.0,360,4.0,3.0,0.75,,,,3.0,1.0,0.0,2,50.0,0,0,0,0,,
+Belgium,all_competitions,Opponent Total,,27.6,4.0,4.0,360,4.0,13.0,3.25,,,,0.0,1.0,3.0,0,0.0,1,1,0,0,0.0,
+Belgium,all_competitions,Thibaut Courtois,GK,33.0,4.0,4.0,360,4.0,2.0,0.5,5.0,3.0,60.0,3.0,1.0,0.0,3,75.0,0,0,0,0,,Matches
+Belgium,all_competitions,Matz Sels,GK,33.0,3.0,3.0,270,3.0,5.0,1.67,12.0,8.0,66.7,1.0,2.0,0.0,0,0.0,1,1,0,0,0.0,Matches
+Belgium,all_competitions,Senne Lammens,GK,23.0,1.0,1.0,90,1.0,0.0,0.0,1.0,1.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Belgium,all_competitions,Squad Total,,27.9,8.0,8.0,720,8.0,7.0,0.87,18.0,12.0,66.7,5.0,3.0,0.0,4,50.0,1,1,0,0,0.0,
+Belgium,all_competitions,Opponent Total,,28.1,8.0,8.0,720,8.0,29.0,3.62,59.0,34.0,57.6,0.0,3.0,5.0,1,12.5,4,4,0,0,0.0,
+Belgium,all_competitions,Thibaut Courtois,GK,34-034,6.0,6.0,540,6.0,2.0,0.33,5.0,3.0,60.0,5.0,1.0,0.0,5,83.3,0,0,0,0,,Matches
+Belgium,all_competitions,Matz Sels,GK,34-108,4.0,4.0,360,4.0,6.0,1.5,12.0,8.0,66.7,1.0,3.0,0.0,0,0.0,1,1,0,0,0.0,Matches
+Belgium,all_competitions,Senne Lammens,GK,23-342,2.0,2.0,180,2.0,2.0,1.0,1.0,1.0,100.0,2.0,0.0,0.0,1,50.0,0,0,0,0,,Matches
+Bosnia-Herzegovina,all_competitions,Nikola Vasilj,GK,30-194,1.0,1.0,90,1.0,1.0,1.0,2.0,1.0,50.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Bosnia-Herzegovina,all_competitions,Squad Total,,26.2,1.0,1.0,90,1.0,1.0,1.0,2.0,1.0,50.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Bosnia-Herzegovina,all_competitions,Opponent Total,,27.3,1.0,1.0,90,1.0,1.0,1.0,3.0,2.0,66.7,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Bosnia-Herzegovina,all_competitions,Nikola Vasilj,GK,30-194,1.0,1.0,90,1.0,1.0,1.0,,,,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Bosnia-Herzegovina,all_competitions,Martin Zlomislić,GK,27-302,1.0,1.0,90,1.0,0.0,0.0,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Bosnia-Herzegovina,all_competitions,Squad Total,,25.3,2.0,2.0,180,2.0,1.0,0.5,,,,0.0,2.0,0.0,1,50.0,0,0,0,0,,
+Bosnia-Herzegovina,all_competitions,Opponent Total,,28.8,2.0,2.0,180,2.0,1.0,0.5,,,,0.0,2.0,0.0,1,50.0,0,0,0,0,,
+Bosnia-Herzegovina,all_competitions,Nikola Vasilj,GK,30.0,10.0,10.0,960,10.7,9.0,0.84,27.0,19.0,70.4,5.0,4.0,1.0,3,30.0,1,1,0,0,0.0,Matches
+Bosnia-Herzegovina,all_competitions,Squad Total,,26.9,10.0,10.0,960,10.7,9.0,0.84,27.0,19.0,70.4,7.0,2.0,1.0,3,30.0,1,1,0,0,0.0,
+Bosnia-Herzegovina,all_competitions,Opponent Total,,27.5,10.0,10.0,960,10.7,19.0,1.78,52.0,33.0,63.5,1.0,2.0,7.0,0,0.0,0,0,0,0,,
+Bosnia-Herzegovina,all_competitions,Nikola Vasilj,GK,30-194,12.0,12.0,"1,140",12.7,11.0,0.87,29.0,20.0,69.0,5.0,6.0,1.0,3,25.0,1,1,0,0,0.0,Matches
+Bosnia-Herzegovina,all_competitions,Martin Zlomislić,GK,27-302,1.0,1.0,90,1.0,0.0,0.0,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Brazil,all_competitions,Alisson,GK,33-255,1.0,1.0,90,1.0,1.0,1.0,3.0,2.0,66.7,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Brazil,all_competitions,Squad Total,,29.8,1.0,1.0,90,1.0,1.0,1.0,3.0,2.0,66.7,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Brazil,all_competitions,Opponent Total,,25.8,1.0,1.0,90,1.0,1.0,1.0,5.0,4.0,80.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Brazil,all_competitions,Alisson,GK,33-255,2.0,2.0,90,1.0,2.0,2.0,,,,2.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Brazil,all_competitions,Ederson,GK,32-301,2.0,1.0,135,1.5,3.0,2.0,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Brazil,all_competitions,Bento,GK,27-004,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Brazil,all_competitions,Wéverton,GK,38-183,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Brazil,all_competitions,Squad Total,,28.7,4.0,4.0,360,4.0,6.0,1.5,,,,3.0,0.0,1.0,0,0.0,0,0,0,0,,
+Brazil,all_competitions,Opponent Total,,28.7,4.0,4.0,360,4.0,12.0,3.0,,,,1.0,0.0,3.0,0,0.0,2,2,0,0,0.0,
+Brazil,all_competitions,Alisson,GK,33.0,9.0,9.0,797,8.9,6.0,0.68,31.0,26.0,83.9,4.0,1.0,4.0,4,44.4,1,1,0,0,0.0,Matches
+Brazil,all_competitions,Ederson,GK,32.0,8.0,8.0,720,8.0,7.0,0.87,16.0,9.0,56.3,4.0,3.0,1.0,2,25.0,0,0,0,0,,Matches
+Brazil,all_competitions,Bento,GK,26.0,2.0,1.0,103,1.1,4.0,3.5,7.0,3.0,42.9,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Brazil,all_competitions,Squad Total,,28.3,18.0,18.0,"1,620",18.0,17.0,0.94,54.0,38.0,70.4,8.0,4.0,6.0,6,33.3,1,1,0,0,0.0,
+Brazil,all_competitions,Opponent Total,,29.2,18.0,18.0,"1,620",18.0,24.0,1.33,64.0,45.0,67.2,6.0,4.0,8.0,5,27.8,5,3,2,0,40.0,
+Brazil,all_competitions,Alisson,GK,33-255,12.0,12.0,977,10.9,9.0,0.83,34.0,28.0,82.4,6.0,2.0,4.0,4,33.3,1,1,0,0,0.0,Matches
+Brazil,all_competitions,Ederson,GK,32-301,10.0,9.0,855,9.5,10.0,1.05,16.0,9.0,56.3,4.0,3.0,2.0,2,22.2,0,0,0,0,,Matches
+Brazil,all_competitions,Bento,GK,27-004,3.0,2.0,193,2.1,5.0,2.33,7.0,3.0,42.9,1.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Brazil,all_competitions,Wéverton,GK,38-183,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Canada,all_competitions,Maxime Crépeau,GK,32-034,1.0,1.0,90,1.0,1.0,1.0,3.0,2.0,66.7,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Canada,all_competitions,Squad Total,,27.3,1.0,1.0,90,1.0,1.0,1.0,3.0,2.0,66.7,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Canada,all_competitions,Opponent Total,,26.2,1.0,1.0,90,1.0,1.0,1.0,2.0,1.0,50.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Canada,all_competitions,Maxime Crépeau,GK,32-034,3.0,3.0,225,2.5,1.0,0.4,,,,1.0,2.0,0.0,2,66.7,1,0,1,0,100.0,Matches
+Canada,all_competitions,Dayne St. Clair,GK,29-036,2.0,1.0,135,1.5,2.0,1.33,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Canada,all_competitions,Squad Total,,27.1,4.0,4.0,360,4.0,3.0,0.75,,,,1.0,3.0,0.0,2,50.0,1,0,1,0,100.0,
+Canada,all_competitions,Opponent Total,,26.8,4.0,4.0,360,4.0,5.0,1.25,,,,0.0,3.0,1.0,1,25.0,2,2,0,0,0.0,
+Canada,all_competitions,Maxime Crépeau,GK,32-034,4.0,4.0,315,3.5,2.0,0.57,3.0,2.0,66.7,1.0,3.0,0.0,2,50.0,1,0,1,0,100.0,Matches
+Canada,all_competitions,Dayne St. Clair,GK,29-036,2.0,1.0,135,1.5,2.0,1.33,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Cape Verde,all_competitions,Vozinha,GK,39.0,10.0,10.0,900,10.0,8.0,0.8,,,,7.0,2.0,1.0,7,70.0,1,1,0,0,0.0,Matches
+Cape Verde,all_competitions,Squad Total,,30.7,10.0,10.0,900,10.0,8.0,0.8,,,,7.0,2.0,1.0,7,70.0,1,1,0,0,0.0,
+Cape Verde,all_competitions,Opponent Total,,28.4,10.0,10.0,900,10.0,16.0,1.6,,,,1.0,2.0,7.0,1,10.0,1,0,1,0,100.0,
+Cape Verde,all_competitions,Vozinha,GK,40-011,2.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,2,200.0,0,0,0,0,,Matches
+Cape Verde,all_competitions,Márcio Rosa,GK,29-111,1.0,1.0,45,0.5,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Cape Verde,all_competitions,C.J. dos Santos,GK,25-294,1.0,0.0,44,0.5,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Cape Verde,all_competitions,Squad Total,,29.6,2.0,2.0,179,2.0,0.0,0.0,,,,2.0,0.0,0.0,2,100.0,0,0,0,0,,
+Cape Verde,all_competitions,Opponent Total,,23.7,2.0,2.0,179,2.0,6.0,3.02,,,,0.0,0.0,2.0,0,0.0,0,0,0,0,,
+Cape Verde,all_competitions,Vozinha,GK,40-011,12.0,11.0,990,11.0,8.0,0.73,,,,8.0,2.0,1.0,9,81.8,1,1,0,0,0.0,Matches
+Cape Verde,all_competitions,Márcio Rosa,GK,29-111,1.0,1.0,45,0.5,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Cape Verde,all_competitions,C.J. dos Santos,GK,25-294,1.0,0.0,44,0.5,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Colombia,all_competitions,Camilo Vargas,GK,37-097,3.0,3.0,208,2.3,3.0,1.3,,,,2.0,0.0,1.0,1,33.3,0,0,0,0,,Matches
+Colombia,all_competitions,Álvaro David Montero,GK,31-077,2.0,1.0,123,1.4,3.0,2.2,,,,0.0,0.0,1.0,1,100.0,0,0,0,0,,Matches
+Colombia,all_competitions,David Ospina,GK,37-287,1.0,0.0,17,0.2,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Colombia,all_competitions,Squad Total,,30.0,4.0,4.0,348,3.9,6.0,1.55,,,,2.0,0.0,2.0,1,25.0,0,0,0,0,,
+Colombia,all_competitions,Opponent Total,,27.4,4.0,4.0,348,3.9,7.0,1.81,,,,2.0,0.0,2.0,0,0.0,0,0,0,0,,
+Colombia,all_competitions,Camilo Vargas,GK,36.0,14.0,14.0,"1,256",14.0,13.0,0.93,51.0,39.0,76.5,6.0,4.0,4.0,5,35.7,1,1,0,0,0.0,Matches
+Colombia,all_competitions,Kevin Mier,GK,25.0,3.0,3.0,270,3.0,4.0,1.33,12.0,8.0,66.7,1.0,2.0,0.0,1,33.3,0,0,0,0,,Matches
+Colombia,all_competitions,Álvaro David Montero,GK,30.0,2.0,1.0,91,1.0,1.0,0.99,3.0,3.0,100.0,0.0,1.0,0.0,1,100.0,1,1,0,0,0.0,Matches
+Colombia,all_competitions,Squad Total,,30.2,18.0,18.0,"1,617",18.0,18.0,1.0,66.0,50.0,75.8,7.0,7.0,4.0,7,38.9,2,2,0,0,0.0,
+Colombia,all_competitions,Opponent Total,,29.1,18.0,18.0,"1,620",18.0,28.0,1.56,91.0,66.0,71.4,4.0,7.0,7.0,5,27.8,3,2,1,0,33.3,
+Colombia,all_competitions,Camilo Vargas,GK,37-097,17.0,17.0,"1,464",16.3,16.0,0.98,51.0,39.0,76.5,8.0,4.0,5.0,6,35.3,1,1,0,0,0.0,Matches
+Colombia,all_competitions,Kevin Mier,GK,26-027,3.0,3.0,270,3.0,4.0,1.33,12.0,8.0,66.7,1.0,2.0,0.0,1,33.3,0,0,0,0,,Matches
+Colombia,all_competitions,Álvaro David Montero,GK,31-077,4.0,2.0,214,2.4,4.0,1.68,3.0,3.0,100.0,0.0,1.0,1.0,2,100.0,1,1,0,0,0.0,Matches
+Colombia,all_competitions,David Ospina,GK,37-287,1.0,0.0,17,0.2,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Congo DR,all_competitions,Lionel Mpasi,GK,31.0,6.0,6.0,569,6.3,2.0,0.32,,,,4.0,1.0,1.0,4,66.7,0,0,0,0,,Matches
+Congo DR,all_competitions,Dimitry Bertaud,GK,27.0,6.0,6.0,540,6.0,5.0,0.83,,,,4.0,1.0,1.0,3,50.0,0,0,0,0,,Matches
+Congo DR,all_competitions,Timothy Fayulu,GK,26.0,1.0,0.0,1,0.0,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Congo DR,all_competitions,Squad Total,,29.4,12.0,12.0,"1,110",12.3,7.0,0.57,,,,9.0,1.0,2.0,7,58.3,0,0,0,0,,
+Congo DR,all_competitions,Opponent Total,,28.4,12.0,12.0,"1,110",12.3,17.0,1.38,,,,2.0,1.0,9.0,1,8.3,0,0,0,0,,
+Congo DR,all_competitions,Lionel Mpasi,GK,31-317,2.0,2.0,180,2.0,2.0,1.0,,,,0.0,1.0,1.0,1,50.0,0,0,0,0,,Matches
+Congo DR,all_competitions,Squad Total,,29.3,3.0,3.0,180,2.0,2.0,1.0,,,,1.0,1.0,1.0,2,66.7,0,0,0,0,,
+Congo DR,all_competitions,Opponent Total,,26.5,3.0,3.0,180,2.0,1.0,0.5,,,,1.0,1.0,1.0,1,33.3,0,0,0,0,,
+Congo DR,all_competitions,Lionel Mpasi,GK,31.0,1.0,1.0,120,1.3,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Congo DR,all_competitions,Squad Total,,29.2,,,120,1.3,0.0,0.0,,,,1.0,0.0,0.0,1,,0,0,0,0,,
+Congo DR,all_competitions,Opponent Total,,27.8,,,120,1.3,1.0,0.75,,,,0.0,0.0,1.0,0,,0,0,0,0,,
+Congo DR,all_competitions,Lionel Mpasi,GK,31-317,9.0,9.0,869,9.7,4.0,0.41,,,,5.0,2.0,2.0,6,66.7,0,0,0,0,,Matches
+Congo DR,all_competitions,Dimitry Bertaud,GK,28-008,6.0,6.0,540,6.0,5.0,0.83,,,,4.0,1.0,1.0,3,50.0,0,0,0,0,,Matches
+Congo DR,all_competitions,Timothy Fayulu,GK,26-325,1.0,0.0,1,0.0,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Croatia,all_competitions,Dominik Livaković,GK,31-156,4.0,4.0,328,3.6,6.0,1.65,,,,2.0,0.0,2.0,0,0.0,1,1,0,0,0.0,Matches
+Croatia,all_competitions,Dominik Kotarski,GK,26-124,1.0,0.0,32,0.4,1.0,2.81,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Croatia,all_competitions,Squad Total,,28.5,4.0,4.0,360,4.0,7.0,1.75,,,,2.0,0.0,2.0,0,0.0,1,1,0,0,0.0,
+Croatia,all_competitions,Opponent Total,,28.4,4.0,4.0,360,4.0,5.0,1.25,,,,2.0,0.0,2.0,1,25.0,0,0,0,0,,
+Croatia,all_competitions,Dominik Livaković,GK,31.0,7.0,7.0,630,7.0,4.0,0.57,19.0,15.0,78.9,6.0,1.0,0.0,4,57.1,0,0,0,0,,Matches
+Croatia,all_competitions,Dominik Kotarski,GK,25.0,1.0,1.0,90,1.0,0.0,0.0,0.0,0.0,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Croatia,all_competitions,Squad Total,,29.0,8.0,8.0,720,8.0,4.0,0.5,19.0,15.0,78.9,7.0,1.0,0.0,5,62.5,0,0,0,0,,
+Croatia,all_competitions,Opponent Total,,27.9,8.0,8.0,720,8.0,26.0,3.25,60.0,38.0,61.7,0.0,1.0,7.0,1,12.5,4,3,1,0,25.0,
+Croatia,all_competitions,Dominik Livaković,GK,31-156,11.0,11.0,958,10.6,10.0,0.94,19.0,15.0,78.9,8.0,1.0,2.0,4,36.4,1,1,0,0,0.0,Matches
+Croatia,all_competitions,Dominik Kotarski,GK,26-124,2.0,1.0,122,1.4,1.0,0.74,0.0,0.0,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Curaçao,all_competitions,Eloy Room,GK,37-128,2.0,1.0,135,1.5,4.0,2.67,,,,0.0,0.0,1.0,1,100.0,1,1,0,0,0.0,Matches
+Curaçao,all_competitions,Trevor Doornbusch,GK,26-343,1.0,1.0,45,0.5,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Curaçao,all_competitions,Squad Total,,28.5,2.0,2.0,180,2.0,4.0,2.0,,,,1.0,0.0,1.0,1,50.0,1,1,0,0,0.0,
+Curaçao,all_competitions,Opponent Total,,27.8,2.0,2.0,180,2.0,5.0,2.5,,,,1.0,0.0,1.0,0,0.0,0,0,0,0,,
+Curaçao,all_competitions,Eloy Room,GK,36.0,10.0,10.0,900,10.0,5.0,0.5,,,,7.0,3.0,0.0,6,60.0,1,1,0,0,0.0,Matches
+Curaçao,all_competitions,Squad Total,,29.3,10.0,10.0,900,10.0,5.0,0.5,,,,7.0,3.0,0.0,6,60.0,1,1,0,0,0.0,
+Curaçao,all_competitions,Opponent Total,,27.7,10.0,10.0,900,10.0,28.0,2.8,,,,0.0,3.0,7.0,2,20.0,3,3,0,0,0.0,
+Curaçao,all_competitions,Eloy Room,GK,37-128,12.0,11.0,"1,035",11.5,9.0,0.78,,,,7.0,3.0,1.0,7,63.6,2,2,0,0,0.0,Matches
+Curaçao,all_competitions,Trevor Doornbusch,GK,26-343,1.0,1.0,45,0.5,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Czechia,all_competitions,Matej Kovar,GK,26-028,1.0,1.0,90,1.0,2.0,2.0,6.0,4.0,66.7,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Czechia,all_competitions,Squad Total,,28.2,1.0,1.0,90,1.0,2.0,2.0,6.0,4.0,66.7,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+Czechia,all_competitions,Opponent Total,,28.7,1.0,1.0,90,1.0,1.0,1.0,4.0,3.0,75.0,1.0,0.0,0.0,0,0.0,0,0,0,0,,
+Czechia,all_competitions,Lukáš Horníček,GK,23-336,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Czechia,all_competitions,Matej Kovar,GK,26-028,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Czechia,all_competitions,Squad Total,,27.0,2.0,2.0,180,2.0,2.0,1.0,,,,2.0,0.0,0.0,0,0.0,0,0,0,0,,
+Czechia,all_competitions,Opponent Total,,26.2,2.0,2.0,180,2.0,5.0,2.5,,,,0.0,0.0,2.0,0,0.0,0,0,0,0,,
+Czechia,all_competitions,Matej Kovar,GK,25.0,9.0,9.0,870,9.7,12.0,1.24,27.0,18.0,66.7,4.0,3.0,2.0,4,44.4,3,3,0,0,0.0,Matches
+Czechia,all_competitions,Jindřich Staněk,GK,29.0,1.0,1.0,90,1.0,0.0,0.0,5.0,5.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Czechia,all_competitions,Squad Total,,28.5,10.0,10.0,960,10.7,12.0,1.13,32.0,23.0,71.9,7.0,1.0,2.0,5,50.0,3,3,0,0,0.0,
+Czechia,all_competitions,Opponent Total,,28.2,10.0,10.0,960,10.7,22.0,2.06,56.0,35.0,62.5,2.0,1.0,7.0,1,10.0,1,1,0,0,0.0,
+Czechia,all_competitions,Matej Kovar,GK,26-028,11.0,11.0,"1,050",11.7,15.0,1.29,33.0,22.0,66.7,5.0,3.0,3.0,4,36.4,3,3,0,0,0.0,Matches
+Czechia,all_competitions,Lukáš Horníček,GK,23-336,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Czechia,all_competitions,Jindřich Staněk,GK,30-048,1.0,1.0,90,1.0,0.0,0.0,5.0,5.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Côte d'Ivoire,all_competitions,Yahia Fofana,GK,25.0,9.0,9.0,810,9.0,0.0,0.0,,,,7.0,2.0,0.0,9,100.0,0,0,0,0,,Matches
+Côte d'Ivoire,all_competitions,Alban Lafont,GK,27.0,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Côte d'Ivoire,all_competitions,Squad Total,,27.4,10.0,10.0,900,10.0,0.0,0.0,,,,8.0,2.0,0.0,10,100.0,0,0,0,0,,
+Côte d'Ivoire,all_competitions,Opponent Total,,27.7,10.0,10.0,900,10.0,25.0,2.5,,,,0.0,2.0,8.0,2,20.0,4,4,0,0,0.0,
+Côte d'Ivoire,all_competitions,Yahia Fofana,GK,25-297,2.0,2.0,180,2.0,1.0,0.5,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,Matches
+Côte d'Ivoire,all_competitions,Alban Lafont,GK,27-142,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Côte d'Ivoire,all_competitions,Squad Total,,25.9,3.0,3.0,270,3.0,1.0,0.33,,,,3.0,0.0,0.0,2,66.7,0,0,0,0,,
+Côte d'Ivoire,all_competitions,Opponent Total,,28.6,3.0,3.0,270,3.0,7.0,2.33,,,,0.0,0.0,3.0,0,0.0,0,0,0,0,,
+Côte d'Ivoire,all_competitions,Yahia Fofana,GK,25-297,11.0,11.0,990,11.0,1.0,0.09,,,,9.0,2.0,0.0,10,90.9,0,0,0,0,,Matches
+Côte d'Ivoire,all_competitions,Alban Lafont,GK,27-142,2.0,2.0,180,2.0,0.0,0.0,,,,2.0,0.0,0.0,2,100.0,0,0,0,0,,Matches
+Ecuador,all_competitions,Hernán Galíndez,GK,39-076,2.0,2.0,166,1.8,1.0,0.54,,,,1.0,1.0,0.0,1,50.0,1,0,1,0,100.0,Matches
+Ecuador,all_competitions,Moisés Ramírez,GK,25-278,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Ecuador,all_competitions,Gonzalo Valle,GK,30-106,2.0,1.0,72,0.8,1.0,1.25,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Ecuador,all_competitions,David Cabezas,GK,31-002,1.0,0.0,32,0.4,0.0,0.0,,,,,,,0,,0,0,0,0,,Matches
+Ecuador,all_competitions,Squad Total,,26.3,4.0,4.0,360,4.0,3.0,0.75,,,,2.0,2.0,0.0,1,25.0,1,0,1,0,100.0,
+Ecuador,all_competitions,Opponent Total,,27.9,4.0,4.0,360,4.0,7.0,1.75,,,,0.0,2.0,2.0,0,0.0,2,2,0,0,0.0,
+Ecuador,all_competitions,Hernán Galíndez,GK,38.0,12.0,12.0,"1,080",12.0,4.0,0.33,34.0,30.0,88.2,6.0,4.0,2.0,8,66.7,0,0,0,0,,Matches
+Ecuador,all_competitions,Alexander Domínguez,GK,38.0,2.0,2.0,180,2.0,0.0,0.0,5.0,5.0,100.0,1.0,1.0,0.0,2,100.0,0,0,0,0,,Matches
+Ecuador,all_competitions,Moisés Ramírez,GK,25.0,2.0,2.0,180,2.0,1.0,0.5,5.0,5.0,80.0,1.0,1.0,0.0,1,50.0,1,0,1,0,100.0,Matches
+Ecuador,all_competitions,Gonzalo Valle,GK,29.0,2.0,2.0,180,2.0,0.0,0.0,7.0,7.0,100.0,0.0,2.0,0.0,2,100.0,0,0,0,0,,Matches
+Ecuador,all_competitions,Squad Total,,27.4,18.0,18.0,"1,620",18.0,5.0,0.28,51.0,47.0,90.2,8.0,8.0,2.0,13,72.2,1,0,1,0,100.0,
+Ecuador,all_competitions,Opponent Total,,29.6,18.0,18.0,"1,620",18.0,14.0,0.78,64.0,53.0,81.3,2.0,8.0,8.0,10,55.6,4,2,1,1,33.3,
+Ecuador,all_competitions,Hernán Galíndez,GK,39-076,14.0,14.0,"1,246",13.8,5.0,0.36,34.0,30.0,88.2,7.0,5.0,2.0,9,64.3,1,0,1,0,100.0,Matches
+Ecuador,all_competitions,Moisés Ramírez,GK,25-278,3.0,3.0,270,3.0,2.0,0.67,5.0,5.0,80.0,2.0,1.0,0.0,1,33.3,1,0,1,0,100.0,Matches
+Ecuador,all_competitions,Gonzalo Valle,GK,30-106,4.0,3.0,252,2.8,1.0,0.36,7.0,7.0,100.0,0.0,3.0,0.0,3,100.0,0,0,0,0,,Matches
+Ecuador,all_competitions,Alexander Domínguez,GK,39-009,2.0,2.0,180,2.0,0.0,0.0,5.0,5.0,100.0,1.0,1.0,0.0,2,100.0,0,0,0,0,,Matches
+Ecuador,all_competitions,David Cabezas,GK,31-002,1.0,0.0,32,0.4,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Egypt,all_competitions,Mohamed El-Shenawy,GK,37.0,9.0,9.0,780,8.7,2.0,0.23,,,,7.0,2.0,0.0,7,77.8,0,0,0,0,,Matches
+Egypt,all_competitions,Mohamed Sobhy,GK,26.0,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Egypt,all_competitions,Mostafa Shobeir,GK,25.0,1.0,0.0,30,0.3,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Egypt,all_competitions,Squad Total,,30.5,10.0,10.0,900,10.0,2.0,0.2,,,,8.0,2.0,0.0,8,80.0,0,0,0,0,,
+Egypt,all_competitions,Opponent Total,,27.0,10.0,10.0,900,10.0,20.0,2.0,,,,0.0,2.0,8.0,1,10.0,3,3,0,0,0.0,
+Egypt,all_competitions,Mostafa Shobeir,GK,26-030,4.0,4.0,281,3.1,2.0,0.64,,,,2.0,1.0,1.0,3,75.0,0,0,0,0,,Matches
+Egypt,all_competitions,Mohamed El-Shenawy,GK,37-178,2.0,0.0,79,0.9,0.0,0.0,,,,0.0,0.0,0.0,2,,0,0,0,0,,Matches
+Egypt,all_competitions,Squad Total,,29.3,4.0,4.0,360,4.0,2.0,0.5,,,,2.0,1.0,1.0,3,75.0,0,0,0,0,,
+Egypt,all_competitions,Opponent Total,,27.5,4.0,4.0,360,4.0,6.0,1.5,,,,1.0,1.0,2.0,1,25.0,0,0,0,0,,
+Egypt,all_competitions,Mohamed El-Shenawy,GK,37-178,11.0,9.0,859,9.5,2.0,0.21,,,,7.0,2.0,0.0,9,100.0,0,0,0,0,,Matches
+Egypt,all_competitions,Mostafa Shobeir,GK,26-030,5.0,4.0,311,3.5,2.0,0.58,,,,2.0,1.0,1.0,4,100.0,0,0,0,0,,Matches
+Egypt,all_competitions,Mohamed Sobhy,GK,26-334,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+England,all_competitions,Jordan Pickford,GK,32-099,3.0,3.0,197,2.2,1.0,0.46,,,,2.0,0.0,1.0,2,66.7,0,0,0,0,,Matches
+England,all_competitions,James Trafford,GK,23-247,2.0,1.0,130,1.4,1.0,0.69,,,,0.0,1.0,0.0,1,100.0,1,1,0,0,0.0,Matches
+England,all_competitions,Dean Henderson,GK,29-094,1.0,0.0,28,0.3,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+England,all_competitions,Squad Total,,26.7,4.0,4.0,355,3.9,2.0,0.51,,,,2.0,1.0,1.0,2,50.0,1,1,0,0,0.0,
+England,all_competitions,Opponent Total,,27.9,4.0,4.0,355,3.9,5.0,1.27,,,,1.0,1.0,2.0,1,25.0,1,1,0,0,0.0,
+England,all_competitions,Jordan Pickford,GK,31.0,7.0,7.0,630,7.0,0.0,0.0,3.0,3.0,100.0,7.0,0.0,0.0,7,100.0,0,0,0,0,,Matches
+England,all_competitions,Dean Henderson,GK,28.0,1.0,1.0,90,1.0,0.0,0.0,3.0,3.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+England,all_competitions,Squad Total,,27.3,8.0,8.0,720,8.0,0.0,0.0,6.0,6.0,100.0,8.0,0.0,0.0,8,100.0,0,0,0,0,,
+England,all_competitions,Opponent Total,,27.8,8.0,8.0,720,8.0,22.0,2.75,61.0,41.0,67.2,0.0,0.0,8.0,0,0.0,2,2,0,0,0.0,
+England,all_competitions,Jordan Pickford,GK,32-099,10.0,10.0,827,9.2,1.0,0.11,3.0,3.0,100.0,9.0,0.0,1.0,9,90.0,0,0,0,0,,Matches
+England,all_competitions,James Trafford,GK,23-247,2.0,1.0,130,1.4,1.0,0.69,,,,0.0,1.0,0.0,1,100.0,1,1,0,0,0.0,Matches
+England,all_competitions,Dean Henderson,GK,29-094,2.0,1.0,118,1.3,0.0,0.0,3.0,3.0,100.0,1.0,0.0,0.0,2,200.0,0,0,0,0,,Matches
+France,all_competitions,Mike Maignan,GK,30-346,3.0,3.0,270,3.0,4.0,1.33,,,,2.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+France,all_competitions,Brice Samba,GK,32-050,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+France,all_competitions,Squad Total,,27.5,4.0,4.0,360,4.0,5.0,1.25,,,,3.0,0.0,1.0,0,0.0,0,0,0,0,,
+France,all_competitions,Opponent Total,,26.8,4.0,4.0,360,4.0,9.0,2.25,,,,1.0,0.0,3.0,0,0.0,0,0,0,0,,
+France,all_competitions,Mike Maignan,GK,30.0,5.0,5.0,450,5.0,3.0,0.6,6.0,3.0,50.0,4.0,1.0,0.0,3,60.0,0,0,0,0,,Matches
+France,all_competitions,Lucas Chevalier,GK,24.0,1.0,1.0,90,1.0,1.0,1.0,1.0,0.0,0.0,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+France,all_competitions,Squad Total,,26.8,6.0,6.0,540,6.0,4.0,0.67,7.0,3.0,42.9,5.0,1.0,0.0,3,50.0,0,0,0,0,,
+France,all_competitions,Opponent Total,,27.0,6.0,6.0,540,6.0,16.0,2.67,44.0,30.0,68.2,0.0,1.0,5.0,0,0.0,2,2,0,0,0.0,
+France,all_competitions,Mike Maignan,GK,30-346,8.0,8.0,720,8.0,7.0,0.87,6.0,3.0,50.0,6.0,1.0,1.0,3,37.5,0,0,0,0,,Matches
+France,all_competitions,Lucas Chevalier,GK,24-220,1.0,1.0,90,1.0,1.0,1.0,1.0,0.0,0.0,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+France,all_competitions,Brice Samba,GK,32-050,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Germany,all_competitions,Oliver Baumann,GK,36-012,3.0,3.0,270,3.0,4.0,1.33,,,,3.0,0.0,0.0,1,33.3,0,0,0,0,,Matches
+Germany,all_competitions,Alexander Nübel,GK,29-257,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Germany,all_competitions,Squad Total,,27.6,4.0,4.0,360,4.0,5.0,1.25,,,,4.0,0.0,0.0,1,25.0,0,0,0,0,,
+Germany,all_competitions,Opponent Total,,27.7,4.0,4.0,360,4.0,12.0,3.0,,,,0.0,0.0,4.0,0,0.0,1,1,0,0,0.0,
+Germany,all_competitions,Oliver Baumann,GK,35.0,6.0,6.0,540,6.0,3.0,0.5,13.0,10.0,76.9,5.0,0.0,1.0,4,66.7,0,0,0,0,,Matches
+Germany,all_competitions,Squad Total,,28.2,6.0,6.0,540,6.0,3.0,0.5,13.0,10.0,76.9,5.0,0.0,1.0,4,66.7,0,0,0,0,,
+Germany,all_competitions,Opponent Total,,27.5,6.0,6.0,540,6.0,16.0,2.67,37.0,21.0,59.5,1.0,0.0,5.0,1,16.7,1,1,0,0,0.0,
+Germany,all_competitions,Oliver Baumann,GK,36-012,9.0,9.0,810,9.0,7.0,0.78,13.0,10.0,76.9,8.0,0.0,1.0,5,55.6,0,0,0,0,,Matches
+Germany,all_competitions,Alexander Nübel,GK,29-257,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Ghana,all_competitions,Benjamin Asare,GK,33.0,6.0,6.0,540,6.0,1.0,0.17,,,,5.0,1.0,0.0,5,83.3,0,0,0,0,,Matches
+Ghana,all_competitions,Lawrence Ati-Zigi,GK,29.0,2.0,2.0,180,2.0,4.0,2.0,,,,2.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Ghana,all_competitions,Richard Ofori,GK,32.0,2.0,2.0,180,2.0,1.0,0.5,,,,1.0,0.0,1.0,1,50.0,0,0,0,0,,Matches
+Ghana,all_competitions,Squad Total,,28.4,10.0,10.0,900,10.0,6.0,0.6,,,,8.0,1.0,1.0,6,60.0,0,0,0,0,,
+Ghana,all_competitions,Opponent Total,,27.6,10.0,10.0,900,10.0,23.0,2.3,,,,1.0,1.0,8.0,1,10.0,2,2,0,0,0.0,
+Ghana,all_competitions,Benjamin Asare,GK,33-336,3.0,2.0,210,2.3,5.0,2.14,,,,0.0,0.0,2.0,0,0.0,1,1,0,0,0.0,Matches
+Ghana,all_competitions,Lawrence Ati-Zigi,GK,29-197,2.0,2.0,135,1.5,5.0,3.33,,,,0.0,1.0,1.0,0,0.0,1,1,0,0,0.0,Matches
+Ghana,all_competitions,Solomon Agbasi,GK,25-244,1.0,0.0,15,0.2,0.0,0.0,,,,,,,0,,0,0,0,0,,Matches
+Ghana,all_competitions,Squad Total,,26.9,4.0,4.0,360,4.0,10.0,2.5,,,,0.0,1.0,3.0,0,0.0,2,2,0,0,0.0,
+Ghana,all_competitions,Opponent Total,,27.6,4.0,4.0,360,4.0,3.0,0.75,,,,3.0,1.0,0.0,1,25.0,0,0,0,0,,
+Ghana,all_competitions,Benjamin Asare,GK,33-336,9.0,8.0,750,8.3,6.0,0.72,,,,5.0,1.0,2.0,5,62.5,1,1,0,0,0.0,Matches
+Ghana,all_competitions,Lawrence Ati-Zigi,GK,29-197,4.0,4.0,315,3.5,9.0,2.57,,,,2.0,1.0,1.0,0,0.0,1,1,0,0,0.0,Matches
+Ghana,all_competitions,Richard Ofori,GK,32-225,2.0,2.0,180,2.0,1.0,0.5,,,,1.0,0.0,1.0,1,50.0,0,0,0,0,,Matches
+Ghana,all_competitions,Solomon Agbasi,GK,25-244,1.0,0.0,15,0.2,0.0,0.0,,,,,,,0,,0,0,0,0,,Matches
+Haiti,all_competitions,Johny Placide,GK,38-136,1.0,1.0,90,1.0,1.0,1.0,2.0,1.0,50.0,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Haiti,all_competitions,Squad Total,,29.1,1.0,1.0,90,1.0,1.0,1.0,2.0,1.0,50.0,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+Haiti,all_competitions,Opponent Total,,29.4,1.0,1.0,90,1.0,0.0,0.0,2.0,2.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,
+Haiti,all_competitions,Alexandre Pierre,GK,25-109,3.0,2.0,212,2.4,2.0,0.85,,,,0.0,1.0,1.0,1,50.0,0,0,0,0,,Matches
+Haiti,all_competitions,Johny Placide,GK,38-136,2.0,2.0,135,1.5,2.0,1.33,,,,1.0,0.0,1.0,1,50.0,0,0,0,0,,Matches
+Haiti,all_competitions,Squad Total,,28.4,4.0,4.0,347,3.8,4.0,1.04,,,,1.0,1.0,2.0,1,25.0,0,0,0,0,,
+Haiti,all_competitions,Opponent Total,,27.8,4.0,4.0,347,3.8,6.0,1.56,,,,2.0,1.0,1.0,1,25.0,0,0,0,0,,
+Haiti,all_competitions,Johny Placide,GK,38.0,8.0,8.0,720,8.0,10.0,1.25,,,,6.0,0.0,2.0,4,50.0,1,0,1,0,100.0,Matches
+Haiti,all_competitions,Josué Duverger,GK,25.0,1.0,1.0,90,1.0,3.0,3.0,,,,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Haiti,all_competitions,Alexandre Pierre,GK,24.0,1.0,1.0,90,1.0,0.0,0.0,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Haiti,all_competitions,Squad Total,,29.7,10.0,10.0,900,10.0,13.0,1.3,,,,6.0,2.0,2.0,5,50.0,1,0,1,0,100.0,
+Haiti,all_competitions,Opponent Total,,28.7,10.0,10.0,900,10.0,20.0,2.0,,,,2.0,2.0,6.0,2,20.0,1,0,1,0,100.0,
+Haiti,all_competitions,Johny Placide,GK,38-136,11.0,11.0,945,10.5,13.0,1.24,2.0,1.0,50.0,7.0,0.0,4.0,5,45.5,1,0,1,0,100.0,Matches
+Haiti,all_competitions,Alexandre Pierre,GK,25-109,4.0,3.0,302,3.4,2.0,0.6,,,,0.0,2.0,1.0,2,66.7,0,0,0,0,,Matches
+Haiti,all_competitions,Josué Duverger,GK,26-048,1.0,1.0,90,1.0,3.0,3.0,,,,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+IR Iran,all_competitions,Alireza Beiranvand,GK,33-266,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+IR Iran,all_competitions,Squad Total,,29.9,2.0,2.0,90,1.0,1.0,1.0,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,
+IR Iran,all_competitions,Opponent Total,,25.8,2.0,2.0,90,1.0,3.0,3.0,,,,0.0,0.0,2.0,0,0.0,0,0,0,0,,
+IR Iran,all_competitions,Alireza Beiranvand,GK,33.0,13.0,13.0,"1,170",13.0,10.0,0.77,25.0,18.0,64.0,8.0,4.0,1.0,7,53.8,1,1,0,0,0.0,Matches
+IR Iran,all_competitions,Hossein Hosseini,GK,33.0,2.0,2.0,180,2.0,0.0,0.0,1.0,1.0,100.0,2.0,0.0,0.0,2,100.0,0,0,0,0,,Matches
+IR Iran,all_competitions,Payam Niazmand,GK,30.0,1.0,1.0,90,1.0,2.0,2.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+IR Iran,all_competitions,Squad Total,,30.9,16.0,16.0,"1,440",16.0,12.0,0.75,26.0,19.0,57.7,11.0,4.0,1.0,9,56.3,1,1,0,0,0.0,
+IR Iran,all_competitions,Opponent Total,,28.6,16.0,16.0,"1,440",16.0,35.0,2.19,57.0,39.0,42.1,1.0,4.0,11.0,3,18.8,3,2,1,0,33.3,
+IR Iran,all_competitions,Alireza Beiranvand,GK,33-266,14.0,14.0,"1,260",14.0,11.0,0.79,25.0,18.0,64.0,9.0,4.0,1.0,7,50.0,1,1,0,0,0.0,Matches
+IR Iran,all_competitions,Hossein Hosseini,GK,33-349,2.0,2.0,180,2.0,0.0,0.0,1.0,1.0,100.0,2.0,0.0,0.0,2,100.0,0,0,0,0,,Matches
+IR Iran,all_competitions,Payam Niazmand,GK,31-069,1.0,1.0,90,1.0,2.0,2.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Japan,all_competitions,Zion Suzuki,GK,23-297,3.0,3.0,261,2.9,0.0,0.0,,,,3.0,0.0,0.0,3,100.0,0,0,0,0,,Matches
+Japan,all_competitions,Tomoki Hayakawa,GK,27-103,1.0,0.0,9,0.1,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Japan,all_competitions,Squad Total,,27.6,3.0,3.0,270,3.0,0.0,0.0,,,,3.0,0.0,0.0,3,100.0,0,0,0,0,,
+Japan,all_competitions,Opponent Total,,27.2,3.0,3.0,270,3.0,3.0,1.0,,,,0.0,0.0,3.0,0,0.0,0,0,0,0,,
+Japan,all_competitions,Zion Suzuki,GK,23.0,10.0,10.0,900,10.0,2.0,0.2,11.0,9.0,81.8,8.0,2.0,0.0,8,80.0,0,0,0,0,,Matches
+Japan,all_competitions,Keisuke Ōsako,GK,26.0,3.0,3.0,245,2.7,0.0,0.0,0.0,0.0,,3.0,0.0,0.0,3,100.0,0,0,0,0,,Matches
+Japan,all_competitions,Kosei Tani,GK,25.0,2.0,1.0,105,1.2,1.0,0.86,3.0,2.0,66.7,0.0,0.0,1.0,1,100.0,0,0,0,0,,Matches
+Japan,all_competitions,Daiya Maekawa,GK,31.0,2.0,1.0,100,1.1,0.0,0.0,,,,1.0,0.0,0.0,2,200.0,0,0,0,0,,Matches
+Japan,all_competitions,Squad Total,,28.1,16.0,16.0,"1,350",15.0,3.0,0.2,14.0,11.0,78.6,12.0,2.0,1.0,12,75.0,0,0,0,0,,
+Japan,all_competitions,Opponent Total,,28.9,16.0,16.0,"1,350",15.0,51.0,3.4,54.0,25.0,9.3,1.0,2.0,12.0,2,12.5,2,2,0,0,0.0,
+Japan,all_competitions,Zion Suzuki,GK,23-297,13.0,13.0,"1,161",12.9,2.0,0.16,11.0,9.0,81.8,11.0,2.0,0.0,11,84.6,0,0,0,0,,Matches
+Japan,all_competitions,Keisuke Ōsako,GK,26-321,3.0,3.0,245,2.7,0.0,0.0,0.0,0.0,,3.0,0.0,0.0,3,100.0,0,0,0,0,,Matches
+Japan,all_competitions,Kosei Tani,GK,25-204,2.0,1.0,105,1.2,1.0,0.86,3.0,2.0,66.7,0.0,0.0,1.0,1,100.0,0,0,0,0,,Matches
+Japan,all_competitions,Daiya Maekawa,GK,31-279,2.0,1.0,100,1.1,0.0,0.0,,,,1.0,0.0,0.0,2,200.0,0,0,0,0,,Matches
+Japan,all_competitions,Tomoki Hayakawa,GK,27-103,1.0,0.0,9,0.1,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Jordan,all_competitions,Yazeed Abulaila,GK,33-157,2.0,2.0,135,1.5,5.0,3.33,,,,0.0,0.0,2.0,0,0.0,2,2,0,0,0.0,Matches
+Jordan,all_competitions,Nour Bani Attiah,GK,33-140,1.0,0.0,33,0.4,1.0,2.73,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Jordan,all_competitions,Squad Total,,29.0,2.0,2.0,168,1.9,6.0,3.21,,,,0.0,0.0,2.0,0,0.0,2,2,0,0,0.0,
+Jordan,all_competitions,Opponent Total,,29.5,2.0,2.0,168,1.9,1.0,0.54,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,
+Jordan,all_competitions,Yazeed Abulaila,GK,33.0,16.0,16.0,"1,406",15.6,11.0,0.7,27.0,21.0,63.0,8.0,5.0,3.0,6,37.5,1,1,0,0,0.0,Matches
+Jordan,all_competitions,Abdallah Al-Fakhouri,GK,26.0,1.0,0.0,34,0.4,1.0,2.65,4.0,3.0,75.0,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Jordan,all_competitions,Squad Total,,29.5,16.0,16.0,"1,440",16.0,12.0,0.75,31.0,24.0,64.5,8.0,5.0,3.0,6,37.5,1,1,0,0,0.0,
+Jordan,all_competitions,Opponent Total,,29.0,16.0,16.0,"1,440",16.0,32.0,2.0,35.0,21.0,20.0,3.0,5.0,8.0,4,25.0,5,4,1,0,20.0,
+Jordan,all_competitions,Yazeed Abulaila,GK,33-157,18.0,18.0,"1,541",17.1,16.0,0.93,27.0,21.0,63.0,8.0,5.0,5.0,6,33.3,3,3,0,0,0.0,Matches
+Jordan,all_competitions,Abdallah Al-Fakhouri,GK,26-143,1.0,0.0,34,0.4,1.0,2.65,4.0,3.0,75.0,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Jordan,all_competitions,Nour Bani Attiah,GK,33-140,1.0,0.0,33,0.4,1.0,2.73,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Korea Republic,all_competitions,Kim Seung-gyu,GK,35-257,1.0,1.0,90,1.0,1.0,1.0,4.0,3.0,75.0,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Korea Republic,all_competitions,Squad Total,,28.7,1.0,1.0,90,1.0,1.0,1.0,4.0,3.0,75.0,1.0,0.0,0.0,0,0.0,0,0,0,0,,
+Korea Republic,all_competitions,Opponent Total,,28.2,1.0,1.0,90,1.0,2.0,2.0,6.0,4.0,66.7,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+Korea Republic,all_competitions,Kim Seung-gyu,GK,35-257,3.0,2.0,180,2.0,1.0,0.5,,,,1.0,0.0,1.0,2,100.0,0,0,0,0,,Matches
+Korea Republic,all_competitions,Jo Hyeon-woo,GK,34-262,2.0,2.0,135,1.5,4.0,2.67,,,,1.0,0.0,1.0,1,50.0,0,0,0,0,,Matches
+Korea Republic,all_competitions,Song Bum-keun,GK,28-242,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Korea Republic,all_competitions,Squad Total,,28.5,4.0,4.0,360,4.0,5.0,1.25,,,,2.0,0.0,2.0,2,50.0,0,0,0,0,,
+Korea Republic,all_competitions,Opponent Total,,26.7,4.0,4.0,360,4.0,6.0,1.5,,,,2.0,0.0,2.0,2,50.0,2,2,0,0,0.0,
+Korea Republic,all_competitions,Jo Hyeon-woo,GK,34.0,13.0,13.0,"1,170",13.0,8.0,0.62,18.0,11.0,55.6,8.0,5.0,0.0,6,46.2,0,0,0,0,,Matches
+Korea Republic,all_competitions,Kim Seung-gyu,GK,35.0,2.0,2.0,180,2.0,0.0,0.0,,,,2.0,0.0,0.0,2,100.0,0,0,0,0,,Matches
+Korea Republic,all_competitions,Lee Chang-keun,GK,32.0,1.0,1.0,90,1.0,0.0,0.0,0.0,0.0,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Korea Republic,all_competitions,Squad Total,,30.3,16.0,16.0,"1,440",16.0,8.0,0.5,18.0,11.0,55.6,11.0,5.0,0.0,9,56.3,0,0,0,0,,
+Korea Republic,all_competitions,Opponent Total,,29.8,16.0,16.0,"1,440",16.0,40.0,2.5,52.0,33.0,28.8,0.0,5.0,11.0,1,6.3,3,3,0,0,0.0,
+Korea Republic,all_competitions,Jo Hyeon-woo,GK,34-262,15.0,15.0,"1,305",14.5,12.0,0.83,18.0,11.0,55.6,9.0,5.0,1.0,7,46.7,0,0,0,0,,Matches
+Korea Republic,all_competitions,Kim Seung-gyu,GK,35-257,6.0,5.0,450,5.0,2.0,0.4,4.0,3.0,75.0,4.0,0.0,1.0,4,80.0,0,0,0,0,,Matches
+Korea Republic,all_competitions,Lee Chang-keun,GK,32-288,1.0,1.0,90,1.0,0.0,0.0,0.0,0.0,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Korea Republic,all_competitions,Song Bum-keun,GK,28-242,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Mexico,all_competitions,Raúl Rangel,GK,26-109,1.0,1.0,90,1.0,0.0,0.0,2.0,2.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Mexico,all_competitions,Squad Total,,28.1,1.0,1.0,90,1.0,0.0,0.0,2.0,2.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,
+Mexico,all_competitions,Opponent Total,,28.2,1.0,1.0,90,1.0,2.0,2.0,4.0,2.0,50.0,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+Mexico,all_competitions,Raúl Rangel,GK,26-109,5.0,5.0,360,4.0,2.0,0.5,,,,3.0,2.0,0.0,3,60.0,0,0,0,0,,Matches
+Mexico,all_competitions,Carlos Acevedo,GK,30-056,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Mexico,all_competitions,Guillermo Ochoa,GK,40-336,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Mexico,all_competitions,Squad Total,,27.7,5.0,5.0,450,5.0,2.0,0.4,,,,3.0,2.0,0.0,3,60.0,0,0,0,0,,
+Mexico,all_competitions,Opponent Total,,26.0,5.0,5.0,450,5.0,9.0,1.8,,,,0.0,2.0,3.0,1,20.0,0,0,0,0,,
+Mexico,all_competitions,Raúl Rangel,GK,26-109,6.0,6.0,450,5.0,2.0,0.4,2.0,2.0,100.0,4.0,2.0,0.0,4,66.7,0,0,0,0,,Matches
+Mexico,all_competitions,Carlos Acevedo,GK,30-056,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Mexico,all_competitions,Guillermo Ochoa,GK,40-336,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Morocco,all_competitions,Yassine Bounou,GK,35-070,1.0,1.0,90,1.0,1.0,1.0,5.0,4.0,80.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Morocco,all_competitions,Squad Total,,25.8,1.0,1.0,90,1.0,1.0,1.0,5.0,4.0,80.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Morocco,all_competitions,Opponent Total,,29.8,1.0,1.0,90,1.0,1.0,1.0,3.0,2.0,66.7,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Morocco,all_competitions,Yassine Bounou,GK,34.0,8.0,8.0,720,8.0,2.0,0.25,,,,8.0,0.0,0.0,6,75.0,0,0,0,0,,Matches
+Morocco,all_competitions,Squad Total,,28.3,8.0,8.0,720,8.0,2.0,0.25,,,,8.0,0.0,0.0,6,75.0,0,0,0,0,,
+Morocco,all_competitions,Opponent Total,,27.4,8.0,8.0,720,8.0,22.0,2.75,,,,0.0,0.0,8.0,0,0.0,3,2,0,1,0.0,
+Morocco,all_competitions,Yassine Bounou,GK,35-070,3.0,3.0,270,3.0,3.0,1.0,,,,1.0,2.0,0.0,0,0.0,0,0,0,0,,Matches
+Morocco,all_competitions,Munir,GK,37-035,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Morocco,all_competitions,Squad Total,,26.7,4.0,4.0,360,4.0,3.0,0.75,,,,2.0,2.0,0.0,1,25.0,0,0,0,0,,
+Morocco,all_competitions,Opponent Total,,28.0,4.0,4.0,360,4.0,8.0,2.0,,,,0.0,2.0,2.0,0,0.0,2,1,1,0,50.0,
+Morocco,all_competitions,Yassine Bounou,GK,35-070,12.0,12.0,"1,080",12.0,6.0,0.5,5.0,4.0,80.0,9.0,3.0,0.0,6,50.0,0,0,0,0,,Matches
+Morocco,all_competitions,Munir,GK,37-035,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Netherlands,all_competitions,Bart Verbruggen,GK,23-300,3.0,3.0,201,2.2,1.0,0.45,,,,2.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Netherlands,all_competitions,Mark Flekken,GK,33-001,2.0,1.0,114,1.3,2.0,1.58,,,,0.0,1.0,0.0,0,0.0,1,1,0,0,0.0,Matches
+Netherlands,all_competitions,Robin Roefs,GK,23-148,1.0,0.0,45,0.5,1.0,2.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Netherlands,all_competitions,Squad Total,,27.5,4.0,4.0,360,4.0,4.0,1.0,,,,2.0,1.0,1.0,0,0.0,1,1,0,0,0.0,
+Netherlands,all_competitions,Opponent Total,,27.5,4.0,4.0,360,4.0,5.0,1.25,,,,1.0,1.0,2.0,1,25.0,2,2,0,0,0.0,
+Netherlands,all_competitions,Bart Verbruggen,GK,23.0,6.0,6.0,540,6.0,4.0,0.67,14.0,10.0,71.4,4.0,2.0,0.0,3,50.0,0,0,0,0,,Matches
+Netherlands,all_competitions,Mark Flekken,GK,32.0,2.0,2.0,180,2.0,0.0,0.0,4.0,4.0,100.0,2.0,0.0,0.0,2,100.0,0,0,0,0,,Matches
+Netherlands,all_competitions,Squad Total,,27.9,8.0,8.0,720,8.0,4.0,0.5,18.0,14.0,77.8,6.0,2.0,0.0,5,62.5,0,0,0,0,,
+Netherlands,all_competitions,Opponent Total,,28.2,8.0,8.0,720,8.0,27.0,3.38,47.0,25.0,53.2,0.0,2.0,6.0,0,0.0,5,5,0,0,0.0,
+Netherlands,all_competitions,Bart Verbruggen,GK,23-300,9.0,9.0,741,8.2,5.0,0.61,14.0,10.0,71.4,6.0,2.0,1.0,3,33.3,0,0,0,0,,Matches
+Netherlands,all_competitions,Mark Flekken,GK,33-001,4.0,3.0,294,3.3,2.0,0.61,4.0,4.0,100.0,2.0,1.0,0.0,2,66.7,1,1,0,0,0.0,Matches
+Netherlands,all_competitions,Robin Roefs,GK,23-148,1.0,0.0,45,0.5,1.0,2.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+New Zealand,all_competitions,Max Crocombe,GK,32-306,2.0,1.0,116,1.3,4.0,3.1,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+New Zealand,all_competitions,Alex Paulsen,GK,23-345,2.0,1.0,46,0.5,1.0,1.96,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+New Zealand,all_competitions,Squad Total,,28.1,2.0,2.0,162,1.8,5.0,2.78,,,,0.0,0.0,2.0,0,0.0,0,0,0,0,,
+New Zealand,all_competitions,Opponent Total,,27.6,2.0,2.0,162,1.8,0.0,0.0,,,,2.0,0.0,0.0,2,100.0,0,0,0,0,,
+New Zealand,all_competitions,Max Crocombe,GK,32.0,4.0,4.0,360,4.0,0.0,0.0,,,,4.0,0.0,0.0,4,100.0,0,0,0,0,,Matches
+New Zealand,all_competitions,Alex Paulsen,GK,23.0,1.0,1.0,90,1.0,,,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+New Zealand,all_competitions,Squad Total,,27.9,5.0,5.0,450,5.0,0.0,0.0,,,,5.0,0.0,0.0,4,80.0,0,0,0,0,,
+New Zealand,all_competitions,Opponent Total,,28.4,5.0,5.0,450,5.0,10.0,2.0,,,,0.0,0.0,5.0,0,0.0,2,1,0,1,0.0,
+New Zealand,all_competitions,Max Crocombe,GK,32-306,6.0,5.0,476,5.3,4.0,0.76,,,,4.0,0.0,1.0,4,80.0,0,0,0,0,,Matches
+New Zealand,all_competitions,Alex Paulsen,GK,23-345,3.0,2.0,136,1.5,1.0,1.96,,,,1.0,0.0,1.0,1,50.0,0,0,0,0,,Matches
+Norway,all_competitions,Ørjan Nyland,GK,35-277,4.0,4.0,296,3.3,4.0,1.22,,,,1.0,2.0,1.0,1,25.0,0,0,0,0,,Matches
+Norway,all_competitions,Egil Selvik,GK,28-319,2.0,0.0,64,0.7,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Norway,all_competitions,Squad Total,,27.5,4.0,4.0,360,4.0,4.0,1.0,,,,1.0,2.0,1.0,1,25.0,0,0,0,0,,
+Norway,all_competitions,Opponent Total,,27.1,4.0,4.0,360,4.0,5.0,1.25,,,,1.0,2.0,1.0,1,25.0,0,0,0,0,,
+Norway,all_competitions,Ørjan Nyland,GK,35.0,8.0,8.0,720,8.0,5.0,0.62,22.0,17.0,77.3,8.0,0.0,0.0,4,50.0,0,0,0,0,,Matches
+Norway,all_competitions,Squad Total,,27.3,8.0,8.0,720,8.0,5.0,0.62,22.0,17.0,77.3,8.0,0.0,0.0,4,50.0,0,0,0,0,,
+Norway,all_competitions,Opponent Total,,27.3,8.0,8.0,720,8.0,37.0,4.62,61.0,26.0,41.0,0.0,0.0,8.0,0,0.0,2,1,1,0,50.0,
+Norway,all_competitions,Ørjan Nyland,GK,35-277,12.0,12.0,"1,016",11.3,9.0,0.8,22.0,17.0,77.3,9.0,2.0,1.0,5,41.7,0,0,0,0,,Matches
+Norway,all_competitions,Egil Selvik,GK,28-319,2.0,0.0,64,0.7,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Panama,all_competitions,Orlando Mosquera,GK,31-171,4.0,3.0,319,3.5,9.0,2.54,,,,1.0,1.0,1.0,0,0.0,1,1,0,0,0.0,Matches
+Panama,all_competitions,César Samudio,GK,32-111,1.0,1.0,65,0.7,1.0,1.38,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Panama,all_competitions,Luis Mejía,GK,35-090,1.0,1.0,41,0.5,0.0,0.0,,,,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Panama,all_competitions,John David Gunn,GK,26-144,1.0,0.0,25,0.3,1.0,3.6,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Panama,all_competitions,Squad Total,,29.5,5.0,5.0,450,5.0,11.0,2.2,,,,2.0,2.0,1.0,0,0.0,1,1,0,0,0.0,
+Panama,all_competitions,Opponent Total,,27.2,5.0,5.0,450,5.0,10.0,2.0,,,,1.0,2.0,2.0,0,0.0,0,0,0,0,,
+Panama,all_competitions,Orlando Mosquera,GK,31.0,6.0,6.0,540,6.0,4.0,0.67,,,,3.0,3.0,0.0,3,50.0,0,0,0,0,,Matches
+Panama,all_competitions,Luis Mejía,GK,34.0,4.0,4.0,360,4.0,1.0,0.25,,,,4.0,0.0,0.0,3,75.0,0,0,0,0,,Matches
+Panama,all_competitions,Squad Total,,29.8,10.0,10.0,900,10.0,5.0,0.5,,,,7.0,3.0,0.0,6,60.0,0,0,0,0,,
+Panama,all_competitions,Opponent Total,,28.3,10.0,10.0,900,10.0,19.0,1.9,,,,0.0,3.0,7.0,1,10.0,1,1,0,0,0.0,
+Panama,all_competitions,Orlando Mosquera,GK,31-171,10.0,9.0,859,9.5,13.0,1.36,,,,4.0,4.0,1.0,3,33.3,1,1,0,0,0.0,Matches
+Panama,all_competitions,Luis Mejía,GK,35-090,5.0,5.0,401,4.5,1.0,0.22,,,,4.0,1.0,0.0,3,60.0,0,0,0,0,,Matches
+Panama,all_competitions,César Samudio,GK,32-111,1.0,1.0,65,0.7,1.0,1.38,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Panama,all_competitions,John David Gunn,GK,26-144,1.0,0.0,25,0.3,1.0,3.6,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Paraguay,all_competitions,Orlando Gill,GK,26-003,1.0,1.0,90,1.0,4.0,4.0,7.0,3.0,42.9,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Paraguay,all_competitions,Squad Total,,28.4,1.0,1.0,90,1.0,4.0,4.0,7.0,3.0,42.9,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+Paraguay,all_competitions,Opponent Total,,27.2,1.0,1.0,90,1.0,1.0,1.0,1.0,0.0,0.0,1.0,0.0,0.0,0,0.0,0,0,0,0,,
+Paraguay,all_competitions,Orlando Gill,GK,26-003,2.0,1.0,135,1.5,2.0,1.33,,,,0.0,0.0,1.0,1,100.0,0,0,0,0,,Matches
+Paraguay,all_competitions,Gastón Olveira,GK,33-054,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Paraguay,all_competitions,Gatito Fernández,GK,38-077,1.0,1.0,45,0.5,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Paraguay,all_competitions,Squad Total,,28.8,3.0,3.0,270,3.0,2.0,0.67,,,,2.0,0.0,1.0,2,66.7,0,0,0,0,,
+Paraguay,all_competitions,Opponent Total,,26.4,3.0,3.0,270,3.0,6.0,2.0,,,,1.0,0.0,2.0,0,0.0,1,1,0,0,0.0,
+Paraguay,all_competitions,Gatito Fernández,GK,37.0,11.0,11.0,990,11.0,7.0,0.64,30.0,24.0,80.0,5.0,5.0,1.0,6,54.5,1,1,0,0,0.0,Matches
+Paraguay,all_competitions,Carlos Coronel,GK,29.0,6.0,6.0,540,6.0,3.0,0.5,14.0,13.0,92.9,1.0,2.0,3.0,3,50.0,2,2,0,0,0.0,Matches
+Paraguay,all_competitions,Orlando Gill,GK,25.0,1.0,1.0,90,1.0,0.0,0.0,3.0,3.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Paraguay,all_competitions,Squad Total,,29.8,18.0,18.0,"1,620",18.0,10.0,0.56,47.0,40.0,85.1,7.0,7.0,4.0,10,55.6,3,3,0,0,0.0,
+Paraguay,all_competitions,Opponent Total,,29.4,18.0,18.0,"1,620",18.0,14.0,0.78,61.0,49.0,78.7,4.0,7.0,7.0,9,50.0,2,1,1,0,50.0,
+Paraguay,all_competitions,Gatito Fernández,GK,38-077,12.0,12.0,"1,035",11.5,7.0,0.61,30.0,24.0,80.0,6.0,5.0,1.0,7,58.3,1,1,0,0,0.0,Matches
+Paraguay,all_competitions,Carlos Coronel,GK,29-167,6.0,6.0,540,6.0,3.0,0.5,14.0,13.0,92.9,1.0,2.0,3.0,3,50.0,2,2,0,0,0.0,Matches
+Paraguay,all_competitions,Orlando Gill,GK,26-003,4.0,3.0,315,3.5,6.0,1.71,10.0,6.0,60.0,1.0,0.0,2.0,2,66.7,0,0,0,0,,Matches
+Paraguay,all_competitions,Gastón Olveira,GK,33-054,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Portugal,all_competitions,José Sá,GK,33-148,2.0,2.0,129,1.4,0.0,0.0,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,Matches
+Portugal,all_competitions,Rui Silva,GK,32-127,2.0,1.0,135,1.5,1.0,0.67,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Portugal,all_competitions,Diogo Costa,GK,26-268,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Portugal,all_competitions,Ricardo Velho,GK,27-298,1.0,0.0,6,0.1,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Portugal,all_competitions,Squad Total,,27.9,4.0,4.0,360,4.0,2.0,0.5,,,,3.0,1.0,0.0,2,50.0,0,0,0,0,,
+Portugal,all_competitions,Opponent Total,,26.6,4.0,4.0,360,4.0,6.0,1.5,,,,0.0,1.0,3.0,1,25.0,0,0,0,0,,
+Portugal,all_competitions,Diogo Costa,GK,26.0,6.0,6.0,540,6.0,7.0,1.17,16.0,9.0,56.3,4.0,1.0,1.0,2,33.3,0,0,0,0,,Matches
+Portugal,all_competitions,Squad Total,,28.0,6.0,6.0,540,6.0,7.0,1.17,16.0,9.0,56.3,4.0,1.0,1.0,2,33.3,0,0,0,0,,
+Portugal,all_competitions,Opponent Total,,27.4,6.0,6.0,540,6.0,20.0,3.33,45.0,29.0,62.2,1.0,1.0,4.0,1,16.7,4,3,1,0,25.0,
+Portugal,all_competitions,Diogo Costa,GK,26-268,7.0,7.0,630,7.0,8.0,1.14,16.0,9.0,56.3,5.0,1.0,1.0,2,28.6,0,0,0,0,,Matches
+Portugal,all_competitions,Rui Silva,GK,32-127,2.0,1.0,135,1.5,1.0,0.67,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Portugal,all_competitions,José Sá,GK,33-148,2.0,2.0,129,1.4,0.0,0.0,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,Matches
+Portugal,all_competitions,Ricardo Velho,GK,27-298,1.0,0.0,6,0.1,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Qatar,all_competitions,Mahmoud Abunada,GK,26-129,1.0,1.0,90,1.0,1.0,1.0,5.0,5.0,100.0,0.0,1.0,0.0,0,0.0,1,1,0,0,0.0,Matches
+Qatar,all_competitions,Squad Total,,29.7,1.0,1.0,90,1.0,1.0,1.0,5.0,5.0,100.0,0.0,1.0,0.0,0,0.0,1,1,0,0,0.0,
+Qatar,all_competitions,Opponent Total,,29.9,1.0,1.0,90,1.0,1.0,1.0,4.0,3.0,75.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Qatar,all_competitions,Mahmoud Abunada,GK,26-129,2.0,2.0,180,2.0,1.0,0.5,,,,0.0,1.0,1.0,1,50.0,0,0,0,0,,Matches
+Qatar,all_competitions,Squad Total,,29.4,2.0,2.0,180,2.0,1.0,0.5,,,,0.0,1.0,1.0,1,50.0,0,0,0,0,,
+Qatar,all_competitions,Opponent Total,,27.0,2.0,2.0,180,2.0,0.0,0.0,,,,1.0,1.0,0.0,2,100.0,0,0,0,0,,
+Qatar,all_competitions,Meshaal Barsham,GK,27.0,13.0,13.0,"1,149",12.8,23.0,1.8,43.0,24.0,51.2,8.0,1.0,4.0,3,23.1,2,2,0,0,0.0,Matches
+Qatar,all_competitions,Mahmoud Abunada,GK,25.0,2.0,2.0,180,2.0,1.0,0.5,5.0,4.0,80.0,1.0,1.0,0.0,1,50.0,0,0,0,0,,Matches
+Qatar,all_competitions,Salah Zakaria,GK,26.0,2.0,1.0,111,1.2,3.0,2.43,7.0,4.0,57.1,0.0,0.0,1.0,1,100.0,0,0,0,0,,Matches
+Qatar,all_competitions,Saad Al Sheeb,GK,35.0,1.0,1.0,90,1.0,0.0,0.0,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Qatar,all_competitions,Shehab Mamdouh,GK,25.0,1.0,1.0,45,0.5,1.0,2.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Qatar,all_competitions,Ali Nader,GK,21.0,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Qatar,all_competitions,Squad Total,,29.2,18.0,18.0,"1,620",18.0,28.0,1.56,55.0,32.0,52.7,10.0,3.0,5.0,5,27.8,2,2,0,0,0.0,
+Qatar,all_competitions,Opponent Total,,28.7,18.0,18.0,"1,620",18.0,37.0,2.06,46.0,28.0,28.3,5.0,3.0,10.0,4,22.2,4,4,0,0,0.0,
+Qatar,all_competitions,Meshaal Barsham,GK,28-120,13.0,13.0,"1,149",12.8,23.0,1.8,43.0,24.0,51.2,8.0,1.0,4.0,3,23.1,2,2,0,0,0.0,Matches
+Qatar,all_competitions,Mahmoud Abunada,GK,26-129,5.0,5.0,450,5.0,3.0,0.6,10.0,9.0,90.0,1.0,3.0,1.0,2,40.0,1,1,0,0,0.0,Matches
+Qatar,all_competitions,Salah Zakaria,GK,27-051,2.0,1.0,111,1.2,3.0,2.43,7.0,4.0,57.1,0.0,0.0,1.0,1,100.0,0,0,0,0,,Matches
+Qatar,all_competitions,Saad Al Sheeb,GK,36-115,1.0,1.0,90,1.0,0.0,0.0,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Qatar,all_competitions,Ali Nader,GK,21-199,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Qatar,all_competitions,Shehab Mamdouh,GK,26-057,1.0,1.0,45,0.5,1.0,2.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Saudi Arabia,all_competitions,Mohammed Al-Owais,GK,34-247,3.0,3.0,270,3.0,4.0,1.33,,,,0.0,1.0,2.0,1,33.3,0,0,0,0,,Matches
+Saudi Arabia,all_competitions,Nawaf Al Aqidi,GK,26-035,1.0,1.0,90,1.0,4.0,4.0,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Saudi Arabia,all_competitions,Ahmed Al-Kassar,GK,35-037,1.0,1.0,64,0.7,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Saudi Arabia,all_competitions,Abdulquddus Atiah,GK,29-105,1.0,0.0,26,0.3,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Saudi Arabia,all_competitions,Squad Total,,28.2,5.0,5.0,450,5.0,8.0,1.6,,,,1.0,1.0,3.0,2,40.0,0,0,0,0,,
+Saudi Arabia,all_competitions,Opponent Total,,26.6,5.0,5.0,450,5.0,5.0,1.0,,,,3.0,1.0,1.0,2,40.0,0,0,0,0,,
+Saudi Arabia,all_competitions,Mohammed Al-Owais,GK,34.0,8.0,8.0,664,7.4,4.0,0.54,4.0,2.0,0.0,5.0,2.0,1.0,4,50.0,0,0,0,0,,Matches
+Saudi Arabia,all_competitions,Nawaf Al Aqidi,GK,25.0,6.0,6.0,540,6.0,4.0,0.67,11.0,9.0,81.8,3.0,2.0,1.0,4,66.7,2,2,0,0,0.0,Matches
+Saudi Arabia,all_competitions,Ahmed Al-Kassar,GK,34.0,5.0,4.0,416,4.6,5.0,1.08,12.0,7.0,58.3,0.0,2.0,2.0,2,50.0,0,0,0,0,,Matches
+Saudi Arabia,all_competitions,Squad Total,,28.4,18.0,18.0,"1,620",18.0,13.0,0.72,27.0,18.0,59.3,8.0,6.0,4.0,10,55.6,2,2,0,0,0.0,
+Saudi Arabia,all_competitions,Opponent Total,,28.5,18.0,18.0,"1,620",18.0,22.0,1.22,41.0,35.0,51.2,4.0,6.0,8.0,6,33.3,5,2,3,0,60.0,
+Saudi Arabia,all_competitions,Mohammed Al-Owais,GK,34-247,11.0,11.0,934,10.4,8.0,0.77,4.0,2.0,0.0,5.0,3.0,3.0,5,45.5,0,0,0,0,,Matches
+Saudi Arabia,all_competitions,Nawaf Al Aqidi,GK,26-035,7.0,7.0,630,7.0,8.0,1.14,11.0,9.0,81.8,3.0,2.0,2.0,4,57.1,2,2,0,0,0.0,Matches
+Saudi Arabia,all_competitions,Ahmed Al-Kassar,GK,35-037,6.0,5.0,480,5.3,5.0,0.94,12.0,7.0,58.3,1.0,2.0,2.0,3,60.0,0,0,0,0,,Matches
+Saudi Arabia,all_competitions,Abdulquddus Atiah,GK,29-105,1.0,0.0,26,0.3,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+Scotland,all_competitions,Angus Gunn,GK,30-143,1.0,1.0,90,1.0,0.0,0.0,2.0,2.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Scotland,all_competitions,Squad Total,,29.4,1.0,1.0,90,1.0,0.0,0.0,2.0,2.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,
+Scotland,all_competitions,Opponent Total,,29.1,1.0,1.0,90,1.0,1.0,1.0,2.0,1.0,50.0,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+Scotland,all_competitions,Angus Gunn,GK,30-143,2.0,2.0,180,2.0,1.0,0.5,,,,1.0,0.0,1.0,1,50.0,0,0,0,0,,Matches
+Scotland,all_competitions,Craig Gordon,GK,43-165,1.0,1.0,76,0.8,1.0,1.18,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Scotland,all_competitions,Liam Kelly,GK,30-142,2.0,1.0,59,0.7,1.0,1.53,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Scotland,all_competitions,Scott Bain,GK,34-204,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Scotland,all_competitions,Squad Total,,29.3,4.0,4.0,360,4.0,3.0,0.75,,,,2.0,0.0,2.0,1,25.0,0,0,0,0,,
+Scotland,all_competitions,Opponent Total,,26.2,4.0,4.0,360,4.0,8.0,2.0,,,,2.0,0.0,2.0,2,50.0,1,1,0,0,0.0,
+Scotland,all_competitions,Angus Gunn,GK,30.0,4.0,4.0,360,4.0,2.0,0.5,11.0,9.0,81.8,3.0,1.0,0.0,2,50.0,0,0,0,0,,Matches
+Scotland,all_competitions,Craig Gordon,GK,43.0,2.0,2.0,180,2.0,5.0,2.5,12.0,8.0,66.7,1.0,0.0,1.0,0,0.0,1,1,0,0,0.0,Matches
+Scotland,all_competitions,Squad Total,,29.4,6.0,6.0,540,6.0,7.0,1.17,23.0,17.0,73.9,4.0,1.0,1.0,2,33.3,1,1,0,0,0.0,
+Scotland,all_competitions,Opponent Total,,27.0,6.0,6.0,540,6.0,13.0,2.17,28.0,15.0,53.6,1.0,1.0,4.0,1,16.7,0,0,0,0,,
+Scotland,all_competitions,Angus Gunn,GK,30-143,7.0,7.0,630,7.0,3.0,0.43,13.0,11.0,84.6,5.0,1.0,1.0,4,57.1,0,0,0,0,,Matches
+Scotland,all_competitions,Craig Gordon,GK,43-165,3.0,3.0,256,2.8,6.0,2.11,12.0,8.0,66.7,2.0,0.0,1.0,0,0.0,1,1,0,0,0.0,Matches
+Scotland,all_competitions,Liam Kelly,GK,30-142,2.0,1.0,59,0.7,1.0,1.53,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Scotland,all_competitions,Scott Bain,GK,34-204,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Senegal,all_competitions,Édouard Mendy,GK,33.0,9.0,9.0,810,9.0,3.0,0.33,,,,6.0,3.0,0.0,7,77.8,0,0,0,0,,Matches
+Senegal,all_competitions,Mory Diaw,GK,32.0,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Senegal,all_competitions,Squad Total,,29.1,10.0,10.0,900,10.0,3.0,0.3,,,,7.0,3.0,0.0,8,80.0,0,0,0,0,,
+Senegal,all_competitions,Opponent Total,,28.4,10.0,10.0,900,10.0,22.0,2.2,,,,0.0,3.0,7.0,2,20.0,2,2,0,0,0.0,
+Senegal,all_competitions,Mory Diaw,GK,32-357,2.0,2.0,180,2.0,3.0,1.5,,,,1.0,0.0,1.0,1,50.0,0,0,0,0,,Matches
+Senegal,all_competitions,Yehvann Diouf,GK,26-210,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Senegal,all_competitions,Édouard Mendy,GK,34-105,1.0,1.0,90,1.0,0.0,0.0,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Senegal,all_competitions,Squad Total,,26.5,4.0,4.0,360,4.0,4.0,1.0,,,,2.0,1.0,1.0,2,50.0,0,0,0,0,,
+Senegal,all_competitions,Opponent Total,,27.4,4.0,4.0,360,4.0,7.0,1.75,,,,1.0,1.0,2.0,1,25.0,0,0,0,0,,
+Senegal,all_competitions,Édouard Mendy,GK,34-105,10.0,10.0,900,10.0,3.0,0.3,,,,6.0,4.0,0.0,8,80.0,0,0,0,0,,Matches
+Senegal,all_competitions,Mory Diaw,GK,32-357,3.0,3.0,270,3.0,3.0,1.0,,,,2.0,0.0,1.0,2,66.7,0,0,0,0,,Matches
+Senegal,all_competitions,Yehvann Diouf,GK,26-210,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+South Africa,all_competitions,Ronwen Williams,GK,34-144,1.0,1.0,90,1.0,2.0,2.0,4.0,2.0,50.0,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+South Africa,all_competitions,Squad Total,,28.2,1.0,1.0,90,1.0,2.0,2.0,4.0,2.0,50.0,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+South Africa,all_competitions,Opponent Total,,28.1,1.0,1.0,90,1.0,0.0,0.0,2.0,2.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,
+South Africa,all_competitions,Ronwen Williams,GK,34.0,10.0,10.0,900,10.0,6.0,0.6,,,,5.0,3.0,2.0,4,40.0,0,0,0,0,,Matches
+South Africa,all_competitions,Squad Total,,28.9,10.0,10.0,900,10.0,6.0,0.6,,,,5.0,3.0,1.0,4,40.0,0,0,0,0,,
+South Africa,all_competitions,Opponent Total,,28.5,10.0,10.0,900,10.0,15.0,1.5,,,,1.0,3.0,5.0,2,20.0,0,0,0,0,,
+South Africa,all_competitions,Ronwen Williams,GK,34-144,2.0,2.0,135,1.5,1.0,0.67,,,,0.0,1.0,1.0,0,0.0,0,0,0,0,,Matches
+South Africa,all_competitions,Ricardo Goss,GK,32-073,1.0,1.0,45,0.5,0.0,0.0,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+South Africa,all_competitions,Sipho Chaine,GK,29-182,1.0,0.0,45,0.5,0.0,0.0,,,,,,,1,,0,0,0,0,,Matches
+South Africa,all_competitions,Renaldo Leaner,GK,28-122,1.0,0.0,45,0.5,2.0,4.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+South Africa,all_competitions,Squad Total,,26.8,3.0,3.0,270,3.0,3.0,1.0,,,,0.0,2.0,1.0,1,33.3,0,0,0,0,,
+South Africa,all_competitions,Opponent Total,,28.2,3.0,3.0,270,3.0,2.0,0.67,,,,1.0,2.0,0.0,1,33.3,1,0,0,1,,
+South Africa,all_competitions,Ronwen Williams,GK,34-144,13.0,13.0,"1,125",12.5,9.0,0.72,4.0,2.0,50.0,5.0,4.0,4.0,4,30.8,0,0,0,0,,Matches
+South Africa,all_competitions,Ricardo Goss,GK,32-073,1.0,1.0,45,0.5,0.0,0.0,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+South Africa,all_competitions,Sipho Chaine,GK,29-182,1.0,0.0,45,0.5,0.0,0.0,,,,0.0,0.0,0.0,1,,0,0,0,0,,Matches
+South Africa,all_competitions,Renaldo Leaner,GK,28-122,1.0,0.0,45,0.5,2.0,4.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Spain,all_competitions,Unai Simón,GK,29-003,2.0,2.0,135,1.5,0.0,0.0,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,Matches
+Spain,all_competitions,David Raya,GK,30-272,2.0,1.0,106,1.2,1.0,0.85,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Spain,all_competitions,Joan García,GK,25-041,2.0,1.0,101,1.1,1.0,0.89,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Spain,all_competitions,Leo Román,GK,25-343,1.0,0.0,18,0.2,0.0,0.0,,,,,,,0,,0,0,0,0,,Matches
+Spain,all_competitions,Squad Total,,26.3,4.0,4.0,360,4.0,2.0,0.5,,,,2.0,2.0,0.0,2,50.0,0,0,0,0,,
+Spain,all_competitions,Opponent Total,,28.2,4.0,4.0,360,4.0,7.0,1.75,,,,0.0,2.0,2.0,1,25.0,0,0,0,0,,
+Spain,all_competitions,Unai Simón,GK,28.0,6.0,6.0,540,6.0,2.0,0.33,12.0,10.0,83.3,5.0,1.0,0.0,5,83.3,0,0,0,0,,Matches
+Spain,all_competitions,Squad Total,,26.8,6.0,6.0,540,6.0,2.0,0.33,12.0,10.0,83.3,5.0,1.0,0.0,5,83.3,0,0,0,0,,
+Spain,all_competitions,Opponent Total,,27.2,6.0,6.0,540,6.0,21.0,3.5,52.0,34.0,63.5,0.0,1.0,5.0,0,0.0,3,2,1,0,33.3,
+Spain,all_competitions,Unai Simón,GK,29-003,8.0,8.0,675,7.5,2.0,0.27,12.0,10.0,83.3,7.0,1.0,0.0,6,75.0,0,0,0,0,,Matches
+Spain,all_competitions,David Raya,GK,30-272,2.0,1.0,106,1.2,1.0,0.85,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Spain,all_competitions,Joan García,GK,25-041,2.0,1.0,101,1.1,1.0,0.89,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Spain,all_competitions,Leo Román,GK,25-343,1.0,0.0,18,0.2,0.0,0.0,,,,,,,0,,0,0,0,0,,Matches
+Sweden,all_competitions,Kristoffer Nordfeldt,GK,36-356,1.0,1.0,90,1.0,2.0,2.0,,,,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Sweden,all_competitions,Jacob Widell Zetterström,GK,27-338,1.0,1.0,90,1.0,3.0,3.0,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Sweden,all_competitions,Squad Total,,27.1,2.0,2.0,180,2.0,5.0,2.5,,,,0.0,1.0,1.0,0,0.0,0,0,0,0,,
+Sweden,all_competitions,Opponent Total,,26.9,2.0,2.0,180,2.0,3.0,1.5,,,,1.0,1.0,0.0,0,0.0,0,0,0,0,,
+Sweden,all_competitions,Viktor Johansson,GK,27.0,3.0,3.0,270,3.0,7.0,2.33,14.0,9.0,64.3,0.0,0.0,3.0,0,0.0,2,2,0,0,0.0,Matches
+Sweden,all_competitions,Kristoffer Nordfeldt,GK,36.0,2.0,2.0,180,2.0,3.0,1.5,11.0,8.0,72.7,2.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Sweden,all_competitions,Robin Olsen,GK,36.0,2.0,2.0,180,2.0,4.0,2.0,9.0,5.0,55.6,0.0,1.0,1.0,0,0.0,0,0,0,0,,Matches
+Sweden,all_competitions,Jacob Widell Zetterström,GK,27.0,1.0,1.0,90,1.0,1.0,1.0,3.0,2.0,66.7,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Sweden,all_competitions,Squad Total,,27.0,8.0,8.0,720,8.0,15.0,1.87,37.0,24.0,64.9,2.0,2.0,4.0,0,0.0,2,2,0,0,0.0,
+Sweden,all_competitions,Opponent Total,,27.9,8.0,8.0,720,8.0,10.0,1.25,24.0,15.0,62.5,4.0,2.0,2.0,3,37.5,1,1,0,0,0.0,
+Sweden,all_competitions,Kristoffer Nordfeldt,GK,36-356,3.0,3.0,270,3.0,5.0,1.67,11.0,8.0,72.7,2.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Sweden,all_competitions,Viktor Johansson,GK,27-273,3.0,3.0,270,3.0,7.0,2.33,14.0,9.0,64.3,0.0,0.0,3.0,0,0.0,2,2,0,0,0.0,Matches
+Sweden,all_competitions,Robin Olsen,GK,36-157,2.0,2.0,180,2.0,4.0,2.0,9.0,5.0,55.6,0.0,1.0,1.0,0,0.0,0,0,0,0,,Matches
+Sweden,all_competitions,Jacob Widell Zetterström,GK,27-338,2.0,2.0,180,2.0,4.0,2.0,3.0,2.0,66.7,0.0,1.0,1.0,0,0.0,0,0,0,0,,Matches
+Switzerland,all_competitions,Gregor Kobel,GK,28-190,1.0,1.0,90,1.0,1.0,1.0,4.0,3.0,75.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Switzerland,all_competitions,Squad Total,,29.9,1.0,1.0,90,1.0,1.0,1.0,4.0,3.0,75.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,
+Switzerland,all_competitions,Opponent Total,,29.7,1.0,1.0,90,1.0,1.0,1.0,5.0,5.0,100.0,0.0,1.0,0.0,0,0.0,1,1,0,0,0.0,
+Switzerland,all_competitions,Gregor Kobel,GK,28-190,2.0,2.0,180,2.0,5.0,2.5,,,,0.0,1.0,1.0,0,0.0,0,0,0,0,,Matches
+Switzerland,all_competitions,Yvon Mvogo,GK,32-008,2.0,2.0,135,1.5,0.0,0.0,,,,1.0,1.0,0.0,1,50.0,0,0,0,0,,Matches
+Switzerland,all_competitions,Marvin Keller,GK,23-346,1.0,0.0,45,0.5,1.0,2.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Switzerland,all_competitions,Squad Total,,28.6,4.0,4.0,360,4.0,6.0,1.5,,,,1.0,2.0,1.0,1,25.0,0,0,0,0,,
+Switzerland,all_competitions,Opponent Total,,27.7,4.0,4.0,360,4.0,8.0,2.0,,,,1.0,2.0,1.0,1,25.0,2,2,0,0,0.0,
+Switzerland,all_competitions,Gregor Kobel,GK,28.0,6.0,6.0,540,6.0,2.0,0.33,10.0,7.0,80.0,4.0,2.0,0.0,4,66.7,0,0,0,0,,Matches
+Switzerland,all_competitions,Squad Total,,29.4,6.0,6.0,540,6.0,2.0,0.33,10.0,7.0,80.0,4.0,2.0,0.0,4,66.7,0,0,0,0,,
+Switzerland,all_competitions,Opponent Total,,27.3,6.0,6.0,540,6.0,14.0,2.33,28.0,16.0,57.1,0.0,2.0,4.0,1,16.7,2,2,0,0,0.0,
+Switzerland,all_competitions,Gregor Kobel,GK,28-190,9.0,9.0,810,9.0,8.0,0.89,14.0,10.0,78.6,4.0,4.0,1.0,4,44.4,0,0,0,0,,Matches
+Switzerland,all_competitions,Yvon Mvogo,GK,32-008,2.0,2.0,135,1.5,0.0,0.0,,,,1.0,1.0,0.0,1,50.0,0,0,0,0,,Matches
+Switzerland,all_competitions,Marvin Keller,GK,23-346,1.0,0.0,45,0.5,1.0,2.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Tunisia,all_competitions,Aymen Dahmen,GK,29.0,6.0,6.0,540,6.0,0.0,0.0,,,,6.0,0.0,0.0,6,100.0,1,0,1,0,100.0,Matches
+Tunisia,all_competitions,Bechir Ben Said,GK,33.0,4.0,4.0,360,4.0,0.0,0.0,,,,3.0,1.0,0.0,4,100.0,0,0,0,0,,Matches
+Tunisia,all_competitions,Squad Total,,29.4,10.0,10.0,900,10.0,0.0,0.0,,,,9.0,1.0,0.0,10,100.0,1,0,1,0,100.0,
+Tunisia,all_competitions,Opponent Total,,27.8,10.0,10.0,900,10.0,22.0,2.2,,,,0.0,1.0,9.0,1,10.0,5,5,0,0,0.0,
+Tunisia,all_competitions,Mouhib Chamakh,GK,24-293,3.0,3.0,270,3.0,6.0,2.0,,,,0.0,1.0,2.0,1,33.3,0,0,0,0,,Matches
+Tunisia,all_competitions,Sabri Ben Hassen,GK,30-001,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Tunisia,all_competitions,Squad Total,,26.4,4.0,4.0,360,4.0,6.0,1.5,,,,1.0,1.0,2.0,2,50.0,0,0,0,0,,
+Tunisia,all_competitions,Opponent Total,,28.5,4.0,4.0,360,4.0,1.0,0.25,,,,2.0,1.0,1.0,3,75.0,0,0,0,0,,
+Tunisia,all_competitions,Aymen Dahmen,GK,29-137,6.0,6.0,540,6.0,0.0,0.0,,,,6.0,0.0,0.0,6,100.0,1,0,1,0,100.0,Matches
+Tunisia,all_competitions,Bechir Ben Said,GK,33-197,4.0,4.0,360,4.0,0.0,0.0,,,,3.0,1.0,0.0,4,100.0,0,0,0,0,,Matches
+Tunisia,all_competitions,Mouhib Chamakh,GK,24-293,3.0,3.0,270,3.0,6.0,2.0,,,,0.0,1.0,2.0,1,33.3,0,0,0,0,,Matches
+Tunisia,all_competitions,Sabri Ben Hassen,GK,30-001,1.0,1.0,90,1.0,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Türkiye,all_competitions,Uğurcan Çakır,GK,30-070,1.0,1.0,90,1.0,2.0,2.0,4.0,2.0,50.0,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Türkiye,all_competitions,Squad Total,,27.6,1.0,1.0,90,1.0,2.0,2.0,4.0,2.0,50.0,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+Türkiye,all_competitions,Opponent Total,,25.1,1.0,1.0,90,1.0,0.0,0.0,8.0,8.0,100.0,1.0,0.0,0.0,1,100.0,0,0,0,0,,
+Türkiye,all_competitions,Uğurcan Çakır,GK,30-070,1.0,1.0,90,1.0,1.0,1.0,,,,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+Türkiye,all_competitions,Altay Bayındır,GK,28-061,1.0,1.0,62,0.7,0.0,0.0,,,,1.0,0.0,0.0,1,100.0,0,0,0,0,,Matches
+Türkiye,all_competitions,Muhammed Şengezer,GK,29-160,1.0,0.0,26,0.3,0.0,0.0,,,,,,,1,,0,0,0,0,,Matches
+Türkiye,all_competitions,Squad Total,,26.8,2.0,2.0,178,2.0,1.0,0.51,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,
+Türkiye,all_competitions,Opponent Total,,26.8,2.0,2.0,178,2.0,6.0,3.03,,,,0.0,0.0,2.0,0,0.0,0,0,0,0,,
+Türkiye,all_competitions,Uğurcan Çakır,GK,29.0,7.0,7.0,630,7.0,10.0,1.43,25.0,15.0,60.0,6.0,0.0,1.0,3,42.9,0,0,0,0,,Matches
+Türkiye,all_competitions,Altay Bayındır,GK,27.0,1.0,1.0,90,1.0,2.0,2.0,8.0,6.0,75.0,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Türkiye,all_competitions,Squad Total,,27.1,8.0,8.0,720,8.0,12.0,1.5,33.0,21.0,63.6,6.0,1.0,1.0,3,37.5,0,0,0,0,,
+Türkiye,all_competitions,Opponent Total,,26.7,8.0,8.0,720,8.0,19.0,2.37,36.0,18.0,50.0,1.0,1.0,6.0,1,12.5,1,1,0,0,0.0,
+Türkiye,all_competitions,Uğurcan Çakır,GK,30-070,9.0,9.0,810,9.0,13.0,1.44,29.0,17.0,58.6,7.0,0.0,2.0,3,33.3,0,0,0,0,,Matches
+Türkiye,all_competitions,Altay Bayındır,GK,28-061,2.0,2.0,152,1.7,2.0,1.18,8.0,6.0,75.0,1.0,1.0,0.0,1,50.0,0,0,0,0,,Matches
+Türkiye,all_competitions,Muhammed Şengezer,GK,29-160,1.0,0.0,26,0.3,0.0,0.0,,,,,,,1,,0,0,0,0,,Matches
+United States,all_competitions,Matt Freese,GK,27-285,1.0,1.0,90,1.0,1.0,1.0,1.0,0.0,0.0,1.0,0.0,0.0,0,0.0,0,0,0,0,,Matches
+United States,all_competitions,Squad Total,,27.2,1.0,1.0,90,1.0,1.0,1.0,1.0,0.0,0.0,1.0,0.0,0.0,0,0.0,0,0,0,0,,
+United States,all_competitions,Opponent Total,,28.4,1.0,1.0,90,1.0,4.0,4.0,7.0,3.0,42.9,0.0,0.0,1.0,0,0.0,0,0,0,0,,
+United States,all_competitions,Matt Freese,GK,27-285,2.0,2.0,180,2.0,4.0,2.0,,,,0.0,0.0,2.0,0,0.0,0,0,0,0,,Matches
+United States,all_competitions,Matt Turner,GK,31-355,2.0,2.0,135,1.5,6.0,4.0,,,,1.0,0.0,1.0,0,0.0,1,1,0,0,0.0,Matches
+United States,all_competitions,Chris Brady,GK,22-103,1.0,0.0,45,0.5,1.0,2.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+United States,all_competitions,Squad Total,,26.9,4.0,4.0,360,4.0,11.0,2.75,,,,1.0,0.0,3.0,0,0.0,1,1,0,0,0.0,
+United States,all_competitions,Opponent Total,,27.0,4.0,4.0,360,4.0,6.0,1.5,,,,3.0,0.0,1.0,1,25.0,0,0,0,0,,
+United States,all_competitions,Matt Freese,GK,27-285,3.0,3.0,270,3.0,5.0,1.67,1.0,0.0,0.0,1.0,0.0,2.0,0,0.0,0,0,0,0,,Matches
+United States,all_competitions,Matt Turner,GK,31-355,2.0,2.0,135,1.5,6.0,4.0,,,,1.0,0.0,1.0,0,0.0,1,1,0,0,0.0,Matches
+United States,all_competitions,Chris Brady,GK,22-103,1.0,0.0,45,0.5,1.0,2.0,,,,0.0,0.0,0.0,0,,0,0,0,0,,Matches
+Uruguay,all_competitions,Fernando Muslera,GK,39-363,1.0,1.0,90,1.0,1.0,1.0,,,,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Uruguay,all_competitions,Sergio Rochet,GK,33-083,1.0,1.0,90,1.0,0.0,0.0,,,,0.0,1.0,0.0,1,100.0,0,0,0,0,,Matches
+Uruguay,all_competitions,Squad Total,,29.5,2.0,2.0,180,2.0,1.0,0.5,,,,0.0,2.0,0.0,1,50.0,0,0,0,0,,
+Uruguay,all_competitions,Opponent Total,,27.1,2.0,2.0,180,2.0,1.0,0.5,,,,0.0,2.0,0.0,1,50.0,1,1,0,0,0.0,
+Uruguay,all_competitions,Sergio Rochet,GK,32.0,14.0,14.0,"1,260",14.0,8.0,0.57,45.0,37.0,82.2,6.0,5.0,3.0,8,57.1,1,0,0,1,,Matches
+Uruguay,all_competitions,Santiago Mele,GK,28.0,4.0,4.0,360,4.0,4.0,1.0,12.0,9.0,75.0,1.0,2.0,1.0,2,50.0,1,1,0,0,0.0,Matches
+Uruguay,all_competitions,Squad Total,,28.0,18.0,18.0,"1,620",18.0,12.0,0.67,57.0,46.0,80.7,7.0,7.0,4.0,10,55.6,2,1,0,1,0.0,
+Uruguay,all_competitions,Opponent Total,,29.3,18.0,18.0,"1,617",18.0,22.0,1.22,58.0,37.0,63.8,4.0,7.0,7.0,8,44.4,1,1,0,0,0.0,
+Uruguay,all_competitions,Sergio Rochet,GK,33-083,15.0,15.0,"1,350",15.0,8.0,0.53,45.0,37.0,82.2,6.0,6.0,3.0,9,60.0,1,0,0,1,,Matches
+Uruguay,all_competitions,Santiago Mele,GK,28-281,4.0,4.0,360,4.0,4.0,1.0,12.0,9.0,75.0,1.0,2.0,1.0,2,50.0,1,1,0,0,0.0,Matches
+Uruguay,all_competitions,Fernando Muslera,GK,39-363,1.0,1.0,90,1.0,1.0,1.0,,,,0.0,1.0,0.0,0,0.0,0,0,0,0,,Matches
+Uzbekistan,all_competitions,Abduvohid Nematov,GK,25-086,1.0,1.0,90,1.0,2.0,2.0,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches
+Uzbekistan,all_competitions,Utkir Yusupov,GK,35-161,1.0,1.0,90,1.0,2.0,2.0,,,,0.0,0.0,1.0,0,0.0,2,2,0,0,0.0,Matches
+Uzbekistan,all_competitions,Squad Total,,28.2,2.0,2.0,180,2.0,4.0,2.0,,,,0.0,0.0,2.0,0,0.0,2,2,0,0,0.0,
+Uzbekistan,all_competitions,Opponent Total,,27.1,2.0,2.0,180,2.0,1.0,0.5,,,,2.0,0.0,0.0,1,50.0,0,0,0,0,,
+Uzbekistan,all_competitions,Utkir Yusupov,GK,35.0,16.0,16.0,"1,440",16.0,11.0,0.69,33.0,28.0,66.7,10.0,5.0,1.0,10,62.5,2,0,2,0,100.0,Matches
+Uzbekistan,all_competitions,Squad Total,,29.2,16.0,16.0,"1,440",16.0,11.0,0.69,33.0,28.0,66.7,10.0,5.0,1.0,10,62.5,2,0,2,0,100.0,
+Uzbekistan,all_competitions,Opponent Total,,29.3,16.0,16.0,"1,440",16.0,27.0,1.69,45.0,33.0,42.2,1.0,5.0,10.0,3,18.8,2,1,1,0,50.0,
+Uzbekistan,all_competitions,Utkir Yusupov,GK,35-161,17.0,17.0,"1,530",17.0,13.0,0.76,33.0,28.0,66.7,10.0,5.0,2.0,10,58.8,4,2,2,0,50.0,Matches
+Uzbekistan,all_competitions,Abduvohid Nematov,GK,25-086,1.0,1.0,90,1.0,2.0,2.0,,,,0.0,0.0,1.0,0,0.0,0,0,0,0,,Matches

@@ -1,0 +1,17 @@
+Country,Player,Pos,Age,Playing Time_Starts,Playing Time_Min,Playing Time_90s,Performance_GA,Performance_GA90,Performance_SoTA,Performance_Saves,Performance_Save%,Performance_W,Performance_D,Performance_L,Performance_CS,Performance_CS%,Penalty Kicks_PKatt,Penalty Kicks_PKA,Penalty Kicks_PKsv,Penalty Kicks_PKm,Penalty Kicks_Save%
+Australia,Patrick Beach,GK,22.854209445585216,1,90,1.0,0,0.0,8,8,100.0,1,0,0,1,100.0,0,0,0,0,
+Bosnia-Herzegovina,Nikola Vasilj,GK,30.531143052703626,1,90,1.0,1,1.0,2,1,50.0,0,1,0,0,0.0,0,0,0,0,
+Brazil,Alisson,GK,33.69815195071869,1,90,1.0,1,1.0,3,2,66.7,0,1,0,0,0.0,0,0,0,0,
+Canada,Maxime Crépeau,GK,32.09308692676249,1,90,1.0,1,1.0,3,2,66.7,0,1,0,0,0.0,0,0,0,0,
+Czechia,Matej Kovar,GK,26.076659822039698,1,90,1.0,2,2.0,6,4,66.7,0,0,1,0,0.0,0,0,0,0,
+Haiti,Johny Placide,GK,38.37234770704997,1,90,1.0,1,1.0,2,1,50.0,0,0,1,0,0.0,0,0,0,0,
+Korea Republic,Kim Seung-gyu,GK,35.70362765229295,1,90,1.0,1,1.0,4,3,75.0,1,0,0,0,0.0,0,0,0,0,
+Mexico,Raúl Rangel,GK,26.298425735797398,1,90,1.0,0,0.0,2,2,100.0,1,0,0,1,100.0,0,0,0,0,
+Morocco,Yassine Bounou,GK,35.19164955509925,1,90,1.0,1,1.0,5,4,80.0,0,1,0,0,0.0,0,0,0,0,
+Paraguay,Orlando Gill,GK,26.008213552361397,1,90,1.0,4,4.0,7,3,42.9,0,0,1,0,0.0,0,0,0,0,
+Qatar,Mahmoud Abunada,GK,26.35318275154004,1,90,1.0,1,1.0,5,5,100.0,0,1,0,0,0.0,1,1,0,0,0.0
+Scotland,Angus Gunn,GK,30.39151266255989,1,90,1.0,0,0.0,2,2,100.0,1,0,0,1,100.0,0,0,0,0,
+South Africa,Ronwen Williams,GK,34.394250513347025,1,90,1.0,2,2.0,4,2,50.0,0,0,1,0,0.0,0,0,0,0,
+Switzerland,Gregor Kobel,GK,28.520191649555098,1,90,1.0,1,1.0,4,3,75.0,0,1,0,0,0.0,0,0,0,0,
+Türkiye,Uğurcan Çakır,GK,30.191649555099247,1,90,1.0,2,2.0,4,2,50.0,0,0,1,0,0.0,0,0,0,0,
+United States,Matt Freese,GK,27.78028747433265,1,90,1.0,1,1.0,1,0,0.0,1,0,0,0,0.0,0,0,0,0,

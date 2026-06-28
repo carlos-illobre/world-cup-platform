@@ -1,0 +1,799 @@
+Country,Date,Time,Comp,Round,Day,Venue,Result,GF,GA,Opponent,Poss,Attendance,Captain,Formation,Opp Formation,Referee,Notes,is_future
+Algeria,2023-11-16,18:00,WCQ,First round,Thu,Home,W,3.0,1.0,Somalia,,,Riyad Mahrez,4-1-4-1,4-1-4-1,Boubou Traoré,,False
+Algeria,2023-11-19,15:00,WCQ,First round,Sun,Away,W,2.0,0.0,Mozambique,,,Riyad Mahrez,4-1-4-1,4-2-3-1,Samuel Uwikunda,,False
+Algeria,2024-06-06,22:00,WCQ,First round,Thu,Home,L,1.0,2.0,Guinea,,,Yacine Brahimi,4-2-3-1,5-4-1,Bamlak Tessema,,False
+Algeria,2024-06-10,19:00,WCQ,First round,Mon,Away,W,2.0,1.0,Uganda,,,Aïssa Mandi,4-1-4-1,4-2-2-2,Raphiou Ligali,,False
+Algeria,2025-03-21,15:00,WCQ,First round,Fri,Away,W,3.0,1.0,Botswana,,,Riyad Mahrez,4-1-4-1,4-2-3-1,Ahmed Arajiga,,False
+Algeria,2025-03-25,22:00,WCQ,First round,Tue,Home,W,5.0,1.0,Mozambique,,,Riyad Mahrez,4-1-4-1,4-2-3-1,Pacifique Ndabihawenimana,,False
+Algeria,2025-09-04,20:00,WCQ,First round,Thu,Home,W,3.0,1.0,Botswana,,,Riyad Mahrez,4-1-4-1,4-2-3-1,Pacifique Ndabihawenimana,,False
+Algeria,2025-09-08,17:00,WCQ,First round,Mon,Neutral,D,0.0,0.0,Guinea,,,Riyad Mahrez,4-1-4-1,3-4-3,Samuel Uwikunda,,False
+Algeria,2025-10-09,17:00,WCQ,First round,Thu,Neutral,W,3.0,0.0,Somalia,,,Riyad Mahrez,4-1-4-1,4-2-3-1,Godfrey Nkhakananga,,False
+Algeria,2025-10-14,17:00,WCQ,First round,Tue,Home,W,2.0,1.0,Uganda,,,Riyad Mahrez,4-1-4-1,4-2-3-1,Imtehaz Heeralall,,False
+Algeria,2026-03-27,20:30,Friendlies (M),Friendlies (M),Fri,Neutral,W,7.0,0.0,Guatemala,,,Riyad Mahrez,4-2-3-1,4-2-2-2,Andrea Colombo,,False
+Algeria,2026-03-31,20:30,Friendlies (M),Friendlies (M),Tue,Neutral,D,0.0,0.0,Uruguay,,,Aïssa Mandi,5-4-1,4-1-4-1,Luca Pairetto,,False
+Algeria,2026-06-03,20:45,Friendlies (M),Friendlies (M),Wed,Away,W,1.0,0.0,Netherlands,,40306.0,Riyad Mahrez,4-1-4-1,4-2-3-1,Jakob Semler,,False
+Algeria,2026-06-10,19:00,Friendlies (M),Friendlies (M),Wed,Neutral,W,4.0,0.0,Bolivia,,,Riyad Mahrez,4-1-4-1,4-1-4-1,Esad Omanovic,,False
+Algeria,2026-06-16,20:00,World Cup,Group stage,Tue,Neutral,,,,Argentina,,,,,,,,True
+Algeria,2026-06-22,20:00,World Cup,Group stage,Mon,Neutral,,,,Jordan,,,,,,,,True
+Algeria,2026-06-27,21:00,World Cup,Group stage,Sat,Neutral,,,,Austria,,,,,,,,True
+Argentina,2023-09-07,21:00,WCQ,World Cup qualification,Thu,Home,W,1.0,0.0,Ecuador,71.0,84500.0,Lionel Messi,4-3-3,5-3-2,Wilmar Roldán,,False
+Argentina,2023-09-12,16:00,WCQ,World Cup qualification,Tue,Away,W,3.0,0.0,Bolivia,60.0,38000.0,Ángel Di María,4-3-3,5-3-2,Esteban Ostojich,,False
+Argentina,2023-10-12,20:00,WCQ,World Cup qualification,Thu,Home,W,1.0,0.0,Paraguay,75.0,80000.0,Nicolás Otamendi,4-3-3,3-4-3,Raphael Claus,,False
+Argentina,2023-10-17,21:00,WCQ,World Cup qualification,Tue,Away,W,2.0,0.0,Peru,66.0,37675.0,Lionel Messi,4-3-3,4-4-1-1,Jesús Valenzuela,,False
+Argentina,2023-11-16,21:00,WCQ,World Cup qualification,Thu,Home,L,0.0,2.0,Uruguay,63.0,,Lionel Messi,4-3-3,4-2-3-1,Wilmar Roldán,,False
+Argentina,2023-11-21,21:30,WCQ,World Cup qualification,Tue,Away,W,1.0,0.0,Brazil,50.0,,Lionel Messi,4-4-2,4-2-3-1,Piero Maza,,False
+Argentina,2024-09-05,21:00,WCQ,World Cup qualification,Thu,Home,W,3.0,0.0,Chile,65.0,52160.0,Nicolás Otamendi,3-5-2,4-3-3,Jesús Valenzuela,,False
+Argentina,2024-09-10,15:30,WCQ,World Cup qualification,Tue,Away,L,1.0,2.0,Colombia,53.0,,Nicolás Otamendi,4-4-2,4-3-3,Piero Maza,,False
+Argentina,2024-10-10,17:00,WCQ,World Cup qualification,Thu,Away,D,1.0,1.0,Venezuela,60.0,,Lionel Messi,4-4-2◆,4-3-3,Gustavo Tejera,,False
+Argentina,2024-10-15,21:00,WCQ,World Cup qualification,Tue,Home,W,6.0,0.0,Bolivia,72.0,,Lionel Messi,4-3-3,5-4-1,Kevin Ortega,,False
+Argentina,2024-11-14,20:30,WCQ,World Cup qualification,Thu,Away,L,1.0,2.0,Paraguay,77.0,32200.0,Lionel Messi,4-2-3-1,4-4-2,Anderson Daronco,,False
+Argentina,2024-11-19,21:00,WCQ,World Cup qualification,Tue,Home,W,1.0,0.0,Peru,74.0,,Lionel Messi,4-3-3,3-5-2,Wilmar Roldán,,False
+Argentina,2025-03-21,20:30,WCQ,World Cup qualification,Fri,Away,W,1.0,0.0,Uruguay,45.0,,Nicolás Otamendi,4-2-3-1,4-3-3,Juan Gabriel Benítez,,False
+Argentina,2025-03-25,21:00,WCQ,World Cup qualification,Tue,Home,W,4.0,1.0,Brazil,56.0,,Nicolás Otamendi,4-1-3-2,4-2-3-1,Andrés Rojas,,False
+Argentina,2025-06-05,21:00,WCQ,World Cup qualification,Thu,Away,W,1.0,0.0,Chile,66.0,,Cristian Romero,4-2-3-1,4-3-3,Jesús Valenzuela,,False
+Argentina,2025-06-10,21:00,WCQ,World Cup qualification,Tue,Home,D,1.0,1.0,Colombia,64.0,,Lionel Messi,4-3-3,4-3-3,Juan Gabriel Benítez,,False
+Argentina,2025-09-04,20:30,WCQ,World Cup qualification,Thu,Home,W,3.0,0.0,Venezuela,77.0,,Lionel Messi,4-2-2-2,5-3-2,Piero Maza,,False
+Argentina,2025-09-09,18:00,WCQ,World Cup qualification,Tue,Away,L,0.0,1.0,Ecuador,57.0,,Nicolás Otamendi,4-2-3-1,4-4-1-1,Wilmar Roldán,,False
+Argentina,2026-03-27,20:15,Friendlies (M),Friendlies (M),Fri,Home,W,2.0,1.0,Mauritania,,45760.0,Cristian Romero,4-1-4-1,4-2-2-2,Derlis López,,False
+Argentina,2026-03-31,20:30,Friendlies (M),Friendlies (M),Tue,Home,W,5.0,0.0,Zambia,,50000.0,Lionel Messi,4-1-4-1,4-2-3-1,Alexis Herrera,,False
+Argentina,2026-06-06,19:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,2.0,0.0,Honduras,,,Nicolás Otamendi,4-2-3-1,4-2-3-1,Víctor Rivas,,False
+Argentina,2026-06-09,20:08,Friendlies (M),Friendlies (M),Tue,Neutral,W,3.0,0.0,Iceland,,,Nicolás Otamendi,4-2-3-1,4-2-2-2,Rosendo Mendoza,,False
+Argentina,2026-06-16,20:00,World Cup,Group stage,Tue,Neutral,,,,Algeria,,,,,,,,True
+Argentina,2026-06-22,12:00,World Cup,Group stage,Mon,Neutral,,,,Austria,,,,,,,,True
+Argentina,2026-06-27,21:00,World Cup,Group stage,Sat,Neutral,,,,Jordan,,,,,,,,True
+Australia,2023-11-16,20:10,WCQ,Second round,Thu,Home,W,7.0,0.0,Bangladesh,,20876.0,Mathew Ryan,4-2-3-1,4-3-1-2,Axrol Riskullayev,,False
+Australia,2023-11-21,17:00,WCQ,Second round,Tue,Neutral,W,1.0,0.0,Palestine,,14537.0,Mathew Ryan,4-2-3-1,4-1-4-1,Qasim Matar Al Hatmi,,False
+Australia,2024-03-21,20:10,WCQ,Second round,Thu,Home,W,2.0,0.0,Lebanon,,27026.0,Mathew Ryan,4-2-2-2,5-4-1,Khamis Mohammed Al Marri,,False
+Australia,2024-03-26,19:45,WCQ,Second round,Tue,Neutral,W,5.0,0.0,Lebanon,,25023.0,Mathew Ryan,3-1-4-2,5-4-1,Mooud Bonyadifard,,False
+Australia,2024-06-06,16:45,WCQ,Second round,Thu,Away,W,2.0,0.0,Bangladesh,,5227.0,Jackson Irvine,4-1-4-1,5-3-2,Jansen Foo,,False
+Australia,2024-06-11,20:10,WCQ,Second round,Tue,Home,W,5.0,0.0,Palestine,,18261.0,Jackson Irvine,4-2-2-2,5-4-1,Khalid Saleh Al Turais,,False
+Australia,2024-09-05,20:10,WCQ,Third round,Thu,Home,L,0.0,1.0,Bahrain,71.0,24644.0,Mathew Ryan,4-1-4-1,4-2-3-1,Omar Mohamed Al Ali,,False
+Australia,2024-09-10,19:00,WCQ,Third round,Tue,Away,D,0.0,0.0,Indonesia,63.0,70059.0,Mathew Ryan,4-2-2-2,5-4-1,Salman Ahmad Falahi,,False
+Australia,2024-10-10,19:40,WCQ,Third round,Thu,Home,W,3.0,1.0,China PR,73.0,46291.0,Jackson Irvine,3-4-3,4-2-2-2,Nazmi Nasaruddin,,False
+Australia,2024-10-15,19:35,WCQ,Third round,Tue,Away,D,1.0,1.0,Japan,35.0,58730.0,Jackson Irvine,5-4-1,3-4-3,Ahmad Al Ali,,False
+Australia,2024-11-14,20:10,WCQ,Third round,Thu,Home,D,0.0,0.0,Saudi Arabia,42.0,27491.0,Jackson Irvine,5-4-1,4-1-4-1,Adel Ali Al Naqbi,,False
+Australia,2024-11-19,21:15,WCQ,Third round,Tue,Away,D,2.0,2.0,Bahrain,59.0,6873.0,Mathew Ryan,3-4-3,4-2-3-1,Ko Hyungjin,,False
+Australia,2025-03-20,20:10,WCQ,Third round,Thu,Home,W,5.0,1.0,Indonesia,40.0,35241.0,Mathew Ryan,3-4-3,5-4-1,Adham Makhadmeh,,False
+Australia,2025-03-25,19:00,WCQ,Third round,Tue,Away,W,2.0,0.0,China PR,51.0,70588.0,Mathew Ryan,3-4-3,4-3-1-2,Mooud Bonyadifard,,False
+Australia,2025-06-05,21:10,WCQ,Third round,Thu,Home,W,1.0,0.0,Japan,31.0,57226.0,Mathew Ryan,3-4-3,3-4-3,Qasim Matar Al Hatmi,,False
+Australia,2025-06-10,21:15,WCQ,Third round,Tue,Away,W,2.0,1.0,Saudi Arabia,30.0,24620.0,Mathew Ryan,3-4-3,4-1-4-1,Abdulrahman Ibrahim Al Jassim,,False
+Australia,2026-05-30,19:00,Friendlies (M),Friendlies (M),Sat,Neutral,L,0.0,1.0,Mexico,,78479.0,Mathew Ryan,3-4-3,4-1-4-1,Rubiel Vázquez,,False
+Australia,2026-06-06,12:00,Friendlies (M),Friendlies (M),Sat,Neutral,D,1.0,1.0,Switzerland,,6500.0,Harry Souttar,5-4-1,4-2-2-2,Katja Koroleva,,False
+Australia,2026-06-13,21:00,World Cup,Group stage,Sat,Neutral,W,2.0,0.0,Türkiye,28.0,52497.0,Harry Souttar,5-4-1,4-2-3-1,Jesús Valenzuela,,False
+Australia,2026-06-19,12:00,World Cup,Group stage,Fri,Neutral,,,,United States,,,,,,,,True
+Australia,2026-06-25,19:00,World Cup,Group stage,Thu,Neutral,,,,Paraguay,,,,,,,,True
+Austria,2025-06-07,20:45,WCQ,First round,Sat,Home,W,2.0,1.0,Romania,60.0,48500.0,Marcel Sabitzer,4-2-3-1,4-4-2,Maurizio Mariani,,False
+Austria,2025-06-10,20:45,WCQ,First round,Tue,Away,W,4.0,0.0,San Marino,67.0,3075.0,Marko Arnautović,4-2-3-1,4-3-3,Ondřej Berka,,False
+Austria,2025-09-06,20:45,WCQ,First round,Sat,Home,W,1.0,0.0,Cyprus,71.0,16300.0,David Alaba,4-2-3-1,4-3-2-1,Jakob Kehlet,,False
+Austria,2025-09-09,20:45,WCQ,First round,Tue,Away,W,2.0,1.0,Bosnia-Herzegovina,58.0,11700.0,David Alaba,4-2-3-1,4-3-3,Jesús Gil,,False
+Austria,2025-10-09,20:45,WCQ,First round,Thu,Home,W,10.0,0.0,San Marino,71.0,37500.0,David Alaba,4-2-3-1,4-5-1,Igal Frid,,False
+Austria,2025-10-12,21:45,WCQ,First round,Sun,Away,L,0.0,1.0,Romania,54.0,39581.0,David Alaba,4-2-3-1,4-3-3,Davide Massa,,False
+Austria,2025-11-15,19:00,WCQ,First round,Sat,Away,W,2.0,0.0,Cyprus,63.0,6012.0,Marko Arnautović,4-2-3-1,4-1-4-1,Urs Schnyder,,False
+Austria,2025-11-18,20:45,WCQ,First round,Tue,Home,D,1.0,1.0,Bosnia-Herzegovina,70.0,48000.0,Marko Arnautović,4-2-3-1,4-4-2,João Pinheiro,,False
+Austria,2026-03-27,18:00,Friendlies (M),Friendlies (M),Fri,Home,W,5.0,1.0,Ghana,,40200.0,Marcel Sabitzer,4-2-3-1,4-2-3-1,Mohammed Khaled Al Hoish,,False
+Austria,2026-03-31,20:45,Friendlies (M),Friendlies (M),Tue,Home,W,1.0,0.0,Korea Republic,,35300.0,Marko Arnautović,4-2-3-1,3-4-3,Sander van der Eijk,,False
+Austria,2026-06-01,20:45,Friendlies (M),Friendlies (M),Mon,Home,W,1.0,0.0,Tunisia,,35100.0,David Alaba,4-2-3-1,4-2-3-1,Jérémie Pignard,,False
+Austria,2026-06-16,21:00,World Cup,Group stage,Tue,Neutral,,,,Jordan,,,,,,,,True
+Austria,2026-06-22,12:00,World Cup,Group stage,Mon,Neutral,,,,Argentina,,,,,,,,True
+Austria,2026-06-27,21:00,World Cup,Group stage,Sat,Neutral,,,,Algeria,,,,,,,,True
+Belgium,2025-06-06,20:45,WCQ,First round,Fri,Away,D,1.0,1.0,N. Macedonia,68.0,23070.0,Thomas Meunier,4-3-3,4-2-3-1,Chris Kavanagh,,False
+Belgium,2025-06-09,20:45,WCQ,First round,Mon,Home,W,4.0,3.0,wls Wales,46.0,33653.0,Youri Tielemans,4-2-3-1,5-4-1,Irfan Peljto,,False
+Belgium,2025-09-04,20:45,WCQ,First round,Thu,Away,W,6.0,0.0,Liechtenstein,82.0,3158.0,Youri Tielemans,4-2-3-1,3-5-2,Morten Krogh,,False
+Belgium,2025-09-07,20:45,WCQ,First round,Sun,Home,W,6.0,0.0,Kazakhstan,75.0,15119.0,Youri Tielemans,4-2-3-1,3-4-3,Radu Petrescu,,False
+Belgium,2025-10-10,20:45,WCQ,First round,Fri,Home,D,0.0,0.0,N. Macedonia,78.0,18583.0,Kevin De Bruyne,4-1-4-1,5-3-2,Halil Umut Meler,,False
+Belgium,2025-10-13,19:45,WCQ,First round,Mon,Away,W,4.0,2.0,wls Wales,38.0,32803.0,Kevin De Bruyne,4-2-3-1,4-2-3-1,Daniel Siebert,,False
+Belgium,2025-11-15,19:00,WCQ,First round,Sat,Away,D,1.0,1.0,Kazakhstan,77.0,28012.0,Hans Vanaken,4-2-3-1,4-2-3-1,Donatas Rumšas,,False
+Belgium,2025-11-18,20:45,WCQ,First round,Tue,Home,W,7.0,0.0,Liechtenstein,81.0,26253.0,Youri Tielemans,4-3-3,3-5-2,Mohammed Al Hakim,,False
+Belgium,2026-03-28,15:37,Friendlies (M),Friendlies (M),Sat,Away,W,5.0,2.0,United States,,66867.0,Kevin De Bruyne,4-2-3-1,4-2-3-1,Esteban Ostojich,,False
+Belgium,2026-03-31,20:00,Friendlies (M),Friendlies (M),Tue,Neutral,D,1.0,1.0,Mexico,,52412.0,Youri Tielemans,4-2-3-1,4-2-3-1,Rosendo Mendoza,,False
+Belgium,2026-06-02,18:00,Friendlies (M),Friendlies (M),Tue,Away,W,2.0,0.0,Croatia,,7555.0,Youri Tielemans,3-4-3,3-4-3,Rade Obrenović,,False
+Belgium,2026-06-06,15:00,Friendlies (M),Friendlies (M),Sat,Home,W,5.0,0.0,Tunisia,,40236.0,Youri Tielemans,4-2-3-1,4-1-4-1,Tasos Sidiropoulos,,False
+Belgium,2026-06-15,12:00,World Cup,Group stage,Mon,Neutral,,,,Egypt,,,,,,,,True
+Belgium,2026-06-21,12:00,World Cup,Group stage,Sun,Neutral,,,,IR Iran,,,,,,,,True
+Belgium,2026-06-26,20:00,World Cup,Group stage,Fri,Neutral,,,,New Zealand,,,,,,,,True
+Bosnia-Herzegovina,2025-03-21,21:45,WCQ,First round,Fri,Away,W,1,0,Romania,34.0,49413.0,Edin Džeko,4-3-3,4-3-3,Danny Makkelie,,False
+Bosnia-Herzegovina,2025-03-24,20:45,WCQ,First round,Mon,Home,W,2,1,Cyprus,56.0,7464.0,Sead Kolašinac,4-3-3,4-5-1,Rohit Saggi,,False
+Bosnia-Herzegovina,2025-06-07,15:00,WCQ,First round,Sat,Home,W,1,0,San Marino,67.0,11828.0,Ermedin Demirović,4-3-3,4-3-3,Luís Godinho,,False
+Bosnia-Herzegovina,2025-09-06,20:45,WCQ,First round,Sat,Away,W,6,0,San Marino,73.0,2740.0,Edin Džeko,4-3-3,4-3-2-1,Enea Jorgji,,False
+Bosnia-Herzegovina,2025-09-09,20:45,WCQ,First round,Tue,Home,L,1,2,Austria,42.0,11700.0,Edin Džeko,4-3-3,4-2-3-1,Jesús Gil,,False
+Bosnia-Herzegovina,2025-10-09,21:45,WCQ,First round,Thu,Away,D,2,2,Cyprus,35.0,2355.0,Edin Džeko,4-3-3,4-3-3,Lawrence Visser,,False
+Bosnia-Herzegovina,2025-11-15,20:45,WCQ,First round,Sat,Home,W,3,1,Romania,59.0,11459.0,Edin Džeko,4-2-3-1,4-3-3,Michael Oliver,,False
+Bosnia-Herzegovina,2025-11-18,20:45,WCQ,First round,Tue,Away,D,1,1,Austria,30.0,48000.0,Edin Džeko,4-4-2,4-2-3-1,João Pinheiro,,False
+Bosnia-Herzegovina,2026-03-26,19:45,WCQ,Second round — Semi-finals,Thu,Neutral,D,1 (4),1 (2),wls Wales,38.0,32487.0,Edin Džeko,4-4-2,4-1-4-1,István Kovács,Bosnia-Herzegovina won on penalty kicks following extra time,False
+Bosnia-Herzegovina,2026-03-31,20:45,WCQ,Second round — Finals,Tue,Home,D,1 (4),1 (1),Italy,65.0,9500.0,Edin Džeko,4-4-2,3-5-2,Clément Turpin,Bosnia-Herzegovina won on penalty kicks following extra time,False
+Bosnia-Herzegovina,2026-05-29,20:30,Friendlies (M),Friendlies (M),Fri,Home,D,0,0,N. Macedonia,,28961.0,Amar Dedić,4-2-2-2,5-4-1,Rade Obrenović,,False
+Bosnia-Herzegovina,2026-06-06,14:00,Friendlies (M),Friendlies (M),Sat,Neutral,D,1,1,Panama,,,Ermedin Demirović,4-2-2-2,5-4-1,Luis Enrique Santander,,False
+Bosnia-Herzegovina,2026-06-12,15:00,World Cup,Group stage,Fri,Neutral,D,1,1,Canada,39.0,43002.0,Sead Kolašinac,4-2-2-2,4-2-2-2,Facundo Tello,,False
+Bosnia-Herzegovina,2026-06-18,12:00,World Cup,Group stage,Thu,Neutral,,,,Switzerland,,,,,,,,True
+Bosnia-Herzegovina,2026-06-24,12:00,World Cup,Group stage,Wed,Neutral,,,,Qatar,,,,,,,,True
+Brazil,2023-09-08,21:45,WCQ,World Cup qualification,Fri,Home,W,5.0,1.0,Bolivia,80.0,48183.0,Casemiro,4-2-3-1,5-4-1,Juan Gabriel Benítez,,False
+Brazil,2023-09-12,21:00,WCQ,World Cup qualification,Tue,Away,W,1.0,0.0,Peru,62.0,36328.0,Casemiro,4-2-3-1,4-4-2,Fernando Rapallini,,False
+Brazil,2023-10-12,20:30,WCQ,World Cup qualification,Thu,Home,D,1.0,1.0,Venezuela,70.0,39018.0,Casemiro,4-2-3-1,4-4-2,Kevin Ortega,,False
+Brazil,2023-10-17,21:00,WCQ,World Cup qualification,Tue,Away,L,0.0,2.0,Uruguay,61.0,52477.0,Casemiro,4-2-3-1,4-2-3-1,Alexis Herrera,,False
+Brazil,2023-11-16,19:00,WCQ,World Cup qualification,Thu,Away,L,1.0,2.0,Colombia,60.0,,Marquinhos,4-4-2,4-2-3-1,Andrés Matonte,,False
+Brazil,2023-11-21,21:30,WCQ,World Cup qualification,Tue,Home,L,0.0,1.0,Argentina,50.0,,Marquinhos,4-2-3-1,4-4-2,Piero Maza,,False
+Brazil,2024-09-06,22:00,WCQ,World Cup qualification,Fri,Home,W,1.0,0.0,Ecuador,57.0,,Danilo,4-2-3-1,3-5-2,Facundo Tello,,False
+Brazil,2024-09-10,20:30,WCQ,World Cup qualification,Tue,Away,L,0.0,1.0,Paraguay,71.0,31962.0,Danilo,4-3-3,4-2-3-1,Andrés Matonte,,False
+Brazil,2024-10-10,21:00,WCQ,World Cup qualification,Thu,Away,W,2.0,1.0,Chile,72.0,,Danilo,4-2-3-1,4-2-3-1,Darío Herrera,,False
+Brazil,2024-10-15,21:45,WCQ,World Cup qualification,Tue,Home,W,4.0,0.0,Peru,68.0,,Marquinhos,4-2-3-1,3-5-2,Esteban Ostojich,,False
+Brazil,2024-11-14,17:00,WCQ,World Cup qualification,Thu,Away,D,1.0,1.0,Venezuela,67.0,32200.0,Marquinhos,4-2-3-1,4-2-3-1,Andrés Rojas,,False
+Brazil,2024-11-19,21:45,WCQ,World Cup qualification,Tue,Home,D,1.0,1.0,Uruguay,62.0,,Danilo,4-2-2-2,4-3-3,Piero Maza,,False
+Brazil,2025-03-20,21:45,WCQ,World Cup qualification,Thu,Home,W,2.0,1.0,Colombia,52.0,70027.0,Marquinhos,4-4-2,4-2-3-1,Alexis Herrera,,False
+Brazil,2025-03-25,21:00,WCQ,World Cup qualification,Tue,Away,L,1.0,4.0,Argentina,44.0,,Marquinhos,4-2-3-1,4-1-3-2,Andrés Rojas,,False
+Brazil,2025-06-05,18:00,WCQ,World Cup qualification,Thu,Away,D,0.0,0.0,Ecuador,48.0,,Marquinhos,4-3-3,4-4-2,Piero Maza,,False
+Brazil,2025-06-10,21:45,WCQ,World Cup qualification,Tue,Home,W,1.0,0.0,Paraguay,73.0,,Marquinhos,4-2-3-1,4-2-3-1,Facundo Tello,,False
+Brazil,2025-09-04,21:30,WCQ,World Cup qualification,Thu,Home,W,3.0,0.0,Chile,64.0,,Marquinhos,4-2-3-1,3-4-3,Alexis Herrera,,False
+Brazil,2025-09-09,19:30,WCQ,World Cup qualification,Tue,Away,L,0.0,1.0,Bolivia,58.0,,Alisson,4-3-3,4-3-3,Cristián Garay,,False
+Brazil,2026-03-26,16:00,Friendlies (M),Friendlies (M),Thu,Neutral,L,1.0,2.0,France,,66215.0,Casemiro,4-2-2-2,4-2-3-1,Guido Gonzales Jr.,,False
+Brazil,2026-03-31,20:00,Friendlies (M),Friendlies (M),Tue,Neutral,W,3.0,1.0,Croatia,,46398.0,Marquinhos,4-2-2-2,3-4-3,Armando Villarreal,,False
+Brazil,2026-05-31,18:30,Friendlies (M),Friendlies (M),Sun,Home,W,6.0,2.0,Panama,,72140.0,Casemiro,4-2-3-1,5-4-1,Daniel Schlager,,False
+Brazil,2026-06-06,18:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,2.0,1.0,Egypt,,64311.0,Marquinhos,4-2-2-2,4-2-3-1,Adonai Escobedo,,False
+Brazil,2026-06-13,18:00,World Cup,Group stage,Sat,Neutral,D,1.0,1.0,Morocco,51.0,80663.0,Marquinhos,4-2-2-2,4-2-3-1,Slavko Vinčič,,False
+Brazil,2026-06-19,20:30,World Cup,Group stage,Fri,Neutral,,,,Haiti,,,,,,,,True
+Brazil,2026-06-24,18:00,World Cup,Group stage,Wed,Neutral,,,,sct Scotland,,,,,,,,True
+Canada,2026-03-28,13:20,Friendlies (M),Friendlies (M),Sat,Home,D,2.0,2.0,Iceland,,26328.0,Jonathan David,4-2-2-2,4-2-2-2,Jon Freemon,,False
+Canada,2026-03-31,21:00,Friendlies (M),Friendlies (M),Tue,Home,D,0.0,0.0,Tunisia,,22624.0,Jonathan David,4-2-2-2,4-2-3-1,Keylor Herrera,,False
+Canada,2026-06-01,19:00,Friendlies (M),Friendlies (M),Mon,Home,W,2.0,0.0,Uzbekistan,,46164.0,Stephen Eustáquio,4-2-2-2,5-4-1,Marco Antonio Ortíz,,False
+Canada,2026-06-05,19:30,Friendlies (M),Friendlies (M),Fri,Home,D,1.0,1.0,Rep. of Ireland,,19619.0,Stephen Eustáquio,4-2-2-2,3-4-3,Pablo Camacho,,False
+Canada,2026-06-12,15:00,World Cup,Group stage,Fri,Neutral,D,1.0,1.0,Bosnia-Herzegovina,61.0,43002.0,Stephen Eustáquio,4-2-2-2,4-2-2-2,Facundo Tello,,False
+Canada,2026-06-18,15:00,World Cup,Group stage,Thu,Neutral,,,,Qatar,,,,,,,,True
+Canada,2026-06-24,12:00,World Cup,Group stage,Wed,Neutral,,,,Switzerland,,,,,,,,True
+Cape Verde,2023-11-16,18:00,WCQ,First round,Thu,Home,D,0.0,0.0,Angola,,,Ryan Mendes,4-1-4-1,3-3-2-2,Youcef Gamouh,,False
+Cape Verde,2023-11-21,16:15,WCQ,First round,Tue,Neutral,W,2.0,0.0,Eswatini,,,Ryan Mendes,4-1-4-1,4-2-2-2,Sabri Mohamed Fadul,,False
+Cape Verde,2024-06-08,14:00,WCQ,First round,Sat,Away,L,1.0,4.0,Cameroon,,,Ryan Mendes,4-2-3-1,4-1-4-1,Mustapha Ghorbal,,False
+Cape Verde,2024-06-11,15:00,WCQ,First round,Tue,Home,W,1.0,0.0,Libya,,,Ryan Mendes,4-2-3-1,4-2-3-1,Kalilou Traoré,,False
+Cape Verde,2025-03-20,15:00,WCQ,First round,Thu,Home,W,1.0,0.0,Mauritius,,,Vozinha,4-1-4-1,4-2-2-2,Yannick Malala,,False
+Cape Verde,2025-03-25,17:00,WCQ,First round,Tue,Away,W,2.0,1.0,Angola,,,Ryan Mendes,4-2-3-1,4-1-4-1,Mustapha Ghorbal,,False
+Cape Verde,2025-09-04,20:00,WCQ,First round,Thu,Away,W,2.0,0.0,Mauritius,,,Vozinha,4-2-3-1,4-2-2-2,Mohamed Diraneh Guedi,,False
+Cape Verde,2025-09-09,15:00,WCQ,First round,Tue,Home,W,1.0,0.0,Cameroon,,,Ryan Mendes,4-2-3-1,4-1-4-1,Daniel Nii Ayi Laryea,,False
+Cape Verde,2025-10-08,15:00,WCQ,First round,Wed,Away,D,3.0,3.0,Libya,,,Vozinha,4-1-4-1,3-5-2,Mahmood Ali Mahmood Ismail,,False
+Cape Verde,2025-10-13,15:00,WCQ,First round,Mon,Home,W,3.0,0.0,Eswatini,,,Ryan Mendes,4-2-3-1,4-2-2-2,Ahmed Arajiga,,False
+Cape Verde,2026-05-31,16:00,Friendlies (M),Friendlies (M),Sun,Neutral,W,3.0,0.0,Serbia,,7500.0,Ryan Mendes,4-1-4-1,4-1-4-1,João António Gonçalves,,False
+Cape Verde,2026-06-06,16:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,3.0,0.0,Bermuda,,,Ryan Mendes,4-2-3-1,4-2-2-2,,,False
+Cape Verde,2026-06-15,12:00,World Cup,Group stage,Mon,Neutral,,,,Spain,,,,,,,,True
+Cape Verde,2026-06-21,18:00,World Cup,Group stage,Sun,Neutral,,,,Uruguay,,,,,,,,True
+Cape Verde,2026-06-26,19:00,World Cup,Group stage,Fri,Neutral,,,,Saudi Arabia,,,,,,,,True
+Colombia,2023-09-07,18:00,WCQ,World Cup qualification,Thu,Home,W,1.0,0.0,Venezuela,70.0,43084.0,Juan Cuadrado,4-3-3,4-3-3,Anderson Daronco,,False
+Colombia,2023-09-12,21:30,WCQ,World Cup qualification,Tue,Away,D,0.0,0.0,Chile,49.0,22153.0,Mateus Uribe,4-3-3,4-3-3,Jesús Valenzuela,,False
+Colombia,2023-10-12,15:30,WCQ,World Cup qualification,Thu,Home,D,2.0,2.0,Uruguay,49.0,43915.0,James Rodríguez,4-2-3-1,4-2-3-1,Piero Maza,,False
+Colombia,2023-10-17,18:30,WCQ,World Cup qualification,Tue,Away,D,0.0,0.0,Ecuador,46.0,,James Rodríguez,4-2-3-1,3-5-2,Facundo Tello,,False
+Colombia,2023-11-16,19:00,WCQ,World Cup qualification,Thu,Home,W,2.0,1.0,Brazil,40.0,,James Rodríguez,4-2-3-1,4-4-2,Andrés Matonte,,False
+Colombia,2023-11-21,20:00,WCQ,World Cup qualification,Tue,Away,W,1.0,0.0,Paraguay,59.0,25298.0,James Rodríguez,4-2-3-1,4-2-2-2,Jesús Valenzuela,,False
+Colombia,2024-09-06,20:30,WCQ,World Cup qualification,Fri,Away,D,1.0,1.0,Peru,70.0,,Luis Díaz,4-3-3,3-5-2,Esteban Ostojich,,False
+Colombia,2024-09-10,15:30,WCQ,World Cup qualification,Tue,Home,W,2.0,1.0,Argentina,47.0,,James Rodríguez,4-3-3,4-4-2,Piero Maza,,False
+Colombia,2024-10-10,16:00,WCQ,World Cup qualification,Thu,Away,L,0.0,1.0,Bolivia,65.0,17191.0,James Rodríguez,4-2-3-1,4-3-3,Wilton Sampaio,,False
+Colombia,2024-10-15,15:30,WCQ,World Cup qualification,Tue,Home,W,4.0,0.0,Chile,62.0,,James Rodríguez,4-3-3,4-2-3-1,Jesús Valenzuela,,False
+Colombia,2024-11-15,21:00,WCQ,World Cup qualification,Fri,Away,L,2.0,3.0,Uruguay,55.0,,Luis Díaz,4-3-1-2,4-2-3-1,Kevin Ortega,,False
+Colombia,2024-11-19,18:00,WCQ,World Cup qualification,Tue,Home,L,0.0,1.0,Ecuador,67.0,,James Rodríguez,4-4-2◆,4-5-1,Esteban Ostojich,,False
+Colombia,2025-03-20,21:45,WCQ,World Cup qualification,Thu,Away,L,1.0,2.0,Brazil,49.0,70027.0,James Rodríguez,4-2-3-1,4-4-2,Alexis Herrera,,False
+Colombia,2025-03-25,19:00,WCQ,World Cup qualification,Tue,Home,D,2.0,2.0,Paraguay,61.0,42262.0,James Rodríguez,4-2-3-1,4-2-3-1,Facundo Tello,,False
+Colombia,2025-06-06,15:30,WCQ,World Cup qualification,Fri,Home,D,0.0,0.0,Peru,71.0,,James Rodríguez,4-2-3-1,4-2-3-1,Wilton Sampaio,,False
+Colombia,2025-06-10,21:00,WCQ,World Cup qualification,Tue,Away,D,1.0,1.0,Argentina,36.0,,James Rodríguez,4-3-3,4-3-3,Juan Gabriel Benítez,,False
+Colombia,2025-09-04,18:30,WCQ,World Cup qualification,Thu,Home,W,3.0,0.0,Bolivia,64.0,,James Rodríguez,4-2-3-1,4-3-3,Darío Herrera,,False
+Colombia,2025-09-09,19:30,WCQ,World Cup qualification,Tue,Away,W,6.0,3.0,Venezuela,64.0,,James Rodríguez,4-3-3,4-4-2,Wilton Sampaio,,False
+Colombia,2026-03-26,19:30,Friendlies (M),Friendlies (M),Thu,Neutral,L,1.0,2.0,Croatia,,,James Rodríguez,4-2-3-1,3-4-3,Rubiel Vázquez,,False
+Colombia,2026-03-29,15:00,Friendlies (M),Friendlies (M),Sun,Neutral,L,1.0,3.0,France,,60734.0,James Rodríguez,4-2-3-1,4-2-3-1,Víctor Rivas,,False
+Colombia,2026-06-01,18:00,Friendlies (M),Friendlies (M),Mon,Home,W,3.0,1.0,Costa Rica,,,Luis Díaz,4-1-4-1,4-1-4-1,Guillermo Guerrero,,False
+Colombia,2026-06-07,16:00,Friendlies (M),Friendlies (M),Sun,Neutral,W,2.0,0.0,Jordan,,28831.0,James Rodríguez,4-1-4-1,5-4-1,Rafael López,,False
+Colombia,2026-06-17,20:00,World Cup,Group stage,Wed,Neutral,,,,Uzbekistan,,,,,,,,True
+Colombia,2026-06-23,20:00,World Cup,Group stage,Tue,Neutral,,,,Congo DR,,,,,,,,True
+Colombia,2026-06-27,19:30,World Cup,Group stage,Sat,Neutral,,,,Portugal,,,,,,,,True
+Congo DR,2023-11-15,17:00,WCQ,First round,Wed,Home,W,2,0,Mauritania,,,Chancel Mbemba,4-2-3-1,4-2-2-2,Muhammad El Mabrouk,,False
+Congo DR,2023-11-19,18:00,WCQ,First round,Sun,Neutral,L,0,1,Sudan,,,Chancel Mbemba,4-2-3-1,4-1-4-1,Bamlak Tessema,,False
+Congo DR,2024-06-06,19:00,WCQ,First round,Thu,Away,D,1,1,Senegal,,,Chancel Mbemba,4-2-3-1,3-4-1-2,Mutaz Al Shalmani,,False
+Congo DR,2024-06-09,17:00,WCQ,First round,Sun,Home,W,1,0,Togo,,,Chancel Mbemba,4-2-3-1,3-4-1-2,Mehrez Melki,,False
+Congo DR,2025-03-21,17:00,WCQ,First round,Fri,Home,W,1,0,South Sudan,,,Chancel Mbemba,4-2-2-2,4-2-2-2,Celso Alvação,,False
+Congo DR,2025-03-25,21:00,WCQ,First round,Tue,Away,W,2,0,Mauritania,,,Chancel Mbemba,4-1-4-1,4-2-3-1,Athoumani Mohamed,,False
+Congo DR,2025-09-05,15:00,WCQ,First round,Fri,Away,W,4,1,South Sudan,,,Chancel Mbemba,4-1-4-1,5-2-1-2,Brighton Chimene,,False
+Congo DR,2025-09-09,17:00,WCQ,First round,Tue,Home,L,2,3,Senegal,,,Chancel Mbemba,4-1-4-1,4-1-4-1,Cumar Cabdiqaadir Cartan,,False
+Congo DR,2025-10-10,13:00,WCQ,First round,Fri,Away,W,1,0,Togo,,,Chancel Mbemba,3-4-1-2,3-4-3,Lenine Rocha,,False
+Congo DR,2025-10-14,20:00,WCQ,First round,Tue,Home,W,1,0,Sudan,,,Chancel Mbemba,4-2-3-1,4-1-4-1,Abongile Tom,,False
+Congo DR,2025-11-13,20:00,WCQ,Second round — Semi-finals,Thu,Neutral,W,1,0,Cameroon,,,Chancel Mbemba,4-1-4-1,3-4-3,Mahmood Ismail Chantir,,False
+Congo DR,2025-11-16,20:00,WCQ,Second round — Final,Sun,Neutral,D,1 (4),1 (3),Nigeria,,,Chancel Mbemba,4-1-4-1,4-3-2-1,Jalal Jiyed,Congo DR won on penalty kicks following extra time,False
+Congo DR,2026-03-25,15:00,Friendlies (M),Friendlies (M),Wed,Neutral,W,2,0,Bermuda,,,,,,Daniel Quintero,,False
+Congo DR,2026-03-31,15:00,WCQ Play-offs,WCQ — Inter-confederation play-offs finals (M),Tue,Neutral,W,1,0,Jamaica,,39983.0,Chancel Mbemba,4-2-2-2,4-2-3-1,Facundo Tello,Required Extra Time,False
+Congo DR,2026-06-03,20:00,Friendlies (M),Friendlies (M),Wed,Neutral,D,0,0,Denmark,,23043.0,Chancel Mbemba,3-5-2,4-1-4-1,Lothar D'Hondt,,False
+Congo DR,2026-06-09,18:00,Friendlies (M),Friendlies (M),Tue,Neutral,L,1,2,Chile,,,Chancel Mbemba,4-2-3-1,4-2-3-1,Mehrez Melki,,False
+Congo DR,2026-06-17,12:00,World Cup,Group stage,Wed,Neutral,,,,Portugal,,,,,,,,True
+Congo DR,2026-06-23,20:00,World Cup,Group stage,Tue,Neutral,,,,Colombia,,,,,,,,True
+Congo DR,2026-06-27,19:30,World Cup,Group stage,Sat,Neutral,,,,Uzbekistan,,,,,,,,True
+Croatia,2025-06-06,19:45,WCQ,First round,Fri,Away,W,7.0,0.0,Gibraltar,69.0,1516.0,Ivan Perišić,4-2-3-1,4-3-3,Georgi Kabakov,,False
+Croatia,2025-06-09,20:45,WCQ,First round,Mon,Home,W,5.0,1.0,Czechia,61.0,12207.0,Luka Modrić,4-2-3-1,3-4-3,Jesús Gil,,False
+Croatia,2025-09-05,19:45,WCQ,First round,Fri,Away,W,1.0,0.0,Faroe Islands,74.0,4632.0,Andrej Kramarić,2-4-3-1,3-4-3,Kristo Tohver,,False
+Croatia,2025-09-08,20:45,WCQ,First round,Mon,Home,W,4.0,0.0,Montenegro,75.0,21209.0,Luka Modrić,4-2-3-1,3-4-3,Felix Zwayer,,False
+Croatia,2025-10-09,20:45,WCQ,First round,Thu,Away,D,0.0,0.0,Czechia,58.0,18870.0,Luka Modrić,4-2-3-1,4-2-3-1,François Letexier,,False
+Croatia,2025-10-12,20:45,WCQ,First round,Sun,Home,W,3.0,0.0,Gibraltar,81.0,7579.0,Mateo Kovačić,4-2-3-1,5-4-1,Oleksii Derevinskyi,,False
+Croatia,2025-11-14,20:45,WCQ,First round,Fri,Home,W,3.0,1.0,Faroe Islands,81.0,7846.0,Luka Modrić,3-4-3,5-4-1,Əliyar Ağayev,,False
+Croatia,2025-11-17,20:45,WCQ,First round,Mon,Away,W,3.0,2.0,Montenegro,63.0,4673.0,Ivan Perišić,4-2-3-1,4-3-1-2,Halil Umut Meler,,False
+Croatia,2026-03-26,19:30,Friendlies (M),Friendlies (M),Thu,Neutral,W,2.0,1.0,Colombia,,,Ivan Perišić,3-4-3,4-2-3-1,Rubiel Vázquez,,False
+Croatia,2026-03-31,20:00,Friendlies (M),Friendlies (M),Tue,Neutral,L,1.0,3.0,Brazil,,46398.0,Luka Modrić,3-4-3,4-2-2-2,Armando Villarreal,,False
+Croatia,2026-06-02,18:00,Friendlies (M),Friendlies (M),Tue,Home,L,0.0,2.0,Belgium,,7555.0,Luka Modrić,3-4-3,3-4-3,Rade Obrenović,,False
+Croatia,2026-06-07,20:45,Friendlies (M),Friendlies (M),Sun,Home,W,2.0,1.0,Slovenia,,8800.0,Luka Modrić,4-2-3-1,5-4-1,Bence Csonka,,False
+Croatia,2026-06-17,15:00,World Cup,Group stage,Wed,Neutral,,,,eng England,,,,,,,,True
+Croatia,2026-06-23,19:00,World Cup,Group stage,Tue,Neutral,,,,Panama,,,,,,,,True
+Croatia,2026-06-27,17:00,World Cup,Group stage,Sat,Neutral,,,,Ghana,,,,,,,,True
+Curaçao,2024-06-06,08:30,WCQ,Second round,Thu,Home,W,4.0,1.0,Barbados,,4254.0,Eloy Room,3-4-3,4-4-2,Iván Barton,,False
+Curaçao,2024-06-08,20:00,WCQ,Second round,Sat,Away,W,2.0,0.0,Aruba,,,Eloy Room,3-4-3,4-4-2,César Arturo Ramos,,False
+Curaçao,2025-06-06,19:30,WCQ,Second round,Fri,Home,W,4.0,0.0,St. Lucia,,,Leandro Bacuna,4-2-3-1,5-4-1,José Torres,,False
+Curaçao,2025-06-11,00:00,WCQ,Second round,Wed,Away,W,5.0,1.0,Haiti,,1115.0,Leandro Bacuna,4-2-3-1,4-3-3,Steven Madrigal,,False
+Curaçao,2025-09-05,20:00,WCQ,Third round,Fri,Away,D,0.0,0.0,Trin & Tobago,,,Leandro Bacuna,3-4-3,4-4-2,Katia García,,False
+Curaçao,2025-09-09,20:00,WCQ,Third round,Tue,Home,W,3.0,2.0,Bermuda,,9474.0,Leandro Bacuna,4-3-3,4-2-3-1,Adonis Carrasco,,False
+Curaçao,2025-10-10,19:00,WCQ,Third round,Fri,Home,W,2.0,0.0,Jamaica,,,Leandro Bacuna,4-3-3,4-2-3-1,Julio César Luna,,False
+Curaçao,2025-10-14,19:00,WCQ,Third round,Tue,Home,D,1.0,1.0,Trin & Tobago,,,Leandro Bacuna,4-3-3,5-4-1,César Arturo Ramos,,False
+Curaçao,2025-11-13,20:00,WCQ,Third round,Thu,Away,W,7.0,0.0,Bermuda,,1181.0,Leandro Bacuna,4-3-3,4-2-3-1,Tori Penso,,False
+Curaçao,2025-11-18,20:00,WCQ,Third round,Tue,Away,D,0.0,0.0,Jamaica,,,Leandro Bacuna,4-3-3,4-2-3-1,Iván Barton,,False
+Curaçao,2026-05-30,13:00,Friendlies (M),Friendlies (M),Sat,Away,L,1.0,4.0,sct Scotland,,44433.0,Leandro Bacuna,5-4-1,4-2-2-2,Goga Kikacheishvili,,False
+Curaçao,2026-06-06,20:00,Friendlies (M),Friendlies (M),Sat,Home,W,4.0,0.0,Aruba,,,Juriën Gaari,4-2-2-2,4-2-2-2,José Corporán,,False
+Curaçao,2026-06-14,12:00,World Cup,Group stage,Sun,Neutral,,,,Germany,,,,,,,,True
+Curaçao,2026-06-20,19:00,World Cup,Group stage,Sat,Neutral,,,,Ecuador,,,,,,,,True
+Curaçao,2026-06-25,16:00,World Cup,Group stage,Thu,Neutral,,,,Côte d'Ivoire,,,,,,,,True
+Czechia,2025-03-22,20:45,WCQ,First round,Sat,Home,W,2,1,Faroe Islands,68.0,8978.0,Tomáš Souček,4-4-2,3-4-3,Rade Obrenović,,False
+Czechia,2025-03-25,20:45,WCQ,First round,Tue,Away,W,4,0,Gibraltar,80.0,583.0,Tomáš Souček,4-2-3-1,4-3-3,Horațiu Fesnic,,False
+Czechia,2025-06-06,20:45,WCQ,First round,Fri,Home,W,2,0,Montenegro,57.0,10889.0,Tomáš Souček,4-2-3-1,3-4-3,Serdar Gözübüyük,,False
+Czechia,2025-06-09,20:45,WCQ,First round,Mon,Away,L,1,5,Croatia,39.0,12207.0,Tomáš Souček,3-4-3,4-2-3-1,Jesús Gil,,False
+Czechia,2025-09-05,20:45,WCQ,First round,Fri,Away,W,2,0,Montenegro,49.0,6315.0,Tomáš Souček,4-2-3-1,4-3-3,Marco Guida,,False
+Czechia,2025-10-09,20:45,WCQ,First round,Thu,Home,D,0,0,Croatia,42.0,18870.0,Tomáš Souček,4-2-3-1,4-2-3-1,François Letexier,,False
+Czechia,2025-10-12,17:00,WCQ,First round,Sun,Away,L,1,2,Faroe Islands,63.0,2980.0,Tomáš Souček,4-2-3-1,3-4-3,Andrea Colombo,,False
+Czechia,2025-11-17,20:45,WCQ,First round,Mon,Home,W,6,0,Gibraltar,73.0,6587.0,Tomáš Souček,4-2-3-1,5-4-1,Sascha Stegemann,,False
+Czechia,2026-03-26,20:45,WCQ,Second round — Semi-finals,Thu,Neutral,D,2 (4),2 (3),Rep. of Ireland,58.0,19137.0,Ladislav Krejčí,3-4-3,3-4-3,Glenn Nyberg,Czechia won on penalty kicks following extra time,False
+Czechia,2026-03-31,20:45,WCQ,Second round — Finals,Tue,Home,D,2 (3),2 (1),Denmark,23.0,18215.0,Ladislav Krejčí,3-4-3,4-2-3-1,Maurizio Mariani,Czechia won on penalty kicks following extra time,False
+Czechia,2026-05-31,16:00,Friendlies (M),Friendlies (M),Sun,Home,W,2,1,Kosovo,,11102.0,Ladislav Krejčí,3-4-3,4-3-2-1,Michal Očenáš,,False
+Czechia,2026-06-04,20:00,Friendlies (M),Friendlies (M),Thu,Neutral,W,3,1,Guatemala,,,Ladislav Krejčí,3-4-3,5-4-1,Pierre-Luc Lauzière,,False
+Czechia,2026-06-11,20:00,World Cup,Group stage,Thu,Neutral,L,1,2,Korea Republic,38.0,44985.0,Ladislav Krejčí,3-4-3,3-4-3,Amin Omar,,False
+Czechia,2026-06-18,12:00,World Cup,Group stage,Thu,Neutral,,,,South Africa,,,,,,,,True
+Czechia,2026-06-24,19:00,World Cup,Group stage,Wed,Neutral,,,,Mexico,,,,,,,,True
+Côte d'Ivoire,2023-11-17,19:00,WCQ,First round,Fri,Home,W,9.0,0.0,Seychelles,,,Serge Aurier,3-1-4-2,5-2-1-2,Adalbert Diouf,,False
+Côte d'Ivoire,2023-11-20,16:00,WCQ,First round,Mon,Neutral,W,2.0,0.0,Gambia,,,Serge Aurier,4-2-3-1,4-5-1,Jalal Jiyed,,False
+Côte d'Ivoire,2024-06-07,19:00,WCQ,First round,Fri,Home,W,1.0,0.0,Gabon,,,Franck Kessié,3-5-2,4-1-4-1,Cumar Cabdiqaadir Cartan,,False
+Côte d'Ivoire,2024-06-11,15:00,WCQ,First round,Tue,Neutral,D,0.0,0.0,Kenya,,,Franck Kessié,4-1-4-1,4-1-4-1,Jalal Jiyed,,False
+Côte d'Ivoire,2025-03-21,19:00,WCQ,First round,Fri,Neutral,W,1.0,0.0,Burundi,,,Franck Kessié,3-4-3,5-4-1,Samir Guezzaz,,False
+Côte d'Ivoire,2025-03-24,19:00,WCQ,First round,Mon,Home,W,1.0,0.0,Gambia,,,Franck Kessié,4-2-3-1,3-4-3,Ring Nyier,,False
+Côte d'Ivoire,2025-09-05,19:00,WCQ,First round,Fri,Home,W,1.0,0.0,Burundi,,,Franck Kessié,4-2-3-1,5-4-1,Bouchra Karboubi,,False
+Côte d'Ivoire,2025-09-09,20:00,WCQ,First round,Tue,Away,D,0.0,0.0,Gabon,,,Franck Kessié,4-2-3-1,4-2-3-1,Abdel Aziz Mohamed Bouh,,False
+Côte d'Ivoire,2025-10-10,17:00,WCQ,First round,Fri,Neutral,W,7.0,0.0,Seychelles,,,Willy Boly,4-1-4-1,3-4-3,Jean-Claude Ishimwe,,False
+Côte d'Ivoire,2025-10-14,19:00,WCQ,First round,Tue,Home,W,3.0,0.0,Kenya,,,Franck Kessié,4-2-2-2,3-4-3,Naby Laye Touré,,False
+Côte d'Ivoire,2026-03-28,14:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,4.0,0.0,Korea Republic,,5917.0,Jean Seri,4-1-4-1,3-4-3,Ian McNabb,,False
+Côte d'Ivoire,2026-03-31,19:30,Friendlies (M),Friendlies (M),Tue,Neutral,W,1.0,0.0,sct Scotland,,33034.0,Franck Kessié,4-2-3-1,3-4-1-2,Daniel Elder,,False
+Côte d'Ivoire,2026-06-04,21:10,Friendlies (M),Friendlies (M),Thu,Away,W,2.0,1.0,France,,33636.0,Franck Kessié,4-2-2-2,4-2-3-1,Sebastian Gishamer,,False
+Côte d'Ivoire,2026-06-14,19:00,World Cup,Group stage,Sun,Neutral,,,,Ecuador,,,,,,,,True
+Côte d'Ivoire,2026-06-20,16:00,World Cup,Group stage,Sat,Neutral,,,,Germany,,,,,,,,True
+Côte d'Ivoire,2026-06-25,16:00,World Cup,Group stage,Thu,Neutral,,,,Curaçao,,,,,,,,True
+Ecuador,2023-09-07,21:00,WCQ,World Cup qualification,Thu,Away,L,0.0,1.0,Argentina,29.0,84500.0,Enner Valencia,5-3-2,4-3-3,Wilmar Roldán,,False
+Ecuador,2023-09-12,16:00,WCQ,World Cup qualification,Tue,Home,W,2.0,1.0,Uruguay,50.0,35613.0,Enner Valencia,5-3-2,4-2-3-1,Wilton Sampaio,,False
+Ecuador,2023-10-12,19:00,WCQ,World Cup qualification,Thu,Away,W,2.0,1.0,Bolivia,46.0,34200.0,Enner Valencia,4-4-2,4-4-2,Cristián Garay,,False
+Ecuador,2023-10-17,18:30,WCQ,World Cup qualification,Tue,Home,D,0.0,0.0,Colombia,54.0,,Enner Valencia,3-5-2,4-2-3-1,Facundo Tello,,False
+Ecuador,2023-11-16,18:00,WCQ,World Cup qualification,Thu,Away,D,0.0,0.0,Venezuela,50.0,,Alexander Domínguez,4-2-3-1,4-3-3,Juan Gabriel Benítez,,False
+Ecuador,2023-11-21,18:30,WCQ,World Cup qualification,Tue,Home,W,1.0,0.0,Chile,53.0,,Alexander Domínguez,4-2-3-1,5-3-2,Anderson Daronco,,False
+Ecuador,2024-09-06,22:00,WCQ,World Cup qualification,Fri,Away,L,0.0,1.0,Brazil,43.0,,Enner Valencia,3-5-2,4-2-3-1,Facundo Tello,,False
+Ecuador,2024-09-10,16:00,WCQ,World Cup qualification,Tue,Home,W,1.0,0.0,Peru,69.0,,Moisés Caicedo,3-4-3,3-5-2,Andrés Rojas,,False
+Ecuador,2024-10-10,16:00,WCQ,World Cup qualification,Thu,Home,D,0.0,0.0,Paraguay,77.0,,Pervis Estupiñán,3-4-3,3-4-3,Raphael Claus,,False
+Ecuador,2024-10-15,20:30,WCQ,World Cup qualification,Tue,Away,D,0.0,0.0,Uruguay,45.0,27112.0,Piero Hincapié,5-3-2,4-2-3-1,Cristián Garay,,False
+Ecuador,2024-11-14,19:00,WCQ,World Cup qualification,Thu,Home,W,4.0,0.0,Bolivia,79.0,,Hernán Galíndez,4-5-1,4-2-3-1,Maximiliano Ramírez,,False
+Ecuador,2024-11-19,18:00,WCQ,World Cup qualification,Tue,Away,W,1.0,0.0,Colombia,33.0,,Willian Pacho,4-5-1,4-4-2,Esteban Ostojich,,False
+Ecuador,2025-03-21,16:00,WCQ,World Cup qualification,Fri,Home,W,2.0,1.0,Venezuela,71.0,,Enner Valencia,4-2-3-1,4-3-3,Ramon Abatti,,False
+Ecuador,2025-03-25,21:00,WCQ,World Cup qualification,Tue,Away,D,0.0,0.0,Chile,40.0,38996.0,Moisés Caicedo,3-4-3,4-3-3,Gustavo Tejera,,False
+Ecuador,2025-06-05,18:00,WCQ,World Cup qualification,Thu,Home,D,0.0,0.0,Brazil,52.0,,Piero Hincapié,4-4-2,4-3-3,Piero Maza,,False
+Ecuador,2025-06-10,20:30,WCQ,World Cup qualification,Tue,Away,D,0.0,0.0,Peru,47.0,,Pervis Estupiñán,4-4-2,4-4-2,Andrés Rojas,,False
+Ecuador,2025-09-04,19:30,WCQ,World Cup qualification,Thu,Away,D,0.0,0.0,Paraguay,63.0,,Hernán Galíndez,4-4-1-1,4-4-2,Raphael Claus,,False
+Ecuador,2025-09-09,18:00,WCQ,World Cup qualification,Tue,Home,W,1.0,0.0,Argentina,43.0,,Enner Valencia,4-4-1-1,4-2-3-1,Wilmar Roldán,,False
+Ecuador,2026-03-27,21:15,Friendlies (M),Friendlies (M),Fri,Neutral,D,1.0,1.0,Morocco,,61622.0,Willian Pacho,4-2-3-1,4-2-3-1,José Luis Munuera,,False
+Ecuador,2026-03-31,20:45,Friendlies (M),Friendlies (M),Tue,Away,D,1.0,1.0,Netherlands,,29344.0,Enner Valencia,4-2-2-2,4-2-3-1,Sascha Stegemann,,False
+Ecuador,2026-05-30,20:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,2.0,1.0,Saudi Arabia,,,Pervis Estupiñán,4-2-2-2,4-1-4-1,Filip Dujic,,False
+Ecuador,2026-06-07,16:15,Friendlies (M),Friendlies (M),Sun,Neutral,W,3.0,0.0,Guatemala,,,Hernán Galíndez,3-1-4-2,5-4-1,Marco Antonio Ortíz,,False
+Ecuador,2026-06-14,19:00,World Cup,Group stage,Sun,Neutral,,,,Côte d'Ivoire,,,,,,,,True
+Ecuador,2026-06-20,19:00,World Cup,Group stage,Sat,Neutral,,,,Curaçao,,,,,,,,True
+Ecuador,2026-06-25,16:00,World Cup,Group stage,Thu,Neutral,,,,Germany,,,,,,,,True
+Egypt,2023-11-16,18:00,WCQ,First round,Thu,Home,W,6.0,0.0,Djibouti,,,Mohamed Salah,4-1-4-1,4-2-2-2,Jelly Chavani,,False
+Egypt,2023-11-19,16:00,WCQ,First round,Sun,Neutral,W,2.0,0.0,Sierra Leone,,,Mohamed Salah,4-1-4-1,4-2-3-1,Jean-Jacques Ndala,,False
+Egypt,2024-06-06,21:00,WCQ,First round,Thu,Home,W,2.0,1.0,Burkina Faso,,,Mohamed Salah,3-5-2,4-1-4-1,Peter Waweru,,False
+Egypt,2024-06-10,16:00,WCQ,First round,Mon,Away,D,1.0,1.0,Guinea-Bissau,,,Mohamed Salah,4-2-3-1,3-4-3,Mahmood Ali Mahmood Ismail,,False
+Egypt,2025-03-21,21:00,WCQ,First round,Fri,Neutral,W,2.0,0.0,Ethiopia,,,Mohamed Salah,4-2-3-1,3-5-2,Patrice Milazare,,False
+Egypt,2025-03-25,21:00,WCQ,First round,Tue,Home,W,1.0,0.0,Sierra Leone,,,Mohamed Salah,4-2-3-1,5-4-1,Imtehaz Heeralall,,False
+Egypt,2025-09-05,22:00,WCQ,First round,Fri,Home,W,2.0,0.0,Ethiopia,,,Mohamed Salah,4-1-4-1,5-3-2,Abongile Tom,,False
+Egypt,2025-09-09,16:00,WCQ,First round,Tue,Away,D,0.0,0.0,Burkina Faso,,,Mohamed Salah,3-4-3,4-1-4-1,Messie Nkounkou,,False
+Egypt,2025-10-08,17:00,WCQ,First round,Wed,Away,W,3.0,0.0,Djibouti,,,Mohamed Salah,3-2-4-1,5-4-1,Tanguy Mebiame,,False
+Egypt,2025-10-12,22:00,WCQ,First round,Sun,Home,W,1.0,0.0,Guinea-Bissau,,,Ramy Rabia,4-2-3-1,4-1-4-1,Daniel Nii Ayi Laryea,,False
+Egypt,2026-03-27,20:30,Friendlies (M),Friendlies (M),Fri,Away,W,4.0,0.0,Saudi Arabia,,,Trézéguet,4-1-4-1,3-4-1-2,Abdulla Ali Al Athba,,False
+Egypt,2026-03-31,21:00,Friendlies (M),Friendlies (M),Tue,Away,D,0.0,0.0,Spain,,35895.0,Mohamed Hany,4-2-3-1,4-1-4-1,Georgi Kabakov,,False
+Egypt,2026-05-28,21:00,Friendlies (M),Friendlies (M),Thu,Home,W,1.0,0.0,Russia,,,Trézéguet,4-2-3-1,4-1-4-1,Lahlou Benbraham,,False
+Egypt,2026-06-06,18:00,Friendlies (M),Friendlies (M),Sat,Neutral,L,1.0,2.0,Brazil,,64311.0,Trézéguet,4-2-3-1,4-2-2-2,Adonai Escobedo,,False
+Egypt,2026-06-15,12:00,World Cup,Group stage,Mon,Neutral,,,,Belgium,,,,,,,,True
+Egypt,2026-06-21,18:00,World Cup,Group stage,Sun,Neutral,,,,New Zealand,,,,,,,,True
+Egypt,2026-06-26,20:00,World Cup,Group stage,Fri,Neutral,,,,IR Iran,,,,,,,,True
+England,2025-03-21,19:45,WCQ,First round,Fri,Home,W,2.0,0.0,Albania,74.0,82378.0,Harry Kane,4-2-3-1,4-2-3-1,Alejandro Hernández,,False
+England,2025-03-24,19:45,WCQ,First round,Mon,Home,W,3.0,0.0,Latvia,74.0,79572.0,Harry Kane,4-2-3-1,5-4-1,Orel Grinfeeld,,False
+England,2025-06-07,18:00,WCQ,First round,Sat,Away,W,1.0,0.0,Andorra,83.0,8872.0,Harry Kane,4-2-3-1,5-4-1,Igor Pajač,,False
+England,2025-09-06,17:00,WCQ,First round,Sat,Home,W,2.0,0.0,Andorra,83.0,39202.0,Harry Kane,4-2-3-1,5-4-1,Mohammed Al-Emara,,False
+England,2025-09-09,20:45,WCQ,First round,Tue,Away,W,5.0,0.0,Serbia,70.0,39789.0,Harry Kane,4-2-3-1,3-4-3,Clément Turpin,,False
+England,2025-10-14,21:45,WCQ,First round,Tue,Away,W,5.0,0.0,Latvia,72.0,10404.0,Harry Kane,4-3-3,5-4-1,Tasos Sidiropoulos,,False
+England,2025-11-13,19:45,WCQ,First round,Thu,Home,W,2.0,0.0,Serbia,70.0,74289.0,Harry Kane,4-2-3-1,4-2-3-1,Ivan Kružliak,,False
+England,2025-11-16,18:00,WCQ,First round,Sun,Away,W,2.0,0.0,Albania,70.0,21459.0,Harry Kane,4-3-3,4-2-3-1,Marco Guida,,False
+England,2026-03-27,19:45,Friendlies (M),Friendlies (M),Fri,Home,D,1.0,1.0,Uruguay,,80581.0,Jordan Henderson,4-2-3-1,4-2-3-1,Sven Jablonski,,False
+England,2026-03-31,19:45,Friendlies (M),Friendlies (M),Tue,Home,L,0.0,1.0,Japan,,79233.0,Marc Guéhi,4-2-3-1,3-4-3,Nick Walsh,,False
+England,2026-06-06,16:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,1.0,0.0,New Zealand,,25889.0,Harry Kane,4-2-3-1,4-2-3-1,Natalie Simon,,False
+England,2026-06-10,17:00,Friendlies (M),Friendlies (M),Wed,Neutral,W,3.0,0.0,Costa Rica,,20341.0,Harry Kane,4-2-3-1,4-1-4-1,Katja Koroleva,,False
+England,2026-06-17,15:00,World Cup,Group stage,Wed,Neutral,,,,Croatia,,,,,,,,True
+England,2026-06-23,16:00,World Cup,Group stage,Tue,Neutral,,,,Ghana,,,,,,,,True
+England,2026-06-27,17:00,World Cup,Group stage,Sat,Neutral,,,,Panama,,,,,,,,True
+France,2025-09-05,21:45,WCQ,First round,Fri,Away,W,2.0,0.0,Ukraine,56.0,38793.0,Kylian Mbappé,4-2-3-1,4-5-1,Danny Makkelie,,False
+France,2025-09-09,20:45,WCQ,First round,Tue,Home,W,2.0,1.0,Iceland,63.0,40150.0,Kylian Mbappé,4-2-3-1,4-4-2,António Nobre,,False
+France,2025-10-10,20:45,WCQ,First round,Fri,Home,W,3.0,0.0,Azerbaijan,77.0,40150.0,Kylian Mbappé,4-4-2,5-4-1,Rohit Saggi,,False
+France,2025-10-13,18:45,WCQ,First round,Mon,Away,D,2.0,2.0,Iceland,70.0,9151.0,Mike Maignan,4-2-3-1,5-3-2,Orel Grinfeeld,,False
+France,2025-11-13,20:45,WCQ,First round,Thu,Home,W,4.0,0.0,Ukraine,71.0,41055.0,Kylian Mbappé,4-2-3-1,5-3-2,Slavko Vinčič,,False
+France,2025-11-16,21:00,WCQ,First round,Sun,Away,W,3.0,1.0,Azerbaijan,74.0,29700.0,Ibrahima Konaté,4-2-3-1,3-4-3,Andris Treimanis,,False
+France,2026-03-26,16:00,Friendlies (M),Friendlies (M),Thu,Neutral,W,2.0,1.0,Brazil,,66215.0,Kylian Mbappé,4-2-3-1,4-2-2-2,Guido Gonzales Jr.,,False
+France,2026-03-29,15:00,Friendlies (M),Friendlies (M),Sun,Neutral,W,3.0,1.0,Colombia,,60734.0,N'Golo Kanté,4-2-3-1,4-2-3-1,Víctor Rivas,,False
+France,2026-06-04,21:10,Friendlies (M),Friendlies (M),Thu,Home,L,1.0,2.0,Côte d'Ivoire,,33636.0,Kylian Mbappé,4-2-3-1,4-2-2-2,Sebastian Gishamer,,False
+France,2026-06-08,21:10,Friendlies (M),Friendlies (M),Mon,Home,W,3.0,1.0,nir Northern Ireland,,43272.0,Kylian Mbappé,4-2-3-1,5-4-1,Sascha Stegemann,,False
+France,2026-06-16,15:00,World Cup,Group stage,Tue,Neutral,,,,Senegal,,,,,,,,True
+France,2026-06-22,17:00,World Cup,Group stage,Mon,Neutral,,,,Iraq,,,,,,,,True
+France,2026-06-26,15:00,World Cup,Group stage,Fri,Neutral,,,,Norway,,,,,,,,True
+Germany,2025-09-04,20:45,WCQ,First round,Thu,Away,L,0.0,2.0,Slovakia,70.0,20013.0,Joshua Kimmich,4-2-3-1,4-3-3,Serdar Gözübüyük,,False
+Germany,2025-09-07,20:45,WCQ,First round,Sun,Home,W,3.0,1.0,nir Northern Ireland,80.0,43169.0,Joshua Kimmich,4-2-3-1,3-5-2,Espen Eskås,,False
+Germany,2025-10-10,20:45,WCQ,First round,Fri,Home,W,4.0,0.0,Luxembourg,84.0,25249.0,Joshua Kimmich,4-2-3-1,4-5-1,Nenad Minaković,,False
+Germany,2025-10-13,19:45,WCQ,First round,Mon,Away,W,1.0,0.0,nir Northern Ireland,68.0,17926.0,Joshua Kimmich,4-4-1-1,5-4-1,Jesús Gil,,False
+Germany,2025-11-14,20:45,WCQ,First round,Fri,Away,W,2.0,0.0,Luxembourg,65.0,9214.0,Jonathan Tah,4-3-3,4-1-4-1,John Brooks,,False
+Germany,2025-11-17,20:45,WCQ,First round,Mon,Home,W,6.0,0.0,Slovakia,72.0,40120.0,Joshua Kimmich,4-2-3-1,4-3-3,François Letexier,,False
+Germany,2026-03-27,20:45,Friendlies (M),Friendlies (M),Fri,Away,W,4.0,3.0,Switzerland,,37994.0,Joshua Kimmich,4-1-4-1,4-1-4-1,Chris Kavanagh,,False
+Germany,2026-03-30,20:45,Friendlies (M),Friendlies (M),Mon,Home,W,2.0,1.0,Ghana,,52723.0,Joshua Kimmich,4-2-3-1,5-4-1,Stuart Attwell,,False
+Germany,2026-05-31,20:45,Friendlies (M),Friendlies (M),Sun,Home,W,4.0,0.0,Finland,,25122.0,Joshua Kimmich,4-2-3-1,4-5-1,Matheus Candançan,,False
+Germany,2026-06-06,13:30,Friendlies (M),Friendlies (M),Sat,Away,W,2.0,1.0,United States,,63636.0,Joshua Kimmich,4-2-3-1,4-2-3-1,Piero Maza,,False
+Germany,2026-06-14,12:00,World Cup,Group stage,Sun,Neutral,,,,Curaçao,,,,,,,,True
+Germany,2026-06-20,16:00,World Cup,Group stage,Sat,Neutral,,,,Côte d'Ivoire,,,,,,,,True
+Germany,2026-06-25,16:00,World Cup,Group stage,Thu,Neutral,,,,Ecuador,,,,,,,,True
+Ghana,2023-11-17,16:00,WCQ,First round,Fri,Home,W,1.0,0.0,Madagascar,,,Richard Ofori,4-2-3-1,4-1-4-1,Samir Guezzaz,,False
+Ghana,2023-11-21,19:00,WCQ,First round,Tue,Away,L,0.0,1.0,Comoros,,,André Ayew,4-2-3-1,4-1-4-1,Abdel Aziz Mohamed Bouh,,False
+Ghana,2024-06-06,19:00,WCQ,First round,Thu,Away,W,2.0,1.0,Mali,,,Thomas Partey,3-4-3,4-1-3-2,Amin Omar,,False
+Ghana,2024-06-10,19:00,WCQ,First round,Mon,Home,W,4.0,3.0,CAR,,,Thomas Partey,4-2-3-1,4-2-2-2,Ahmed Abdulrazg,,False
+Ghana,2025-03-21,19:00,WCQ,First round,Fri,Home,W,5.0,0.0,Chad,,,Jordan Ayew,4-1-4-1,4-2-3-1,Ahmed Abdulrazg,,False
+Ghana,2025-03-24,19:00,WCQ,First round,Mon,Neutral,W,3.0,0.0,Madagascar,,,Jordan Ayew,3-4-3,4-2-3-1,Issa Sy,,False
+Ghana,2025-09-04,14:00,WCQ,First round,Thu,Away,D,1.0,1.0,Chad,,,Jordan Ayew,4-2-3-1,4-1-4-1,Celso Alvação,,False
+Ghana,2025-09-08,19:00,WCQ,First round,Mon,Home,W,1.0,0.0,Mali,,,Jordan Ayew,3-4-3,4-2-3-1,Luxolo Badi,,False
+Ghana,2025-10-08,17:00,WCQ,First round,Wed,Neutral,W,5.0,0.0,CAR,,,Jordan Ayew,4-2-3-1,4-5-1,Patrice Milazar,,False
+Ghana,2025-10-12,19:00,WCQ,First round,Sun,Home,W,1.0,0.0,Comoros,,,Jordan Ayew,3-4-3,5-3-2,Pierre Ghislain Atcho,,False
+Ghana,2026-03-27,18:00,Friendlies (M),Friendlies (M),Fri,Away,L,1.0,5.0,Austria,,40200.0,Jordan Ayew,4-2-3-1,4-2-3-1,Mohammed Khaled Al Hoish,,False
+Ghana,2026-03-30,20:45,Friendlies (M),Friendlies (M),Mon,Away,L,1.0,2.0,Germany,,52723.0,Jordan Ayew,5-4-1,4-2-3-1,Stuart Attwell,,False
+Ghana,2026-05-22,20:00,Friendlies (M),Friendlies (M),Fri,Away,L,0.0,2.0,Mexico,,41235.0,Majeed Ashimeru,4-1-4-1,4-2-3-1,Selvin Brown,,False
+Ghana,2026-06-02,19:45,Friendlies (M),Friendlies (M),Tue,Away,D,1.0,1.0,wls Wales,,11806.0,Jordan Ayew,4-2-3-1,4-2-3-1,Oscar Johnson,,False
+Ghana,2026-06-17,19:00,World Cup,Group stage,Wed,Neutral,,,,Panama,,,,,,,,True
+Ghana,2026-06-23,16:00,World Cup,Group stage,Tue,Neutral,,,,eng England,,,,,,,,True
+Ghana,2026-06-27,17:00,World Cup,Group stage,Sat,Neutral,,,,Croatia,,,,,,,,True
+Haiti,2024-06-06,17:00,WCQ,Second round,Thu,Home,W,2.0,1.0,St. Lucia,,,Johny Placide,4-4-2,5-4-1,Ismail Elfath,,False
+Haiti,2024-06-09,17:00,WCQ,Second round,Sun,Away,W,3.0,1.0,Barbados,,,Johny Placide,4-4-2,5-4-1,Keylor Herrera,,False
+Haiti,2025-06-07,17:00,WCQ,Second round,Sat,Away,W,5.0,0.0,Aruba,,673.0,Johny Placide,4-3-3,3-5-2,Luis Enrique Santander,,False
+Haiti,2025-06-11,00:00,WCQ,Second round,Wed,Home,L,1.0,5.0,Curaçao,,1115.0,Johny Placide,4-3-3,4-2-3-1,Steven Madrigal,,False
+Haiti,2025-09-05,20:00,WCQ,Third round,Fri,Home,D,0.0,0.0,Honduras,,,Ricardo Adé,4-3-3,3-4-3,Pierre-Luc Lauzière,,False
+Haiti,2025-09-09,20:00,WCQ,Third round,Tue,Away,D,3.0,3.0,Costa Rica,,,Ricardo Adé,4-4-2,5-3-2,Tori Penso,,False
+Haiti,2025-10-09,18:00,WCQ,Third round,Thu,Away,W,3.0,0.0,Nicaragua,,,Johny Placide,4-4-2,4-1-4-1,Víctor Cáceres,,False
+Haiti,2025-10-13,18:00,WCQ,Third round,Mon,Away,L,0.0,3.0,Honduras,,15675.0,Johny Placide,4-4-2,4-1-4-1,Oshane Nation,,False
+Haiti,2025-11-13,22:00,WCQ,Third round,Thu,Home,W,1.0,0.0,Costa Rica,,,Johny Placide,4-2-3-1,5-4-1,Joe Dickerson,,False
+Haiti,2025-11-18,21:00,WCQ,Third round,Tue,Home,W,2.0,0.0,Nicaragua,,,Johny Placide,4-2-3-1,4-2-3-1,Mario Escobar,,False
+Haiti,2026-03-28,20:00,Friendlies (M),Friendlies (M),Sat,Neutral,L,0.0,1.0,Tunisia,,13408.0,Ricardo Adé,4-2-3-1,4-2-3-1,Pierre-Luc Lauzière,,False
+Haiti,2026-03-31,13:30,Friendlies (M),Friendlies (M),Tue,Neutral,D,1.0,1.0,Iceland,,,Ricardo Adé,4-2-2-2,4-2-3-1,Carly Shaw-MacLaren,,False
+Haiti,2026-06-02,20:36,Friendlies (M),Friendlies (M),Tue,Neutral,W,4.0,0.0,New Zealand,,,Johny Placide,4-2-2-2,4-2-3-1,Rubiel Vázquez,,False
+Haiti,2026-06-05,20:00,Friendlies (M),Friendlies (M),Fri,Neutral,L,1.0,2.0,Peru,,,Johny Placide,4-2-2-2,4-2-3-1,Filip Dujic,,False
+Haiti,2026-06-13,21:00,World Cup,Group stage,Sat,Neutral,L,0.0,1.0,sct Scotland,54.0,64146.0,Johny Placide,4-2-2-2,4-2-2-2,Mustapha Ghorbal,,False
+Haiti,2026-06-19,20:30,World Cup,Group stage,Fri,Neutral,,,,Brazil,,,,,,,,True
+Haiti,2026-06-24,18:00,World Cup,Group stage,Wed,Neutral,,,,Morocco,,,,,,,,True
+IR Iran,2023-11-16,18:00,WCQ,Second round,Thu,Home,W,4.0,0.0,Hong Kong,,6193.0,Ehsan Hajsafi,4-2-3-1,3-4-3,Nazmi Nasaruddin,,False
+IR Iran,2023-11-21,18:00,WCQ,Second round,Tue,Away,D,2.0,2.0,Uzbekistan,,32551.0,Sardar Azmoun,4-1-4-1,3-4-3,Mohammed Abdulla Hassan,,False
+IR Iran,2024-03-21,20:30,WCQ,Second round,Thu,Home,W,5.0,0.0,Turkmenistan,,23109.0,Mehdi Taremi,4-1-3-2,4-2-3-1,Yūsuke Araki,,False
+IR Iran,2024-03-26,20:00,WCQ,Second round,Tue,Away,W,1.0,0.0,Turkmenistan,,10230.0,Mehdi Taremi,4-2-2-2,4-1-4-1,Sivakorn Pu-udom,,False
+IR Iran,2024-06-06,20:00,WCQ,Second round,Thu,Away,W,4.0,2.0,Hong Kong,,9992.0,Alireza Jahanbakhsh,4-2-2-2,4-2-2-2,Qasim Matar Al Hatmi,,False
+IR Iran,2024-06-11,21:30,WCQ,Second round,Tue,Home,D,0.0,0.0,Uzbekistan,,15468.0,Alireza Jahanbakhsh,4-2-3-1,3-4-3,Kim Jonghyeok,,False
+IR Iran,2024-09-05,20:30,WCQ,Third round,Thu,Home,W,1.0,0.0,Kyrgyz Republic,67.0,12077.0,Mehdi Taremi,4-2-3-1,5-3-2,Yūsuke Araki,,False
+IR Iran,2024-09-10,20:00,WCQ,Third round,Tue,Away,W,1.0,0.0,UAE,40.0,17826.0,Alireza Jahanbakhsh,4-2-3-1,4-1-4-1,Kim Jonghyeok,,False
+IR Iran,2024-10-10,19:00,WCQ,Third round,Thu,Away,D,0.0,0.0,Uzbekistan,56.0,33829.0,Alireza Beiranvand,4-2-3-1,5-4-1,Shaun Evans,,False
+IR Iran,2024-10-15,19:30,WCQ,Third round,Tue,Neutral,W,4.0,1.0,Qatar,46.0,7890.0,Mehdi Taremi,4-2-3-1,4-4-1-1,Yūsuke Araki,,False
+IR Iran,2024-11-14,19:00,WCQ,Third round,Thu,Neutral,W,3.0,2.0,Korea DPR,49.0,150.0,Mehdi Taremi,4-2-3-1,4-2-2-2,Sadullo Gulmurodi,,False
+IR Iran,2024-11-19,20:00,WCQ,Third round,Tue,Away,W,3.0,2.0,Kyrgyz Republic,61.0,10021.0,Mehdi Taremi,4-2-3-1,3-4-3,Ma Ning,,False
+IR Iran,2025-03-20,19:30,WCQ,Third round,Thu,Home,W,2.0,0.0,UAE,56.0,20469.0,Alireza Jahanbakhsh,4-2-3-1,5-4-1,Ko Hyungjin,,False
+IR Iran,2025-03-25,19:30,WCQ,Third round,Tue,Home,D,2.0,2.0,Uzbekistan,61.0,36702.0,Alireza Jahanbakhsh,4-2-3-1,3-4-3,Ahmed Abu Bakar Al Kaf,,False
+IR Iran,2025-06-05,21:15,WCQ,Third round,Thu,Away,L,0.0,1.0,Qatar,48.0,8925.0,Mehdi Taremi,4-2-3-1,4-2-3-1,Mohammed Khaled Al Hoish,,False
+IR Iran,2025-06-10,19:30,WCQ,Third round,Tue,Home,W,3.0,0.0,Korea DPR,69.0,16803.0,Mehdi Taremi,4-1-4-1,4-2-3-1,Nazmi Nasaruddin,,False
+IR Iran,2026-05-29,18:30,Friendlies (M),Friendlies (M),Fri,Neutral,W,3.0,1.0,Gambia,,,Ehsan Hajsafi,4-2-3-1,5-4-1,Atilla Karaoğlan,,False
+IR Iran,2026-06-04,19:30,Friendlies (M),Friendlies (M),Thu,Neutral,W,2.0,0.0,Mali,,,,,,,,False
+IR Iran,2026-06-15,18:00,World Cup,Group stage,Mon,Neutral,,,,New Zealand,,,,,,,,True
+IR Iran,2026-06-21,12:00,World Cup,Group stage,Sun,Neutral,,,,Belgium,,,,,,,,True
+IR Iran,2026-06-26,20:00,World Cup,Group stage,Fri,Neutral,,,,Egypt,,,,,,,,True
+Japan,2023-11-16,19:02,WCQ,Second round,Thu,Home,W,5.0,0.0,Myanmar,,34484.0,Yuta Nakayama,4-1-4-1,5-4-1,Taqi Aljaafari,,False
+Japan,2023-11-21,17:45,WCQ,Second round,Tue,Away,W,5.0,0.0,Syria,,6130.0,Wataru Endo,4-2-3-1,4-1-4-1,Ma Ning,,False
+Japan,2024-03-21,19:23,WCQ,Second round,Thu,Home,W,1.0,0.0,Korea DPR,,59354.0,Ko Itakura,4-2-3-1,4-2-2-2,Adel Ali Al Naqbi,,False
+Japan,2024-03-26,17:00,WCQ,Second round,Tue,Away,W,3.0,0.0,Korea DPR,,,,,,Abdulrahman Ibrahim Al Jassim,Match awarded to Japan,False
+Japan,2024-06-06,18:40,WCQ,Second round,Thu,Away,W,5.0,0.0,Myanmar,,21200.0,Shogo Taniguchi,3-4-3,5-4-1,Majed Mohammed Al Shamrani,,False
+Japan,2024-06-11,19:14,WCQ,Second round,Tue,Home,W,5.0,0.0,Syria,,26650.0,Wataru Endo,4-2-3-1,4-2-2-2,Ahmad Al Ali,,False
+Japan,2024-09-05,19:35,WCQ,Third round,Thu,Home,W,7.0,0.0,China PR,77.0,52398.0,Wataru Endo,3-4-3,4-2-2-2,Abdulrahman Ibrahim Al Jassim,,False
+Japan,2024-09-10,19:00,WCQ,Third round,Tue,Away,W,5.0,0.0,Bahrain,76.0,22729.0,Wataru Endo,3-4-3,4-2-3-1,Rustam Lutfullin,,False
+Japan,2024-10-10,21:00,WCQ,Third round,Thu,Away,W,2.0,0.0,Saudi Arabia,43.0,56283.0,Wataru Endo,3-4-3,4-1-4-1,Kim Jonghyeok,,False
+Japan,2024-10-15,19:35,WCQ,Third round,Tue,Home,D,1.0,1.0,Australia,65.0,58730.0,Hidemasa Morita,3-4-3,5-4-1,Ahmad Al Ali,,False
+Japan,2024-11-15,19:00,WCQ,Third round,Fri,Away,W,4.0,0.0,Indonesia,66.0,60304.0,Wataru Endo,3-4-3,5-3-2,Mooud Bonyadifard,,False
+Japan,2024-11-19,20:00,WCQ,Third round,Tue,Away,W,3.0,1.0,China PR,68.0,45336.0,Wataru Endo,3-4-3,4-3-1-2,Taqi Aljaafari,,False
+Japan,2025-03-20,19:35,WCQ,Third round,Thu,Home,W,2.0,0.0,Bahrain,61.0,58137.0,Wataru Endo,3-4-3,4-2-3-1,Abdulrahman Ibrahim Al Jassim,,False
+Japan,2025-03-25,19:35,WCQ,Third round,Tue,Home,D,0.0,0.0,Saudi Arabia,78.0,58003.0,Wataru Endo,3-4-3,5-4-1,Ahmad Al Ali,,False
+Japan,2025-06-05,21:10,WCQ,Third round,Thu,Away,L,0.0,1.0,Australia,69.0,57226.0,Daichi Kamada,3-4-3,3-4-3,Qasim Matar Al Hatmi,,False
+Japan,2025-06-10,19:35,WCQ,Third round,Tue,Home,W,6.0,0.0,Indonesia,71.0,33661.0,Takefusa Kubo,3-4-3,5-4-1,Kim Jonghyeok,,False
+Japan,2026-03-28,17:00,Friendlies (M),Friendlies (M),Sat,Away,W,1.0,0.0,sct Scotland,,44644.0,Daizen Maeda,3-4-3,4-2-3-1,Shaun Evans,,False
+Japan,2026-03-31,19:45,Friendlies (M),Friendlies (M),Tue,Away,W,1.0,0.0,eng England,,79233.0,Ritsu Doan,3-4-3,4-2-3-1,Nick Walsh,,False
+Japan,2026-05-31,19:25,Friendlies (M),Friendlies (M),Sun,Home,W,1.0,0.0,Iceland,,62212.0,Maya Yoshida,3-4-3,5-4-1,Damian Kos,,False
+Japan,2026-06-14,15:00,World Cup,Group stage,Sun,Neutral,,,,Netherlands,,,,,,,,True
+Japan,2026-06-20,22:00,World Cup,Group stage,Sat,Neutral,,,,Tunisia,,,,,,,,True
+Japan,2026-06-25,18:00,World Cup,Group stage,Thu,Neutral,,,,Sweden,,,,,,,,True
+Jordan,2023-11-16,18:00,WCQ,Second round,Thu,Away,D,1.0,1.0,Tajikistan,,13650.0,Ihsan Haddad,4-1-4-1,4-2-3-1,Ali Sabah Al Qaysi,,False
+Jordan,2023-11-21,18:00,WCQ,Second round,Tue,Home,L,0.0,2.0,Saudi Arabia,,13845.0,Ihsan Haddad,4-1-4-1,3-5-2,Ahmed Abu Bakar Al Kaf,,False
+Jordan,2024-03-21,14:00,WCQ,Second round,Thu,Away,W,3.0,0.0,Pakistan,,9625.0,Ihsan Haddad,3-4-3,4-2-2-2,Rustam Lutfullin,,False
+Jordan,2024-03-26,21:00,WCQ,Second round,Tue,Home,W,7.0,0.0,Pakistan,,14695.0,Ihsan Haddad,3-4-3,5-3-2,Nivon Robesh,,False
+Jordan,2024-06-06,20:30,WCQ,Second round,Thu,Home,W,3.0,0.0,Tajikistan,,14795.0,Ihsan Haddad,3-4-3,4-1-4-1,Ahmed Abu Bakar Al Kaf,,False
+Jordan,2024-06-11,21:00,WCQ,Second round,Tue,Away,W,2.0,1.0,Saudi Arabia,,17871.0,Ihsan Haddad,5-4-1,3-1-4-2,Adel Ali Al Naqbi,,False
+Jordan,2024-09-05,21:00,WCQ,Third round,Thu,Home,D,1.0,1.0,Kuwait,46.0,13555.0,Mahmoud Al-Mardi,3-4-3,5-3-2,Adel Ali Al Naqbi,,False
+Jordan,2024-09-10,22:00,WCQ,Third round,Tue,Neutral,W,3.0,1.0,Palestine,45.0,3012.0,Ihsan Haddad,3-4-3,4-2-2-2,Majed Mohammed Al Shamrani,,False
+Jordan,2024-10-10,17:00,WCQ,Third round,Thu,Home,L,0.0,2.0,Korea Republic,25.0,14655.0,Ihsan Haddad,3-4-3,4-2-3-1,Hiroyuki Kimura,,False
+Jordan,2024-10-15,19:00,WCQ,Third round,Tue,Home,W,4.0,0.0,Oman,42.0,14515.0,Ihsan Haddad,3-4-3,4-2-2-2,Khalid Saleh Al Turais,,False
+Jordan,2024-11-14,19:15,WCQ,Third round,Thu,Away,D,0.0,0.0,Iraq,41.0,65000.0,Ihsan Haddad,3-4-3,4-2-3-1,Mohammed Khaled Al Hoish,,False
+Jordan,2024-11-19,21:15,WCQ,Third round,Tue,Away,D,1.0,1.0,Kuwait,51.0,29400.0,Ihsan Haddad,3-4-3,4-2-3-1,Nazmi Nasaruddin,,False
+Jordan,2025-03-20,21:15,WCQ,Third round,Thu,Home,W,3.0,1.0,Palestine,49.0,9555.0,Ihsan Haddad,3-4-3,4-2-3-1,Shaun Evans,,False
+Jordan,2025-03-25,20:00,WCQ,Third round,Tue,Away,D,1.0,1.0,Korea Republic,25.0,41532.0,Ihsan Haddad,3-4-3,4-2-3-1,Ilgiz Tantashev,,False
+Jordan,2025-06-05,20:00,WCQ,Third round,Thu,Away,W,3.0,0.0,Oman,41.0,13878.0,Yazan Al-Arab,3-4-3,5-4-1,Khalid Saleh Al Turais,,False
+Jordan,2025-06-10,21:15,WCQ,Third round,Tue,Home,L,0.0,1.0,Iraq,41.0,15502.0,Mahmoud Al-Mardi,3-4-3,4-2-3-1,Omar Mohamed Al Ali,,False
+Jordan,2026-05-31,15:00,Friendlies (M),Friendlies (M),Sun,Away,L,1.0,4.0,Switzerland,,13380.0,Ihsan Haddad,5-3-2,3-4-3,Rohit Saggi,,False
+Jordan,2026-06-07,16:00,Friendlies (M),Friendlies (M),Sun,Neutral,L,0.0,2.0,Colombia,,28831.0,Ihsan Haddad,5-4-1,4-1-4-1,Rafael López,,False
+Jordan,2026-06-16,21:00,World Cup,Group stage,Tue,Neutral,,,,Austria,,,,,,,,True
+Jordan,2026-06-22,20:00,World Cup,Group stage,Mon,Neutral,,,,Algeria,,,,,,,,True
+Jordan,2026-06-27,21:00,World Cup,Group stage,Sat,Neutral,,,,Argentina,,,,,,,,True
+Korea Republic,2023-11-16,20:00,WCQ,Second round,Thu,Home,W,5.0,0.0,Singapore,,64381.0,Son Heung-min,4-1-4-1,5-4-1,Bijan Heidari,,False
+Korea Republic,2023-11-21,20:00,WCQ,Second round,Tue,Away,W,3.0,0.0,China PR,,39969.0,Son Heung-min,4-2-3-1,3-4-3,Abdulrahman Ibrahim Al Jassim,,False
+Korea Republic,2024-03-21,20:00,WCQ,Second round,Thu,Home,D,1.0,1.0,Thailand,,64912.0,Son Heung-min,4-1-4-1,4-2-2-2,Khalid Saleh Al Turais,,False
+Korea Republic,2024-03-26,19:30,WCQ,Second round,Tue,Away,W,3.0,0.0,Thailand,,45458.0,Son Heung-min,4-1-4-1,4-2-3-1,Adham Makhadmeh,,False
+Korea Republic,2024-06-06,20:00,WCQ,Second round,Thu,Away,W,7.0,0.0,Singapore,,49097.0,Son Heung-min,4-1-4-1,4-4-2,Sadullo Gulmurodi,,False
+Korea Republic,2024-06-11,20:00,WCQ,Second round,Tue,Home,W,1.0,0.0,China PR,,64935.0,Son Heung-min,4-1-4-1,4-2-2-2,Mohammed Khaled Al Hoish,,False
+Korea Republic,2024-09-05,20:00,WCQ,Third round,Thu,Home,D,0.0,0.0,Palestine,75.0,59579.0,Son Heung-min,4-2-3-1,4-2-2-2,Alireza Faghani,,False
+Korea Republic,2024-09-10,18:00,WCQ,Third round,Tue,Away,W,3.0,1.0,Oman,66.0,27144.0,Son Heung-min,4-2-3-1,4-2-3-1,Ma Ning,,False
+Korea Republic,2024-10-10,17:00,WCQ,Third round,Thu,Away,W,2.0,0.0,Jordan,75.0,14655.0,Kim Min-jae,4-2-3-1,3-4-3,Hiroyuki Kimura,,False
+Korea Republic,2024-10-15,20:00,WCQ,Third round,Tue,Home,W,3.0,2.0,Iraq,76.0,35198.0,Kim Min-jae,4-2-3-1,4-2-3-1,Rustam Lutfullin,,False
+Korea Republic,2024-11-14,17:00,WCQ,Third round,Thu,Away,W,3.0,1.0,Kuwait,75.0,22791.0,Son Heung-min,4-2-3-1,4-2-2-2,Shaun Evans,,False
+Korea Republic,2024-11-19,17:00,WCQ,Third round,Tue,Neutral,D,1.0,1.0,Palestine,74.0,2405.0,Son Heung-min,4-2-3-1,4-2-2-2,Yūsuke Araki,,False
+Korea Republic,2025-03-20,20:00,WCQ,Third round,Thu,Home,D,1.0,1.0,Oman,63.0,35212.0,Son Heung-min,4-2-3-1,5-4-1,Alireza Faghani,,False
+Korea Republic,2025-03-25,20:00,WCQ,Third round,Tue,Home,D,1.0,1.0,Jordan,75.0,41532.0,Son Heung-min,4-2-3-1,3-4-3,Ilgiz Tantashev,,False
+Korea Republic,2025-06-05,21:15,WCQ,Third round,Thu,Away,W,2.0,0.0,Iraq,76.0,55972.0,Lee Jae-sung,4-2-3-1,4-2-3-1,Yūsuke Araki,,False
+Korea Republic,2025-06-10,20:00,WCQ,Third round,Tue,Home,W,4.0,0.0,Kuwait,74.0,41119.0,Hwang In-beom,4-2-3-1,4-1-4-1,Majed Mohammed Al Shamrani,,False
+Korea Republic,2026-03-28,14:00,Friendlies (M),Friendlies (M),Sat,Neutral,L,0.0,4.0,Côte d'Ivoire,,5917.0,Kim Min-jae,3-4-3,4-1-4-1,Ian McNabb,,False
+Korea Republic,2026-03-31,20:45,Friendlies (M),Friendlies (M),Tue,Away,L,0.0,1.0,Austria,,35300.0,Son Heung-min,3-4-3,4-2-3-1,Sander van der Eijk,,False
+Korea Republic,2026-05-30,19:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,5.0,0.0,Trin & Tobago,,5237.0,Son Heung-min,3-4-3,4-2-2-2,Víctor Rivas,,False
+Korea Republic,2026-06-03,19:00,Friendlies (M),Friendlies (M),Wed,Neutral,W,1.0,0.0,El Salvador,,,Lee Jae-sung,3-4-3,5-3-2,Natalie Simon,,False
+Korea Republic,2026-06-11,20:00,World Cup,Group stage,Thu,Neutral,W,2.0,1.0,Czechia,62.0,44985.0,Son Heung-min,3-4-3,3-4-3,Amin Omar,,False
+Korea Republic,2026-06-18,19:00,World Cup,Group stage,Thu,Neutral,,,,Mexico,,,,,,,,True
+Korea Republic,2026-06-24,19:00,World Cup,Group stage,Wed,Neutral,,,,South Africa,,,,,,,,True
+Mexico,2026-03-28,19:00,Friendlies (M),Friendlies (M),Sat,Home,D,0.0,0.0,Portugal,,84130.0,César Montes,4-1-4-1,4-2-3-1,Walter López,,False
+Mexico,2026-03-31,20:00,Friendlies (M),Friendlies (M),Tue,Neutral,D,1.0,1.0,Belgium,,52412.0,César Montes,4-2-3-1,4-2-3-1,Rosendo Mendoza,,False
+Mexico,2026-05-22,20:00,Friendlies (M),Friendlies (M),Fri,Home,W,2.0,0.0,Ghana,,41235.0,Jesús Gallardo,4-2-3-1,4-1-4-1,Selvin Brown,,False
+Mexico,2026-05-30,19:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,1.0,0.0,Australia,,78479.0,Edson Álvarez,4-1-4-1,3-4-3,Rubiel Vázquez,,False
+Mexico,2026-06-04,20:00,Friendlies (M),Friendlies (M),Thu,Home,W,5.0,1.0,Serbia,,27163.0,César Montes,4-1-4-1,4-2-3-1,Keylor Herrera,,False
+Mexico,2026-06-11,13:00,World Cup,Group stage,Thu,Neutral,W,2.0,0.0,South Africa,61.0,80824.0,César Montes,4-1-4-1,5-3-2,Wilton Sampaio,,False
+Mexico,2026-06-18,19:00,World Cup,Group stage,Thu,Neutral,,,,Korea Republic,,,,,,,,True
+Mexico,2026-06-24,19:00,World Cup,Group stage,Wed,Neutral,,,,Czechia,,,,,,,,True
+Morocco,2023-11-16,20:00,WCQ,First round,Thu,Home,,,,Eritrea,,,,,,,Match Cancelled,True
+Morocco,2023-11-21,22:00,WCQ,First round,Tue,Away,W,2.0,0.0,Tanzania,,,Romain Saïss,4-1-4-1,3-4-3,Abongile Tom,,False
+Morocco,2024-06-07,20:00,WCQ,First round,Fri,Home,W,2.0,1.0,Zambia,,,Romain Saïss,4-2-3-1,5-3-2,Issa Sy,,False
+Morocco,2024-06-11,20:00,WCQ,First round,Tue,Neutral,W,6.0,0.0,Congo,,,Hakim Ziyech,4-1-4-1,4-1-4-1,Daniel Nii Ayi Laryea,,False
+Morocco,2025-03-21,21:30,WCQ,First round,Fri,Neutral,W,2.0,1.0,Niger,,,Achraf Hakimi,4-1-4-1,4-2-3-1,Cumar Cabdiqaadir Cartan,,False
+Morocco,2025-03-25,21:30,WCQ,First round,Tue,Home,W,2.0,0.0,Tanzania,,,Yassine Bounou,4-1-4-1,4-2-3-1,Alhadj Allaou Mahamat,,False
+Morocco,2025-09-05,20:00,WCQ,First round,Fri,Home,W,5.0,0.0,Niger,,,Achraf Hakimi,4-2-3-1,4-1-4-1,Jean-Jacques Ndala,,False
+Morocco,2025-09-08,15:00,WCQ,First round,Mon,Away,W,2.0,0.0,Zambia,,,Yassine Bounou,4-2-3-1,4-1-4-1,Louis Houngnandande,,False
+Morocco,2025-10-08,,WCQ,First round,Wed,Away,,,,Eritrea,,,,,,,Match Cancelled,True
+Morocco,2025-10-14,20:00,WCQ,First round,Tue,Home,W,1.0,0.0,Congo,,50292.0,Achraf Hakimi,4-1-4-1,4-1-4-1,Abdel Aziz Mohamed Bouh,,False
+Morocco,2026-03-27,21:15,Friendlies (M),Friendlies (M),Fri,Neutral,D,1.0,1.0,Ecuador,,61622.0,Achraf Hakimi,4-2-3-1,4-2-3-1,José Luis Munuera,,False
+Morocco,2026-03-31,20:00,Friendlies (M),Friendlies (M),Tue,Neutral,W,2.0,1.0,Paraguay,,38000.0,Achraf Hakimi,4-2-3-1,4-2-2-2,Eric Wattellier,,False
+Morocco,2026-06-02,18:15,Friendlies (M),Friendlies (M),Tue,Home,W,4.0,0.0,Madagascar,,,Munir,4-1-4-1,5-3-2,Boubou Traoré,,False
+Morocco,2026-06-07,15:00,Friendlies (M),Friendlies (M),Sun,Neutral,D,1.0,1.0,Norway,,,Achraf Hakimi,4-2-3-1,4-1-4-1,Pierre-Luc Lauzière,,False
+Morocco,2026-06-13,18:00,World Cup,Group stage,Sat,Neutral,D,1.0,1.0,Brazil,49.0,80663.0,Achraf Hakimi,4-2-3-1,4-2-2-2,Slavko Vinčič,,False
+Morocco,2026-06-19,18:00,World Cup,Group stage,Fri,Neutral,,,,sct Scotland,,,,,,,,True
+Morocco,2026-06-24,18:00,World Cup,Group stage,Wed,Neutral,,,,Haiti,,,,,,,,True
+Netherlands,2025-06-07,21:45,WCQ,First round,Sat,Away,W,2.0,0.0,Finland,60.0,29483.0,Virgil van Dijk,4-3-3,4-2-3-1,Daniel Siebert,,False
+Netherlands,2025-06-10,20:45,WCQ,First round,Tue,Home,W,8.0,0.0,Malta,65.0,21006.0,Virgil van Dijk,4-3-3,4-2-3-1,Ricardo de Burgos,,False
+Netherlands,2025-09-04,20:45,WCQ,First round,Thu,Home,D,1.0,1.0,Poland,74.0,40904.0,Virgil van Dijk,4-3-3,4-2-3-1,Simone Sozza,,False
+Netherlands,2025-09-07,19:00,WCQ,First round,Sun,Away,W,3.0,2.0,Lithuania,73.0,14797.0,Virgil van Dijk,4-2-3-1,3-4-3,Elçin Məsiyev,,False
+Netherlands,2025-10-09,20:45,WCQ,First round,Thu,Away,W,4.0,0.0,Malta,63.0,9254.0,Virgil van Dijk,4-3-3,4-2-3-1,Duje Strukan,,False
+Netherlands,2025-10-12,18:00,WCQ,First round,Sun,Home,W,4.0,0.0,Finland,69.0,52387.0,Virgil van Dijk,4-2-3-1,5-3-2,Slavko Vinčič,,False
+Netherlands,2025-11-14,20:45,WCQ,First round,Fri,Away,D,1.0,1.0,Poland,60.0,56278.0,Virgil van Dijk,4-2-3-1,3-4-3,Maurizio Mariani,,False
+Netherlands,2025-11-17,20:45,WCQ,First round,Mon,Home,W,4.0,0.0,Lithuania,69.0,46913.0,Virgil van Dijk,4-3-3,5-4-1,Luís Godinho,,False
+Netherlands,2026-03-27,20:45,Friendlies (M),Friendlies (M),Fri,Home,W,2.0,1.0,Norway,,50327.0,Virgil van Dijk,4-2-3-1,4-2-2-2,Lawrence Visser,,False
+Netherlands,2026-03-31,20:45,Friendlies (M),Friendlies (M),Tue,Home,D,1.0,1.0,Ecuador,,29344.0,Virgil van Dijk,4-2-3-1,4-2-2-2,Sascha Stegemann,,False
+Netherlands,2026-06-03,20:45,Friendlies (M),Friendlies (M),Wed,Home,L,0.0,1.0,Algeria,,40306.0,Virgil van Dijk,4-2-3-1,4-1-4-1,Jakob Semler,,False
+Netherlands,2026-06-08,14:45,Friendlies (M),Friendlies (M),Mon,Neutral,W,2.0,1.0,Uzbekistan,,,Virgil van Dijk,4-1-4-1,5-4-1,Alyssa Pennington,,False
+Netherlands,2026-06-14,15:00,World Cup,Group stage,Sun,Neutral,,,,Japan,,,,,,,,True
+Netherlands,2026-06-20,12:00,World Cup,Group stage,Sat,Neutral,,,,Sweden,,,,,,,,True
+Netherlands,2026-06-25,18:00,World Cup,Group stage,Thu,Neutral,,,,Tunisia,,,,,,,,True
+New Zealand,2024-10-11,13:00,WCQ,Second round,Fri,Neutral,W,3.0,0.0,Tahiti,,1000.0,Chris Wood,4-2-3-1,5-3-2,Médéric Lacour,,False
+New Zealand,2024-11-15,19:30,WCQ,Second round,Fri,Neutral,W,8.0,1.0,Vanuatu,,10113.0,Chris Wood,4-2-3-1,4-3-3,Ben Aukwai,,False
+New Zealand,2024-11-18,19:30,WCQ,Second round,Mon,Neutral,W,8.0,0.0,Samoa,,5327.0,Chris Wood,4-2-3-1,5-4-1,Veer Singh,,False
+New Zealand,2025-03-21,19:10,WCQ,Third round — Semi-finals,Fri,Neutral,W,7.0,0.0,Fiji,,20947.0,Chris Wood,4-2-3-1,4-2-2-2,Norbert Hauata,,False
+New Zealand,2025-03-24,19:00,WCQ,Third round — Final,Mon,Neutral,W,3.0,0.0,New Caledonia,,25132.0,Chris Wood,4-2-3-1,5-4-1,Ben Aukwai,,False
+New Zealand,2026-06-02,20:36,Friendlies (M),Friendlies (M),Tue,Neutral,L,0.0,4.0,Haiti,,,Chris Wood,4-2-3-1,4-2-2-2,Rubiel Vázquez,,False
+New Zealand,2026-06-06,16:00,Friendlies (M),Friendlies (M),Sat,Neutral,L,0.0,1.0,eng England,,25889.0,Chris Wood,4-2-3-1,4-2-3-1,Natalie Simon,,False
+New Zealand,2026-06-15,18:00,World Cup,Group stage,Mon,Neutral,,,,IR Iran,,,,,,,,True
+New Zealand,2026-06-21,18:00,World Cup,Group stage,Sun,Neutral,,,,Egypt,,,,,,,,True
+New Zealand,2026-06-26,20:00,World Cup,Group stage,Fri,Neutral,,,,Belgium,,,,,,,,True
+Norway,2025-03-22,19:00,WCQ,First round,Sat,Away,W,5.0,0.0,Moldova,70.0,9342.0,Martin Ødegaard,4-4-2,3-4-3,Matej Jug,,False
+Norway,2025-03-25,21:45,WCQ,First round,Tue,Away,W,4.0,2.0,Israel,56.0,1200.0,Martin Ødegaard,4-4-2,4-3-3,Chris Kavanagh,,False
+Norway,2025-06-06,20:45,WCQ,First round,Fri,Home,W,3.0,0.0,Italy,38.0,25796.0,Martin Ødegaard,4-4-2,3-5-1-1,Jose Maria Sánchez,,False
+Norway,2025-06-09,21:45,WCQ,First round,Mon,Away,W,1.0,0.0,Estonia,62.0,11577.0,Martin Ødegaard,4-4-2,4-2-3-1,Srđan Jovanović,,False
+Norway,2025-09-09,20:45,WCQ,First round,Tue,Home,W,11.0,1.0,Moldova,71.0,24605.0,Martin Ødegaard,3-4-3,5-3-2,Balázs Berke,,False
+Norway,2025-10-11,18:00,WCQ,First round,Sat,Home,W,5.0,0.0,Israel,54.0,19363.0,Erling Haaland,4-4-2,4-4-2,Szymon Marciniak,,False
+Norway,2025-11-13,18:00,WCQ,First round,Thu,Home,W,4.0,1.0,Estonia,68.0,25493.0,Erling Haaland,4-4-2,5-4-1,Matej Jug,,False
+Norway,2025-11-16,20:45,WCQ,First round,Sun,Away,W,4.0,1.0,Italy,42.0,69020.0,Erling Haaland,4-5-1,3-5-2,Alejandro Hernández,,False
+Norway,2026-03-27,20:45,Friendlies (M),Friendlies (M),Fri,Away,L,1.0,2.0,Netherlands,,50327.0,Sander Berge,4-2-2-2,4-2-3-1,Lawrence Visser,,False
+Norway,2026-03-31,18:00,Friendlies (M),Friendlies (M),Tue,Home,D,0.0,0.0,Switzerland,,23913.0,Erling Haaland,4-1-4-1,3-4-3,Jasper Vergoote,,False
+Norway,2026-06-01,19:00,Friendlies (M),Friendlies (M),Mon,Home,W,3.0,1.0,Sweden,,25178.0,Sander Berge,4-2-2-2,3-1-4-2,Balázs Berke,,False
+Norway,2026-06-07,15:00,Friendlies (M),Friendlies (M),Sun,Neutral,D,1.0,1.0,Morocco,,,Martin Ødegaard,4-1-4-1,4-2-3-1,Pierre-Luc Lauzière,,False
+Norway,2026-06-16,18:00,World Cup,Group stage,Tue,Neutral,,,,Iraq,,,,,,,,True
+Norway,2026-06-22,20:00,World Cup,Group stage,Mon,Neutral,,,,Senegal,,,,,,,,True
+Norway,2026-06-26,15:00,World Cup,Group stage,Fri,Neutral,,,,France,,,,,,,,True
+Panama,2024-06-06,19:30,WCQ,Second round,Thu,Home,W,2.0,0.0,Guyana,,8575.0,Aníbal Godoy,3-4-3,5-4-1,Filiberto Martínez,,False
+Panama,2024-06-09,19:00,WCQ,Second round,Sun,Away,W,3.0,1.0,Montserrat,,155.0,Aníbal Godoy,4-1-4-1,4-3-3,Ismael Cornejo,,False
+Panama,2025-06-07,19:00,WCQ,Second round,Sat,Away,W,2.0,0.0,Belize,,,Aníbal Godoy,3-4-1-2,4-3-3,Julio César Luna,,False
+Panama,2025-06-10,19:00,WCQ,Second round,Tue,Home,W,3.0,0.0,Nicaragua,,,Luis Mejía,4-2-3-1,4-1-4-1,Ismael Lopez,,False
+Panama,2025-09-04,18:30,WCQ,Third round,Thu,Away,D,0.0,0.0,Suriname,,,Aníbal Godoy,4-2-3-1,5-4-1,Kwinsi Williams,,False
+Panama,2025-09-08,20:30,WCQ,Third round,Mon,Home,D,1.0,1.0,Guatemala,,,Aníbal Godoy,4-2-3-1,4-4-2,Said Martínez,,False
+Panama,2025-10-10,19:00,WCQ,Third round,Fri,Away,W,1.0,0.0,El Salvador,,,Erick Davis,5-4-1,5-3-2,Drew Fischer,,False
+Panama,2025-10-14,20:00,WCQ,Third round,Tue,Home,D,1.0,1.0,Suriname,,,Erick Davis,5-4-1,3-4-3,Selvin Brown,,False
+Panama,2025-11-13,20:00,WCQ,Third round,Thu,Away,W,3.0,2.0,Guatemala,,,Aníbal Godoy,5-4-1,4-3-3,César Arturo Ramos,,False
+Panama,2025-11-18,20:00,WCQ,Third round,Tue,Home,W,3.0,0.0,El Salvador,,,Aníbal Godoy,3-4-3,4-3-3,Said Martínez,,False
+Panama,2026-03-27,19:00,Friendlies (M),Friendlies (M),Fri,Away,D,1.0,1.0,South Africa,,,Erick Davis,5-4-1,4-2-3-1,Thabang Ketshabile,,False
+Panama,2026-03-31,19:30,Friendlies (M),Friendlies (M),Tue,Away,W,2.0,1.0,South Africa,,,Aníbal Godoy,3-4-3,4-2-3-1,Thabang Ketshabile,,False
+Panama,2026-05-31,18:30,Friendlies (M),Friendlies (M),Sun,Away,L,2.0,6.0,Brazil,,72140.0,Yoel Bárcenas,5-4-1,4-2-3-1,Daniel Schlager,,False
+Panama,2026-06-03,19:45,Friendlies (M),Friendlies (M),Wed,Home,W,4.0,2.0,Dominican Rep.,,,José Fajardo,3-5-2,5-4-1,Nelson Salgado,,False
+Panama,2026-06-06,14:00,Friendlies (M),Friendlies (M),Sat,Neutral,D,1.0,1.0,Bosnia-Herzegovina,,,Michael Amir Murillo,5-4-1,4-2-2-2,Luis Enrique Santander,,False
+Panama,2026-06-17,19:00,World Cup,Group stage,Wed,Neutral,,,,Ghana,,,,,,,,True
+Panama,2026-06-23,19:00,World Cup,Group stage,Tue,Neutral,,,,Croatia,,,,,,,,True
+Panama,2026-06-27,17:00,World Cup,Group stage,Sat,Neutral,,,,eng England,,,,,,,,True
+Paraguay,2023-09-07,18:30,WCQ,World Cup qualification,Thu,Home,D,0.0,0.0,Peru,60.0,16211.0,Gustavo Gómez,4-3-3,4-2-3-1,Andrés Matonte,,False
+Paraguay,2023-09-12,18:00,WCQ,World Cup qualification,Tue,Away,L,0.0,1.0,Venezuela,46.0,48523.0,Gustavo Gómez,4-3-3,4-4-2,Andrés Rojas,,False
+Paraguay,2023-10-12,20:00,WCQ,World Cup qualification,Thu,Away,L,0.0,1.0,Argentina,25.0,80000.0,Gustavo Gómez,3-4-3,4-3-3,Raphael Claus,,False
+Paraguay,2023-10-17,19:30,WCQ,World Cup qualification,Tue,Home,W,1.0,0.0,Bolivia,62.0,,Gustavo Gómez,4-2-3-1,5-3-2,Gustavo Tejera,,False
+Paraguay,2023-11-16,21:30,WCQ,World Cup qualification,Thu,Away,D,0.0,0.0,Chile,29.0,,Gustavo Gómez,4-2-3-1,4-2-3-1,Fernando Rapallini,,False
+Paraguay,2023-11-21,20:00,WCQ,World Cup qualification,Tue,Home,L,0.0,1.0,Colombia,41.0,25298.0,Gustavo Gómez,4-2-2-2,4-2-3-1,Jesús Valenzuela,,False
+Paraguay,2024-09-06,20:30,WCQ,World Cup qualification,Fri,Away,D,0.0,0.0,Uruguay,35.0,47741.0,Gustavo Gómez,4-2-3-1,4-3-3,Darío Herrera,,False
+Paraguay,2024-09-10,20:30,WCQ,World Cup qualification,Tue,Home,W,1.0,0.0,Brazil,29.0,31962.0,Fabián Balbuena,4-2-3-1,4-3-3,Andrés Matonte,,False
+Paraguay,2024-10-10,16:00,WCQ,World Cup qualification,Thu,Away,D,0.0,0.0,Ecuador,23.0,,Gustavo Gómez,3-4-3,3-4-3,Raphael Claus,,False
+Paraguay,2024-10-15,20:00,WCQ,World Cup qualification,Tue,Home,W,2.0,1.0,Venezuela,61.0,,Gustavo Gómez,4-2-3-1,4-2-3-1,Piero Maza,,False
+Paraguay,2024-11-14,20:30,WCQ,World Cup qualification,Thu,Home,W,2.0,1.0,Argentina,23.0,32200.0,Gustavo Gómez,4-4-2,4-2-3-1,Anderson Daronco,,False
+Paraguay,2024-11-19,16:00,WCQ,World Cup qualification,Tue,Away,D,2.0,2.0,Bolivia,35.0,18655.0,Gustavo Gómez,5-4-1,4-3-3,Andrés Matonte,,False
+Paraguay,2025-03-20,20:00,WCQ,World Cup qualification,Thu,Home,W,1.0,0.0,Chile,36.0,31193.0,Fabián Balbuena,4-4-2,4-2-3-1,Raphael Claus,,False
+Paraguay,2025-03-25,19:00,WCQ,World Cup qualification,Tue,Away,D,2.0,2.0,Colombia,39.0,42262.0,Fabián Balbuena,4-2-3-1,4-2-3-1,Facundo Tello,,False
+Paraguay,2025-06-05,19:00,WCQ,World Cup qualification,Thu,Home,W,2.0,0.0,Uruguay,29.0,,Gustavo Gómez,4-4-1-1,4-3-3,Darío Herrera,,False
+Paraguay,2025-06-10,21:45,WCQ,World Cup qualification,Tue,Away,L,0.0,1.0,Brazil,27.0,,Gustavo Gómez,4-2-3-1,4-2-3-1,Facundo Tello,,False
+Paraguay,2025-09-04,19:30,WCQ,World Cup qualification,Thu,Home,D,0.0,0.0,Ecuador,38.0,,Gustavo Gómez,4-4-2,4-4-1-1,Raphael Claus,,False
+Paraguay,2025-09-09,18:30,WCQ,World Cup qualification,Tue,Away,W,1.0,0.0,Peru,46.0,,Gustavo Gómez,4-4-2,4-5-1,Maximiliano Ramírez,,False
+Paraguay,2026-03-27,21:00,Friendlies (M),Friendlies (M),Fri,Away,W,1.0,0.0,Greece,,33296.0,Gustavo Gómez,4-2-2-2,4-2-3-1,Daniele Chiffi,,False
+Paraguay,2026-03-31,20:00,Friendlies (M),Friendlies (M),Tue,Neutral,L,1.0,2.0,Morocco,,38000.0,Gustavo Gómez,4-2-2-2,4-2-3-1,Eric Wattellier,,False
+Paraguay,2026-06-05,18:45,Friendlies (M),Friendlies (M),Fri,Home,W,4.0,0.0,Nicaragua,,35000.0,Gustavo Gómez,4-2-3-1,5-4-1,Maximiliano Ramírez,,False
+Paraguay,2026-06-12,18:00,World Cup,Group stage,Fri,Neutral,L,1.0,4.0,United States,35.0,70492.0,Gustavo Gómez,4-2-2-2,4-2-3-1,Danny Makkelie,,False
+Paraguay,2026-06-19,20:00,World Cup,Group stage,Fri,Neutral,,,,Türkiye,,,,,,,,True
+Paraguay,2026-06-25,19:00,World Cup,Group stage,Thu,Neutral,,,,Australia,,,,,,,,True
+Portugal,2025-09-06,20:00,WCQ,First round,Sat,Away,W,5.0,0.0,Armenia,71.0,14403.0,Cristiano Ronaldo,4-3-3,4-4-2,Anthony Taylor,,False
+Portugal,2025-09-09,20:45,WCQ,First round,Tue,Away,W,3.0,2.0,Hungary,69.0,61473.0,Cristiano Ronaldo,4-2-3-1,4-1-4-1,Erik Lambrechts,,False
+Portugal,2025-10-11,19:45,WCQ,First round,Sat,Home,W,1.0,0.0,Rep. of Ireland,70.0,48821.0,Cristiano Ronaldo,4-2-3-1,3-4-3,Ivan Kružliak,,False
+Portugal,2025-10-14,19:45,WCQ,First round,Tue,Home,D,2.0,2.0,Hungary,65.0,47854.0,Cristiano Ronaldo,4-2-3-1,4-3-3,Srđan Jovanović,,False
+Portugal,2025-11-13,19:45,WCQ,First round,Thu,Away,L,0.0,2.0,Rep. of Ireland,77.0,50717.0,Cristiano Ronaldo,4-3-3,3-4-3,Glenn Nyberg,,False
+Portugal,2025-11-16,14:00,WCQ,First round,Sun,Home,W,9.0,1.0,Armenia,76.0,46702.0,Bernardo Silva,4-2-3-1,4-3-3,Irfan Peljto,,False
+Portugal,2026-03-28,19:00,Friendlies (M),Friendlies (M),Sat,Away,D,0.0,0.0,Mexico,,84130.0,Bruno Fernandes,4-2-3-1,4-1-4-1,Walter López,,False
+Portugal,2026-03-31,19:07,Friendlies (M),Friendlies (M),Tue,Away,W,2.0,0.0,United States,,72297.0,Bruno Fernandes,4-2-3-1,4-2-3-1,Sven Jablonski,,False
+Portugal,2026-06-06,18:45,Friendlies (M),Friendlies (M),Sat,Home,W,2.0,1.0,Chile,,,Cristiano Ronaldo,4-2-3-1,4-2-2-2,Luca Zufferli,,False
+Portugal,2026-06-10,20:45,Friendlies (M),Friendlies (M),Wed,Home,W,2.0,1.0,Nigeria,,21049.0,Cristiano Ronaldo,4-2-3-1,4-1-4-1,Mateo Busquets,,False
+Portugal,2026-06-17,12:00,World Cup,Group stage,Wed,Neutral,,,,Congo DR,,,,,,,,True
+Portugal,2026-06-23,12:00,World Cup,Group stage,Tue,Neutral,,,,Uzbekistan,,,,,,,,True
+Portugal,2026-06-27,19:30,World Cup,Group stage,Sat,Neutral,,,,Colombia,,,,,,,,True
+Qatar,2023-11-16,18:45,WCQ,Second round,Thu,Home,W,8.0,1.0,Afghanistan,,19374.0,Hassan Al-Haydos,4-1-4-1,4-2-2-2,Nasrullo Kabirov,,False
+Qatar,2023-11-21,19:00,WCQ,Second round,Tue,Away,W,3.0,0.0,India,,11389.0,Hassan Al-Haydos,4-1-4-1,4-2-2-2,Sivakorn Pu-udom,,False
+Qatar,2024-03-21,21:30,WCQ,Second round,Thu,Home,W,3.0,0.0,Kuwait,,9826.0,Akram Afif,4-2-3-1,4-1-4-1,Jumpei Iida,,False
+Qatar,2024-03-26,22:00,WCQ,Second round,Tue,Away,W,2.0,1.0,Kuwait,,8460.0,Akram Afif,4-3-1-2,4-1-4-1,Sadullo Gulmurodi,,False
+Qatar,2024-06-06,19:00,WCQ,Second round,Thu,Neutral,D,0.0,0.0,Afghanistan,,651.0,Saad Al Sheeb,3-4-3,4-2-2-2,Sivakorn Pu-udom,,False
+Qatar,2024-06-11,18:45,WCQ,Second round,Tue,Home,W,2.0,1.0,India,,2816.0,Abdullah Al Ahrak,3-4-3,3-4-3,Kim Woosung,,False
+Qatar,2024-09-05,19:00,WCQ,Third round,Thu,Home,L,1.0,3.0,UAE,69.0,33952.0,Akram Afif,4-2-3-1,4-1-4-1,Shaun Evans,,False
+Qatar,2024-09-10,19:00,WCQ,Third round,Tue,Neutral,D,2.0,2.0,Korea DPR,73.0,140.0,Akram Afif,3-5-2,4-2-2-2,Nazmi Nasaruddin,,False
+Qatar,2024-10-10,19:00,WCQ,Third round,Thu,Home,W,3.0,1.0,Kyrgyz Republic,63.0,25195.0,Abdulaziz Hatem,4-2-3-1,5-3-2,Taqi Aljaafari,,False
+Qatar,2024-10-15,19:30,WCQ,Third round,Tue,Neutral,L,1.0,4.0,IR Iran,54.0,7890.0,Abdulaziz Hatem,4-4-1-1,4-2-3-1,Yūsuke Araki,,False
+Qatar,2024-11-14,19:15,WCQ,Third round,Thu,Home,W,3.0,2.0,Uzbekistan,46.0,10759.0,Akram Afif,3-4-1-2,3-4-3,Kim Jonghyeok,,False
+Qatar,2024-11-19,20:00,WCQ,Third round,Tue,Away,L,0.0,5.0,UAE,68.0,13825.0,Akram Afif,3-5-2,4-2-3-1,Khalid Saleh Al Turais,,False
+Qatar,2025-03-20,21:15,WCQ,Third round,Thu,Home,W,5.0,1.0,Korea DPR,53.0,10375.0,Akram Afif,3-4-3,4-2-2-2,Mohanad Qasim Sarray,,False
+Qatar,2025-03-25,19:45,WCQ,Third round,Tue,Away,L,1.0,3.0,Kyrgyz Republic,55.0,12325.0,Abdulaziz Hatem,3-4-3,5-3-2,Nazmi Nasaruddin,,False
+Qatar,2025-06-05,21:15,WCQ,Third round,Thu,Home,W,1.0,0.0,IR Iran,52.0,8925.0,Akram Afif,4-2-3-1,4-2-3-1,Mohammed Khaled Al Hoish,,False
+Qatar,2025-06-10,18:45,WCQ,Third round,Tue,Away,L,0.0,3.0,Uzbekistan,39.0,32931.0,Akram Afif,4-2-3-1,4-2-3-1,Ma Ning,,False
+Qatar,2025-10-08,18:00,WCQ,Fourth round,Wed,Away,D,0.0,0.0,Oman,70.0,12975.0,Boualem Khoukhi,4-2-3-1,4-1-4-1,Yūsuke Araki,,False
+Qatar,2025-10-14,20:00,WCQ,Fourth round,Tue,Home,W,2.0,1.0,UAE,41.0,13038.0,Boualem Khoukhi,4-2-2-2,4-2-3-1,Ilgiz Tantashev,,False
+Qatar,2026-05-28,19:45,Friendlies (M),Friendlies (M),Thu,Away,L,0.0,1.0,Rep. of Ireland,,28981.0,Boualem Khoukhi,4-3-2-1,3-4-3,Jamie Robinson,,False
+Qatar,2026-06-06,13:00,Friendlies (M),Friendlies (M),Sat,Neutral,D,0.0,0.0,El Salvador,,,Boualem Khoukhi,4-1-4-1,5-3-2,Rubiel Vázquez,,False
+Qatar,2026-06-13,12:00,World Cup,Group stage,Sat,Neutral,D,1.0,1.0,Switzerland,32.0,67966.0,Boualem Khoukhi,4-1-4-1,4-2-3-1,Said Martínez,,False
+Qatar,2026-06-18,15:00,World Cup,Group stage,Thu,Neutral,,,,Canada,,,,,,,,True
+Qatar,2026-06-24,12:00,World Cup,Group stage,Wed,Neutral,,,,Bosnia-Herzegovina,,,,,,,,True
+Saudi Arabia,2023-11-16,19:30,WCQ,Second round,Thu,Home,W,4.0,0.0,Pakistan,,11150.0,Mohammed Al-Owais,3-1-4-2,4-2-2-2,Hanna Hattab,,False
+Saudi Arabia,2023-11-21,18:00,WCQ,Second round,Tue,Away,W,2.0,0.0,Jordan,,13845.0,Mohammed Al-Owais,3-5-2,4-1-4-1,Ahmed Abu Bakar Al Kaf,,False
+Saudi Arabia,2024-03-21,22:00,WCQ,Second round,Thu,Home,W,1.0,0.0,Tajikistan,,18756.0,Salem Al-Dawsari,3-1-4-2,4-2-2-2,Taqi Aljaafari,,False
+Saudi Arabia,2024-03-26,20:00,WCQ,Second round,Tue,Away,D,1.0,1.0,Tajikistan,,13300.0,Salem Al-Dawsari,3-3-2-2,4-2-2-2,Kim Jonghyeok,,False
+Saudi Arabia,2024-06-06,20:30,WCQ,Second round,Thu,Away,W,3.0,0.0,Pakistan,,20124.0,Salem Al-Dawsari,3-4-3,5-3-2,Ammar Ebrahim Mahfoodh,,False
+Saudi Arabia,2024-06-11,21:00,WCQ,Second round,Tue,Home,L,1.0,2.0,Jordan,,17871.0,Salem Al-Dawsari,3-1-4-2,5-4-1,Adel Ali Al Naqbi,,False
+Saudi Arabia,2024-09-05,21:00,WCQ,Third round,Thu,Home,D,1.0,1.0,Indonesia,66.0,42386.0,Salem Al-Dawsari,3-5-1-1,5-4-1,Adham Makhadmeh,,False
+Saudi Arabia,2024-09-10,20:00,WCQ,Third round,Tue,Away,W,2.0,1.0,China PR,57.0,48628.0,Salem Al-Dawsari,3-4-3,4-2-2-2,Sadullo Gulmurodi,,False
+Saudi Arabia,2024-10-10,21:00,WCQ,Third round,Thu,Home,L,0.0,2.0,Japan,57.0,56283.0,Salem Al-Dawsari,4-1-4-1,3-4-3,Kim Jonghyeok,,False
+Saudi Arabia,2024-10-15,21:00,WCQ,Third round,Tue,Home,D,0.0,0.0,Bahrain,67.0,35437.0,Salem Al-Dawsari,4-1-4-1,4-2-2-2,Salman Ahmad Falahi,,False
+Saudi Arabia,2024-11-14,20:10,WCQ,Third round,Thu,Away,D,0.0,0.0,Australia,58.0,27491.0,Yasser Al-Shahrani,4-1-4-1,5-4-1,Adel Ali Al Naqbi,,False
+Saudi Arabia,2024-11-19,19:00,WCQ,Third round,Tue,Away,L,0.0,2.0,Indonesia,77.0,55970.0,Yasser Al-Shahrani,4-1-4-1,3-5-2,Rustam Lutfullin,,False
+Saudi Arabia,2025-03-20,21:15,WCQ,Third round,Thu,Home,W,1.0,0.0,China PR,80.0,24742.0,Salem Al-Dawsari,4-2-2-2,4-2-3-1,Omar Mohamed Al Ali,,False
+Saudi Arabia,2025-03-25,19:35,WCQ,Third round,Tue,Away,D,0.0,0.0,Japan,22.0,58003.0,Salem Al-Dawsari,5-4-1,3-4-3,Ahmad Al Ali,,False
+Saudi Arabia,2025-06-05,19:00,WCQ,Third round,Thu,Away,W,2.0,0.0,Bahrain,46.0,15075.0,Salem Al-Dawsari,4-1-4-1,4-2-2-2,Ilgiz Tantashev,,False
+Saudi Arabia,2025-06-10,21:15,WCQ,Third round,Tue,Home,L,1.0,2.0,Australia,70.0,24620.0,Salem Al-Dawsari,4-1-4-1,3-4-3,Abdulrahman Ibrahim Al Jassim,,False
+Saudi Arabia,2025-10-08,20:15,WCQ,Fourth round,Wed,Away,W,3.0,2.0,Indonesia,55.0,40634.0,Salem Al-Dawsari,4-2-3-1,4-2-2-2,Ahmad Al Ali,,False
+Saudi Arabia,2025-10-14,21:45,WCQ,Fourth round,Tue,Home,D,0.0,0.0,Iraq,62.0,60816.0,Salem Al-Dawsari,4-2-3-1,4-2-3-1,Adham Makhadmeh,,False
+Saudi Arabia,2026-03-27,20:30,Friendlies (M),Friendlies (M),Fri,Home,L,0.0,4.0,Egypt,,,Salman Al-Faraj,3-4-1-2,4-1-4-1,Abdulla Ali Al Athba,,False
+Saudi Arabia,2026-03-31,18:00,Friendlies (M),Friendlies (M),Tue,Away,L,1.0,2.0,Serbia,,4101.0,Mohamed Kanno,4-2-3-1,4-2-3-1,Balázs Berke,,False
+Saudi Arabia,2026-05-30,20:00,Friendlies (M),Friendlies (M),Sat,Neutral,L,1.0,2.0,Ecuador,,,Salem Al-Dawsari,4-1-4-1,4-2-2-2,Filip Dujic,,False
+Saudi Arabia,2026-06-05,18:00,Friendlies (M),Friendlies (M),Fri,Neutral,W,3.0,0.0,Puerto Rico,,,Mohamed Kanno,4-2-3-1,4-2-2-2,Reon Radix,,False
+Saudi Arabia,2026-06-09,18:00,Friendlies (M),Friendlies (M),Tue,Neutral,D,0.0,0.0,Senegal,,,Salem Al-Dawsari,4-2-3-1,4-1-4-1,Víctor Rivas,,False
+Saudi Arabia,2026-06-15,18:00,World Cup,Group stage,Mon,Neutral,,,,Uruguay,,,,,,,,True
+Saudi Arabia,2026-06-21,12:00,World Cup,Group stage,Sun,Neutral,,,,Spain,,,,,,,,True
+Saudi Arabia,2026-06-26,19:00,World Cup,Group stage,Fri,Neutral,,,,Cape Verde,,,,,,,,True
+Scotland,2025-09-05,20:45,WCQ,First round,Fri,Away,D,0.0,0.0,Denmark,27.0,35369.0,Andy Robertson,4-2-3-1,4-4-1-1,Daniel Siebert,,False
+Scotland,2025-09-08,21:45,WCQ,First round,Mon,Away,W,2.0,0.0,Belarus,73.0,,Andy Robertson,4-3-1-2,5-3-2,Nikola Dabanović,,False
+Scotland,2025-10-09,19:45,WCQ,First round,Thu,Home,W,3.0,1.0,Greece,33.0,46006.0,Andy Robertson,4-3-3,4-2-3-1,Espen Eskås,,False
+Scotland,2025-10-12,17:00,WCQ,First round,Sun,Home,W,2.0,1.0,Belarus,55.0,49346.0,Andy Robertson,4-2-3-1,4-4-1-1,Marian Barbu,,False
+Scotland,2025-11-15,21:45,WCQ,First round,Sat,Away,L,2.0,3.0,Greece,51.0,18405.0,Andy Robertson,4-2-3-1,4-2-3-1,Jesús Gil,,False
+Scotland,2025-11-18,19:45,WCQ,First round,Tue,Home,W,4.0,2.0,Denmark,30.0,49587.0,Andy Robertson,4-1-4-1,4-2-3-1,Szymon Marciniak,,False
+Scotland,2026-03-28,17:00,Friendlies (M),Friendlies (M),Sat,Home,L,0.0,1.0,Japan,,44644.0,Andy Robertson,4-2-3-1,3-4-3,Shaun Evans,,False
+Scotland,2026-03-31,19:30,Friendlies (M),Friendlies (M),Tue,Neutral,L,0.0,1.0,Côte d'Ivoire,,33034.0,Andy Robertson,3-4-1-2,4-2-3-1,Daniel Elder,,False
+Scotland,2026-05-30,13:00,Friendlies (M),Friendlies (M),Sat,Home,W,4.0,1.0,Curaçao,,44433.0,Andy Robertson,4-2-2-2,5-4-1,Goga Kikacheishvili,,False
+Scotland,2026-06-06,16:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,4.0,0.0,Bolivia,,,Andy Robertson,4-2-2-2,4-1-4-1,Rosendo Mendoza,,False
+Scotland,2026-06-13,21:00,World Cup,Group stage,Sat,Neutral,W,1.0,0.0,Haiti,46.0,64146.0,Andy Robertson,4-2-2-2,4-2-2-2,Mustapha Ghorbal,,False
+Scotland,2026-06-19,18:00,World Cup,Group stage,Fri,Neutral,,,,Morocco,,,,,,,,True
+Scotland,2026-06-24,18:00,World Cup,Group stage,Wed,Neutral,,,,Brazil,,,,,,,,True
+Senegal,2023-11-18,19:00,WCQ,First round,Sat,Home,W,4.0,0.0,South Sudan,,,Kalidou Koulibaly,4-1-4-1,4-1-4-1,Retṧelisitsoe Molise,,False
+Senegal,2023-11-21,16:00,WCQ,First round,Tue,Away,D,0.0,0.0,Togo,,,Kalidou Koulibaly,4-1-4-1,4-1-4-1,Mustapha Ghorbal,,False
+Senegal,2024-06-06,19:00,WCQ,First round,Thu,Home,D,1.0,1.0,Congo DR,,,Kalidou Koulibaly,3-4-1-2,4-2-3-1,Mutaz Al Shalmani,,False
+Senegal,2024-06-09,16:00,WCQ,First round,Sun,Away,W,1.0,0.0,Mauritania,,,Kalidou Koulibaly,3-4-1-2,4-2-3-1,Samir Guezzaz,,False
+Senegal,2025-03-22,21:00,WCQ,First round,Sat,Neutral,D,0.0,0.0,Sudan,,,Kalidou Koulibaly,4-1-4-1,4-2-3-1,Tanguy Mebiame,,False
+Senegal,2025-03-25,21:00,WCQ,First round,Tue,Home,W,2.0,0.0,Togo,,,Kalidou Koulibaly,4-1-4-1,5-4-1,Peter Waweru,,False
+Senegal,2025-09-05,19:00,WCQ,First round,Fri,Home,W,2.0,0.0,Sudan,,,Kalidou Koulibaly,4-1-4-1,4-2-3-1,Imtehaz Heeralall,,False
+Senegal,2025-09-09,17:00,WCQ,First round,Tue,Away,W,3.0,2.0,Congo DR,,,Kalidou Koulibaly,4-1-4-1,4-1-4-1,Cumar Cabdiqaadir Cartan,,False
+Senegal,2025-10-10,15:00,WCQ,First round,Fri,Away,W,5.0,0.0,South Sudan,,,Kalidou Koulibaly,4-2-3-1,4-2-3-1,Abdou Abdel Mefire,,False
+Senegal,2025-10-14,19:00,WCQ,First round,Tue,Home,W,4.0,0.0,Mauritania,,,Kalidou Koulibaly,4-2-2-2,4-2-2-2,Mohamed Ali Moussa,,False
+Senegal,2026-03-28,17:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,2.0,0.0,Peru,,,Idrissa Gueye,4-1-4-1,4-2-3-1,Jérémie Pignard,,False
+Senegal,2026-03-31,19:00,Friendlies (M),Friendlies (M),Tue,Home,W,3.0,1.0,Gambia,,,Abdoulaye Seck,3-4-3,3-4-3,Abdel Aziz Mohamed Bouh,,False
+Senegal,2026-05-31,15:30,Friendlies (M),Friendlies (M),Sun,Away,L,2.0,3.0,United States,,57741.0,Sadio Mané,4-2-3-1,4-2-3-1,Nick Walsh,,False
+Senegal,2026-06-09,18:00,Friendlies (M),Friendlies (M),Tue,Neutral,D,0.0,0.0,Saudi Arabia,,,Sadio Mané,4-1-4-1,4-2-3-1,Víctor Rivas,,False
+Senegal,2026-06-16,15:00,World Cup,Group stage,Tue,Neutral,,,,France,,,,,,,,True
+Senegal,2026-06-22,20:00,World Cup,Group stage,Mon,Neutral,,,,Norway,,,,,,,,True
+Senegal,2026-06-26,15:00,World Cup,Group stage,Fri,Neutral,,,,Iraq,,,,,,,,True
+South Africa,2023-11-18,15:00,WCQ,First round,Sat,Home,W,2.0,1.0,Benin,,,Ronwen Williams,4-2-3-1,4-1-4-1,Mahmood Ali Mahmood Ismail,,False
+South Africa,2023-11-21,15:00,WCQ,First round,Tue,Away,L,0.0,2.0,Rwanda,,,Ronwen Williams,4-2-3-1,4-2-3-1,Amin Omar,,False
+South Africa,2024-06-07,20:00,WCQ,First round,Fri,Away,D,1.0,1.0,Nigeria,,,Ronwen Williams,4-2-2-2,4-2-3-1,Alhadj Allaou Mahamat,,False
+South Africa,2024-06-11,18:00,WCQ,First round,Tue,Home,W,3.0,1.0,Zimbabwe,,,Ronwen Williams,4-2-2-2,3-4-3,Mohamed Maarouf,,False
+South Africa,2025-03-21,18:00,WCQ,First round,Fri,Home,L,0.0,3.0,Lesotho,,,Ronwen Williams,4-2-3-1,4-2-3-1,Mohamed Diraneh Guedi,Match awarded to Lesotho,False
+South Africa,2025-03-25,16:00,WCQ,First round,Tue,Neutral,W,2.0,0.0,Benin,,,Ronwen Williams,4-2-3-1,4-2-3-1,Dahane Beida,,False
+South Africa,2025-09-05,18:00,WCQ,First round,Fri,Neutral,W,3.0,0.0,Lesotho,,,Ronwen Williams,4-2-3-1,4-1-4-1,Dickens Mimisa,,False
+South Africa,2025-09-09,18:00,WCQ,First round,Tue,Home,D,1.0,1.0,Nigeria,,,Ronwen Williams,4-2-3-1,4-3-1-2,Pierre Ghislain Atcho,,False
+South Africa,2025-10-10,18:00,WCQ,First round,Fri,Neutral,D,0.0,0.0,Zimbabwe,,,Ronwen Williams,4-2-3-1,4-2-3-1,Mustapha Ghorbal,,False
+South Africa,2025-10-14,18:00,WCQ,First round,Tue,Home,W,3.0,0.0,Rwanda,,,Ronwen Williams,4-2-3-1,4-1-4-1,Mehrez Melki,,False
+South Africa,2026-03-27,19:00,Friendlies (M),Friendlies (M),Fri,Home,D,1.0,1.0,Panama,,,Ronwen Williams,4-2-3-1,5-4-1,Thabang Ketshabile,,False
+South Africa,2026-03-31,19:30,Friendlies (M),Friendlies (M),Tue,Home,L,1.0,2.0,Panama,,,Ronwen Williams,4-2-3-1,3-4-3,Thabang Ketshabile,,False
+South Africa,2026-05-29,18:00,Friendlies (M),Friendlies (M),Fri,Home,D,0.0,0.0,Nicaragua,,,Themba Zwane,4-2-3-1,5-4-1,Lebalang Mokete,,False
+South Africa,2026-06-11,13:00,World Cup,Group stage,Thu,Neutral,L,0.0,2.0,Mexico,40.0,80824.0,Ronwen Williams,5-3-2,4-1-4-1,Wilton Sampaio,,False
+South Africa,2026-06-18,12:00,World Cup,Group stage,Thu,Neutral,,,,Czechia,,,,,,,,True
+South Africa,2026-06-24,19:00,World Cup,Group stage,Wed,Neutral,,,,Korea Republic,,,,,,,,True
+Spain,2025-09-04,21:45,WCQ,First round,Thu,Away,W,3.0,0.0,Bulgaria,78.0,40582.0,Unai Simón,4-3-3,4-3-3,Srđan Jovanović,,False
+Spain,2025-09-07,21:45,WCQ,First round,Sun,Away,W,6.0,0.0,Türkiye,50.0,32059.0,Unai Simón,4-3-3,4-2-3-1,Michael Oliver,,False
+Spain,2025-10-11,20:45,WCQ,First round,Sat,Home,W,2.0,0.0,Georgia,83.0,28661.0,Unai Simón,4-3-3,5-3-2,Manfredas Lukjančukas,,False
+Spain,2025-10-14,20:45,WCQ,First round,Tue,Home,W,4.0,0.0,Bulgaria,78.0,24526.0,Unai Simón,4-2-3-1,4-5-1,Willy Delajod,,False
+Spain,2025-11-15,21:00,WCQ,First round,Sat,Away,W,4.0,0.0,Georgia,61.0,44314.0,Unai Simón,4-3-3,4-1-4-1,Benoît Bastien,,False
+Spain,2025-11-18,20:45,WCQ,First round,Tue,Home,D,2.0,2.0,Türkiye,73.0,30812.0,Unai Simón,4-3-3,5-4-1,Felix Zwayer,,False
+Spain,2026-03-27,21:00,Friendlies (M),Friendlies (M),Fri,Home,W,3.0,0.0,Serbia,,20482.0,Rodri,4-1-4-1,4-4-1-1,Luís Godinho,,False
+Spain,2026-03-31,21:00,Friendlies (M),Friendlies (M),Tue,Home,D,0.0,0.0,Egypt,,35895.0,Ferrán Torres,4-1-4-1,4-2-3-1,Georgi Kabakov,,False
+Spain,2026-06-04,21:00,Friendlies (M),Friendlies (M),Thu,Home,D,1.0,1.0,Iraq,,30423.0,Ferrán Torres,4-1-4-1,4-2-2-2,Florian Badstübner,,False
+Spain,2026-06-08,20:00,Friendlies (M),Friendlies (M),Mon,Neutral,W,3.0,1.0,Peru,,,Rodri,4-2-3-1,4-2-2-2,Fernando Hernández,,False
+Spain,2026-06-15,12:00,World Cup,Group stage,Mon,Neutral,,,,Cape Verde,,,,,,,,True
+Spain,2026-06-21,12:00,World Cup,Group stage,Sun,Neutral,,,,Saudi Arabia,,,,,,,,True
+Spain,2026-06-26,18:00,World Cup,Group stage,Fri,Neutral,,,,Uruguay,,,,,,,,True
+Sweden,2025-09-05,20:45,WCQ,First round,Fri,Away,D,2.0,2.0,Slovenia,59.0,15679.0,Isak Hien,3-5-2,4-4-2,Jose Maria Sánchez,,False
+Sweden,2025-09-08,20:45,WCQ,First round,Mon,Away,L,0.0,2.0,Kosovo,69.0,12887.0,Isak Hien,3-5-2,4-4-2,Allard Lindhout,,False
+Sweden,2025-10-10,20:45,WCQ,First round,Fri,Home,L,0.0,2.0,Switzerland,41.0,50151.0,Alexander Isak,3-5-2,4-3-3,Anthony Taylor,,False
+Sweden,2025-10-13,20:45,WCQ,First round,Mon,Home,L,0.0,1.0,Kosovo,68.0,36571.0,Victor Lindelöf,3-5-2,3-1-4-2,Danny Makkelie,,False
+Sweden,2025-11-15,20:45,WCQ,First round,Sat,Away,L,1.0,4.0,Switzerland,41.0,26458.0,Isak Hien,4-4-2,4-2-3-1,Erik Lambrechts,,False
+Sweden,2025-11-18,20:45,WCQ,First round,Tue,Home,D,1.0,1.0,Slovenia,61.0,25724.0,Victor Lindelöf,4-4-2,5-4-1,Maurizio Mariani,,False
+Sweden,2026-03-26,20:45,WCQ,Second round — Semi-finals,Thu,Neutral,W,3.0,1.0,Ukraine,32.0,18846.0,Victor Lindelöf,3-4-3,4-1-4-1,João Pinheiro,,False
+Sweden,2026-03-31,20:45,WCQ,Second round — Finals,Tue,Home,W,3.0,2.0,Poland,33.0,49627.0,Victor Lindelöf,3-4-3,3-4-3,Slavko Vinčič,,False
+Sweden,2026-06-01,19:00,Friendlies (M),Friendlies (M),Mon,Away,L,1.0,3.0,Norway,,25178.0,Isak Hien,3-1-4-2,4-2-2-2,Balázs Berke,,False
+Sweden,2026-06-04,19:00,Friendlies (M),Friendlies (M),Thu,Home,D,2.0,2.0,Greece,,39139.0,Isak Hien,3-4-1-2,3-4-3,Aaron Wyn Jones,,False
+Sweden,2026-06-14,20:00,World Cup,Group stage,Sun,Neutral,,,,Tunisia,,,,,,,,True
+Sweden,2026-06-20,12:00,World Cup,Group stage,Sat,Neutral,,,,Netherlands,,,,,,,,True
+Sweden,2026-06-25,18:00,World Cup,Group stage,Thu,Neutral,,,,Japan,,,,,,,,True
+Switzerland,2025-09-05,20:45,WCQ,First round,Fri,Home,W,4.0,0.0,Kosovo,63.0,33996.0,Granit Xhaka,4-3-3,4-3-3,Szymon Marciniak,,False
+Switzerland,2025-09-08,20:45,WCQ,First round,Mon,Home,W,3.0,0.0,Slovenia,65.0,12757.0,Granit Xhaka,4-3-3,4-4-2,François Letexier,,False
+Switzerland,2025-10-10,20:45,WCQ,First round,Fri,Away,W,2.0,0.0,Sweden,60.0,50151.0,Granit Xhaka,4-3-3,3-5-2,Anthony Taylor,,False
+Switzerland,2025-10-13,20:45,WCQ,First round,Mon,Away,D,0.0,0.0,Slovenia,65.0,14637.0,Granit Xhaka,4-3-3,5-4-1,Felix Zwayer,,False
+Switzerland,2025-11-15,20:45,WCQ,First round,Sat,Home,W,4.0,1.0,Sweden,59.0,26458.0,Granit Xhaka,4-2-3-1,4-4-2,Erik Lambrechts,,False
+Switzerland,2025-11-18,20:45,WCQ,First round,Tue,Away,D,1.0,1.0,Kosovo,53.0,11215.0,Granit Xhaka,4-3-3,5-3-2,Davide Massa,,False
+Switzerland,2026-03-27,20:45,Friendlies (M),Friendlies (M),Fri,Home,L,3.0,4.0,Germany,,37994.0,Granit Xhaka,4-1-4-1,4-1-4-1,Chris Kavanagh,,False
+Switzerland,2026-03-31,18:00,Friendlies (M),Friendlies (M),Tue,Away,D,0.0,0.0,Norway,,23913.0,Manuel Akanji,3-4-3,4-1-4-1,Jasper Vergoote,,False
+Switzerland,2026-05-31,15:00,Friendlies (M),Friendlies (M),Sun,Home,W,4.0,1.0,Jordan,,13380.0,Granit Xhaka,3-4-3,5-3-2,Rohit Saggi,,False
+Switzerland,2026-06-06,12:00,Friendlies (M),Friendlies (M),Sat,Neutral,D,1.0,1.0,Australia,,6500.0,Granit Xhaka,4-2-2-2,5-4-1,Katja Koroleva,,False
+Switzerland,2026-06-13,12:00,World Cup,Group stage,Sat,Neutral,D,1.0,1.0,Qatar,68.0,67966.0,Granit Xhaka,4-2-3-1,4-1-4-1,Said Martínez,,False
+Switzerland,2026-06-18,12:00,World Cup,Group stage,Thu,Neutral,,,,Bosnia-Herzegovina,,,,,,,,True
+Switzerland,2026-06-24,12:00,World Cup,Group stage,Wed,Neutral,,,,Canada,,,,,,,,True
+Tunisia,2023-11-17,20:00,WCQ,First round,Fri,Home,W,4.0,0.0,São Tomé,,,Youssef Msakni,4-1-4-1,4-2-2-2,Joseph Odey Ogabor,,False
+Tunisia,2023-11-21,15:00,WCQ,First round,Tue,Away,W,1.0,0.0,Malawi,,,Youssef Msakni,4-1-4-1,4-2-2-2,Aklésso Gnama,,False
+Tunisia,2024-06-05,20:00,WCQ,First round,Wed,Home,W,1.0,0.0,Equ. Guinea,,,Yassine Meriah,4-1-4-1,4-1-4-1,Abongile Tom,,False
+Tunisia,2024-06-09,18:00,WCQ,First round,Sun,Neutral,D,0.0,0.0,Namibia,,,Yassine Meriah,4-2-3-1,4-2-3-1,Dahane Beida,,False
+Tunisia,2025-03-19,16:00,WCQ,First round,Wed,Away,W,1.0,0.0,Liberia,,,Naïm Sliti,4-2-3-1,4-2-3-1,Clément Franklin Kpan,,False
+Tunisia,2025-03-24,22:00,WCQ,First round,Mon,Home,W,2.0,0.0,Malawi,,,Naïm Sliti,4-2-3-1,4-2-3-1,Louis Houngnandande,,False
+Tunisia,2025-09-04,20:00,WCQ,First round,Thu,Home,W,3.0,0.0,Liberia,,,Ferjani Sassi,4-1-4-1,4-2-3-1,Raphiou Ligali,,False
+Tunisia,2025-09-08,14:00,WCQ,First round,Mon,Away,W,1.0,0.0,Equ. Guinea,,,Ferjani Sassi,4-2-3-1,4-1-4-1,Patrice Milazar,,False
+Tunisia,2025-10-10,17:00,WCQ,First round,Fri,Neutral,W,6.0,0.0,São Tomé,,,Naïm Sliti,4-1-4-1,4-2-3-1,Andofetra Rakotojaona,,False
+Tunisia,2025-10-13,14:00,WCQ,First round,Mon,Home,W,3.0,0.0,Namibia,,,Ferjani Sassi,4-2-3-1,4-1-4-1,Issa Sy,,False
+Tunisia,2026-03-28,20:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,1.0,0.0,Haiti,,13408.0,Ellyes Skhiri,4-2-3-1,4-2-3-1,Pierre-Luc Lauzière,,False
+Tunisia,2026-03-31,21:00,Friendlies (M),Friendlies (M),Tue,Away,D,0.0,0.0,Canada,,22624.0,Ellyes Skhiri,4-2-3-1,4-2-2-2,Keylor Herrera,,False
+Tunisia,2026-06-01,20:45,Friendlies (M),Friendlies (M),Mon,Away,L,0.0,1.0,Austria,,35100.0,Ellyes Skhiri,4-2-3-1,4-2-3-1,Jérémie Pignard,,False
+Tunisia,2026-06-06,15:00,Friendlies (M),Friendlies (M),Sat,Away,L,0.0,5.0,Belgium,,40236.0,Ellyes Skhiri,4-1-4-1,4-2-3-1,Tasos Sidiropoulos,,False
+Tunisia,2026-06-14,20:00,World Cup,Group stage,Sun,Neutral,,,,Sweden,,,,,,,,True
+Tunisia,2026-06-20,22:00,World Cup,Group stage,Sat,Neutral,,,,Japan,,,,,,,,True
+Tunisia,2026-06-25,18:00,World Cup,Group stage,Thu,Neutral,,,,Netherlands,,,,,,,,True
+Türkiye,2025-09-04,20:00,WCQ,First round,Thu,Away,W,3.0,2.0,Georgia,46.0,44238.0,Hakan Çalhanoğlu,4-2-3-1,4-4-2,Davide Massa,,False
+Türkiye,2025-09-07,21:45,WCQ,First round,Sun,Home,L,0.0,6.0,Spain,50.0,32059.0,Hakan Çalhanoğlu,4-2-3-1,4-3-3,Michael Oliver,,False
+Türkiye,2025-10-11,21:45,WCQ,First round,Sat,Away,W,6.0,1.0,Bulgaria,78.0,10059.0,Hakan Çalhanoğlu,4-2-3-1,4-4-1-1,Luís Godinho,,False
+Türkiye,2025-10-14,21:45,WCQ,First round,Tue,Home,W,4.0,1.0,Georgia,45.0,26633.0,Hakan Çalhanoğlu,4-2-3-1,4-3-3,Radu Petrescu,,False
+Türkiye,2025-11-15,20:00,WCQ,First round,Sat,Home,W,2.0,0.0,Bulgaria,67.0,42756.0,Hakan Çalhanoğlu,4-2-3-1,4-5-1,Nick Walsh,,False
+Türkiye,2025-11-18,20:45,WCQ,First round,Tue,Away,D,2.0,2.0,Spain,27.0,30812.0,Merih Demiral,5-4-1,4-3-3,Felix Zwayer,,False
+Türkiye,2026-03-26,20:00,WCQ,Second round — Semi-finals,Thu,Neutral,W,1.0,0.0,Romania,68.0,38979.0,Hakan Çalhanoğlu,4-2-3-1,4-2-3-1,François Letexier,,False
+Türkiye,2026-03-31,20:45,WCQ,Second round — Finals,Tue,Away,W,1.0,0.0,Kosovo,57.0,12887.0,Hakan Çalhanoğlu,3-4-3,3-4-3,Michael Oliver,,False
+Türkiye,2026-06-01,20:30,Friendlies (M),Friendlies (M),Mon,Home,W,4.0,0.0,N. Macedonia,,33994.0,Çağlar Söyüncü,4-2-3-1,3-4-1-2,José Luis Munuera,,False
+Türkiye,2026-06-06,18:00,Friendlies (M),Friendlies (M),Sat,Neutral,W,2.0,1.0,Venezuela,,,Zeki Çelik,4-2-3-1,4-2-2-2,Daniel Quintero,,False
+Türkiye,2026-06-13,21:00,World Cup,Group stage,Sat,Neutral,L,0.0,2.0,Australia,72.0,52497.0,Hakan Çalhanoğlu,4-2-3-1,5-4-1,Jesús Valenzuela,,False
+Türkiye,2026-06-19,20:00,World Cup,Group stage,Fri,Neutral,,,,Paraguay,,,,,,,,True
+Türkiye,2026-06-25,19:00,World Cup,Group stage,Thu,Neutral,,,,United States,,,,,,,,True
+United States,2026-03-28,15:37,Friendlies (M),Friendlies (M),Sat,Home,L,2.0,5.0,Belgium,,66867.0,Tim Ream,4-2-3-1,4-2-3-1,Esteban Ostojich,,False
+United States,2026-03-31,19:07,Friendlies (M),Friendlies (M),Tue,Home,L,0.0,2.0,Portugal,,72297.0,Chris Richards,4-2-3-1,4-2-3-1,Sven Jablonski,,False
+United States,2026-05-31,15:30,Friendlies (M),Friendlies (M),Sun,Home,W,3.0,2.0,Senegal,,57741.0,Tim Ream,4-2-3-1,4-2-3-1,Nick Walsh,,False
+United States,2026-06-06,13:30,Friendlies (M),Friendlies (M),Sat,Home,L,1.0,2.0,Germany,,63636.0,Tim Ream,4-2-3-1,4-2-3-1,Piero Maza,,False
+United States,2026-06-12,18:00,World Cup,Group stage,Fri,Neutral,W,4.0,1.0,Paraguay,65.0,70492.0,Tim Ream,4-2-3-1,4-2-2-2,Danny Makkelie,,False
+United States,2026-06-19,12:00,World Cup,Group stage,Fri,Neutral,,,,Australia,,,,,,,,True
+United States,2026-06-25,19:00,World Cup,Group stage,Thu,Neutral,,,,Türkiye,,,,,,,,True
+Uruguay,2023-09-08,20:00,WCQ,World Cup qualification,Fri,Home,W,3.0,1.0,Chile,50.0,49713.0,Federico Valverde,4-3-3,4-4-2,Darío Herrera,,False
+Uruguay,2023-09-12,16:00,WCQ,World Cup qualification,Tue,Away,L,1.0,2.0,Ecuador,50.0,35613.0,Federico Valverde,4-2-3-1,5-3-2,Wilton Sampaio,,False
+Uruguay,2023-10-12,15:30,WCQ,World Cup qualification,Thu,Away,D,2.0,2.0,Colombia,51.0,43915.0,Federico Valverde,4-2-3-1,4-2-3-1,Piero Maza,,False
+Uruguay,2023-10-17,21:00,WCQ,World Cup qualification,Tue,Home,W,2.0,0.0,Brazil,39.0,52477.0,Federico Valverde,4-2-3-1,4-2-3-1,Alexis Herrera,,False
+Uruguay,2023-11-16,21:00,WCQ,World Cup qualification,Thu,Away,W,2.0,0.0,Argentina,37.0,,Federico Valverde,4-2-3-1,4-3-3,Wilmar Roldán,,False
+Uruguay,2023-11-21,20:30,WCQ,World Cup qualification,Tue,Home,W,3.0,0.0,Bolivia,69.0,60235.0,José María Giménez,4-3-3,4-5-1,Kevin Ortega,,False
+Uruguay,2024-09-06,20:30,WCQ,World Cup qualification,Fri,Home,D,0.0,0.0,Paraguay,65.0,47741.0,Luis Suárez,4-3-3,4-2-3-1,Darío Herrera,,False
+Uruguay,2024-09-10,18:00,WCQ,World Cup qualification,Tue,Away,D,0.0,0.0,Venezuela,55.0,,Sergio Rochet,4-3-3,4-1-4-1,Raphael Claus,,False
+Uruguay,2024-10-11,20:30,WCQ,World Cup qualification,Fri,Away,L,0.0,1.0,Peru,62.0,,Federico Valverde,3-5-2,3-5-2,Facundo Tello,,False
+Uruguay,2024-10-15,20:30,WCQ,World Cup qualification,Tue,Home,D,0.0,0.0,Ecuador,55.0,27112.0,José María Giménez,4-2-3-1,5-3-2,Cristián Garay,,False
+Uruguay,2024-11-15,21:00,WCQ,World Cup qualification,Fri,Home,W,3.0,2.0,Colombia,45.0,,José María Giménez,4-2-3-1,4-3-1-2,Kevin Ortega,,False
+Uruguay,2024-11-19,21:45,WCQ,World Cup qualification,Tue,Away,D,1.0,1.0,Brazil,39.0,,José María Giménez,4-3-3,4-2-2-2,Piero Maza,,False
+Uruguay,2025-03-21,20:30,WCQ,World Cup qualification,Fri,Home,L,0.0,1.0,Argentina,55.0,,José María Giménez,4-3-3,4-2-3-1,Juan Gabriel Benítez,,False
+Uruguay,2025-03-25,16:00,WCQ,World Cup qualification,Tue,Away,D,0.0,0.0,Bolivia,34.0,10723.0,José María Giménez,4-4-2,4-5-1,Augusto Aragón,,False
+Uruguay,2025-06-05,19:00,WCQ,World Cup qualification,Thu,Away,L,0.0,2.0,Paraguay,71.0,,José María Giménez,4-3-3,4-4-1-1,Darío Herrera,,False
+Uruguay,2025-06-10,20:00,WCQ,World Cup qualification,Tue,Home,W,2.0,0.0,Venezuela,59.0,,José María Giménez,4-2-3-1,4-2-3-1,Raphael Claus,,False
+Uruguay,2025-09-04,20:30,WCQ,World Cup qualification,Thu,Home,W,3.0,0.0,Peru,63.0,,Federico Valverde,4-3-3,4-5-1,Facundo Tello,,False
+Uruguay,2025-09-09,20:30,WCQ,World Cup qualification,Tue,Away,D,0.0,0.0,Chile,51.0,,Federico Valverde,4-3-3,4-2-3-1,Anderson Daronco,,False
+Uruguay,2026-03-27,19:45,Friendlies (M),Friendlies (M),Fri,Away,D,1.0,1.0,eng England,,80581.0,Federico Valverde,4-2-3-1,4-2-3-1,Sven Jablonski,,False
+Uruguay,2026-03-31,20:30,Friendlies (M),Friendlies (M),Tue,Neutral,D,0.0,0.0,Algeria,,,José María Giménez,4-1-4-1,5-4-1,Luca Pairetto,,False
+Uruguay,2026-06-15,18:00,World Cup,Group stage,Mon,Neutral,,,,Saudi Arabia,,,,,,,,True
+Uruguay,2026-06-21,18:00,World Cup,Group stage,Sun,Neutral,,,,Cape Verde,,,,,,,,True
+Uruguay,2026-06-26,18:00,World Cup,Group stage,Fri,Neutral,,,,Spain,,,,,,,,True
+Uzbekistan,2023-11-16,19:00,WCQ,Second round,Thu,Away,W,3.0,1.0,Turkmenistan,,19500.0,Eldor Shomurodov,3-4-3,3-4-3,Hiroyuki Kimura,,False
+Uzbekistan,2023-11-21,18:00,WCQ,Second round,Tue,Home,D,2.0,2.0,IR Iran,,32551.0,Eldor Shomurodov,3-4-3,4-1-4-1,Mohammed Abdulla Hassan,,False
+Uzbekistan,2024-03-21,20:00,WCQ,Second round,Thu,Away,W,2.0,0.0,Hong Kong,,6263.0,Eldor Shomurodov,3-4-3,4-2-3-1,Kim Woosung,,False
+Uzbekistan,2024-03-26,19:30,WCQ,Second round,Tue,Home,W,3.0,0.0,Hong Kong,,29584.0,Eldor Shomurodov,3-4-3,3-5-2,Ahmed Al Ali,,False
+Uzbekistan,2024-06-06,19:30,WCQ,Second round,Thu,Home,W,3.0,1.0,Turkmenistan,,27306.0,Eldor Shomurodov,3-4-3,3-4-3,Yūsuke Araki,,False
+Uzbekistan,2024-06-11,21:30,WCQ,Second round,Tue,Away,D,0.0,0.0,IR Iran,,15468.0,Eldor Shomurodov,3-4-3,4-2-3-1,Kim Jonghyeok,,False
+Uzbekistan,2024-09-05,19:00,WCQ,Third round,Thu,Home,W,1.0,0.0,Korea DPR,47.0,24205.0,Eldor Shomurodov,3-4-3,4-2-2-2,Ahmed Abu Bakar Al Kaf,,False
+Uzbekistan,2024-09-10,20:00,WCQ,Third round,Tue,Away,W,3.0,2.0,Kyrgyz Republic,63.0,13282.0,Eldor Shomurodov,5-3-2,5-3-2,Ahmad Al Ali,,False
+Uzbekistan,2024-10-10,19:00,WCQ,Third round,Thu,Home,D,0.0,0.0,IR Iran,45.0,33829.0,Eldor Shomurodov,5-4-1,4-2-3-1,Shaun Evans,,False
+Uzbekistan,2024-10-15,19:00,WCQ,Third round,Tue,Home,W,1.0,0.0,UAE,60.0,32773.0,Eldor Shomurodov,5-3-2,4-2-3-1,Ma Ning,,False
+Uzbekistan,2024-11-14,19:15,WCQ,Third round,Thu,Away,L,2.0,3.0,Qatar,54.0,10759.0,Eldor Shomurodov,3-4-3,3-4-1-2,Kim Jonghyeok,,False
+Uzbekistan,2024-11-19,19:00,WCQ,Third round,Tue,Neutral,W,1.0,0.0,Korea DPR,41.0,166.0,Jaloliddin Masharipov,3-4-3,4-2-2-2,Ahmad Al Ali,,False
+Uzbekistan,2025-03-20,21:00,WCQ,Third round,Thu,Home,W,1.0,0.0,Kyrgyz Republic,74.0,32458.0,Eldor Shomurodov,3-4-3,5-3-2,Yūsuke Araki,,False
+Uzbekistan,2025-03-25,19:30,WCQ,Third round,Tue,Away,D,2.0,2.0,IR Iran,39.0,36702.0,Eldor Shomurodov,3-4-3,4-2-3-1,Ahmed Abu Bakar Al Kaf,,False
+Uzbekistan,2025-06-05,20:00,WCQ,Third round,Thu,Away,D,0.0,0.0,UAE,39.0,9820.0,Eldor Shomurodov,3-4-3,4-2-3-1,Shaun Evans,,False
+Uzbekistan,2025-06-10,18:45,WCQ,Third round,Tue,Home,W,3.0,0.0,Qatar,61.0,32931.0,Eldor Shomurodov,4-2-3-1,4-2-3-1,Ma Ning,,False
+Uzbekistan,2026-06-01,19:00,Friendlies (M),Friendlies (M),Mon,Away,L,0.0,2.0,Canada,,46164.0,Eldor Shomurodov,5-4-1,4-2-2-2,Marco Antonio Ortíz,,False
+Uzbekistan,2026-06-08,14:45,Friendlies (M),Friendlies (M),Mon,Neutral,L,1.0,2.0,Netherlands,,,Eldor Shomurodov,5-4-1,4-1-4-1,Alyssa Pennington,,False
+Uzbekistan,2026-06-17,20:00,World Cup,Group stage,Wed,Neutral,,,,Colombia,,,,,,,,True
+Uzbekistan,2026-06-23,12:00,World Cup,Group stage,Tue,Neutral,,,,Portugal,,,,,,,,True
+Uzbekistan,2026-06-27,19:30,World Cup,Group stage,Sat,Neutral,,,,Congo DR,,,,,,,,True

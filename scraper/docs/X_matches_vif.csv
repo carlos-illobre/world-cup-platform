@@ -1,0 +1,51 @@
+Feature,VIF
+GF,1.413498411218866
+Attendance,1.3912225890531191
+is_future,14.90183844288187
+Country_FIFA_Rank,inf
+Opponent_FIFA_Rank,inf
+h2h_draws,inf
+is_higher_ranked,3.152249882364683
+form_last_5,3.2221269486237936
+goals_conceded_last_5,1.565454766124533
+win_rate_home,1.6570046000054777
+Poss,1.5350210195455225
+Opponent_FIFA_Points,42.000231860023575
+h2h_matches,inf
+h2h_wins,inf
+h2h_goals_for,8.010098673386032
+h2h_goals_against,9.860816787614187
+ranking_diff,inf
+days_since_last_match,1.4621779704584803
+form_last_10,4.000664748178522
+goals_scored_last_5,1.8919819332775027
+win_rate_away,1.7201365510676354
+win_rate_neutral,1.165297059223833
+GA,1.3487686336806246
+Country_FIFA_Points,15.585521194904471
+h2h_losses,inf
+Formation_4-2-3-1,1.8106673159947575
+Opp Formation_4-2-3-1,2.429686258467706
+Venue_Home,170.26194705197463
+Comp_WCQ,111.32793486880944
+Venue_Away,142.5823529205104
+Venue_Neutral,137.6497626866519
+Day_Tue,2.301853108949608
+Round_First round,10.28030459641013
+Day_Thu,2.258388258833941
+Comp_Friendlies (M),inf
+Round_Friendlies (M),inf
+Captain_Gustavo Gómez,7.212099152130718
+Comp_World Cup,inf
+Round_Group stage,inf
+Day_Fri,1.7264201644409638
+Round_Third round,6.070425725520309
+Round_World Cup qualification,7.221706820175521
+Day_Sat,1.5379187847201488
+Formation_3-4-3,1.4853479426780913
+Formation_4-1-4-1,1.4412996944879493
+Opp Formation_4-1-4-1,1.5226971867191517
+Opp Formation_4-2-2-2,1.5685573904322256
+Opp Formation_5-4-1,1.5181447578927123
+Opp Formation_3-4-3,1.4258225676545173
+Round_Second round,5.048316720672335

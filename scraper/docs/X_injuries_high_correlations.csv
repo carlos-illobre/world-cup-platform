@@ -1,0 +1,9 @@
+Feature 1,Feature 2,Correlation
+Per 90 Minutes_Gls,Per 90 Minutes_G+A,0.9626775323072432
+Per 90 Minutes_Gls,Per 90 Minutes_G-PK,0.9963118109560697
+Per 90 Minutes_Gls,Per 90 Minutes_G+A-PK,0.958801867770877
+Per 90 Minutes_G+A,Per 90 Minutes_G-PK,0.9592021697503778
+Per 90 Minutes_G+A,Per 90 Minutes_G+A-PK,0.9965670669944268
+months_since_last_injury,days_since_last_injury,0.9985868277909306
+Dias_Baja,Partidos_Perdidos,0.9085683670786102
+Per 90 Minutes_G-PK,Per 90 Minutes_G+A-PK,0.9624426385949396

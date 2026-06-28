@@ -1,0 +1,27 @@
+EDA Report - Matches & Formations
+========================================
+
+1. Win Rate by Formation (min 5 matches):
+  3-1-4-2: 71.4% (5 wins / 7 matches)
+  4-1-4-1: 65.6% (61 wins / 93 matches)
+  4-2-3-1: 63.4% (177 wins / 279 matches)
+  3-4-3: 63.4% (59 wins / 93 matches)
+  4-4-1-1: 60.0% (3 wins / 5 matches)
+  4-3-3: 57.6% (38 wins / 66 matches)
+  4-4-2: 56.7% (17 wins / 30 matches)
+  4-2-2-2: 51.0% (26 wins / 51 matches)
+  3-4-1-2: 44.4% (4 wins / 9 matches)
+  5-3-2: 42.9% (3 wins / 7 matches)
+  3-5-2: 33.3% (5 wins / 15 matches)
+  5-4-1: 19.0% (4 wins / 21 matches)
+
+2. Win Rate by Venue:
+  Away: 49.8% (129 wins / 259 matches)
+  Home: 69.9% (216 wins / 309 matches)
+  Neutral: 27.2% (70 wins / 257 matches)
+
+4. Win Rate by Calendar Congestion:
+  0-3 days: 64.5% (60 wins / 93 matches)
+  4-7 days: 37.3% (132 wins / 354 matches)
+  8-14 days: 10.3% (3 wins / 29 matches)
+  15+ days: 61.1% (184 wins / 301 matches)

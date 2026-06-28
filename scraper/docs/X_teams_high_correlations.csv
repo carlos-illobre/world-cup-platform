@@ -1,0 +1,5 @@
+Feature 1,Feature 2,Correlation
+squad_total_allcomps_goals,squad_total_allcomps_assists,0.9317934258297128
+squad_total_market_value,squad_avg_market_value,0.9947787047981661
+squad_total_wc_goals,squad_total_wc_assists,0.9405895245958956
+squad_avg_wc_goals,group_goals_for,0.9793923027702307

@@ -1,0 +1,1249 @@
+Year,Stage,Country1,Country2,Score1,Score2,Venue,City
+1930,group stage,France,Mexico,4,1,Estadio Pocitos,Montevideo
+1930,group stage,United States,Belgium,3,0,Estadio Gran Parque Central,Montevideo
+1930,group stage,Yugoslavia,Brazil,2,1,Estadio Gran Parque Central,Montevideo
+1930,group stage,Romania,Peru,3,1,Estadio Pocitos,Montevideo
+1930,group stage,Argentina,France,1,0,Estadio Gran Parque Central,Montevideo
+1930,group stage,Chile,Mexico,3,0,Estadio Gran Parque Central,Montevideo
+1930,group stage,Yugoslavia,Bolivia,4,0,Estadio Gran Parque Central,Montevideo
+1930,group stage,United States,Paraguay,3,0,Estadio Gran Parque Central,Montevideo
+1930,group stage,Uruguay,Peru,1,0,Estadio Centenario,Montevideo
+1930,group stage,Chile,France,1,0,Estadio Centenario,Montevideo
+1930,group stage,Argentina,Mexico,6,3,Estadio Centenario,Montevideo
+1930,group stage,Brazil,Bolivia,4,0,Estadio Centenario,Montevideo
+1930,group stage,Paraguay,Belgium,1,0,Estadio Centenario,Montevideo
+1930,group stage,Uruguay,Romania,4,0,Estadio Centenario,Montevideo
+1930,group stage,Argentina,Chile,3,1,Estadio Centenario,Montevideo
+1930,semi-finals,Argentina,United States,6,1,Estadio Centenario,Montevideo
+1930,semi-finals,Uruguay,Yugoslavia,6,1,Estadio Centenario,Montevideo
+1930,final,Uruguay,Argentina,4,2,Estadio Centenario,Montevideo
+1934,round of 16,Austria,France,3,2,Stadio Benito Mussolini,Turin
+1934,round of 16,Czechoslovakia,Romania,2,1,Stadio Littorio,Trieste
+1934,round of 16,Germany,Belgium,5,2,Stadio Giovanni Berta,Florence
+1934,round of 16,Hungary,Egypt,4,2,Stadio Giorgio Ascarelli,Naples
+1934,round of 16,Italy,United States,7,1,Stadio Nazionale PNF,Rome
+1934,round of 16,Spain,Brazil,3,1,Stadio Luigi Ferraris,Genoa
+1934,round of 16,Sweden,Argentina,3,2,Stadio Renato Dall'Ara,Bologna
+1934,round of 16,Switzerland,Netherlands,3,2,San Siro,Milan
+1934,quarter-finals,Austria,Hungary,2,1,Stadio Renato Dall'Ara,Bologna
+1934,quarter-finals,Czechoslovakia,Switzerland,3,2,Stadio Benito Mussolini,Turin
+1934,quarter-finals,Germany,Sweden,2,1,San Siro,Milan
+1934,quarter-finals,Italy,Spain,1,1,Stadio Giovanni Berta,Florence
+1934,quarter-finals,Italy,Spain,1,0,Stadio Giovanni Berta,Florence
+1934,semi-finals,Czechoslovakia,Germany,3,1,Stadio Nazionale PNF,Rome
+1934,semi-finals,Italy,Austria,1,0,San Siro,Milan
+1934,third-place match,Germany,Austria,3,2,Stadio Giorgio Ascarelli,Naples
+1934,final,Italy,Czechoslovakia,2,1,Stadio Nazionale PNF,Rome
+1938,round of 16,Switzerland,Germany,1,1,Parc des Princes,Paris
+1938,round of 16,Cuba,Romania,3,3,Stade du T.O.E.C.,Toulouse
+1938,round of 16,France,Belgium,3,1,Stade Olympique de Colombes,Paris
+1938,round of 16,Hungary,Dutch East Indies,6,0,Vélodrome Municipal,Reims
+1938,round of 16,Italy,Norway,2,1,Stade Vélodrome,Marseille
+1938,round of 16,Brazil,Poland,6,5,Stade de la Meinau,Strasbourg
+1938,round of 16,Czechoslovakia,Netherlands,3,0,Stade Jules Deschaseaux,Le Havre
+1938,round of 16,Cuba,Romania,2,1,Stade du T.O.E.C.,Toulouse
+1938,round of 16,Switzerland,Germany,4,2,Parc des Princes,Paris
+1938,quarter-finals,Brazil,Czechoslovakia,1,1,Stade du Parc Lescure,Bordeaux
+1938,quarter-finals,Hungary,Switzerland,2,0,Stade Victor Boucquey,Lille
+1938,quarter-finals,Italy,France,3,1,Stade Olympique de Colombes,Paris
+1938,quarter-finals,Sweden,Cuba,8,0,Stade du Fort Carré,Antibes
+1938,quarter-finals,Brazil,Czechoslovakia,2,1,Stade du Parc Lescure,Bordeaux
+1938,semi-finals,Hungary,Sweden,5,1,Parc des Princes,Paris
+1938,semi-finals,Italy,Brazil,2,1,Stade Vélodrome,Marseille
+1938,third-place match,Brazil,Sweden,4,2,Stade du Parc Lescure,Bordeaux
+1938,final,Italy,Hungary,4,2,Stade Olympique de Colombes,Paris
+1950,group stage,Brazil,Mexico,4,0,Estádio do Maracanã,Rio de Janeiro
+1950,group stage,Yugoslavia,Switzerland,3,0,Estádio Independência,Belo Horizonte
+1950,group stage,England,Chile,2,0,Estádio do Maracanã,Rio de Janeiro
+1950,group stage,Spain,United States,3,1,Estádio Vila Capanema,Curitiba
+1950,group stage,Sweden,Italy,3,2,Estádio do Pacaembu,São Paulo
+1950,group stage,Brazil,Switzerland,2,2,Estádio do Pacaembu,São Paulo
+1950,group stage,Yugoslavia,Mexico,4,1,Estádio dos Eucaliptos,Porto Alegre
+1950,group stage,Spain,Chile,2,0,Estádio do Maracanã,Rio de Janeiro
+1950,group stage,United States,England,1,0,Estádio Independência,Belo Horizonte
+1950,group stage,Sweden,Paraguay,2,2,Estádio Vila Capanema,Curitiba
+1950,group stage,Brazil,Yugoslavia,2,0,Estádio do Maracanã,Rio de Janeiro
+1950,group stage,Chile,United States,5,2,Estádio Ilha do Retiro,Recife
+1950,group stage,Spain,England,1,0,Estádio do Maracanã,Rio de Janeiro
+1950,group stage,Italy,Paraguay,2,0,Estádio do Pacaembu,São Paulo
+1950,group stage,Uruguay,Bolivia,8,0,Estádio Independência,Belo Horizonte
+1950,group stage,Switzerland,Mexico,2,1,Estádio dos Eucaliptos,Porto Alegre
+1950,final round,Brazil,Sweden,7,1,Estádio do Maracanã,Rio de Janeiro
+1950,final round,Uruguay,Spain,2,2,Estádio do Pacaembu,São Paulo
+1950,final round,Brazil,Spain,6,1,Estádio do Maracanã,Rio de Janeiro
+1950,final round,Uruguay,Sweden,3,2,Estádio do Pacaembu,São Paulo
+1950,final round,Sweden,Spain,3,1,Estádio do Pacaembu,São Paulo
+1950,final round,Uruguay,Brazil,2,1,Estádio do Maracanã,Rio de Janeiro
+1954,group stage,Brazil,Mexico,5,0,Charmilles Stadium,Geneva
+1954,group stage,Yugoslavia,France,1,0,Stade Olympique de la Pontaise,Lausanne
+1954,group stage,Austria,Scotland,1,0,Hardturm Stadium,Zürich
+1954,group stage,Uruguay,Czechoslovakia,2,0,Wankdorf Stadium,Bern
+1954,group stage,Switzerland,Italy,2,1,Stade Olympique de la Pontaise,Lausanne
+1954,group stage,Hungary,South Korea,9,0,Hardturm Stadium,Zürich
+1954,group stage,West Germany,Turkey,4,1,Wankdorf Stadium,Bern
+1954,group stage,England,Belgium,4,4,St. Jakob Stadium,Basel
+1954,group stage,Uruguay,Scotland,7,0,St. Jakob Stadium,Basel
+1954,group stage,Brazil,Yugoslavia,1,1,Stade Olympique de la Pontaise,Lausanne
+1954,group stage,Austria,Czechoslovakia,5,0,Hardturm Stadium,Zürich
+1954,group stage,France,Mexico,3,2,Charmilles Stadium,Geneva
+1954,group stage,Hungary,West Germany,8,3,St. Jakob Stadium,Basel
+1954,group stage,Turkey,South Korea,7,0,Charmilles Stadium,Geneva
+1954,group stage,Italy,Belgium,4,1,Cornaredo Stadium,Lugano
+1954,group stage,England,Switzerland,2,0,Wankdorf Stadium,Bern
+1954,group stage,West Germany,Turkey,7,2,Hardturm Stadium,Zürich
+1954,group stage,Switzerland,Italy,4,1,St. Jakob Stadium,Basel
+1954,quarter-finals,Austria,Switzerland,7,5,Stade Olympique de la Pontaise,Lausanne
+1954,quarter-finals,Uruguay,England,4,2,St. Jakob Stadium,Basel
+1954,quarter-finals,Hungary,Brazil,4,2,Wankdorf Stadium,Bern
+1954,quarter-finals,West Germany,Yugoslavia,2,0,Charmilles Stadium,Geneva
+1954,semi-finals,Hungary,Uruguay,4,2,Stade Olympique de la Pontaise,Lausanne
+1954,semi-finals,West Germany,Austria,6,1,St. Jakob Stadium,Basel
+1954,third-place match,Austria,Uruguay,3,1,Hardturm Stadium,Zürich
+1954,final,West Germany,Hungary,3,2,Wankdorf Stadium,Bern
+1958,group stage,Sweden,Mexico,3,0,Råsunda Stadium,Solna
+1958,group stage,Argentina,West Germany,1,3,Malmö Stadion,Malmö
+1958,group stage,Northern Ireland,Czechoslovakia,1,0,Örjans Vall,Halmstad
+1958,group stage,France,Paraguay,7,3,Idrottsparken,Norrköping
+1958,group stage,Yugoslavia,Scotland,1,1,Arosvallen,Västerås
+1958,group stage,Hungary,Wales,1,1,Jernvallen,Sandviken
+1958,group stage,Brazil,Austria,3,0,Rimnersvallen,Uddevalla
+1958,group stage,Soviet Union,England,2,2,Ullevi,Gothenburg
+1958,group stage,Argentina,Northern Ireland,3,1,Örjans Vall,Halmstad
+1958,group stage,West Germany,Czechoslovakia,2,2,Olympia,Helsingborg
+1958,group stage,Paraguay,Scotland,3,2,Idrottsparken,Norrköping
+1958,group stage,Yugoslavia,France,3,2,Arosvallen,Västerås
+1958,group stage,Mexico,Wales,1,1,Råsunda Stadium,Solna
+1958,group stage,Brazil,England,0,0,Ullevi,Gothenburg
+1958,group stage,Soviet Union,Austria,2,0,Ryavallen,Borås
+1958,group stage,Sweden,Hungary,2,1,Råsunda Stadium,Solna
+1958,group stage,Sweden,Wales,0,0,Råsunda Stadium,Solna
+1958,group stage,Czechoslovakia,Argentina,6,1,Olympia,Helsingborg
+1958,group stage,West Germany,Northern Ireland,2,2,Malmö Stadion,Malmö
+1958,group stage,France,Scotland,2,1,Eyravallen,Örebro
+1958,group stage,Paraguay,Yugoslavia,3,3,Tunavallen,Eskilstuna
+1958,group stage,Hungary,Mexico,4,0,Jernvallen,Sandviken
+1958,group stage,Brazil,Soviet Union,2,0,Ullevi,Gothenburg
+1958,group stage,England,Austria,2,2,Ryavallen,Borås
+1958,group stage,Northern Ireland,Czechoslovakia,2,1,Malmö Stadion,Malmö
+1958,group stage,Wales,Hungary,2,1,Råsunda Stadium,Solna
+1958,group stage,Soviet Union,England,1,0,Ullevi,Gothenburg
+1958,quarter-finals,Brazil,Wales,1,0,Ullevi,Gothenburg
+1958,quarter-finals,France,Northern Ireland,4,0,Idrottsparken,Norrköping
+1958,quarter-finals,Sweden,Soviet Union,2,0,Råsunda Stadium,Solna
+1958,quarter-finals,West Germany,Yugoslavia,1,0,Malmö Stadion,Malmö
+1958,semi-finals,Brazil,France,5,2,Råsunda Stadium,Solna
+1958,semi-finals,Sweden,West Germany,3,1,Ullevi,Gothenburg
+1958,third-place match,France,West Germany,6,3,Ullevi,Gothenburg
+1958,final,Brazil,Sweden,5,2,Råsunda Stadium,Solna
+1962,group stage,Uruguay,Colombia,2,1,Estadio Carlos Dittborn,Arica
+1962,group stage,Chile,Switzerland,3,1,Estadio Nacional,Santiago
+1962,group stage,Brazil,Mexico,2,0,Estadio Sausalito,Viña del Mar
+1962,group stage,Argentina,Bulgaria,1,0,Estadio El Teniente,Rancagua
+1962,group stage,Soviet Union,Yugoslavia,2,0,Estadio Carlos Dittborn,Arica
+1962,group stage,West Germany,Italy,0,0,Estadio Nacional,Santiago
+1962,group stage,Czechoslovakia,Spain,1,0,Estadio Sausalito,Viña del Mar
+1962,group stage,Hungary,England,2,1,Estadio El Teniente,Rancagua
+1962,group stage,Yugoslavia,Uruguay,3,1,Estadio Carlos Dittborn,Arica
+1962,group stage,Chile,Italy,2,0,Estadio Nacional,Santiago
+1962,group stage,Brazil,Czechoslovakia,0,0,Estadio Sausalito,Viña del Mar
+1962,group stage,England,Argentina,3,1,Estadio El Teniente,Rancagua
+1962,group stage,Soviet Union,Colombia,4,4,Estadio Carlos Dittborn,Arica
+1962,group stage,West Germany,Switzerland,2,1,Estadio Nacional,Santiago
+1962,group stage,Spain,Mexico,1,0,Estadio Sausalito,Viña del Mar
+1962,group stage,Hungary,Bulgaria,6,1,Estadio El Teniente,Rancagua
+1962,group stage,Soviet Union,Uruguay,2,1,Estadio Carlos Dittborn,Arica
+1962,group stage,West Germany,Chile,2,0,Estadio Nacional,Santiago
+1962,group stage,Brazil,Spain,2,1,Estadio Sausalito,Viña del Mar
+1962,group stage,Hungary,Argentina,0,0,Estadio El Teniente,Rancagua
+1962,group stage,Yugoslavia,Colombia,5,0,Estadio Carlos Dittborn,Arica
+1962,group stage,Italy,Switzerland,3,0,Estadio Nacional,Santiago
+1962,group stage,Mexico,Czechoslovakia,3,1,Estadio Sausalito,Viña del Mar
+1962,group stage,England,Bulgaria,0,0,Estadio El Teniente,Rancagua
+1962,quarter-finals,Brazil,England,3,1,Estadio Sausalito,Viña del Mar
+1962,quarter-finals,Chile,Soviet Union,2,1,Estadio Carlos Dittborn,Arica
+1962,quarter-finals,Czechoslovakia,Hungary,1,0,Estadio El Teniente,Rancagua
+1962,quarter-finals,Yugoslavia,West Germany,1,0,Estadio Nacional,Santiago
+1962,semi-finals,Brazil,Chile,4,2,Estadio Nacional,Santiago
+1962,semi-finals,Czechoslovakia,Yugoslavia,3,1,Estadio Sausalito,Viña del Mar
+1962,third-place match,Chile,Yugoslavia,1,0,Estadio Nacional,Santiago
+1962,final,Brazil,Czechoslovakia,3,1,Estadio Nacional,Santiago
+1966,group stage,England,Uruguay,0,0,Wembley Stadium,London
+1966,group stage,West Germany,Switzerland,5,0,Hillsborough Stadium,Sheffield
+1966,group stage,Brazil,Bulgaria,2,0,Goodison Park,Liverpool
+1966,group stage,Soviet Union,North Korea,3,0,Ayresome Park,Middlesbrough
+1966,group stage,France,Mexico,1,1,Wembley Stadium,London
+1966,group stage,Argentina,Spain,2,1,Villa Park,Birmingham
+1966,group stage,Portugal,Hungary,3,1,Old Trafford,Manchester
+1966,group stage,Italy,Chile,2,0,Roker Park,Sunderland
+1966,group stage,Uruguay,France,2,1,White City Stadium,London
+1966,group stage,Spain,Switzerland,2,1,Hillsborough Stadium,Sheffield
+1966,group stage,Hungary,Brazil,3,1,Goodison Park,Liverpool
+1966,group stage,Chile,North Korea,1,1,Ayresome Park,Middlesbrough
+1966,group stage,Argentina,West Germany,0,0,Villa Park,Birmingham
+1966,group stage,Portugal,Bulgaria,3,0,Old Trafford,Manchester
+1966,group stage,Soviet Union,Italy,1,0,Roker Park,Sunderland
+1966,group stage,England,Mexico,2,0,Wembley Stadium,London
+1966,group stage,Mexico,Uruguay,0,0,Wembley Stadium,London
+1966,group stage,Argentina,Switzerland,2,0,Hillsborough Stadium,Sheffield
+1966,group stage,Portugal,Brazil,3,1,Goodison Park,Liverpool
+1966,group stage,North Korea,Italy,1,0,Ayresome Park,Middlesbrough
+1966,group stage,England,France,2,0,Wembley Stadium,London
+1966,group stage,West Germany,Spain,2,1,Villa Park,Birmingham
+1966,group stage,Hungary,Bulgaria,3,1,Old Trafford,Manchester
+1966,group stage,Soviet Union,Chile,2,1,Roker Park,Sunderland
+1966,quarter-finals,England,Argentina,1,0,Wembley Stadium,London
+1966,quarter-finals,Portugal,North Korea,5,3,Goodison Park,Liverpool
+1966,quarter-finals,Soviet Union,Hungary,2,1,Roker Park,Sunderland
+1966,quarter-finals,West Germany,Uruguay,4,0,Hillsborough Stadium,Sheffield
+1966,semi-finals,West Germany,Soviet Union,2,1,Goodison Park,Liverpool
+1966,semi-finals,England,Portugal,2,1,Wembley Stadium,London
+1966,third-place match,Portugal,Soviet Union,2,1,Wembley Stadium,London
+1966,final,England,West Germany,4,2,Wembley Stadium,London
+1970,group stage,Mexico,Soviet Union,0,0,Estadio Azteca,Mexico City
+1970,group stage,Uruguay,Israel,2,0,Estadio Cuauhtémoc,Puebla
+1970,group stage,England,Romania,1,0,Estadio Jalisco,Guadalajara
+1970,group stage,Peru,Bulgaria,3,2,Estadio Nou Camp,León
+1970,group stage,Belgium,El Salvador,3,0,Estadio Azteca,Mexico City
+1970,group stage,Italy,Sweden,1,0,La Bombonera,Toluca
+1970,group stage,Brazil,Czechoslovakia,4,1,Estadio Jalisco,Guadalajara
+1970,group stage,West Germany,Morocco,2,1,Estadio Nou Camp,León
+1970,group stage,Soviet Union,Belgium,4,1,Estadio Azteca,Mexico City
+1970,group stage,Uruguay,Italy,0,0,Estadio Cuauhtémoc,Puebla
+1970,group stage,Romania,Czechoslovakia,2,1,Estadio Jalisco,Guadalajara
+1970,group stage,Peru,Morocco,3,0,Estadio Nou Camp,León
+1970,group stage,Mexico,El Salvador,4,0,Estadio Azteca,Mexico City
+1970,group stage,Sweden,Israel,1,1,La Bombonera,Toluca
+1970,group stage,Brazil,England,1,0,Estadio Jalisco,Guadalajara
+1970,group stage,West Germany,Bulgaria,5,2,Estadio Nou Camp,León
+1970,group stage,Soviet Union,El Salvador,2,0,Estadio Azteca,Mexico City
+1970,group stage,Sweden,Uruguay,1,0,Estadio Cuauhtémoc,Puebla
+1970,group stage,Brazil,Romania,3,2,Estadio Jalisco,Guadalajara
+1970,group stage,West Germany,Peru,3,1,Estadio Nou Camp,León
+1970,group stage,Mexico,Belgium,1,0,Estadio Azteca,Mexico City
+1970,group stage,Italy,Israel,0,0,La Bombonera,Toluca
+1970,group stage,England,Czechoslovakia,1,0,Estadio Jalisco,Guadalajara
+1970,group stage,Bulgaria,Morocco,1,1,Estadio Nou Camp,León
+1970,quarter-finals,Brazil,Peru,4,2,Estadio Jalisco,Guadalajara
+1970,quarter-finals,Italy,Mexico,4,1,La Bombonera,Toluca
+1970,quarter-finals,Soviet Union,Uruguay,0,1,Estadio Azteca,Mexico City
+1970,quarter-finals,West Germany,England,3,2,Estadio Nou Camp,León
+1970,semi-finals,Brazil,Uruguay,3,1,Estadio Jalisco,Guadalajara
+1970,semi-finals,Italy,West Germany,4,3,Estadio Azteca,Mexico City
+1970,third-place match,West Germany,Uruguay,1,0,Estadio Azteca,Mexico City
+1970,final,Brazil,Italy,4,1,Estadio Azteca,Mexico City
+1974,group stage,Brazil,Yugoslavia,0,0,Waldstadion,Frankfurt
+1974,group stage,West Germany,Chile,1,0,Olympiastadion,Berlin
+1974,group stage,East Germany,Australia,2,0,Volksparkstadion,Hamburg
+1974,group stage,Zaire,Scotland,0,2,Westfalenstadion,Dortmund
+1974,group stage,Sweden,Bulgaria,0,0,Rheinstadion,Düsseldorf
+1974,group stage,Uruguay,Netherlands,0,2,Niedersachsenstadion,Hanover
+1974,group stage,Italy,Haiti,3,1,Olympiastadion,Munich
+1974,group stage,Poland,Argentina,3,2,Neckarstadion,Stuttgart
+1974,group stage,Australia,West Germany,0,3,Volksparkstadion,Hamburg
+1974,group stage,Chile,East Germany,1,1,Olympiastadion,Berlin
+1974,group stage,Scotland,Brazil,0,0,Waldstadion,Frankfurt
+1974,group stage,Yugoslavia,Zaire,9,0,Parkstadion,Gelsenkirchen
+1974,group stage,Bulgaria,Uruguay,1,1,Niedersachsenstadion,Hanover
+1974,group stage,Netherlands,Sweden,0,0,Westfalenstadion,Dortmund
+1974,group stage,Argentina,Italy,1,1,Neckarstadion,Stuttgart
+1974,group stage,Haiti,Poland,0,7,Olympiastadion,Munich
+1974,group stage,Australia,Chile,0,0,Olympiastadion,Berlin
+1974,group stage,Scotland,Yugoslavia,1,1,Waldstadion,Frankfurt
+1974,group stage,Zaire,Brazil,0,3,Parkstadion,Gelsenkirchen
+1974,group stage,East Germany,West Germany,1,0,Volksparkstadion,Hamburg
+1974,group stage,Bulgaria,Netherlands,1,4,Westfalenstadion,Dortmund
+1974,group stage,Sweden,Uruguay,3,0,Rheinstadion,Düsseldorf
+1974,group stage,Argentina,Haiti,4,1,Olympiastadion,Munich
+1974,group stage,Poland,Italy,2,1,Neckarstadion,Stuttgart
+1974,second group stage,Yugoslavia,West Germany,0,2,Rheinstadion,Düsseldorf
+1974,second group stage,Brazil,East Germany,1,0,Niedersachsenstadion,Hanover
+1974,second group stage,Netherlands,Argentina,4,0,Parkstadion,Gelsenkirchen
+1974,second group stage,Sweden,Poland,0,1,Neckarstadion,Stuttgart
+1974,second group stage,Argentina,Brazil,1,2,Niedersachsenstadion,Hanover
+1974,second group stage,East Germany,Netherlands,0,2,Parkstadion,Gelsenkirchen
+1974,second group stage,Poland,Yugoslavia,2,1,Waldstadion,Frankfurt
+1974,second group stage,West Germany,Sweden,4,2,Rheinstadion,Düsseldorf
+1974,second group stage,Poland,West Germany,0,1,Waldstadion,Frankfurt
+1974,second group stage,Argentina,East Germany,1,1,Parkstadion,Gelsenkirchen
+1974,second group stage,Netherlands,Brazil,2,0,Westfalenstadion,Dortmund
+1974,second group stage,Sweden,Yugoslavia,2,1,Rheinstadion,Düsseldorf
+1974,third-place match,Brazil,Poland,0,1,Olympiastadion,Munich
+1974,final,Netherlands,West Germany,1,2,Olympiastadion,Munich
+1978,group stage,West Germany,Poland,0,0,Estadio Monumental,Buenos Aires
+1978,group stage,Italy,France,2,1,Estadio José María Minella,Mar del Plata
+1978,group stage,Tunisia,Mexico,3,1,Estadio Gigante de Arroyito,Rosario
+1978,group stage,Argentina,Hungary,2,1,Estadio Monumental,Buenos Aires
+1978,group stage,Austria,Spain,2,1,Estadio José Amalfitani,Buenos Aires
+1978,group stage,Brazil,Sweden,1,1,Estadio José María Minella,Mar del Plata
+1978,group stage,Netherlands,Iran,3,0,Estadio Ciudad de Mendoza,Mendoza
+1978,group stage,Peru,Scotland,3,1,Estadio Chateau Carreras,Córdoba
+1978,group stage,Italy,Hungary,3,1,Estadio José María Minella,Mar del Plata
+1978,group stage,Poland,Tunisia,1,0,Estadio Gigante de Arroyito,Rosario
+1978,group stage,West Germany,Mexico,6,0,Estadio Chateau Carreras,Córdoba
+1978,group stage,Argentina,France,2,1,Estadio Monumental,Buenos Aires
+1978,group stage,Austria,Sweden,1,0,Estadio José Amalfitani,Buenos Aires
+1978,group stage,Brazil,Spain,0,0,Estadio José María Minella,Mar del Plata
+1978,group stage,Netherlands,Peru,0,0,Estadio Ciudad de Mendoza,Mendoza
+1978,group stage,Scotland,Iran,1,1,Estadio Chateau Carreras,Córdoba
+1978,group stage,France,Hungary,3,1,Estadio José María Minella,Mar del Plata
+1978,group stage,Poland,Mexico,3,1,Estadio Gigante de Arroyito,Rosario
+1978,group stage,West Germany,Tunisia,0,0,Estadio Chateau Carreras,Córdoba
+1978,group stage,Argentina,Italy,0,1,Estadio Monumental,Buenos Aires
+1978,group stage,Brazil,Austria,1,0,Estadio José María Minella,Mar del Plata
+1978,group stage,Spain,Sweden,1,0,Estadio José Amalfitani,Buenos Aires
+1978,group stage,Peru,Iran,4,1,Estadio Chateau Carreras,Córdoba
+1978,group stage,Scotland,Netherlands,3,2,Estadio Ciudad de Mendoza,Mendoza
+1978,second group stage,Austria,Netherlands,1,5,Estadio Chateau Carreras,Córdoba
+1978,second group stage,Italy,West Germany,0,0,Estadio Monumental,Buenos Aires
+1978,second group stage,Brazil,Peru,3,0,Estadio Ciudad de Mendoza,Mendoza
+1978,second group stage,Argentina,Poland,2,0,Estadio Gigante de Arroyito,Rosario
+1978,second group stage,Peru,Poland,0,1,Estadio Ciudad de Mendoza,Mendoza
+1978,second group stage,Italy,Austria,1,0,Estadio Monumental,Buenos Aires
+1978,second group stage,Netherlands,West Germany,2,2,Estadio Chateau Carreras,Córdoba
+1978,second group stage,Argentina,Brazil,0,0,Estadio Gigante de Arroyito,Rosario
+1978,second group stage,Austria,West Germany,3,2,Estadio Chateau Carreras,Córdoba
+1978,second group stage,Italy,Netherlands,1,2,Estadio Monumental,Buenos Aires
+1978,second group stage,Brazil,Poland,3,1,Estadio Ciudad de Mendoza,Mendoza
+1978,second group stage,Argentina,Peru,6,0,Estadio Gigante de Arroyito,Rosario
+1978,third-place match,Brazil,Italy,2,1,Estadio Monumental,Buenos Aires
+1978,final,Argentina,Netherlands,3,1,Estadio Monumental,Buenos Aires
+1982,group stage,Argentina,Belgium,0,1,Camp Nou,Barcelona
+1982,group stage,Italy,Poland,0,0,Balaídos,Vigo
+1982,group stage,Brazil,Soviet Union,2,1,Estadio Ramón Sánchez Pizjuán,Seville
+1982,group stage,Peru,Cameroon,0,0,Estadio Riazor,A Coruña
+1982,group stage,Hungary,El Salvador,10,1,Nuevo Estadio,Elche
+1982,group stage,Scotland,New Zealand,5,2,Estadio La Rosaleda,Málaga
+1982,group stage,West Germany,Algeria,1,2,Estadio El Molinón,Gijón
+1982,group stage,England,France,3,1,Estadio San Mamés,Bilbao
+1982,group stage,Spain,Honduras,1,1,Estadio Luis Casanova,Valencia
+1982,group stage,Chile,Austria,0,1,Estadio Carlos Tartiere,Oviedo
+1982,group stage,Czechoslovakia,Kuwait,1,1,Estadio José Zorrilla,Valladolid
+1982,group stage,Yugoslavia,Northern Ireland,0,0,Estadio La Romareda,Zaragoza
+1982,group stage,Italy,Peru,1,1,Balaídos,Vigo
+1982,group stage,Argentina,Hungary,4,1,Estadio José Rico Pérez,Alicante
+1982,group stage,Brazil,Scotland,4,1,Estadio Benito Villamarín,Seville
+1982,group stage,Poland,Cameroon,0,0,Estadio Riazor,A Coruña
+1982,group stage,Belgium,El Salvador,1,0,Nuevo Estadio,Elche
+1982,group stage,Soviet Union,New Zealand,3,0,Estadio La Rosaleda,Málaga
+1982,group stage,West Germany,Chile,4,1,Estadio El Molinón,Gijón
+1982,group stage,England,Czechoslovakia,2,0,Estadio San Mamés,Bilbao
+1982,group stage,Spain,Yugoslavia,2,1,Estadio Luis Casanova,Valencia
+1982,group stage,Algeria,Austria,0,2,Estadio Carlos Tartiere,Oviedo
+1982,group stage,France,Kuwait,4,1,Estadio José Zorrilla,Valladolid
+1982,group stage,Honduras,Northern Ireland,1,1,Estadio La Romareda,Zaragoza
+1982,group stage,Poland,Peru,5,1,Estadio Riazor,A Coruña
+1982,group stage,Belgium,Hungary,1,1,Nuevo Estadio,Elche
+1982,group stage,Soviet Union,Scotland,2,2,Estadio La Rosaleda,Málaga
+1982,group stage,Italy,Cameroon,1,1,Balaídos,Vigo
+1982,group stage,Argentina,El Salvador,2,0,Estadio José Rico Pérez,Alicante
+1982,group stage,Brazil,New Zealand,4,0,Estadio Benito Villamarín,Seville
+1982,group stage,Algeria,Chile,3,2,Estadio Carlos Tartiere,Oviedo
+1982,group stage,France,Czechoslovakia,1,1,Estadio José Zorrilla,Valladolid
+1982,group stage,Honduras,Yugoslavia,0,1,Estadio La Romareda,Zaragoza
+1982,group stage,West Germany,Austria,1,0,Estadio El Molinón,Gijón
+1982,group stage,England,Kuwait,1,0,Estadio San Mamés,Bilbao
+1982,group stage,Spain,Northern Ireland,0,1,Estadio Luis Casanova,Valencia
+1982,second group stage,Austria,France,0,1,Vicente Calderón,Madrid
+1982,second group stage,Poland,Belgium,3,0,Camp Nou,Barcelona
+1982,second group stage,Italy,Argentina,2,1,Estadi de Sarrià,Barcelona
+1982,second group stage,West Germany,England,0,0,Estadio Santiago Bernabéu,Madrid
+1982,second group stage,Austria,Northern Ireland,2,2,Vicente Calderón,Madrid
+1982,second group stage,Belgium,Soviet Union,0,1,Camp Nou,Barcelona
+1982,second group stage,Argentina,Brazil,1,3,Estadi de Sarrià,Barcelona
+1982,second group stage,West Germany,Spain,2,1,Estadio Santiago Bernabéu,Madrid
+1982,second group stage,France,Northern Ireland,4,1,Vicente Calderón,Madrid
+1982,second group stage,Soviet Union,Poland,0,0,Camp Nou,Barcelona
+1982,second group stage,Italy,Brazil,3,2,Estadi de Sarrià,Barcelona
+1982,second group stage,Spain,England,0,0,Estadio Santiago Bernabéu,Madrid
+1982,semi-finals,Poland,Italy,0,2,Camp Nou,Barcelona
+1982,semi-finals,West Germany,France,3,3,Estadio Ramón Sánchez Pizjuán,Seville
+1982,third-place match,Poland,France,3,2,Estadio José Rico Pérez,Alicante
+1982,final,Italy,West Germany,3,1,Estadio Santiago Bernabéu,Madrid
+1986,group stage,Bulgaria,Italy,1,1,Estadio Azteca,Mexico City
+1986,group stage,Spain,Brazil,0,1,Estadio Jalisco,Guadalajara
+1986,group stage,Canada,France,0,1,Estadio Nou Camp,León
+1986,group stage,Argentina,South Korea,3,1,Estadio Olímpico Universitario,Mexico City
+1986,group stage,Soviet Union,Hungary,6,0,Estadio Sergio León Chavez,Irapuato
+1986,group stage,Morocco,Poland,0,0,Estadio Universitario,Monterrey
+1986,group stage,Belgium,Mexico,1,2,Estadio Azteca,Mexico City
+1986,group stage,Algeria,Northern Ireland,1,1,Estadio Tres de Marzo,Guadalajara
+1986,group stage,Portugal,England,1,0,Estadio Tecnológico,Monterrey
+1986,group stage,Paraguay,Iraq,1,0,La Bombonera,Toluca
+1986,group stage,Uruguay,West Germany,1,1,Estadio La Corregidora,Querétaro
+1986,group stage,Scotland,Denmark,0,1,Estadio Neza 86,Nezahualcóyotl
+1986,group stage,Italy,Argentina,1,1,Estadio Cuauhtémoc,Puebla
+1986,group stage,France,Soviet Union,1,1,Estadio Nou Camp,León
+1986,group stage,South Korea,Bulgaria,1,1,Estadio Olímpico Universitario,Mexico City
+1986,group stage,Hungary,Canada,2,0,Estadio Sergio León Chavez,Irapuato
+1986,group stage,Brazil,Algeria,1,0,Estadio Jalisco,Guadalajara
+1986,group stage,England,Morocco,0,0,Estadio Tecnológico,Monterrey
+1986,group stage,Mexico,Paraguay,1,1,Estadio Azteca,Mexico City
+1986,group stage,Northern Ireland,Spain,1,2,Estadio Tres de Marzo,Guadalajara
+1986,group stage,Poland,Portugal,1,0,Estadio Universitario,Monterrey
+1986,group stage,Iraq,Belgium,1,2,La Bombonera,Toluca
+1986,group stage,West Germany,Scotland,2,1,Estadio La Corregidora,Querétaro
+1986,group stage,Denmark,Uruguay,6,1,Estadio Neza 86,Nezahualcóyotl
+1986,group stage,Hungary,France,0,3,Estadio Nou Camp,León
+1986,group stage,Soviet Union,Canada,2,0,Estadio Sergio León Chavez,Irapuato
+1986,group stage,Argentina,Bulgaria,2,0,Estadio Olímpico Universitario,Mexico City
+1986,group stage,South Korea,Italy,2,3,Estadio Cuauhtémoc,Puebla
+1986,group stage,Iraq,Mexico,0,1,Estadio Azteca,Mexico City
+1986,group stage,Paraguay,Belgium,2,2,La Bombonera,Toluca
+1986,group stage,England,Poland,3,0,Estadio Universitario,Monterrey
+1986,group stage,Portugal,Morocco,1,3,Estadio Tres de Marzo,Guadalajara
+1986,group stage,Algeria,Spain,0,3,Estadio Tecnológico,Monterrey
+1986,group stage,Northern Ireland,Brazil,0,3,Estadio Jalisco,Guadalajara
+1986,group stage,Denmark,West Germany,2,0,Estadio La Corregidora,Querétaro
+1986,group stage,Scotland,Uruguay,0,0,Estadio Neza 86,Nezahualcóyotl
+1986,round of 16,Mexico,Bulgaria,2,0,Estadio Azteca,Mexico City
+1986,round of 16,Soviet Union,Belgium,3,4,Estadio Nou Camp,León
+1986,round of 16,Brazil,Poland,4,0,Estadio Jalisco,Guadalajara
+1986,round of 16,Argentina,Uruguay,1,0,Estadio Cuauhtémoc,Puebla
+1986,round of 16,Italy,France,0,2,Estadio Olímpico Universitario,Mexico City
+1986,round of 16,Morocco,West Germany,0,1,Estadio Universitario,Monterrey
+1986,round of 16,England,Paraguay,3,0,Estadio Azteca,Mexico City
+1986,round of 16,Denmark,Spain,1,5,Estadio La Corregidora,Querétaro
+1986,quarter-finals,Brazil,France,1,1,Estadio Jalisco,Guadalajara
+1986,quarter-finals,West Germany,Mexico,0,0,Estadio Universitario,Monterrey
+1986,quarter-finals,Argentina,England,2,1,Estadio Azteca,Mexico City
+1986,quarter-finals,Spain,Belgium,1,1,Estadio Cuauhtémoc,Puebla
+1986,semi-finals,France,West Germany,0,2,Estadio Jalisco,Guadalajara
+1986,semi-finals,Argentina,Belgium,2,0,Estadio Azteca,Mexico City
+1986,third-place match,Belgium,France,2,4,Estadio Cuauhtémoc,Puebla
+1986,final,Argentina,West Germany,3,2,Estadio Azteca,Mexico City
+1990,group stage,Argentina,Cameroon,0,1,San Siro,Milan
+1990,group stage,Soviet Union,Romania,0,2,Stadio San Nicola,Bari
+1990,group stage,United Arab Emirates,Colombia,0,2,Stadio Renato Dall'Ara,Bologna
+1990,group stage,Italy,Austria,1,0,Stadio Olimpico,Rome
+1990,group stage,United States,Czechoslovakia,1,5,Stadio Comunale,Florence
+1990,group stage,Brazil,Sweden,2,1,Stadio delle Alpi,Turin
+1990,group stage,West Germany,Yugoslavia,4,1,San Siro,Milan
+1990,group stage,Costa Rica,Scotland,1,0,Stadio Luigi Ferraris,Genoa
+1990,group stage,England,Republic of Ireland,1,1,Stadio Sant'Elia,Cagliari
+1990,group stage,Belgium,South Korea,2,0,Stadio Marc'Antonio Bentegodi,Verona
+1990,group stage,Netherlands,Egypt,1,1,Stadio La Favorita,Palermo
+1990,group stage,Uruguay,Spain,0,0,Stadio Friuli,Udine
+1990,group stage,Argentina,Soviet Union,2,0,Stadio San Paolo,Naples
+1990,group stage,Cameroon,Romania,2,1,Stadio San Nicola,Bari
+1990,group stage,Yugoslavia,Colombia,1,0,Stadio Renato Dall'Ara,Bologna
+1990,group stage,Italy,United States,1,0,Stadio Olimpico,Rome
+1990,group stage,Austria,Czechoslovakia,0,1,Stadio Comunale,Florence
+1990,group stage,West Germany,United Arab Emirates,5,1,San Siro,Milan
+1990,group stage,Brazil,Costa Rica,1,0,Stadio delle Alpi,Turin
+1990,group stage,Sweden,Scotland,1,2,Stadio Luigi Ferraris,Genoa
+1990,group stage,England,Netherlands,0,0,Stadio Sant'Elia,Cagliari
+1990,group stage,Republic of Ireland,Egypt,0,0,Stadio La Favorita,Palermo
+1990,group stage,Belgium,Uruguay,3,1,Stadio Marc'Antonio Bentegodi,Verona
+1990,group stage,South Korea,Spain,1,3,Stadio Friuli,Udine
+1990,group stage,Argentina,Romania,1,1,Stadio San Paolo,Naples
+1990,group stage,Cameroon,Soviet Union,0,4,Stadio San Nicola,Bari
+1990,group stage,West Germany,Colombia,1,1,San Siro,Milan
+1990,group stage,Yugoslavia,United Arab Emirates,4,1,Stadio Renato Dall'Ara,Bologna
+1990,group stage,Austria,United States,2,1,Stadio Comunale,Florence
+1990,group stage,Italy,Czechoslovakia,2,0,Stadio Olimpico,Rome
+1990,group stage,Brazil,Scotland,1,0,Stadio delle Alpi,Turin
+1990,group stage,Sweden,Costa Rica,1,2,Stadio Luigi Ferraris,Genoa
+1990,group stage,Belgium,Spain,1,2,Stadio Marc'Antonio Bentegodi,Verona
+1990,group stage,South Korea,Uruguay,0,1,Stadio Friuli,Udine
+1990,group stage,England,Egypt,1,0,Stadio Sant'Elia,Cagliari
+1990,group stage,Republic of Ireland,Netherlands,1,1,Stadio La Favorita,Palermo
+1990,round of 16,Cameroon,Colombia,2,1,Stadio San Paolo,Naples
+1990,round of 16,Czechoslovakia,Costa Rica,4,1,Stadio San Nicola,Bari
+1990,round of 16,Brazil,Argentina,0,1,Stadio delle Alpi,Turin
+1990,round of 16,West Germany,Netherlands,2,1,San Siro,Milan
+1990,round of 16,Republic of Ireland,Romania,0,0,Stadio Luigi Ferraris,Genoa
+1990,round of 16,Italy,Uruguay,2,0,Stadio Olimpico,Rome
+1990,round of 16,Spain,Yugoslavia,1,2,Stadio Marc'Antonio Bentegodi,Verona
+1990,round of 16,England,Belgium,1,0,Stadio Renato Dall'Ara,Bologna
+1990,quarter-finals,Argentina,Yugoslavia,0,0,Stadio Comunale,Florence
+1990,quarter-finals,Republic of Ireland,Italy,0,1,Stadio Olimpico,Rome
+1990,quarter-finals,Czechoslovakia,West Germany,0,1,San Siro,Milan
+1990,quarter-finals,Cameroon,England,2,3,Stadio San Paolo,Naples
+1990,semi-finals,Argentina,Italy,1,1,Stadio San Paolo,Naples
+1990,semi-finals,West Germany,England,1,1,Stadio delle Alpi,Turin
+1990,third-place match,Italy,England,2,1,Stadio San Nicola,Bari
+1990,final,West Germany,Argentina,1,0,Stadio Olimpico,Rome
+1991,group stage,China,Norway,4,0,Tainhe Stadium,Guangzhou
+1991,group stage,Germany,Nigeria,4,0,Jiangmen Stadium,Jiangmen
+1991,group stage,Denmark,New Zealand,3,0,Tainhe Stadium,Guangzhou
+1991,group stage,Japan,Brazil,0,1,New Plaza Stadium,Foshan
+1991,group stage,Sweden,United States,2,3,Ying Tung Stadium,Guangzhou
+1991,group stage,Chinese Taipei,Italy,0,5,Jiangmen Stadium,Jiangmen
+1991,group stage,Norway,New Zealand,4,0,Gaungdong Provincial Stadium,Guangzhou
+1991,group stage,Italy,Nigeria,1,0,Zhongshan Stadium,Zhongshan
+1991,group stage,China,Denmark,2,2,Gaungdong Provincial Stadium,Guangzhou
+1991,group stage,Brazil,United States,0,5,Ying Tung Stadium,Guangzhou
+1991,group stage,Japan,Sweden,0,8,New Plaza Stadium,Foshan
+1991,group stage,Chinese Taipei,Germany,0,3,Zhongshan Stadium,Zhongshan
+1991,group stage,Brazil,Sweden,0,2,Ying Tung Stadium,Guangzhou
+1991,group stage,Japan,United States,0,3,New Plaza Stadium,Foshan
+1991,group stage,China,New Zealand,4,1,New Plaza Stadium,Foshan
+1991,group stage,Norway,Denmark,2,1,New Plaza Stadium,Foshan
+1991,group stage,Chinese Taipei,Nigeria,2,0,Jiangmen Stadium,Jiangmen
+1991,group stage,Italy,Germany,0,2,Zhongshan Stadium,Zhongshan
+1991,quarter-final,Denmark,Germany,1,2,Zhongshan Stadium,Zhongshan
+1991,quarter-final,China,Sweden,0,1,Tianhe Stadium,Guangzhou
+1991,quarter-final,Norway,Italy,3,2,Jiangmen Stadium,Jiangmen
+1991,quarter-final,United States,Chinese Taipei,7,0,New Plaza Stadium,Foshan
+1991,semi-final,Sweden,Norway,1,4,Ying Tung Stadium,Guangzhou
+1991,semi-final,Germany,United States,2,5,Guangdong Provincial Stadium,Guangzhou
+1991,third-place match,Sweden,Germany,4,0,Gaungdong Provincial Stadium,Guangzhou
+1991,final,Norway,United States,1,2,Tianhe Stadium,Guangzhou
+1994,group stage,Germany,Bolivia,1,0,Soldier Field,Chicago
+1994,group stage,Spain,South Korea,2,2,Cotton Bowl,Dallas
+1994,group stage,United States,Switzerland,1,1,Pontiac Silverdome,Pontiac
+1994,group stage,Italy,Republic of Ireland,0,1,Giants Stadium,East Rutherford
+1994,group stage,Colombia,Romania,1,3,Rose Bowl,Pasadena
+1994,group stage,Belgium,Morocco,1,0,Citrus Bowl,Orlando
+1994,group stage,Norway,Mexico,1,0,RFK Stadium,"Washington, D.C."
+1994,group stage,Cameroon,Sweden,2,2,Rose Bowl,Pasadena
+1994,group stage,Brazil,Russia,2,0,Stanford Stadium,Stanford
+1994,group stage,Netherlands,Saudi Arabia,2,1,RFK Stadium,"Washington, D.C."
+1994,group stage,Argentina,Greece,4,0,Foxboro Stadium,Foxborough
+1994,group stage,Germany,Spain,1,1,Soldier Field,Chicago
+1994,group stage,Nigeria,Bulgaria,3,0,Cotton Bowl,Dallas
+1994,group stage,Romania,Switzerland,1,4,Pontiac Silverdome,Pontiac
+1994,group stage,United States,Colombia,2,1,Rose Bowl,Pasadena
+1994,group stage,Italy,Norway,1,0,Giants Stadium,East Rutherford
+1994,group stage,South Korea,Bolivia,0,0,Foxboro Stadium,Foxborough
+1994,group stage,Mexico,Republic of Ireland,2,1,Citrus Bowl,Orlando
+1994,group stage,Brazil,Cameroon,3,0,Stanford Stadium,Stanford
+1994,group stage,Sweden,Russia,3,1,Pontiac Silverdome,Pontiac
+1994,group stage,Belgium,Netherlands,1,0,Citrus Bowl,Orlando
+1994,group stage,Saudi Arabia,Morocco,2,1,Giants Stadium,East Rutherford
+1994,group stage,Argentina,Nigeria,2,1,Foxboro Stadium,Foxborough
+1994,group stage,Bulgaria,Greece,4,0,Soldier Field,Chicago
+1994,group stage,Switzerland,Colombia,0,2,Stanford Stadium,Stanford
+1994,group stage,United States,Romania,0,1,Rose Bowl,Pasadena
+1994,group stage,Bolivia,Spain,1,3,Soldier Field,Chicago
+1994,group stage,Germany,South Korea,3,2,Cotton Bowl,Dallas
+1994,group stage,Italy,Mexico,1,1,RFK Stadium,"Washington, D.C."
+1994,group stage,Republic of Ireland,Norway,0,0,Giants Stadium,East Rutherford
+1994,group stage,Russia,Cameroon,6,1,Stanford Stadium,Stanford
+1994,group stage,Brazil,Sweden,1,1,Pontiac Silverdome,Pontiac
+1994,group stage,Belgium,Saudi Arabia,0,1,RFK Stadium,"Washington, D.C."
+1994,group stage,Morocco,Netherlands,1,2,Citrus Bowl,Orlando
+1994,group stage,Argentina,Bulgaria,0,2,Cotton Bowl,Dallas
+1994,group stage,Greece,Nigeria,0,2,Foxboro Stadium,Foxborough
+1994,round of 16,Germany,Belgium,3,2,Soldier Field,Chicago
+1994,round of 16,Spain,Switzerland,3,0,RFK Stadium,"Washington, D.C."
+1994,round of 16,Saudi Arabia,Sweden,1,3,Cotton Bowl,Dallas
+1994,round of 16,Romania,Argentina,3,2,Rose Bowl,Pasadena
+1994,round of 16,Netherlands,Republic of Ireland,2,0,Citrus Bowl,Orlando
+1994,round of 16,Brazil,United States,1,0,Stanford Stadium,Stanford
+1994,round of 16,Nigeria,Italy,1,2,Foxboro Stadium,Foxborough
+1994,round of 16,Mexico,Bulgaria,1,1,Giants Stadium,East Rutherford
+1994,quarter-finals,Italy,Spain,2,1,Foxboro Stadium,Foxborough
+1994,quarter-finals,Netherlands,Brazil,2,3,Cotton Bowl,Dallas
+1994,quarter-finals,Bulgaria,Germany,2,1,Giants Stadium,East Rutherford
+1994,quarter-finals,Romania,Sweden,2,2,Stanford Stadium,Stanford
+1994,semi-finals,Bulgaria,Italy,1,2,Giants Stadium,East Rutherford
+1994,semi-finals,Sweden,Brazil,0,1,Rose Bowl,Pasadena
+1994,third-place match,Sweden,Bulgaria,4,0,Rose Bowl,Pasadena
+1994,final,Brazil,Italy,0,0,Rose Bowl,Pasadena
+1995,group stage,Germany,Japan,1,0,Tingvalla IP,Karlstad
+1995,group stage,Sweden,Brazil,0,1,Olympia,Helsingborg
+1995,group stage,England,Canada,3,2,Olympia,Helsingborg
+1995,group stage,Norway,Nigeria,8,0,Tingvalla IP,Karlstad
+1995,group stage,Denmark,Australia,5,0,Arosvallen,Västerås
+1995,group stage,United States,China,3,3,Strömvallen,Gävle
+1995,group stage,Brazil,Japan,1,2,Tingvalla IP,Karlstad
+1995,group stage,Sweden,Germany,3,2,Olympia,Helsingborg
+1995,group stage,Nigeria,Canada,3,3,Olympia,Helsingborg
+1995,group stage,Norway,England,2,0,Tingvalla IP,Karlstad
+1995,group stage,China,Australia,4,2,Arosvallen,Västerås
+1995,group stage,United States,Denmark,2,0,Strömvallen,Gävle
+1995,group stage,Brazil,Germany,1,6,Tingvalla IP,Karlstad
+1995,group stage,Sweden,Japan,2,0,Arosvallen,Västerås
+1995,group stage,Nigeria,England,2,3,Tingvalla IP,Karlstad
+1995,group stage,Norway,Canada,7,0,Strömvallen,Gävle
+1995,group stage,China,Denmark,3,1,Arosvallen,Västerås
+1995,group stage,United States,Australia,4,1,Olympia,Helsingborg
+1995,quarter-final,Japan,United States,0,4,Strömvallen,Gävle
+1995,quarter-final,Norway,Denmark,3,1,Tingvalla IP,Karlstad
+1995,quarter-final,Germany,England,3,0,Arosvallen,Västerås
+1995,quarter-final,Sweden,China,1,1,Olympia,Helsingborg
+1995,semi-final,United States,Norway,0,1,Arosvallen,Västerås
+1995,semi-final,Germany,China,1,0,Olympia,Helsingborg
+1995,third-place match,China,United States,0,2,Strömvallen,Gävle
+1995,final,Germany,Norway,0,2,Råsunda Stadium,Solna
+1998,group stage,Brazil,Scotland,2,1,Stade de France,Saint-Denis
+1998,group stage,Morocco,Norway,2,2,Stade de la Mosson,Montpellier
+1998,group stage,Italy,Chile,2,2,Stade du Parc Lescure,Bordeaux
+1998,group stage,Cameroon,Austria,1,1,Stade de Toulouse,Toulouse
+1998,group stage,Paraguay,Bulgaria,0,0,Stade de la Mosson,Montpellier
+1998,group stage,Saudi Arabia,Denmark,0,1,Stade Félix-Bollaert,Lens
+1998,group stage,France,South Africa,3,0,Stade Vélodrome,Marseille
+1998,group stage,Spain,Nigeria,2,3,Stade de la Beaujoire,Nantes
+1998,group stage,South Korea,Mexico,1,3,Stade de Gerland,Lyon
+1998,group stage,Netherlands,Belgium,0,0,Stade de France,Saint-Denis
+1998,group stage,Argentina,Japan,1,0,Stade de Toulouse,Toulouse
+1998,group stage,Yugoslavia,Iran,1,0,Stade Geoffroy-Guichard,Saint-Étienne
+1998,group stage,Jamaica,Croatia,1,3,Stade Félix-Bollaert,Lens
+1998,group stage,England,Tunisia,2,0,Stade Vélodrome,Marseille
+1998,group stage,Romania,Colombia,1,0,Stade de Gerland,Lyon
+1998,group stage,Germany,United States,2,0,Parc des Princes,Paris
+1998,group stage,Scotland,Norway,1,1,Stade du Parc Lescure,Bordeaux
+1998,group stage,Brazil,Morocco,3,0,Stade de la Beaujoire,Nantes
+1998,group stage,Chile,Austria,1,1,Stade Geoffroy-Guichard,Saint-Étienne
+1998,group stage,Italy,Cameroon,3,0,Stade de la Mosson,Montpellier
+1998,group stage,South Africa,Denmark,1,1,Stade de Toulouse,Toulouse
+1998,group stage,France,Saudi Arabia,4,0,Stade de France,Saint-Denis
+1998,group stage,Nigeria,Bulgaria,1,0,Parc des Princes,Paris
+1998,group stage,Spain,Paraguay,0,0,Stade Geoffroy-Guichard,Saint-Étienne
+1998,group stage,Japan,Croatia,0,1,Stade de la Beaujoire,Nantes
+1998,group stage,Belgium,Mexico,2,2,Stade du Parc Lescure,Bordeaux
+1998,group stage,Netherlands,South Korea,5,0,Stade Vélodrome,Marseille
+1998,group stage,Germany,Yugoslavia,2,2,Stade Félix-Bollaert,Lens
+1998,group stage,Argentina,Jamaica,5,0,Parc des Princes,Paris
+1998,group stage,United States,Iran,1,2,Stade de Gerland,Lyon
+1998,group stage,Colombia,Tunisia,1,0,Stade de la Mosson,Montpellier
+1998,group stage,Romania,England,2,1,Stade de Toulouse,Toulouse
+1998,group stage,Chile,Cameroon,1,1,Stade de la Beaujoire,Nantes
+1998,group stage,Italy,Austria,2,1,Stade de France,Saint-Denis
+1998,group stage,Brazil,Norway,1,2,Stade Vélodrome,Marseille
+1998,group stage,Scotland,Morocco,0,3,Stade Geoffroy-Guichard,Saint-Étienne
+1998,group stage,France,Denmark,2,1,Stade de Gerland,Lyon
+1998,group stage,South Africa,Saudi Arabia,2,2,Stade du Parc Lescure,Bordeaux
+1998,group stage,Nigeria,Paraguay,1,3,Stade de Toulouse,Toulouse
+1998,group stage,Spain,Bulgaria,6,1,Stade Félix-Bollaert,Lens
+1998,group stage,Belgium,South Korea,1,1,Parc des Princes,Paris
+1998,group stage,Netherlands,Mexico,2,2,Stade Geoffroy-Guichard,Saint-Étienne
+1998,group stage,Germany,Iran,2,0,Stade de la Mosson,Montpellier
+1998,group stage,United States,Yugoslavia,0,1,Stade de la Beaujoire,Nantes
+1998,group stage,Argentina,Croatia,1,0,Stade du Parc Lescure,Bordeaux
+1998,group stage,Japan,Jamaica,1,2,Stade de Gerland,Lyon
+1998,group stage,Colombia,England,0,2,Stade Félix-Bollaert,Lens
+1998,group stage,Romania,Tunisia,1,1,Stade de France,Saint-Denis
+1998,round of 16,Italy,Norway,1,0,Stade Vélodrome,Marseille
+1998,round of 16,Brazil,Chile,4,1,Parc des Princes,Paris
+1998,round of 16,France,Paraguay,1,0,Stade Félix-Bollaert,Lens
+1998,round of 16,Nigeria,Denmark,1,4,Stade de France,Saint-Denis
+1998,round of 16,Germany,Mexico,2,1,Stade de la Mosson,Montpellier
+1998,round of 16,Netherlands,Yugoslavia,2,1,Stade de Toulouse,Toulouse
+1998,round of 16,Romania,Croatia,0,1,Stade du Parc Lescure,Bordeaux
+1998,round of 16,Argentina,England,2,2,Stade Geoffroy-Guichard,Saint-Étienne
+1998,quarter-finals,Italy,France,0,0,Stade de France,Saint-Denis
+1998,quarter-finals,Brazil,Denmark,3,2,Stade de la Beaujoire,Nantes
+1998,quarter-finals,Netherlands,Argentina,2,1,Stade Vélodrome,Marseille
+1998,quarter-finals,Germany,Croatia,0,3,Stade de Gerland,Lyon
+1998,semi-finals,Brazil,Netherlands,1,1,Stade Vélodrome,Marseille
+1998,semi-finals,France,Croatia,2,1,Stade de France,Saint-Denis
+1998,third-place match,Netherlands,Croatia,1,2,Parc des Princes,Paris
+1998,final,Brazil,France,0,3,Stade de France,Saint-Denis
+1999,group stage,United States,Denmark,3,0,Giants Stadium,New York City
+1999,group stage,China,Sweden,2,1,Spartan Stadium,San Jose
+1999,group stage,Brazil,Mexico,7,1,Giants Stadium,New York City
+1999,group stage,Japan,Canada,1,1,Spartan Stadium,San Jose
+1999,group stage,Germany,Italy,1,1,Rose Bowl,Los Angeles
+1999,group stage,Norway,Russia,2,1,Foxboro Stadium,Boston
+1999,group stage,North Korea,Nigeria,1,2,Rose Bowl,Los Angeles
+1999,group stage,Australia,Ghana,1,1,Foxboro Stadium,Boston
+1999,group stage,Japan,Russia,0,5,Civic Stadium,Portland
+1999,group stage,Norway,Canada,7,1,Jack Kent Cooke Stadium,"Washington, D.C."
+1999,group stage,Australia,Sweden,1,3,Jack Kent Cooke Stadium,"Washington, D.C."
+1999,group stage,China,Ghana,7,0,Civic Stadium,Portland
+1999,group stage,Brazil,Italy,2,0,Soldier Field,Chicago
+1999,group stage,North Korea,Denmark,3,1,Civic Stadium,Portland
+1999,group stage,United States,Nigeria,7,1,Soldier Field,Chicago
+1999,group stage,Germany,Mexico,6,0,Civic Stadium,Portland
+1999,group stage,Canada,Russia,1,4,Giants Stadium,New York City
+1999,group stage,China,Australia,3,1,Giants Stadium,New York City
+1999,group stage,Ghana,Sweden,0,2,Soldier Field,Chicago
+1999,group stage,Norway,Japan,4,0,Soldier Field,Chicago
+1999,group stage,Germany,Brazil,3,3,Jack Kent Cooke Stadium,"Washington, D.C."
+1999,group stage,Nigeria,Denmark,2,0,Jack Kent Cooke Stadium,"Washington, D.C."
+1999,group stage,Mexico,Italy,0,2,Foxboro Stadium,Boston
+1999,group stage,United States,North Korea,3,0,Foxboro Stadium,Boston
+1999,quarter-final,China,Russia,2,0,Spartan Stadium,San Jose
+1999,quarter-final,Norway,Sweden,3,1,Spartan Stadium,San Jose
+1999,quarter-final,United States,Germany,3,2,Jack Kent Cooke Stadium,"Washington, D.C."
+1999,quarter-final,Brazil,Nigeria,4,3,Jack Kent Cooke Stadium,"Washington, D.C."
+1999,semi-final,United States,Brazil,2,0,Stanford Stadium,San Fransisco
+1999,semi-final,Norway,China,0,5,Foxboro Stadium,Boston
+1999,third-place match,Brazil,Norway,0,0,Rose Bowl,Los Angeles
+1999,final,United States,China,0,0,Rose Bowl,Los Angeles
+2002,group stage,France,Senegal,0,1,Seoul World Cup Stadium,Seoul
+2002,group stage,Republic of Ireland,Cameroon,1,1,Niigata Stadium,Niigata
+2002,group stage,Uruguay,Denmark,1,2,Ulsan Munsu Football Stadium,Ulsan
+2002,group stage,Germany,Saudi Arabia,8,0,Sapporo Dome,Sapporo
+2002,group stage,Argentina,Nigeria,1,0,Kashima Stadium,Ibaraki
+2002,group stage,Paraguay,South Africa,2,2,Busan Asiad Stadium,Busan
+2002,group stage,England,Sweden,1,1,Saitama Stadium,Saitama
+2002,group stage,Spain,Slovenia,3,1,Gwangju World Cup Stadium,Gwangju
+2002,group stage,Croatia,Mexico,0,1,Niigata Stadium,Niigata
+2002,group stage,Brazil,Turkey,2,1,Ulsan Munsu Football Stadium,Ulsan
+2002,group stage,Italy,Ecuador,2,0,Sapporo Dome,Sapporo
+2002,group stage,China,Costa Rica,0,2,Gwangju World Cup Stadium,Gwangju
+2002,group stage,Japan,Belgium,2,2,Saitama Stadium,Saitama
+2002,group stage,South Korea,Poland,2,0,Busan Asiad Stadium,Busan
+2002,group stage,Russia,Tunisia,2,0,Kobe Wing Stadium,Kobe
+2002,group stage,United States,Portugal,3,2,Suwon World Cup Stadium,Suwon
+2002,group stage,Germany,Republic of Ireland,1,1,Kashima Stadium,Ibaraki
+2002,group stage,Denmark,Senegal,1,1,Daegu World Cup Stadium,Daegu
+2002,group stage,Cameroon,Saudi Arabia,1,0,Saitama Stadium,Saitama
+2002,group stage,France,Uruguay,0,0,Busan Asiad Stadium,Busan
+2002,group stage,Sweden,Nigeria,2,1,Kobe Wing Stadium,Kobe
+2002,group stage,Spain,Paraguay,3,1,Jeonju World Cup Stadium,Jeonju
+2002,group stage,Argentina,England,0,1,Sapporo Dome,Sapporo
+2002,group stage,South Africa,Slovenia,1,0,Daegu World Cup Stadium,Daegu
+2002,group stage,Italy,Croatia,1,2,Kashima Stadium,Ibaraki
+2002,group stage,Brazil,China,4,0,Jeju World Cup Stadium,Seogwipo
+2002,group stage,Mexico,Ecuador,2,1,Miyagi Stadium,Miyagi
+2002,group stage,Costa Rica,Turkey,1,1,Incheon Munhak Stadium,Incheon
+2002,group stage,Japan,Russia,1,0,International Stadium Yokohama,Yokohama
+2002,group stage,South Korea,United States,1,1,Daegu World Cup Stadium,Daegu
+2002,group stage,Tunisia,Belgium,1,1,Ōita Stadium,Ōita
+2002,group stage,Portugal,Poland,4,0,Jeonju World Cup Stadium,Jeonju
+2002,group stage,Denmark,France,2,0,Incheon Munhak Stadium,Incheon
+2002,group stage,Senegal,Uruguay,3,3,Suwon World Cup Stadium,Suwon
+2002,group stage,Cameroon,Germany,0,2,Shizuoka Stadium ECOPA,Shizuoka
+2002,group stage,Saudi Arabia,Republic of Ireland,0,3,International Stadium Yokohama,Yokohama
+2002,group stage,Nigeria,England,0,0,Nagai Stadium,Osaka
+2002,group stage,Sweden,Argentina,1,1,Miyagi Stadium,Miyagi
+2002,group stage,Slovenia,Paraguay,1,3,Jeju World Cup Stadium,Seogwipo
+2002,group stage,South Africa,Spain,2,3,Daejeon World Cup Stadium,Daejeon
+2002,group stage,Costa Rica,Brazil,2,5,Suwon World Cup Stadium,Suwon
+2002,group stage,Turkey,China,3,0,Seoul World Cup Stadium,Seoul
+2002,group stage,Ecuador,Croatia,1,0,International Stadium Yokohama,Yokohama
+2002,group stage,Mexico,Italy,1,1,Ōita Stadium,Ōita
+2002,group stage,Belgium,Russia,3,2,Shizuoka Stadium ECOPA,Shizuoka
+2002,group stage,Tunisia,Japan,0,2,Nagai Stadium,Osaka
+2002,group stage,Poland,United States,3,1,Daejeon World Cup Stadium,Daejeon
+2002,group stage,Portugal,South Korea,0,1,Incheon Munhak Stadium,Incheon
+2002,round of 16,Germany,Paraguay,1,0,Jeju World Cup Stadium,Seogwipo
+2002,round of 16,Denmark,England,0,3,Niigata Stadium,Niigata
+2002,round of 16,Sweden,Senegal,1,2,Ōita Stadium,Ōita
+2002,round of 16,Spain,Republic of Ireland,1,1,Suwon World Cup Stadium,Suwon
+2002,round of 16,Mexico,United States,0,2,Jeonju World Cup Stadium,Jeonju
+2002,round of 16,Brazil,Belgium,2,0,Kobe Wing Stadium,Kobe
+2002,round of 16,Japan,Turkey,0,1,Miyagi Stadium,Miyagi
+2002,round of 16,South Korea,Italy,2,1,Daejeon World Cup Stadium,Daejeon
+2002,quarter-finals,England,Brazil,1,2,Shizuoka Stadium ECOPA,Shizuoka
+2002,quarter-finals,Germany,United States,1,0,Ulsan Munsu Football Stadium,Ulsan
+2002,quarter-finals,Spain,South Korea,0,0,Gwangju World Cup Stadium,Gwangju
+2002,quarter-finals,Senegal,Turkey,0,1,Nagai Stadium,Osaka
+2002,semi-finals,Germany,South Korea,1,0,Seoul World Cup Stadium,Seoul
+2002,semi-finals,Brazil,Turkey,1,0,Saitama Stadium,Saitama
+2002,third-place match,South Korea,Turkey,2,3,Daegu World Cup Stadium,Daegu
+2002,final,Germany,Brazil,0,2,International Stadium Yokohama,Yokohama
+2003,group stage,Norway,France,2,0,Lincoln Financial Field,Philadelphia
+2003,group stage,Nigeria,North Korea,0,3,Lincoln Financial Field,Philadelphia
+2003,group stage,Germany,Canada,4,1,Columbus Crew Stadium,Columbus
+2003,group stage,Japan,Argentina,6,0,Columbus Crew Stadium,Columbus
+2003,group stage,United States,Sweden,3,1,RFK Stadium,"Washington, D.C."
+2003,group stage,Brazil,South Korea,3,0,RFK Stadium,"Washington, D.C."
+2003,group stage,Australia,Russia,1,2,Home Depot Center,Carson
+2003,group stage,China,Ghana,1,0,Home Depot Center,Carson
+2003,group stage,Norway,Brazil,1,4,RFK Stadium,"Washington, D.C."
+2003,group stage,Germany,Japan,3,0,Columbus Crew Stadium,Columbus
+2003,group stage,France,South Korea,1,0,RFK Stadium,"Washington, D.C."
+2003,group stage,Canada,Argentina,3,0,Columbus Crew Stadium,Columbus
+2003,group stage,Ghana,Russia,0,3,Home Depot Center,Carson
+2003,group stage,Sweden,North Korea,1,0,Lincoln Financial Field,Philadelphia
+2003,group stage,China,Australia,1,1,Home Depot Center,Carson
+2003,group stage,United States,Nigeria,5,0,Lincoln Financial Field,Philadelphia
+2003,group stage,France,Brazil,1,1,RFK Stadium,"Washington, D.C."
+2003,group stage,South Korea,Norway,1,7,Gillette Stadium,Foxborough
+2003,group stage,Argentina,Germany,1,6,RFK Stadium,"Washington, D.C."
+2003,group stage,Canada,Japan,3,1,Gillette Stadium,Foxborough
+2003,group stage,Sweden,Nigeria,3,0,Columbus Crew Stadium,Columbus
+2003,group stage,North Korea,United States,0,3,Columbus Crew Stadium,Columbus
+2003,group stage,Ghana,Australia,2,1,PGE Park,Portland
+2003,group stage,China,Russia,1,0,PGE Park,Portland
+2003,quarter-final,Brazil,Sweden,1,2,Gillette Stadium,Foxborough
+2003,quarter-final,United States,Norway,1,0,Gillette Stadium,Foxborough
+2003,quarter-final,Germany,Russia,7,1,PGE Park,Portland
+2003,quarter-final,China,Canada,0,1,PGE Park,Portland
+2003,semi-final,United States,Germany,0,3,PGE Park,Portland
+2003,semi-final,Sweden,Canada,2,1,PGE Park,Portland
+2003,third-place match,United States,Canada,3,1,Home Depot Center,Carson
+2003,final,Germany,Sweden,2,1,Home Depot Center,Carson
+2006,group stage,Germany,Costa Rica,4,2,Allianz Arena,Munich
+2006,group stage,Poland,Ecuador,0,2,Arena AufShalke,Gelsenkirchen
+2006,group stage,England,Paraguay,1,0,Waldstadion,Frankfurt
+2006,group stage,Trinidad and Tobago,Sweden,0,0,Westfalenstadion,Dortmund
+2006,group stage,Argentina,Ivory Coast,2,1,Volksparkstadion,Hamburg
+2006,group stage,Serbia and Montenegro,Netherlands,0,1,Zentralstadion,Leipzig
+2006,group stage,Mexico,Iran,3,1,Frankenstadion,Nuremberg
+2006,group stage,Angola,Portugal,0,1,RheinEnergieStadion,Cologne
+2006,group stage,Australia,Japan,3,1,Fritz-Walter-Stadion,Kaiserslautern
+2006,group stage,United States,Czech Republic,0,3,Arena AufShalke,Gelsenkirchen
+2006,group stage,Italy,Ghana,2,0,Niedersachsenstadion,Hanover
+2006,group stage,South Korea,Togo,2,1,Waldstadion,Frankfurt
+2006,group stage,France,Switzerland,0,0,Neckarstadion,Stuttgart
+2006,group stage,Brazil,Croatia,1,0,Olympiastadion,Berlin
+2006,group stage,Spain,Ukraine,4,0,Zentralstadion,Leipzig
+2006,group stage,Tunisia,Saudi Arabia,2,2,Allianz Arena,Munich
+2006,group stage,Germany,Poland,1,0,Westfalenstadion,Dortmund
+2006,group stage,Ecuador,Costa Rica,3,0,Volksparkstadion,Hamburg
+2006,group stage,England,Trinidad and Tobago,2,0,Frankenstadion,Nuremberg
+2006,group stage,Sweden,Paraguay,1,0,Olympiastadion,Berlin
+2006,group stage,Argentina,Serbia and Montenegro,6,0,Arena AufShalke,Gelsenkirchen
+2006,group stage,Netherlands,Ivory Coast,2,1,Neckarstadion,Stuttgart
+2006,group stage,Mexico,Angola,0,0,Niedersachsenstadion,Hanover
+2006,group stage,Portugal,Iran,2,0,Waldstadion,Frankfurt
+2006,group stage,Czech Republic,Ghana,0,2,RheinEnergieStadion,Cologne
+2006,group stage,Italy,United States,1,1,Fritz-Walter-Stadion,Kaiserslautern
+2006,group stage,Japan,Croatia,0,0,Frankenstadion,Nuremberg
+2006,group stage,Brazil,Australia,2,0,Allianz Arena,Munich
+2006,group stage,France,South Korea,1,1,Zentralstadion,Leipzig
+2006,group stage,Togo,Switzerland,0,2,Westfalenstadion,Dortmund
+2006,group stage,Saudi Arabia,Ukraine,0,4,Volksparkstadion,Hamburg
+2006,group stage,Spain,Tunisia,3,1,Neckarstadion,Stuttgart
+2006,group stage,Costa Rica,Poland,1,2,Niedersachsenstadion,Hanover
+2006,group stage,Ecuador,Germany,0,3,Olympiastadion,Berlin
+2006,group stage,Paraguay,Trinidad and Tobago,2,0,Fritz-Walter-Stadion,Kaiserslautern
+2006,group stage,Sweden,England,2,2,RheinEnergieStadion,Cologne
+2006,group stage,Iran,Angola,1,1,Zentralstadion,Leipzig
+2006,group stage,Portugal,Mexico,2,1,Arena AufShalke,Gelsenkirchen
+2006,group stage,Ivory Coast,Serbia and Montenegro,3,2,Allianz Arena,Munich
+2006,group stage,Netherlands,Argentina,0,0,Waldstadion,Frankfurt
+2006,group stage,Czech Republic,Italy,0,2,Volksparkstadion,Hamburg
+2006,group stage,Ghana,United States,2,1,Frankenstadion,Nuremberg
+2006,group stage,Croatia,Australia,2,2,Neckarstadion,Stuttgart
+2006,group stage,Japan,Brazil,1,4,Westfalenstadion,Dortmund
+2006,group stage,Saudi Arabia,Spain,0,1,Fritz-Walter-Stadion,Kaiserslautern
+2006,group stage,Ukraine,Tunisia,1,0,Olympiastadion,Berlin
+2006,group stage,Switzerland,South Korea,2,0,Niedersachsenstadion,Hanover
+2006,group stage,Togo,France,0,2,RheinEnergieStadion,Cologne
+2006,round of 16,Germany,Sweden,2,0,Allianz Arena,Munich
+2006,round of 16,Argentina,Mexico,2,1,Zentralstadion,Leipzig
+2006,round of 16,England,Ecuador,1,0,Neckarstadion,Stuttgart
+2006,round of 16,Portugal,Netherlands,1,0,Frankenstadion,Nuremberg
+2006,round of 16,Italy,Australia,1,0,Fritz-Walter-Stadion,Kaiserslautern
+2006,round of 16,Switzerland,Ukraine,0,0,RheinEnergieStadion,Cologne
+2006,round of 16,Brazil,Ghana,3,0,Westfalenstadion,Dortmund
+2006,round of 16,Spain,France,1,3,Niedersachsenstadion,Hanover
+2006,quarter-finals,Germany,Argentina,1,1,Olympiastadion,Berlin
+2006,quarter-finals,Italy,Ukraine,3,0,Volksparkstadion,Hamburg
+2006,quarter-finals,England,Portugal,0,0,Arena AufShalke,Gelsenkirchen
+2006,quarter-finals,Brazil,France,0,1,Waldstadion,Frankfurt
+2006,semi-finals,Germany,Italy,0,2,Westfalenstadion,Dortmund
+2006,semi-finals,Portugal,France,0,1,Allianz Arena,Munich
+2006,third-place match,Germany,Portugal,3,1,Neckarstadion,Stuttgart
+2006,final,Italy,France,1,1,Olympiastadion,Berlin
+2007,group stage,Germany,Argentina,11,0,Hongkou Football Stadium,Shanghai
+2007,group stage,United States,North Korea,2,2,Chengdu Sports Center,Chengdu
+2007,group stage,Japan,England,2,2,Hongkou Football Stadium,Shanghai
+2007,group stage,Nigeria,Sweden,1,1,Chengdu Sports Center,Chengdu
+2007,group stage,Ghana,Australia,1,4,Yellow Dragon Sports Center,Hangzhou
+2007,group stage,New Zealand,Brazil,0,5,Wuhan Sports Center,Wuhan
+2007,group stage,Norway,Canada,2,1,Yellow Dragon Sports Center,Hangzhou
+2007,group stage,China,Denmark,3,2,Wuhan Sports Center,Wuhan
+2007,group stage,Argentina,Japan,0,1,Hongkou Football Stadium,Shanghai
+2007,group stage,Sweden,United States,0,2,Chengdu Sports Center,Chengdu
+2007,group stage,England,Germany,0,0,Hongkou Football Stadium,Shanghai
+2007,group stage,North Korea,Nigeria,2,0,Chengdu Sports Center,Chengdu
+2007,group stage,Canada,Ghana,4,0,Yellow Dragon Sports Center,Hangzhou
+2007,group stage,Denmark,New Zealand,2,0,Wuhan Sports Center,Wuhan
+2007,group stage,Australia,Norway,1,1,Yellow Dragon Sports Center,Hangzhou
+2007,group stage,Brazil,China,4,0,Wuhan Sports Center,Wuhan
+2007,group stage,England,Argentina,6,1,Chengdu Sports Center,Chengdu
+2007,group stage,Germany,Japan,2,0,Yellow Dragon Sports Center,Hangzhou
+2007,group stage,Nigeria,United States,0,1,Hongkou Football Stadium,Shanghai
+2007,group stage,North Korea,Sweden,1,2,Tianjin Olympic Center,Tianjin
+2007,group stage,Australia,Canada,2,2,Yellow Dragon Sports Center,Hangzhou
+2007,group stage,Norway,Ghana,7,2,Yellow Dragon Sports Center,Hangzhou
+2007,group stage,Brazil,Denmark,1,0,Yellow Dragon Sports Center,Hangzhou
+2007,group stage,China,New Zealand,2,0,Tianjin Olympic Center,Tianjin
+2007,quarter-final,Germany,North Korea,3,0,Wuhan Sports Center,Wuhan
+2007,quarter-final,United States,England,3,0,Tianjin Olympic Center,Tianjin
+2007,quarter-final,Norway,China,1,0,Wuhan Sports Center,Wuhan
+2007,quarter-final,Brazil,Australia,3,2,Tianjin Olympic Center,Tianjin
+2007,semi-final,Germany,Norway,3,0,Tianjin Olympic Center,Tianjin
+2007,semi-final,United States,Brazil,0,4,Yellow Dragon Sports Center,Hangzhou
+2007,third-place match,Norway,United States,1,4,Hongkou Football Stadium,Shanghai
+2007,final,Germany,Brazil,2,0,Hongkou Football Stadium,Shanghai
+2010,group stage,South Africa,Mexico,1,1,Soccer City,Johannesburg
+2010,group stage,Uruguay,France,0,0,Cape Town Stadium,Cape Town
+2010,group stage,South Korea,Greece,2,0,Nelson Mandela Bay Stadium,Port Elizabeth
+2010,group stage,Argentina,Nigeria,1,0,Ellis Park Stadium,Johannesburg
+2010,group stage,England,United States,1,1,Royal Bafokeng Stadium,Rustenburg
+2010,group stage,Algeria,Slovenia,0,1,Peter Mokaba Stadium,Polokwane
+2010,group stage,Serbia,Ghana,0,1,Loftus Versfeld Stadium,Pretoria
+2010,group stage,Germany,Australia,4,0,Moses Mabhida Stadium,Durban
+2010,group stage,Netherlands,Denmark,2,0,Soccer City,Johannesburg
+2010,group stage,Japan,Cameroon,1,0,Free State Stadium,Bloemfontein
+2010,group stage,Italy,Paraguay,1,1,Cape Town Stadium,Cape Town
+2010,group stage,New Zealand,Slovakia,1,1,Royal Bafokeng Stadium,Rustenburg
+2010,group stage,Ivory Coast,Portugal,0,0,Nelson Mandela Bay Stadium,Port Elizabeth
+2010,group stage,Brazil,North Korea,2,1,Ellis Park Stadium,Johannesburg
+2010,group stage,Honduras,Chile,0,1,Mbombela Stadium,Nelspruit
+2010,group stage,Spain,Switzerland,0,1,Moses Mabhida Stadium,Durban
+2010,group stage,South Africa,Uruguay,0,3,Loftus Versfeld Stadium,Pretoria
+2010,group stage,Argentina,South Korea,4,1,Soccer City,Johannesburg
+2010,group stage,Greece,Nigeria,2,1,Free State Stadium,Bloemfontein
+2010,group stage,France,Mexico,0,2,Peter Mokaba Stadium,Polokwane
+2010,group stage,Germany,Serbia,0,1,Nelson Mandela Bay Stadium,Port Elizabeth
+2010,group stage,Slovenia,United States,2,2,Ellis Park Stadium,Johannesburg
+2010,group stage,England,Algeria,0,0,Cape Town Stadium,Cape Town
+2010,group stage,Netherlands,Japan,1,0,Moses Mabhida Stadium,Durban
+2010,group stage,Ghana,Australia,1,1,Royal Bafokeng Stadium,Rustenburg
+2010,group stage,Cameroon,Denmark,1,2,Loftus Versfeld Stadium,Pretoria
+2010,group stage,Slovakia,Paraguay,0,2,Free State Stadium,Bloemfontein
+2010,group stage,Italy,New Zealand,1,1,Mbombela Stadium,Nelspruit
+2010,group stage,Brazil,Ivory Coast,3,1,Soccer City,Johannesburg
+2010,group stage,Portugal,North Korea,7,0,Cape Town Stadium,Cape Town
+2010,group stage,Chile,Switzerland,1,0,Nelson Mandela Bay Stadium,Port Elizabeth
+2010,group stage,Spain,Honduras,2,0,Ellis Park Stadium,Johannesburg
+2010,group stage,France,South Africa,1,2,Free State Stadium,Bloemfontein
+2010,group stage,Mexico,Uruguay,0,1,Royal Bafokeng Stadium,Rustenburg
+2010,group stage,Greece,Argentina,0,2,Peter Mokaba Stadium,Polokwane
+2010,group stage,Nigeria,South Korea,2,2,Moses Mabhida Stadium,Durban
+2010,group stage,Slovenia,England,0,1,Nelson Mandela Bay Stadium,Port Elizabeth
+2010,group stage,United States,Algeria,1,0,Loftus Versfeld Stadium,Pretoria
+2010,group stage,Australia,Serbia,2,1,Mbombela Stadium,Nelspruit
+2010,group stage,Ghana,Germany,0,1,Soccer City,Johannesburg
+2010,group stage,Paraguay,New Zealand,0,0,Peter Mokaba Stadium,Polokwane
+2010,group stage,Slovakia,Italy,3,2,Ellis Park Stadium,Johannesburg
+2010,group stage,Cameroon,Netherlands,1,2,Cape Town Stadium,Cape Town
+2010,group stage,Denmark,Japan,1,3,Royal Bafokeng Stadium,Rustenburg
+2010,group stage,North Korea,Ivory Coast,0,3,Mbombela Stadium,Nelspruit
+2010,group stage,Portugal,Brazil,0,0,Moses Mabhida Stadium,Durban
+2010,group stage,Chile,Spain,1,2,Loftus Versfeld Stadium,Pretoria
+2010,group stage,Switzerland,Honduras,0,0,Free State Stadium,Bloemfontein
+2010,round of 16,Uruguay,South Korea,2,1,Nelson Mandela Bay Stadium,Port Elizabeth
+2010,round of 16,United States,Ghana,1,2,Royal Bafokeng Stadium,Rustenburg
+2010,round of 16,Germany,England,4,1,Free State Stadium,Bloemfontein
+2010,round of 16,Argentina,Mexico,3,1,Soccer City,Johannesburg
+2010,round of 16,Netherlands,Slovakia,2,1,Moses Mabhida Stadium,Durban
+2010,round of 16,Brazil,Chile,3,0,Ellis Park Stadium,Johannesburg
+2010,round of 16,Paraguay,Japan,0,0,Loftus Versfeld Stadium,Pretoria
+2010,round of 16,Spain,Portugal,1,0,Cape Town Stadium,Cape Town
+2010,quarter-finals,Netherlands,Brazil,2,1,Nelson Mandela Bay Stadium,Port Elizabeth
+2010,quarter-finals,Uruguay,Ghana,1,1,Soccer City,Johannesburg
+2010,quarter-finals,Argentina,Germany,0,4,Cape Town Stadium,Cape Town
+2010,quarter-finals,Paraguay,Spain,0,1,Ellis Park Stadium,Johannesburg
+2010,semi-finals,Uruguay,Netherlands,2,3,Cape Town Stadium,Cape Town
+2010,semi-finals,Germany,Spain,0,1,Moses Mabhida Stadium,Durban
+2010,third-place match,Uruguay,Germany,2,3,Nelson Mandela Bay Stadium,Port Elizabeth
+2010,final,Netherlands,Spain,0,1,Soccer City,Johannesburg
+2011,group stage,Nigeria,France,0,1,Rhein-Neckar-Arena,Sinsheim
+2011,group stage,Germany,Canada,2,1,Olympiastadion,Berlin
+2011,group stage,Japan,New Zealand,2,1,Ruhrstadion,Bochum
+2011,group stage,Mexico,England,1,1,Volkswagen Arena,Wolfsburg
+2011,group stage,Colombia,Sweden,0,1,BayArena,Leverkusen
+2011,group stage,United States,North Korea,2,0,Rudolf-Harbig-Stadion,Dresden
+2011,group stage,Norway,Equatorial Guinea,1,0,Impuls Arena,Augsburg
+2011,group stage,Brazil,Australia,1,0,Borussia-Park,Mönchengladbach
+2011,group stage,Canada,France,0,4,Ruhrstadion,Bochum
+2011,group stage,Germany,Nigeria,1,0,Waldstadion,Frankfurt
+2011,group stage,Japan,Mexico,4,0,BayArena,Leverkusen
+2011,group stage,New Zealand,England,1,2,Rudolf-Harbig-Stadion,Dresden
+2011,group stage,North Korea,Sweden,0,1,Impuls Arena,Augsburg
+2011,group stage,United States,Colombia,3,0,Rhein-Neckar-Arena,Sinsheim
+2011,group stage,Australia,Equatorial Guinea,3,2,Ruhrstadion,Bochum
+2011,group stage,Brazil,Norway,3,0,Volkswagen Arena,Wolfsburg
+2011,group stage,England,Japan,2,0,Impuls Arena,Augsburg
+2011,group stage,New Zealand,Mexico,2,2,Rhein-Neckar-Arena,Sinsheim
+2011,group stage,Canada,Nigeria,0,1,Rudolf-Harbig-Stadion,Dresden
+2011,group stage,France,Germany,2,4,Borussia-Park,Mönchengladbach
+2011,group stage,Australia,Norway,2,1,BayArena,Leverkusen
+2011,group stage,Equatorial Guinea,Brazil,0,3,Waldstadion,Frankfurt
+2011,group stage,North Korea,Colombia,0,0,Ruhrstadion,Bochum
+2011,group stage,Sweden,United States,2,1,Volkswagen Arena,Wolfsburg
+2011,quarter-final,England,France,1,1,BayArena,Leverkusen
+2011,quarter-final,Germany,Japan,0,1,Volkswagen Arena,Wolfsburg
+2011,quarter-final,Sweden,Australia,3,1,Impuls Arena,Augsburg
+2011,quarter-final,Brazil,United States,2,2,Rudolf-Harbig-Stadion,Dresden
+2011,semi-final,France,United States,1,3,Borussia-Park,Mönchengladbach
+2011,semi-final,Japan,Sweden,3,1,Waldstadion,Frankfurt
+2011,third-place match,Sweden,France,2,1,Rhein-Neckar-Arena,Sinsheim
+2011,final,Japan,United States,2,2,Waldstadion,Frankfurt
+2014,group stage,Brazil,Croatia,3,1,Arena Corinthians,São Paulo
+2014,group stage,Mexico,Cameroon,1,0,Arena das Dunas,Natal
+2014,group stage,Spain,Netherlands,1,5,Arena Fonte Nova,Salvador
+2014,group stage,Chile,Australia,3,1,Arena Pantanal,Cuiabá
+2014,group stage,Colombia,Greece,3,0,Estádio Mineirão,Belo Horizonte
+2014,group stage,Uruguay,Costa Rica,1,3,Estádio Castelão,Fortaleza
+2014,group stage,England,Italy,1,2,Arena da Amazônia,Manaus
+2014,group stage,Ivory Coast,Japan,2,1,Arena Pernambuco,Recife
+2014,group stage,Switzerland,Ecuador,2,1,Estádio Nacional,Brasília
+2014,group stage,France,Honduras,3,0,Estádio Beira-Rio,Porto Alegre
+2014,group stage,Argentina,Bosnia and Herzegovina,2,1,Estádio do Maracanã,Rio de Janeiro
+2014,group stage,Germany,Portugal,4,0,Arena Fonte Nova,Salvador
+2014,group stage,Iran,Nigeria,0,0,Arena da Baixada,Curitiba
+2014,group stage,Ghana,United States,1,2,Arena das Dunas,Natal
+2014,group stage,Belgium,Algeria,2,1,Estádio Mineirão,Belo Horizonte
+2014,group stage,Brazil,Mexico,0,0,Estádio Castelão,Fortaleza
+2014,group stage,Russia,South Korea,1,1,Arena Pantanal,Cuiabá
+2014,group stage,Australia,Netherlands,2,3,Estádio Beira-Rio,Porto Alegre
+2014,group stage,Spain,Chile,0,2,Estádio do Maracanã,Rio de Janeiro
+2014,group stage,Cameroon,Croatia,0,4,Arena da Amazônia,Manaus
+2014,group stage,Colombia,Ivory Coast,2,1,Estádio Nacional,Brasília
+2014,group stage,Uruguay,England,2,1,Arena Corinthians,São Paulo
+2014,group stage,Japan,Greece,0,0,Arena das Dunas,Natal
+2014,group stage,Italy,Costa Rica,0,1,Arena Pernambuco,Recife
+2014,group stage,Switzerland,France,2,5,Arena Fonte Nova,Salvador
+2014,group stage,Honduras,Ecuador,1,2,Arena da Baixada,Curitiba
+2014,group stage,Argentina,Iran,1,0,Estádio Mineirão,Belo Horizonte
+2014,group stage,Germany,Ghana,2,2,Estádio Castelão,Fortaleza
+2014,group stage,Nigeria,Bosnia and Herzegovina,1,0,Arena Pantanal,Cuiabá
+2014,group stage,Belgium,Russia,1,0,Estádio do Maracanã,Rio de Janeiro
+2014,group stage,South Korea,Algeria,2,4,Estádio Beira-Rio,Porto Alegre
+2014,group stage,United States,Portugal,2,2,Arena da Amazônia,Manaus
+2014,group stage,Australia,Spain,0,3,Arena da Baixada,Curitiba
+2014,group stage,Netherlands,Chile,2,0,Arena Corinthians,São Paulo
+2014,group stage,Cameroon,Brazil,1,4,Estádio Nacional,Brasília
+2014,group stage,Croatia,Mexico,1,3,Arena Pernambuco,Recife
+2014,group stage,Costa Rica,England,0,0,Estádio Mineirão,Belo Horizonte
+2014,group stage,Italy,Uruguay,0,1,Arena das Dunas,Natal
+2014,group stage,Japan,Colombia,1,4,Arena Pantanal,Cuiabá
+2014,group stage,Greece,Ivory Coast,2,1,Estádio Castelão,Fortaleza
+2014,group stage,Bosnia and Herzegovina,Iran,3,1,Arena Fonte Nova,Salvador
+2014,group stage,Nigeria,Argentina,2,3,Estádio Beira-Rio,Porto Alegre
+2014,group stage,Honduras,Switzerland,0,3,Arena da Amazônia,Manaus
+2014,group stage,Ecuador,France,0,0,Estádio do Maracanã,Rio de Janeiro
+2014,group stage,Portugal,Ghana,2,1,Estádio Nacional,Brasília
+2014,group stage,United States,Germany,0,1,Arena Pernambuco,Recife
+2014,group stage,Algeria,Russia,1,1,Arena da Baixada,Curitiba
+2014,group stage,South Korea,Belgium,0,1,Arena Corinthians,São Paulo
+2014,round of 16,Brazil,Chile,1,1,Estádio Mineirão,Belo Horizonte
+2014,round of 16,Colombia,Uruguay,2,0,Estádio do Maracanã,Rio de Janeiro
+2014,round of 16,Netherlands,Mexico,2,1,Estádio Castelão,Fortaleza
+2014,round of 16,Costa Rica,Greece,1,1,Arena Pernambuco,Recife
+2014,round of 16,France,Nigeria,2,0,Estádio Nacional,Brasília
+2014,round of 16,Germany,Algeria,2,1,Estádio Beira-Rio,Porto Alegre
+2014,round of 16,Argentina,Switzerland,1,0,Arena Corinthians,São Paulo
+2014,round of 16,Belgium,United States,2,1,Arena Fonte Nova,Salvador
+2014,quarter-finals,France,Germany,0,1,Estádio do Maracanã,Rio de Janeiro
+2014,quarter-finals,Brazil,Colombia,2,1,Estádio Castelão,Fortaleza
+2014,quarter-finals,Argentina,Belgium,1,0,Estádio Nacional,Brasília
+2014,quarter-finals,Netherlands,Costa Rica,0,0,Arena Fonte Nova,Salvador
+2014,semi-finals,Brazil,Germany,1,7,Estádio Mineirão,Belo Horizonte
+2014,semi-finals,Netherlands,Argentina,0,0,Arena Corinthians,São Paulo
+2014,third-place match,Brazil,Netherlands,0,3,Estádio Nacional,Brasília
+2014,final,Germany,Argentina,1,0,Estádio do Maracanã,Rio de Janeiro
+2015,group stage,Canada,China,1,0,Commonwealth Stadium,Edmonton
+2015,group stage,New Zealand,Netherlands,0,1,Commonwealth Stadium,Edmonton
+2015,group stage,Norway,Thailand,4,0,TD Place Stadium,Ottawa
+2015,group stage,Germany,Ivory Coast,10,0,TD Place Stadium,Ottawa
+2015,group stage,Sweden,Nigeria,3,3,Investors Group Field,Winnipeg
+2015,group stage,Cameroon,Ecuador,6,0,BC Place,Vancouver
+2015,group stage,United States,Australia,3,1,Investors Group Field,Winnipeg
+2015,group stage,Japan,Switzerland,1,0,BC Place,Vancouver
+2015,group stage,France,England,1,0,Moncton Stadium,Moncton
+2015,group stage,Spain,Costa Rica,1,1,Olympic Stadium,Montreal
+2015,group stage,Colombia,Mexico,1,1,Moncton Stadium,Moncton
+2015,group stage,Brazil,South Korea,2,0,Olympic Stadium,Montreal
+2015,group stage,China,Netherlands,1,0,Commonwealth Stadium,Edmonton
+2015,group stage,Germany,Norway,1,1,TD Place Stadium,Ottawa
+2015,group stage,Canada,New Zealand,0,0,Commonwealth Stadium,Edmonton
+2015,group stage,Ivory Coast,Thailand,2,3,TD Place Stadium,Ottawa
+2015,group stage,Switzerland,Ecuador,10,1,BC Place,Vancouver
+2015,group stage,Australia,Nigeria,2,0,Investors Group Field,Winnipeg
+2015,group stage,Japan,Cameroon,2,1,BC Place,Vancouver
+2015,group stage,United States,Sweden,0,0,Investors Group Field,Winnipeg
+2015,group stage,France,Colombia,0,2,Moncton Stadium,Moncton
+2015,group stage,Brazil,Spain,1,0,Olympic Stadium,Montreal
+2015,group stage,England,Mexico,2,1,Moncton Stadium,Moncton
+2015,group stage,South Korea,Costa Rica,2,2,Olympic Stadium,Montreal
+2015,group stage,Thailand,Germany,0,4,Investors Group Field,Winnipeg
+2015,group stage,Ivory Coast,Norway,1,3,Moncton Stadium,Moncton
+2015,group stage,China,New Zealand,2,2,Investors Group Field,Winnipeg
+2015,group stage,Netherlands,Canada,1,1,Olympic Stadium,Montreal
+2015,group stage,Switzerland,Cameroon,1,2,Commonwealth Stadium,Edmonton
+2015,group stage,Ecuador,Japan,0,1,Investors Group Field,Winnipeg
+2015,group stage,Nigeria,United States,0,1,BC Place,Vancouver
+2015,group stage,Australia,Sweden,1,1,Commonwealth Stadium,Edmonton
+2015,group stage,England,Colombia,2,1,Olympic Stadium,Montreal
+2015,group stage,Mexico,France,0,5,TD Place Stadium,Ottawa
+2015,group stage,South Korea,Spain,2,1,TD Place Stadium,Ottawa
+2015,group stage,Costa Rica,Brazil,0,1,Moncton Stadium,Moncton
+2015,round of 16,Germany,Sweden,4,1,TD Place Stadium,Ottawa
+2015,round of 16,China,Cameroon,1,0,Commonwealth Stadium,Edmonton
+2015,round of 16,Brazil,Australia,0,1,Moncton Stadium,Moncton
+2015,round of 16,France,South Korea,3,0,Olympic Stadium,Montreal
+2015,round of 16,Canada,Switzerland,1,0,BC Place,Vancouver
+2015,round of 16,Norway,England,1,2,TD Place Stadium,Ottawa
+2015,round of 16,United States,Colombia,2,0,Commonwealth Stadium,Edmonton
+2015,round of 16,Japan,Netherlands,2,1,BC Place,Vancouver
+2015,quarter-final,Germany,France,1,1,Olympic Stadium,Montreal
+2015,quarter-final,China,United States,0,1,TD Place Stadium,Ottawa
+2015,quarter-final,Australia,Japan,0,1,Commonwealth Stadium,Edmonton
+2015,quarter-final,England,Canada,2,1,BC Place,Vancouver
+2015,semi-final,United States,Germany,2,0,Olympic Stadium,Montreal
+2015,semi-final,Japan,England,2,1,Commonwealth Stadium,Edmonton
+2015,third-place match,Germany,England,0,1,Commonwealth Stadium,Edmonton
+2015,final,United States,Japan,5,2,BC Place,Vancouver
+2018,group stage,Russia,Saudi Arabia,5,0,Luzhniki Stadium,Moscow
+2018,group stage,Egypt,Uruguay,0,1,Central Stadium,Yekaterinburg
+2018,group stage,Morocco,Iran,0,1,Krestovsky Stadium,Saint Petersburg
+2018,group stage,Portugal,Spain,3,3,Fisht Olympic Stadium,Sochi
+2018,group stage,France,Australia,2,1,Kazan Arena,Kazan
+2018,group stage,Argentina,Iceland,1,1,Otkritie Arena,Moscow
+2018,group stage,Peru,Denmark,0,1,Mordovia Arena,Saransk
+2018,group stage,Croatia,Nigeria,2,0,Kaliningrad Stadium,Kaliningrad
+2018,group stage,Costa Rica,Serbia,0,1,Samara Arena,Samara
+2018,group stage,Germany,Mexico,0,1,Luzhniki Stadium,Moscow
+2018,group stage,Brazil,Switzerland,1,1,Rostov Arena,Rostov-on-Don
+2018,group stage,Sweden,South Korea,1,0,Nizhny Novgorod Stadium,Nizhny Novgorod
+2018,group stage,Belgium,Panama,3,0,Fisht Olympic Stadium,Sochi
+2018,group stage,Tunisia,England,1,2,Volgograd Arena,Volgograd
+2018,group stage,Colombia,Japan,1,2,Mordovia Arena,Saransk
+2018,group stage,Poland,Senegal,1,2,Otkritie Arena,Moscow
+2018,group stage,Russia,Egypt,3,1,Krestovsky Stadium,Saint Petersburg
+2018,group stage,Portugal,Morocco,1,0,Luzhniki Stadium,Moscow
+2018,group stage,Uruguay,Saudi Arabia,1,0,Rostov Arena,Rostov-on-Don
+2018,group stage,Iran,Spain,0,1,Kazan Arena,Kazan
+2018,group stage,Denmark,Australia,1,1,Samara Arena,Samara
+2018,group stage,France,Peru,1,0,Central Stadium,Yekaterinburg
+2018,group stage,Argentina,Croatia,0,3,Nizhny Novgorod Stadium,Nizhny Novgorod
+2018,group stage,Brazil,Costa Rica,2,0,Krestovsky Stadium,Saint Petersburg
+2018,group stage,Nigeria,Iceland,2,0,Volgograd Arena,Volgograd
+2018,group stage,Serbia,Switzerland,1,2,Kaliningrad Stadium,Kaliningrad
+2018,group stage,Belgium,Tunisia,5,2,Otkritie Arena,Moscow
+2018,group stage,South Korea,Mexico,1,2,Rostov Arena,Rostov-on-Don
+2018,group stage,Germany,Sweden,2,1,Fisht Olympic Stadium,Sochi
+2018,group stage,England,Panama,6,1,Nizhny Novgorod Stadium,Nizhny Novgorod
+2018,group stage,Japan,Senegal,2,2,Central Stadium,Yekaterinburg
+2018,group stage,Poland,Colombia,0,3,Kazan Arena,Kazan
+2018,group stage,Saudi Arabia,Egypt,2,1,Volgograd Arena,Volgograd
+2018,group stage,Uruguay,Russia,3,0,Samara Arena,Samara
+2018,group stage,Spain,Morocco,2,2,Kaliningrad Stadium,Kaliningrad
+2018,group stage,Iran,Portugal,1,1,Mordovia Arena,Saransk
+2018,group stage,Australia,Peru,0,2,Fisht Olympic Stadium,Sochi
+2018,group stage,Denmark,France,0,0,Luzhniki Stadium,Moscow
+2018,group stage,Iceland,Croatia,1,2,Rostov Arena,Rostov-on-Don
+2018,group stage,Nigeria,Argentina,1,2,Krestovsky Stadium,Saint Petersburg
+2018,group stage,South Korea,Germany,2,0,Kazan Arena,Kazan
+2018,group stage,Mexico,Sweden,0,3,Central Stadium,Yekaterinburg
+2018,group stage,Serbia,Brazil,0,2,Otkritie Arena,Moscow
+2018,group stage,Switzerland,Costa Rica,2,2,Nizhny Novgorod Stadium,Nizhny Novgorod
+2018,group stage,Japan,Poland,0,1,Volgograd Arena,Volgograd
+2018,group stage,Senegal,Colombia,0,1,Samara Arena,Samara
+2018,group stage,England,Belgium,0,1,Kaliningrad Stadium,Kaliningrad
+2018,group stage,Panama,Tunisia,1,2,Mordovia Arena,Saransk
+2018,round of 16,France,Argentina,4,3,Kazan Arena,Kazan
+2018,round of 16,Uruguay,Portugal,2,1,Fisht Olympic Stadium,Sochi
+2018,round of 16,Spain,Russia,1,1,Luzhniki Stadium,Moscow
+2018,round of 16,Croatia,Denmark,1,1,Nizhny Novgorod Stadium,Nizhny Novgorod
+2018,round of 16,Brazil,Mexico,2,0,Samara Arena,Samara
+2018,round of 16,Belgium,Japan,3,2,Rostov Arena,Rostov-on-Don
+2018,round of 16,Sweden,Switzerland,1,0,Krestovsky Stadium,Saint Petersburg
+2018,round of 16,Colombia,England,1,1,Otkritie Arena,Moscow
+2018,quarter-finals,Uruguay,France,0,2,Nizhny Novgorod Stadium,Nizhny Novgorod
+2018,quarter-finals,Brazil,Belgium,1,2,Kazan Arena,Kazan
+2018,quarter-finals,Sweden,England,0,2,Samara Arena,Samara
+2018,quarter-finals,Russia,Croatia,2,2,Fisht Olympic Stadium,Sochi
+2018,semi-finals,France,Belgium,1,0,Krestovsky Stadium,Saint Petersburg
+2018,semi-finals,Croatia,England,2,1,Luzhniki Stadium,Moscow
+2018,third-place match,Belgium,England,2,0,Krestovsky Stadium,Saint Petersburg
+2018,final,France,Croatia,4,2,Luzhniki Stadium,Moscow
+2019,group stage,France,South Korea,4,0,Parc des Princes,Paris
+2019,group stage,Germany,China,1,0,Roazhon Park,Rennes
+2019,group stage,Spain,South Africa,3,1,Stade Océane,Le Havre
+2019,group stage,Norway,Nigeria,3,0,Stade Auguste-Delaune,Reims
+2019,group stage,Australia,Italy,1,2,Stade du Hainaut,Valenciennes
+2019,group stage,Brazil,Jamaica,3,0,Stade des Alpes,Grenoble
+2019,group stage,England,Scotland,2,1,Allianz Riviera,Nice
+2019,group stage,Argentina,Japan,0,0,Parc des Princes,Paris
+2019,group stage,Canada,Cameroon,1,0,Stade de la Mosson,Montpellier
+2019,group stage,New Zealand,Netherlands,0,1,Stade Océane,Le Havre
+2019,group stage,Chile,Sweden,0,2,Roazhon Park,Rennes
+2019,group stage,United States,Thailand,13,0,Stade Auguste-Delaune,Reims
+2019,group stage,Nigeria,South Korea,2,0,Stade des Alpes,Grenoble
+2019,group stage,Germany,Spain,1,0,Stade du Hainaut,Valenciennes
+2019,group stage,France,Norway,2,1,Allianz Riviera,Nice
+2019,group stage,Australia,Brazil,3,2,Stade de la Mosson,Montpellier
+2019,group stage,South Africa,China,0,1,Parc des Princes,Paris
+2019,group stage,Japan,Scotland,2,1,Roazhon Park,Rennes
+2019,group stage,Jamaica,Italy,0,5,Stade Auguste-Delaune,Reims
+2019,group stage,England,Argentina,1,0,Stade Océane,Le Havre
+2019,group stage,Netherlands,Cameroon,3,1,Stade du Hainaut,Valenciennes
+2019,group stage,Canada,New Zealand,2,0,Stade des Alpes,Grenoble
+2019,group stage,Sweden,Thailand,5,1,Allianz Riviera,Nice
+2019,group stage,United States,Chile,3,0,Parc des Princes,Paris
+2019,group stage,China,Spain,0,0,Stade Océane,Le Havre
+2019,group stage,South Africa,Germany,0,4,Stade de la Mosson,Montpellier
+2019,group stage,Nigeria,France,0,1,Roazhon Park,Rennes
+2019,group stage,South Korea,Norway,1,2,Stade Auguste-Delaune,Reims
+2019,group stage,Italy,Brazil,0,1,Stade du Hainaut,Valenciennes
+2019,group stage,Jamaica,Australia,1,4,Stade des Alpes,Grenoble
+2019,group stage,Japan,England,0,2,Allianz Riviera,Nice
+2019,group stage,Scotland,Argentina,3,3,Parc des Princes,Paris
+2019,group stage,Cameroon,New Zealand,2,1,Stade de la Mosson,Montpellier
+2019,group stage,Netherlands,Canada,2,1,Stade Auguste-Delaune,Reims
+2019,group stage,Sweden,United States,0,2,Stade Océane,Le Havre
+2019,group stage,Thailand,Chile,0,2,Roazhon Park,Rennes
+2019,round of 16,Germany,Nigeria,3,0,Stade des Alpes,Grenoble
+2019,round of 16,Norway,Australia,1,1,Allianz Riviera,Nice
+2019,round of 16,England,Cameroon,3,0,Stade du Hainaut,Valenciennes
+2019,round of 16,France,Brazil,2,1,Stade Océane,Le Havre
+2019,round of 16,Spain,United States,1,2,Stade Auguste-Delaune,Reims
+2019,round of 16,Sweden,Canada,1,0,Parc des Princes,Paris
+2019,round of 16,Italy,China,2,0,Stade de la Mosson,Montpellier
+2019,round of 16,Netherlands,Japan,2,1,Roazhon Park,Rennes
+2019,quarter-final,Norway,England,0,3,Stade Océane,Le Havre
+2019,quarter-final,France,United States,1,2,Parc des Princes,Paris
+2019,quarter-final,Italy,Netherlands,0,2,Stade du Hainaut,Valenciennes
+2019,quarter-final,Germany,Sweden,1,2,Roazhon Park,Rennes
+2019,semi-final,England,United States,1,2,Parc Olympique Lyonnais,Lyon
+2019,semi-final,Netherlands,Sweden,1,0,Parc Olympique Lyonnais,Lyon
+2019,third-place match,England,Sweden,1,2,Allianz Riviera,Nice
+2019,final,United States,Netherlands,2,0,Parc Olympique Lyonnais,Lyon
+2022,group stage,Qatar,Ecuador,0,2,Al Bayt Stadium,Al Khor
+2022,group stage,England,Iran,6,2,Khalifa International Stadium,Al Rayyan
+2022,group stage,Senegal,Netherlands,0,2,Al Thumama Stadium,Doha
+2022,group stage,United States,Wales,1,1,Ahmad bin Ali Stadium,Al Rayyan
+2022,group stage,Argentina,Saudi Arabia,1,2,Lusail Stadium,Lusail
+2022,group stage,Denmark,Tunisia,0,0,Education City Stadium,Al Rayyan
+2022,group stage,Mexico,Poland,0,0,Stadium 974,Doha
+2022,group stage,France,Australia,4,1,Al Janoub Stadium,Al Wakrah
+2022,group stage,Morocco,Croatia,0,0,Al Bayt Stadium,Al Khor
+2022,group stage,Germany,Japan,1,2,Khalifa International Stadium,Al Rayyan
+2022,group stage,Spain,Costa Rica,7,0,Al Thumama Stadium,Doha
+2022,group stage,Belgium,Canada,1,0,Ahmad bin Ali Stadium,Al Rayyan
+2022,group stage,Switzerland,Cameroon,1,0,Al Janoub Stadium,Al Wakrah
+2022,group stage,Uruguay,South Korea,0,0,Education City Stadium,Al Rayyan
+2022,group stage,Portugal,Ghana,3,2,Stadium 974,Doha
+2022,group stage,Brazil,Serbia,2,0,Lusail Stadium,Lusail
+2022,group stage,Wales,Iran,0,2,Ahmad bin Ali Stadium,Al Rayyan
+2022,group stage,Qatar,Senegal,1,3,Al Thumama Stadium,Doha
+2022,group stage,Netherlands,Ecuador,1,1,Khalifa International Stadium,Al Rayyan
+2022,group stage,England,United States,0,0,Al Bayt Stadium,Al Khor
+2022,group stage,Tunisia,Australia,0,1,Al Janoub Stadium,Al Wakrah
+2022,group stage,Poland,Saudi Arabia,2,0,Education City Stadium,Al Rayyan
+2022,group stage,France,Denmark,2,1,Stadium 974,Doha
+2022,group stage,Argentina,Mexico,2,0,Lusail Stadium,Lusail
+2022,group stage,Japan,Costa Rica,0,1,Ahmad bin Ali Stadium,Al Rayyan
+2022,group stage,Belgium,Morocco,0,2,Al Thumama Stadium,Doha
+2022,group stage,Croatia,Canada,4,1,Khalifa International Stadium,Al Rayyan
+2022,group stage,Spain,Germany,1,1,Al Bayt Stadium,Al Khor
+2022,group stage,Cameroon,Serbia,3,3,Al Janoub Stadium,Al Wakrah
+2022,group stage,South Korea,Ghana,2,3,Education City Stadium,Al Rayyan
+2022,group stage,Brazil,Switzerland,1,0,Stadium 974,Doha
+2022,group stage,Portugal,Uruguay,2,0,Lusail Stadium,Lusail
+2022,group stage,Ecuador,Senegal,1,2,Khalifa International Stadium,Al Rayyan
+2022,group stage,Netherlands,Qatar,2,0,Al Bayt Stadium,Al Khor
+2022,group stage,Iran,United States,0,1,Al Thumama Stadium,Doha
+2022,group stage,Wales,England,0,3,Ahmad bin Ali Stadium,Al Rayyan
+2022,group stage,Australia,Denmark,1,0,Al Janoub Stadium,Al Wakrah
+2022,group stage,Tunisia,France,1,0,Education City Stadium,Al Rayyan
+2022,group stage,Poland,Argentina,0,2,Stadium 974,Doha
+2022,group stage,Saudi Arabia,Mexico,1,2,Lusail Stadium,Lusail
+2022,group stage,Canada,Morocco,1,2,Al Thumama Stadium,Doha
+2022,group stage,Croatia,Belgium,0,0,Ahmad bin Ali Stadium,Al Rayyan
+2022,group stage,Costa Rica,Germany,2,4,Al Bayt Stadium,Al Khor
+2022,group stage,Japan,Spain,2,1,Khalifa International Stadium,Al Rayyan
+2022,group stage,Ghana,Uruguay,0,2,Al Janoub Stadium,Al Wakrah
+2022,group stage,South Korea,Portugal,2,1,Education City Stadium,Al Rayyan
+2022,group stage,Cameroon,Brazil,1,0,Lusail Stadium,Lusail
+2022,group stage,Serbia,Switzerland,2,3,Stadium 974,Doha
+2022,round of 16,Netherlands,United States,3,1,Khalifa International Stadium,Al Rayyan
+2022,round of 16,Argentina,Australia,2,1,Ahmad bin Ali Stadium,Al Rayyan
+2022,round of 16,France,Poland,3,1,Al Thumama Stadium,Doha
+2022,round of 16,England,Senegal,3,0,Al Bayt Stadium,Al Khor
+2022,round of 16,Japan,Croatia,1,1,Al Janoub Stadium,Al Wakrah
+2022,round of 16,Brazil,South Korea,4,1,Stadium 974,Doha
+2022,round of 16,Morocco,Spain,0,0,Education City Stadium,Al Rayyan
+2022,round of 16,Portugal,Switzerland,6,1,Lusail Stadium,Lusail
+2022,quarter-finals,Croatia,Brazil,1,1,Education City Stadium,Al Rayyan
+2022,quarter-finals,Netherlands,Argentina,2,2,Lusail Stadium,Lusail
+2022,quarter-finals,Morocco,Portugal,1,0,Al Thumama Stadium,Doha
+2022,quarter-finals,England,France,1,2,Al Bayt Stadium,Al Khor
+2022,semi-finals,Argentina,Croatia,3,0,Lusail Stadium,Lusail
+2022,semi-finals,France,Morocco,2,0,Al Bayt Stadium,Al Khor
+2022,third-place match,Croatia,Morocco,2,1,Khalifa International Stadium,Al Rayyan
+2022,final,Argentina,France,3,3,Lusail Stadium,Lusail

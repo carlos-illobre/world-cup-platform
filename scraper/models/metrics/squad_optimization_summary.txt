@@ -1,0 +1,31 @@
+Generated optimal squads for 48 countries.
+Total players selected: 1248
+
+Example: Optimal Squad for Argentina
+             Player Pos_Category     Age              Club  adjusted_score
+     Valentín Barco           DF 21.8843        Strasbourg      -33.179310
+      Nahuel Molina           DF 28.1807   Atlético Madrid      -57.458297
+   Leonardo Balerdi           DF 27.3723         Marseille      -62.246865
+     Facundo Medina           DF 27.0383         Marseille      -75.752941
+   Nicolás Otamendi           DF 38.3258           Benfica      -88.753391
+  Lisandro Martínez           DF 28.3943    Manchester Utd     -120.694362
+  Exequiel Palacios           DF 27.6817        Leverkusen     -174.582589
+    Cristian Romero           DF 28.1232 Tottenham Hotspur     -178.380125
+ Nicolás Tagliafico           DF 33.7775              Lyon     -178.427848
+    Gonzalo Montiel           DF 29.4408       River Plate     -182.029854
+        Flaco López           FW 25.5120         Palmeiras       31.379222
+   Giuliano Simeone           FW 23.4791   Atlético Madrid       15.936915
+     Julián Álvarez           FW 26.3587   Atlético Madrid        9.639871
+      Thiago Almada           FW 25.1259   Atlético Madrid        9.375649
+    Rodrigo De Paul           FW 32.0493       Inter Miami       -0.777643
+   Nicolás González           FW 28.1807   Atlético Madrid      -40.477392
+       Lionel Messi           FW 38.9637       Inter Miami     -172.849812
+   Lautaro Martínez           FW 28.8022             Inter     -174.696926
+   Giovani Lo Celso           FW 30.1725        Real Betis     -179.434767
+     Gerónimo Rulli           GK 34.0602         Marseille        1.361923
+         Juan Musso           GK 32.0986   Atlético Madrid      -27.980638
+  Emiliano Martínez           GK 33.7721       Aston Villa      -77.634122
+        Nicolás Paz           MF 21.7556              Como       34.493415
+Alexis Mac Allister           MF 27.4627         Liverpool      -28.235378
+     Enzo Fernández           MF 25.3970           Chelsea      -56.698448
+    Leandro Paredes           MF 31.9500      Boca Juniors     -179.570190

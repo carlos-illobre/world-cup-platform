@@ -1,0 +1,13 @@
+Team Performance Prediction Results (5-Fold CV)
+
+--------------------------------------------------
+Model: Linear Regression
+RMSE: 2.2344
+MAE:  1.3845
+------------------------------
+Model: XGBoost Regressor
+RMSE: 0.8333
+MAE:  0.4090
+------------------------------
+
+XGBoost model saved to: c:\Users\carlo\Downloads\world_cup_scraper\unified_data\models\team_points_xgb_model.pkl

@@ -1,0 +1,17 @@
+ID,Stadium,City,Country,Capacity,Roof_Type,Surface,Latitude,Longitude,Elevation_m
+1,Mercedes-Benz Stadium,Atlanta,USA,71000,Retractable,Natural Grass (FIFA),33.755,-84.401,316.0
+2,Gillette Stadium,Foxborough,USA,65878,Open,Natural Grass (FIFA),42.09,-71.264,74.0
+3,AT&T Stadium,Arlington,USA,80000,Retractable,Natural Grass (FIFA),32.747,-97.093,198.0
+4,NRG Stadium,Houston,USA,72220,Retractable,Natural Grass (FIFA),29.684,-95.41,10.0
+5,Arrowhead Stadium,Kansas City,USA,76416,Open,Natural Grass (FIFA),39.048,-94.483,270.0
+6,SoFi Stadium,Inglewood,USA,70240,Fixed,Natural Grass (FIFA),33.953,-118.339,38.0
+7,Hard Rock Stadium,Miami Gardens,USA,64767,Open Canopy,Natural Grass (FIFA),25.958,-80.238,14.0
+8,MetLife Stadium,East Rutherford,USA,82500,Open,Natural Grass (FIFA),40.813,-74.074,7.0
+9,Lincoln Financial Field,Philadelphia,USA,69796,Open,Natural Grass (FIFA),39.9,-75.167,4.0
+10,Levi's Stadium,Santa Clara,USA,68500,Open,Natural Grass (FIFA),37.403,-121.969,22.0
+11,Lumen Field,Seattle,USA,69000,Open,Natural Grass (FIFA),47.595,-122.331,4.0
+12,Estadio Akron,Zapopan,Mexico,48071,Open Canopy,Natural Grass (FIFA),20.681,-103.462,1660.0
+13,Estadio Azteca,Mexico City,Mexico,83264,Open Canopy,Natural Grass (FIFA),19.302,-99.15,2242.0
+14,Estadio BBVA,Guadalupe,Mexico,53500,Open,Natural Grass (FIFA),25.669,-100.244,488.0
+15,BMO Field,Toronto,Canada,30000,Open Canopy,Natural Grass (FIFA),43.633,-79.418,82.0
+16,BC Place,Vancouver,Canada,54500,Retractable,Natural Grass (FIFA),49.276,-123.111,12.0

@@ -1,0 +1,9 @@
+Model: Logistic Regression (Baseline)
+Accuracy: 0.5575
+F1 Score: 0.4228
+
+Model: XGBoost
+Accuracy: 0.5133
+F1 Score: 0.4758
+
+Most Optimal Formation: 4-5-1 (Prob W: 0.9932)

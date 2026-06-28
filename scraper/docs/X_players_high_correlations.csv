@@ -1,0 +1,9 @@
+Feature 1,Feature 2,Correlation
+Playing Time_Starts,Starts_Mn/Start,0.9866895240469351
+Playing Time_Starts,Playing Time_Min,0.906044701131359
+Performance_Ast,Per 90 Minutes_Ast,0.9236275934983781
+Starts,Starts_Mn/Start,0.9866895240469351
+Starts,Playing Time_Min,0.906044701131359
+Starts_Mn/Start,Playing Time_Min,0.9266770428362469
+Per 90 Minutes_G+A,Per 90 Minutes_G-PK,0.9269098388982828
+Performance_Gls,Performance_G-PK,0.9743654271004085

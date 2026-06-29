@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, Database, Brain, Target, Layers, BarChart3 } from "lucide-react";
 import { CLUSTER_NAMES, CLUSTER_COLORS } from "../constants";
 import { fetchJson } from "@/shared/lib/apiClient";
+import { ClusterScatterChart } from "./ClusterScatterChart";
+import { ModelPlot } from "@/shared/components/ModelPlot";
 
 interface ModelInfoPanelProps {
   clusterAverages: any;
@@ -225,6 +227,16 @@ export function ModelInfoPanel({ clusterAverages, totalPlayers }: ModelInfoPanel
 
           {/* Feature Importance — fetched from real model */}
           <RealImpactFeatureImportance />
+
+          {/* SHAP Summary from training */}
+          <div className="bg-black/40 rounded-lg p-4 border border-neon-blue/20">
+            <h4 className="text-sm font-bold text-neon-blue mb-2">📊 SHAP Summary Plot — Del entrenamiento original</h4>
+            <p className="text-xs text-gray-400 mb-3">
+              Generado con <code className="text-neon-blue">shap.summary_plot()</code> durante el entrenamiento de <code className="text-neon-blue">model_player_impact.py</code>. 
+              Muestra cómo cada feature contribuye a la predicción del Impact Score.
+            </p>
+            <ModelPlot src="player_impact_shap_summary.png" alt="SHAP Summary Plot del modelo de Player Impact Score" caption="Beeswarm plot mostrando la contribución de cada feature al impact score predicho." />
+          </div>
         </div>
       </Section>
 
@@ -329,6 +341,30 @@ export function ModelInfoPanel({ clusterAverages, totalPlayers }: ModelInfoPanel
                   </div>
                 );
               })}
+            </div>
+          </div>
+
+          {/* Scatter plot — real PCA visualization of clusters */}
+          <div className="bg-black/40 rounded-lg p-4 border border-purple-500/20">
+            <ClusterScatterChart />
+          </div>
+
+          {/* PCA & t-SNE plots from original training */}
+          <div className="bg-black/40 rounded-lg p-4 border border-purple-500/20">
+            <h4 className="text-sm font-bold text-purple-300 mb-2">📊 Visualizaciones del Entrenamiento Original</h4>
+            <p className="text-xs text-gray-400 mb-4">
+              Generadas por <code className="text-purple-300">model_clustering.py</code> durante el entrenamiento. 
+              Muestran la misma reducción dimensional pero con todos los jugadores del dataset original (incluidos los imputados por minutos bajos).
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p className="text-xs font-bold text-gray-300 mb-2">PCA — Componentes Principales</p>
+                <ModelPlot src="player_clusters_pca.png" alt="Clusters de jugadores reducidos con PCA" caption="Reducción con PCA(n_components=2). Colores = perfiles de K-Means." />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-gray-300 mb-2">t-SNE — Distribución no lineal</p>
+                <ModelPlot src="player_clusters_tsne.png" alt="Clusters de jugadores reducidos con t-SNE" caption="t-SNE(perplexity=30) preserva vecindades locales mejor que PCA." />
+              </div>
             </div>
           </div>
         </div>

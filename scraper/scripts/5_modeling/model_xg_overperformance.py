@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
+import shutil
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 from sklearn.linear_model import LinearRegression
@@ -15,6 +16,13 @@ output_dir = r"c:\Users\carlo\Downloads\world_cup_scraper\unified_data\models"
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
+
+# Additional output directories for the platform
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PLATFORM_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'metrics')
+BACKEND_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_metrics')
+for d in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+    os.makedirs(d, exist_ok=True)
 
 # Load data
 df = pd.read_csv(data_path, low_memory=False)
@@ -99,5 +107,7 @@ for idx, row in top_10.iterrows():
 
 with open(os.path.join(output_dir, 'xg_overperformance_metrics.txt'), 'w', encoding='utf-8') as f:
     f.write(metrics_text)
+for dest_dir in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+    shutil.copy2(os.path.join(output_dir, 'xg_overperformance_metrics.txt'), os.path.join(dest_dir, 'xg_overperformance_metrics.txt'))
 
 print("Models and metrics saved successfully.")

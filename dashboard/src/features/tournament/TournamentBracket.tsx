@@ -175,9 +175,9 @@ export function TournamentBracket() {
               para predecir los puntos de cada selección. Los 2 primeros de cada grupo + los 8 mejores terceros avanzan.
             </p>
             <p className="text-sm text-gray-300 leading-relaxed mt-2">
-              <strong>Fase de Eliminación:</strong> Se usa <code className="text-purple-300">match_outcome_weather_xgb</code> (XGBoost Classifier, 14 features) 
+              <strong>Fase de Eliminación:</strong> Se usa <code className="text-purple-300">match_outcome_xgb</code> (XGBoost Classifier, 3 clases: Win/Draw/Loss) 
               de forma recursiva — el ganador predicho de cada partido alimenta el siguiente cruce del bracket.
-              Las condiciones climáticas se asumen neutras (25°C, sin lluvia) para los knockout.
+              Se usan exclusivamente features deportivas (ranking FIFA, forma reciente, historial H2H).
             </p>
             <p className="text-sm text-gray-400 leading-relaxed mt-2">
               <strong>Limitación:</strong> {data.model_info.note}

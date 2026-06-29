@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 import sys
+import shutil
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -161,6 +162,15 @@ def main():
     # 10. Generate Visualizations (PCA & t-SNE)
     os.makedirs(r'c:\Users\carlo\Downloads\world_cup_scraper\unified_data\models', exist_ok=True)
     
+    # Additional output directories for the platform
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+    PLATFORM_PLOTS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'shap_plots')
+    PLATFORM_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'metrics')
+    BACKEND_PLOTS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_plots')
+    BACKEND_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_metrics')
+    for d in [PLATFORM_PLOTS_DIR, PLATFORM_METRICS_DIR, BACKEND_PLOTS_DIR, BACKEND_METRICS_DIR]:
+        os.makedirs(d, exist_ok=True)
+    
     # Prepare all outfield features for visualization (including imputed ones)
     X_all_outfield = pd.concat([X_valid, X_low]).sort_index()
     X_all_scaled = scaler.transform(X_all_outfield)
@@ -185,7 +195,9 @@ def main():
     pca_plot_path = r'c:\Users\carlo\Downloads\world_cup_scraper\unified_data\models\player_clusters_pca.png'
     plt.savefig(pca_plot_path, dpi=150)
     plt.close()
-    print(f"Saved PCA plot to: {pca_plot_path}")
+    for dest_dir in [PLATFORM_PLOTS_DIR, BACKEND_PLOTS_DIR]:
+        shutil.copy2(pca_plot_path, os.path.join(dest_dir, 'player_clusters_pca.png'))
+    print(f"Saved PCA plot to: {pca_plot_path} (+ platform + backend)")
     
     # t-SNE Plot
     tsne = TSNE(n_components=2, perplexity=30, random_state=42)
@@ -206,7 +218,9 @@ def main():
     tsne_plot_path = r'c:\Users\carlo\Downloads\world_cup_scraper\unified_data\models\player_clusters_tsne.png'
     plt.savefig(tsne_plot_path, dpi=150)
     plt.close()
-    print(f"Saved t-SNE plot to: {tsne_plot_path}")
+    for dest_dir in [PLATFORM_PLOTS_DIR, BACKEND_PLOTS_DIR]:
+        shutil.copy2(tsne_plot_path, os.path.join(dest_dir, 'player_clusters_tsne.png'))
+    print(f"Saved t-SNE plot to: {tsne_plot_path} (+ platform + backend)")
     
     # 11. Write profiling metrics and description
     metrics_path = r'c:\Users\carlo\Downloads\world_cup_scraper\unified_data\models\clustering_metrics.txt'
@@ -241,6 +255,9 @@ def main():
         f.write("6. Atacante Eficiente / Creador: Mediapuntas o creadores de juego altamente resolutivos. Registran alta producción de goles y asistencias por minuto sin requerir alto volumen de disparos.\n")
 
     print(f"Saved clustering report to: {metrics_path}")
+    for dest_dir in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+        shutil.copy2(metrics_path, os.path.join(dest_dir, 'clustering_metrics.txt'))
+    print("  → Copied to platform + backend")
     
     # 12. Export clustered players dataset
     output_csv_path = r'c:\Users\carlo\Downloads\world_cup_scraper\unified_data\master_players_clustered.csv'

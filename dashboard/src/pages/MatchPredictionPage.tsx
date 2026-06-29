@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { AppHeader } from "@/shared/components/AppHeader";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
-import { Search } from "lucide-react";
+import { Search, Zap, FlaskConical } from "lucide-react";
+import { MatchModelPanel } from "@/features/match-prediction/components/MatchModelPanel";
 
 /**
  * Maps Spanish country names to the English names used in the backend data.
@@ -41,7 +42,7 @@ const COUNTRY_MAP: Record<string, string> = {
   "algeria": "Algeria", "belgium": "Belgium", "brazil": "Brazil",
   "croatia": "Croatia", "czechia": "Czechia", "egypt": "Egypt",
   "england": "England", "france": "France", "germany": "Germany",
-  "haiti": "Haiti", "japan": "Japan", "jordan": "Jordan",
+  "japan": "Japan", "jordan": "Jordan",
   "morocco": "Morocco", "netherlands": "Netherlands",
   "norway": "Norway", "spain": "Spain", "sweden": "Sweden",
   "switzerland": "Switzerland", "tunisia": "Tunisia",
@@ -200,6 +201,7 @@ function TeamAutocomplete({ label, value, onChange }: TeamAutocompleteProps) {
 
 // --- Main Page ---
 export function MatchPredictionPage() {
+  const [viewMode, setViewMode] = useState<"decision" | "model">("decision");
   const [teamA, setTeamA] = useState("Argentina");
   const [teamB, setTeamB] = useState("France");
   const [temp, setTemp] = useState(25);
@@ -209,7 +211,7 @@ export function MatchPredictionPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const predictMatch = async () => {
+  const predictMatch = async (tA: string, tB: string, t: number, p: number, w: number) => {
     setLoading(true);
     setError(null);
     try {
@@ -217,11 +219,11 @@ export function MatchPredictionPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          team_a: teamA,
-          team_b: teamB,
-          temp_max: temp,
-          precipitation: precip,
-          wind_speed: wind,
+          team_a: tA,
+          team_b: tB,
+          temp_max: t,
+          precipitation: p,
+          wind_speed: w,
         }),
       });
       if (!res.ok) {
@@ -238,20 +240,62 @@ export function MatchPredictionPage() {
     setLoading(false);
   };
 
+  // Auto-predict when any input changes (debounced 400ms to avoid spamming during slider drag)
+  useEffect(() => {
+    if (!teamA || !teamB) return;
+    const timer = setTimeout(() => {
+      predictMatch(teamA, teamB, temp, precip, wind);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [teamA, teamB, temp, precip, wind]);
+
   return (
     <main className="min-h-screen px-3 py-4 sm:px-6 sm:py-6 lg:px-8">
       <div className="mx-auto max-w-[1400px] space-y-5">
         <AppHeader />
 
+        {/* View Mode Toggle */}
+        <div className="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <h1 className="text-2xl font-display font-bold text-white">
+              {viewMode === "decision" ? "Predicción de Partidos — Simulador" : "Modelo & Validación — Predicción de Partidos"}
+            </h1>
+            <p className="text-sm text-gray-400 mt-1">
+              {viewMode === "decision"
+                ? "Simulador XGBoost que predice probabilidades de victoria usando datos reales de ranking FIFA, forma reciente, historial H2H y condiciones climáticas."
+                : "Documentación técnica del pipeline de predicción de partidos para estudiantes de Ciencia de Datos."
+              }
+            </p>
+          </div>
+          <div className="flex bg-black/40 p-1 rounded-xl border border-white/10 shrink-0">
+            <button
+              onClick={() => setViewMode("decision")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${viewMode === "decision" ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]" : "text-gray-300 hover:text-white"}`}
+            >
+              <Zap className="w-4 h-4" /> Panel de Decisión
+            </button>
+            <button
+              onClick={() => setViewMode("model")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${viewMode === "model" ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]" : "text-gray-300 hover:text-white"}`}
+            >
+              <FlaskConical className="w-4 h-4" /> Modelo & Validación
+            </button>
+          </div>
+        </div>
+
+        {/* Model & Validation View */}
+        {viewMode === "model" && <MatchModelPanel />}
+
+        {/* Decision View — Match Simulator */}
+        {viewMode === "decision" && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input Panel */}
           <div className="glass-panel p-6 rounded-2xl">
             <h2 className="text-2xl font-display font-bold text-white mb-2">
-              Predicción de Partidos
+              Simulador de Partidos
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              Simulador XGBoost que predice probabilidades de victoria usando datos reales 
-              de ranking FIFA, forma reciente, historial H2H y condiciones climáticas.
+              Seleccioná equipos y condiciones climáticas para obtener la predicción del modelo XGBoost.
             </p>
 
             <div className="space-y-5">
@@ -262,44 +306,73 @@ export function MatchPredictionPage() {
                 <label className="block text-gray-300 text-sm font-medium mb-2">
                   Condiciones Climáticas del Estadio
                 </label>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="space-y-4">
                   <div>
-                    <label className="block text-gray-300 text-xs mb-1">🌡️ Temp (°C)</label>
+                    <div className="flex justify-between items-center mb-1.5">
+                      <label className="text-gray-300 text-xs">🌡️ Temperatura (°C)</label>
+                      <span className="text-sm font-bold text-white bg-black/40 px-2 py-0.5 rounded">{temp}°C</span>
+                    </div>
                     <input
-                      type="number"
+                      type="range"
+                      min={-10}
+                      max={50}
+                      step={1}
                       value={temp}
                       onChange={(e) => setTemp(Number(e.target.value))}
-                      className="w-full bg-black/40 border border-white/10 rounded-lg py-2 px-3 text-white focus:ring-2 focus:ring-neon-blue outline-none"
+                      className="w-full h-2 bg-black/40 rounded-lg appearance-none cursor-pointer accent-neon-blue [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-neon-blue [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(0,240,255,0.5)]"
                     />
+                    <div className="flex justify-between text-[10px] text-gray-500 mt-0.5">
+                      <span>-10°C</span>
+                      <span>50°C</span>
+                    </div>
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-xs mb-1">🌧️ Lluvia (mm)</label>
+                    <div className="flex justify-between items-center mb-1.5">
+                      <label className="text-gray-300 text-xs">🌧️ Precipitación (mm)</label>
+                      <span className="text-sm font-bold text-white bg-black/40 px-2 py-0.5 rounded">{precip} mm</span>
+                    </div>
                     <input
-                      type="number"
+                      type="range"
+                      min={0}
+                      max={50}
+                      step={1}
                       value={precip}
                       onChange={(e) => setPrecip(Number(e.target.value))}
-                      className="w-full bg-black/40 border border-white/10 rounded-lg py-2 px-3 text-white focus:ring-2 focus:ring-neon-blue outline-none"
+                      className="w-full h-2 bg-black/40 rounded-lg appearance-none cursor-pointer accent-neon-blue [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-neon-blue [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(0,240,255,0.5)]"
                     />
+                    <div className="flex justify-between text-[10px] text-gray-500 mt-0.5">
+                      <span>0 mm</span>
+                      <span>50 mm</span>
+                    </div>
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-xs mb-1">💨 Viento (km/h)</label>
+                    <div className="flex justify-between items-center mb-1.5">
+                      <label className="text-gray-300 text-xs">💨 Viento (km/h)</label>
+                      <span className="text-sm font-bold text-white bg-black/40 px-2 py-0.5 rounded">{wind} km/h</span>
+                    </div>
                     <input
-                      type="number"
+                      type="range"
+                      min={0}
+                      max={100}
+                      step={1}
                       value={wind}
                       onChange={(e) => setWind(Number(e.target.value))}
-                      className="w-full bg-black/40 border border-white/10 rounded-lg py-2 px-3 text-white focus:ring-2 focus:ring-neon-blue outline-none"
+                      className="w-full h-2 bg-black/40 rounded-lg appearance-none cursor-pointer accent-neon-blue [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-neon-blue [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(0,240,255,0.5)]"
                     />
+                    <div className="flex justify-between text-[10px] text-gray-500 mt-0.5">
+                      <span>0 km/h</span>
+                      <span>100 km/h</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <button
-                onClick={predictMatch}
-                className="w-full bg-neon-blue text-black font-bold py-3 rounded-xl mt-2 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all disabled:opacity-50"
-                disabled={loading || !teamA || !teamB}
-              >
-                {loading ? "Calculando predicción..." : "⚡ Predecir Partido"}
-              </button>
+              {loading && (
+                <div className="flex items-center justify-center gap-2 py-2">
+                  <div className="w-4 h-4 border-2 border-neon-blue border-t-transparent rounded-full animate-spin" />
+                  <span className="text-sm text-gray-400">Actualizando predicción...</span>
+                </div>
+              )}
 
               {error && (
                 <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3 text-sm text-red-300">
@@ -528,6 +601,43 @@ export function MatchPredictionPage() {
                   </div>
                 </details>
               </div>
+
+              {/* Training plots for data science students */}
+              <div className="w-full mt-5 pt-4 border-t border-white/5">
+                <details className="text-sm text-gray-200">
+                  <summary className="cursor-pointer hover:text-white transition-colors font-bold text-base">
+                    📊 Gráficos del Entrenamiento (para estudiantes de Data Science)
+                  </summary>
+                  <div className="mt-3 space-y-4">
+                    <p className="text-xs text-gray-400">
+                      Generados automáticamente por <code className="text-purple-300">model_match_outcome.py</code> durante el entrenamiento.
+                      Accuracy XGBoost: 49.6%, F1-Macro: 0.41. Baseline (Random Forest): 58.3% accuracy.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-xs font-bold text-gray-300 mb-2">Confusion Matrix — XGBoost (3 clases)</p>
+                        <img
+                          src={`${INJURY_API_BASE_URL}/static/model_plots/match_outcome_confusion_matrix.png`}
+                          alt="Confusion Matrix del modelo de predicción de partidos"
+                          className="w-full rounded-lg border border-white/5"
+                          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                        />
+                        <p className="text-xs text-gray-500 mt-1 italic">Evaluado sobre 20% temporal más reciente. Muestra dificultad en predecir empates (D).</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-gray-300 mb-2">SHAP Summary — Predicción de Victoria</p>
+                        <img
+                          src={`${INJURY_API_BASE_URL}/static/model_plots/match_outcome_shap_summary_win.png`}
+                          alt="SHAP Summary Plot para predicción de victoria"
+                          className="w-full rounded-lg border border-white/5"
+                          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                        />
+                        <p className="text-xs text-gray-500 mt-1 italic">Features que más contribuyen a predecir victoria (clase W=2).</p>
+                      </div>
+                    </div>
+                  </div>
+                </details>
+              </div>
             </div>
           )}
 
@@ -544,6 +654,7 @@ export function MatchPredictionPage() {
             </div>
           )}
         </div>
+        )}
       </div>
     </main>
   );

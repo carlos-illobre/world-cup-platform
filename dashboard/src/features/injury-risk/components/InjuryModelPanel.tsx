@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronRight, Database, Brain, Beaker, Activity, AlertTriangle } from "lucide-react";
+import { ChevronDown, ChevronRight, Database, Brain, Beaker, Activity, AlertTriangle, Thermometer } from "lucide-react";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
+import { ModelPlot } from "@/shared/components/ModelPlot";
 
 function Section({ title, icon, children, defaultOpen = false }: { title: string; icon: React.ReactNode; children: React.ReactNode; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -130,6 +131,8 @@ export function InjuryModelPanel() {
             <span className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-lg">Construir 123 Features</span>
             <span className="text-gray-600">→</span>
             <span className="bg-red-500/20 text-red-300 px-3 py-1 rounded-lg">XGBoost predict_proba()</span>
+            <span className="text-gray-600">→</span>
+            <span className="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-lg">+ Modulación Climática</span>
             <span className="text-gray-600">→</span>
             <span className="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-lg">Diagnóstico</span>
           </div>
@@ -294,6 +297,60 @@ export function InjuryModelPanel() {
           {/* Real Risk Distribution */}
           <RiskDistribution />
 
+          {/* SHAP & Training Plots from real model training */}
+          <div className="bg-black/40 rounded-lg p-4 border border-red-500/20">
+            <h4 className="text-sm font-bold text-red-300 mb-2">📊 Gráficos del Entrenamiento — Generados por el script de modelado</h4>
+            <p className="text-xs text-gray-400 mb-4">
+              Estos gráficos se generaron automáticamente durante el entrenamiento del modelo con <code className="text-red-300">model_injury_risk.py</code>. 
+              Son los mismos que se usan en la documentación académica del proyecto.
+            </p>
+
+            <div className="space-y-4">
+              <div>
+                <p className="text-xs font-bold text-gray-300 mb-2">SHAP Summary Plot — Importancia global de features (Beeswarm)</p>
+                <p className="text-xs text-gray-500 mb-2">Cada punto es una muestra del test set. El color indica el valor de la feature (rojo = alto, azul = bajo). La posición horizontal muestra el impacto en la predicción.</p>
+                <ModelPlot src="injury_shap_summary.png" alt="SHAP Summary Plot del modelo de lesiones" caption="Generado con shap.summary_plot() sobre 1000 muestras del test set temporal." />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs font-bold text-gray-300 mb-2">Confusion Matrix (Test Set Temporal)</p>
+                  <ModelPlot src="injury_confusion_matrix.png" alt="Confusion Matrix del XGBoost de lesiones" caption="Evaluado sobre el 20% temporal más reciente (2025-2026)." />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-gray-300 mb-2">Curva ROC — XGBoost vs Logistic Regression</p>
+                  <ModelPlot src="injury_roc_curve.png" alt="Curva ROC comparando XGBoost y Logistic Regression" caption="AUC del modelo seleccionado vs baseline sobre el test temporal." />
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs font-bold text-gray-300 mb-2">Feature Importance (Top 25 por Gain)</p>
+                <ModelPlot src="injury_feature_importance.png" alt="Top 25 feature importances del modelo de lesiones" caption="Importancia por ganancia acumulada en los splits de XGBoost." />
+              </div>
+
+              <div>
+                <p className="text-xs font-bold text-gray-300 mb-2">Curvas de Supervivencia (Kaplan-Meier) — Por Posición y Edad</p>
+                <p className="text-xs text-gray-500 mb-2">Análisis de supervivencia con Cox Proportional Hazards (C-Index: 0.749). Muestra la probabilidad de permanecer sin lesión a lo largo del tiempo.</p>
+                <ModelPlot src="injury_survival_curves.png" alt="Curvas de supervivencia por posición y grupo de edad" caption="Estimación Kaplan-Meier sobre datos de entrenamiento temporal." />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <p className="text-xs font-bold text-gray-300 mb-2">SHAP Dependence: Dias_Baja</p>
+                  <ModelPlot src="injury_shap_dep_1_Dias_Baja.png" alt="SHAP dependence plot para Dias_Baja" caption="Mean |SHAP| = 0.2502" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-gray-300 mb-2">SHAP Dependence: injury_frequency</p>
+                  <ModelPlot src="injury_shap_dep_2_injury_frequency.png" alt="SHAP dependence plot para injury_frequency" caption="Mean |SHAP| = 0.1470" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-gray-300 mb-2">SHAP Dependence: injury_count_last_12m</p>
+                  <ModelPlot src="injury_shap_dep_3_injury_count_last_12m.png" alt="SHAP dependence plot para injury_count_last_12m" caption="Mean |SHAP| = 0.0811" />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-black/40 rounded-lg p-4 border border-white/5">
             <h4 className="text-sm font-bold text-gray-200 mb-3">Fallback: ¿qué pasa si el modelo falla?</h4>
             <p className="text-sm text-gray-400 leading-relaxed">
@@ -385,8 +442,109 @@ export function InjuryModelPanel() {
         </div>
       </Section>
 
-      {/* Section 6: How to read the dashboard */}
-      <Section title="Paso 6 — ¿Cómo leer el Panel de Decisión?" icon={<Activity className="w-5 h-5 text-neon-blue" />}>
+      {/* Section 6: Climate Modulation */}
+      <Section title="Paso 6 — Modulación Climática: ¿cómo el clima del estadio afecta la predicción?" icon={<Thermometer className="w-5 h-5 text-orange-400" />}>
+        <div className="space-y-4">
+          <p className="text-base text-gray-300 leading-relaxed">
+            Cuando se selecciona un partido, el sistema obtiene la <strong className="text-white">temperatura, humedad y altitud</strong> del 
+            estadio (via Open-Meteo API) y calcula <strong className="text-white">12 features de interacción</strong> entre las condiciones 
+            climáticas y el perfil de vulnerabilidad del jugador. Estas features ajustan el score base del XGBoost.
+          </p>
+
+          <div className="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+            <h4 className="text-sm font-bold text-orange-300 mb-3">Arquitectura: Modelo Base + Modulación</h4>
+            <div className="bg-black/60 rounded-lg p-4 border border-white/5 font-mono text-xs text-gray-300 space-y-1">
+              <p><span className="text-green-400">PASO 1:</span> XGBoost(123 features) → score_base (ej: 42%)</p>
+              <p><span className="text-orange-400">PASO 2:</span> compute_climate_features(jugador, estadio) → ajuste (ej: +14.2 pts)</p>
+              <p><span className="text-red-400">SALIDA:</span> score_final = min(score_base + ajuste, 99%) → 56.2%</p>
+              <p></p>
+              <p className="text-gray-500">// El ajuste está acotado a un máximo de +25 puntos</p>
+              <p className="text-gray-500">// Si no hay datos climáticos (sin partido seleccionado), el ajuste es 0</p>
+            </div>
+          </div>
+
+          <div className="bg-black/40 rounded-lg p-4 border border-white/5">
+            <h4 className="text-sm font-bold text-gray-200 mb-3">¿Por qué modulación y no un modelo unificado?</h4>
+            <p className="text-sm text-gray-400 leading-relaxed mb-3">
+              Se realizó un <strong className="text-white">experimento formal de reentrenamiento</strong> (script <code className="text-orange-300">model_injury_climate.py</code>) 
+              incorporando las 12 features climáticas directamente al XGBoost (135 features totales):
+            </p>
+            <div className="grid grid-cols-3 gap-3 mb-3">
+              <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
+                <p className="text-xs text-gray-500">AUC-ROC sin clima</p>
+                <p className="text-lg font-bold text-green-400">0.6272</p>
+              </div>
+              <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
+                <p className="text-xs text-gray-500">AUC-ROC con clima</p>
+                <p className="text-lg font-bold text-red-400">0.6221</p>
+              </div>
+              <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
+                <p className="text-xs text-gray-500">Diferencia</p>
+                <p className="text-lg font-bold text-yellow-400">-0.51%</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-400 leading-relaxed">
+              <strong className="text-white">El modelo con clima fue peor.</strong> La causa: el dataset histórico de lesiones no registra 
+              la temperatura/humedad real al momento de cada lesión. Sin esa "ground truth", el modelo no puede aprender la relación 
+              clima → lesión. Por eso se usa modulación con pesos derivados de <strong className="text-white">literatura médica deportiva</strong> (Ekstrand et al., 2011; 
+              FIFA Medical Report Qatar 2022).
+            </p>
+          </div>
+
+          <div className="bg-black/40 rounded-lg p-4 border border-white/5">
+            <h4 className="text-sm font-bold text-gray-200 mb-3">Las 12 features de interacción clima × jugador</h4>
+            <p className="text-xs text-gray-500 mb-3">No son datos crudos de temperatura. Son <em>interacciones</em> que capturan el mecanismo biológico:</p>
+            <div className="space-y-2">
+              {[
+                { feat: "heat_stress", desc: "Índice de calor no lineal (activa >25°C, escala con humedad)", when: "Houston, Miami, Arlington" },
+                { feat: "heat × recurrent", desc: "Calor × lesión muscular previa = músculo deshidratado se rompe", when: "Jugador con hamstring + calor" },
+                { feat: "heat × injury_freq", desc: "Calor × alta frecuencia de lesiones = riesgo compuesto", when: "Jugador lesionable en verano" },
+                { feat: "altitude_factor", desc: "O₂ reducido sobre 1000m → fatiga muscular", when: "Ciudad de México (2240m), Guadalajara (1566m)" },
+                { feat: "altitude × age", desc: "Altitud + edad >28 = VO₂max decae → mayor riesgo", when: "Jugador veterano en CDMX" },
+                { feat: "temp_differential", desc: "|temp_estadio - temp_habitual_país| → shock de adaptación", when: "Inglés (11°C) en Houston (34°C)" },
+                { feat: "adaptation_stress", desc: "Score compuesto: cuán diferente es el ambiente del habitual", when: "Cualquier equipo en ambiente extraño" },
+                { feat: "dehydration_risk", desc: "Calor × humedad × minutos jugados → proxy deshidratación", when: "Solo activa con temp >25°C" },
+              ].map(({ feat, desc, when }) => (
+                <div key={feat} className="bg-black/60 rounded-lg px-3 py-2 border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1">
+                  <span className="text-xs font-mono text-orange-300 w-44 shrink-0">{feat}</span>
+                  <span className="text-xs text-gray-400 flex-1">{desc}</span>
+                  <span className="text-[10px] text-gray-600 italic">{when}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+            <h4 className="text-sm font-bold text-orange-300 mb-3">Ejemplo concreto</h4>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              <strong className="text-white">Jugador:</strong> Inglés, 33 años, 2 lesiones musculares recurrentes, injury_freq = 2.1<br />
+              <strong className="text-white">Estadio:</strong> NRG Stadium, Houston (34°C, 75% humedad, 10m altitud)<br />
+              <strong className="text-white">Clima habitual de Inglaterra:</strong> 11°C, 80% humedad, 50m altitud
+            </p>
+            <div className="bg-black/60 rounded-lg p-3 border border-white/5 font-mono text-xs text-gray-300 mt-3 space-y-1">
+              <p>heat_stress = 0.37 <span className="text-gray-600">(alto: 34°C + humedad)</span></p>
+              <p>heat × recurrent = 0.37 <span className="text-gray-600">(activo: lesión recurrente)</span></p>
+              <p>temp_differential = 1.15 <span className="text-gray-600">(23°C de diferencia con casa)</span></p>
+              <p>adaptation_stress = 0.63 <span className="text-gray-600">(ambiente muy diferente)</span></p>
+              <p className="text-orange-300 pt-1 border-t border-white/5">→ Ajuste total: +14.2 puntos de riesgo</p>
+              <p className="text-yellow-300">→ Score base 42% (LOW_RISK) → Score final 56% (monitorear carga)</p>
+            </div>
+          </div>
+
+          <div className="bg-black/40 rounded-lg p-4 border border-white/5">
+            <h4 className="text-sm font-bold text-gray-200 mb-2">📊 Origen de los datos climáticos</h4>
+            <p className="text-sm text-gray-400 leading-relaxed">
+              <strong className="text-white">No se inventan datos.</strong> La temperatura y humedad provienen de la 
+              <strong className="text-white"> API Open-Meteo</strong> (Historical o Forecast según la fecha del partido). 
+              Las coordenadas y altitud del estadio vienen de <code className="text-orange-300">world_cup_stadiums.csv</code> (16 estadios sede, datos geográficos reales).
+              El clima promedio del país de origen se usa como referencia para calcular diferenciales de adaptación.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Section 7: How to read the dashboard */}
+      <Section title="Paso 7 — ¿Cómo leer el Panel de Decisión?" icon={<Activity className="w-5 h-5 text-neon-blue" />}>
         <div className="space-y-4">
           <p className="text-base text-gray-300 leading-relaxed">
             El Panel de Decisión (pestaña izquierda) traduce toda esta complejidad técnica en una respuesta simple 

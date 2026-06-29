@@ -20,7 +20,6 @@ export function MatchCard({ partido, isSelected, onSelect, onSimulateTeams }: Ma
   const hasTBD = partido.home.code === "TBD" || partido.away.code === "TBD";
   const displayHome = simulatedTeams ? { ...partido.home, name: simulatedTeams.home, code: simulatedTeams.home.slice(0, 3).toUpperCase() } : partido.home;
   const displayAway = simulatedTeams ? { ...partido.away, name: simulatedTeams.away, code: simulatedTeams.away.slice(0, 3).toUpperCase() } : partido.away;
-
   async function handleSimulate(e: React.MouseEvent) {
     e.stopPropagation();
     setSimulating(true);

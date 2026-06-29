@@ -17,8 +17,8 @@ function calcularPuntoPerfil(index: number, valor: number) {
 function calcularPuntoEtiqueta(index: number) {
   const angle = (Math.PI * 2 * index) / EJES_RADAR.length - Math.PI / 2;
   return {
-    x: RADAR_CENTER + Math.cos(angle) * (RADAR_RADIUS + 26),
-    y: RADAR_CENTER + Math.sin(angle) * (RADAR_RADIUS + 22),
+    x: RADAR_CENTER + Math.cos(angle) * (RADAR_RADIUS + 36),
+    y: RADAR_CENTER + Math.sin(angle) * (RADAR_RADIUS + 30),
   };
 }
 
@@ -92,7 +92,7 @@ export function RadarChart({ data }: { data: MetricasRadar }) {
             key={eje.key}
             x={etiqueta.x}
             y={etiqueta.y}
-            fontSize={11}
+            fontSize={22}
             fontWeight={700}
             letterSpacing={0.5}
             textAnchor="middle"

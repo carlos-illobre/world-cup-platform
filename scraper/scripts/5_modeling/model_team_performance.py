@@ -6,12 +6,20 @@ from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 import joblib
 import os
+import shutil
 
 # Define paths
 data_path = r"c:\Users\carlo\Downloads\world_cup_scraper\unified_data\master_teams_featured.csv"
 models_dir = r"c:\Users\carlo\Downloads\world_cup_scraper\unified_data\models"
 model_path = os.path.join(models_dir, "team_points_xgb_model.pkl")
 metrics_path = os.path.join(models_dir, "team_points_metrics.txt")
+
+# Additional output directories for the platform
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PLATFORM_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'metrics')
+BACKEND_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_metrics')
+for d in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+    os.makedirs(d, exist_ok=True)
 
 # Load data
 df = pd.read_csv(data_path)
@@ -85,5 +93,7 @@ results_text.append(f"\nXGBoost model saved to: {model_path}")
 # Save metrics
 with open(metrics_path, "w") as f:
     f.write("\n".join(results_text))
+for dest_dir in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+    shutil.copy2(metrics_path, os.path.join(dest_dir, "team_points_metrics.txt"))
 
 print("\n".join(results_text))

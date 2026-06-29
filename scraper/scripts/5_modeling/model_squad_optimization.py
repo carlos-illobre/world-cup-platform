@@ -1,8 +1,16 @@
 import pandas as pd
 import pulp
 import os
+import shutil
 
 os.makedirs('unified_data/models', exist_ok=True)
+
+# Additional output directories for the platform
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PLATFORM_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'metrics')
+BACKEND_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_metrics')
+for d in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+    os.makedirs(d, exist_ok=True)
 
 print("Loading clustered players data...")
 df = pd.read_csv('unified_data/master_players_clustered.csv')
@@ -104,5 +112,8 @@ with open('unified_data/models/squad_optimization_summary.txt', 'w') as f:
     if len(arg_squad) > 0:
         f.write("\nExample: Optimal Squad for Argentina\n")
         f.write(arg_squad[['Player', 'Pos_Category', 'Age', 'Club', 'adjusted_score']].sort_values(['Pos_Category', 'adjusted_score'], ascending=[True, False]).to_string(index=False))
+
+for dest_dir in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+    shutil.copy2('unified_data/models/squad_optimization_summary.txt', os.path.join(dest_dir, 'squad_optimization_summary.txt'))
 
 print("Squad optimization complete. Results saved to 'unified_data/optimal_squads.csv'")

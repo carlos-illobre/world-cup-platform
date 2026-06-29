@@ -52,7 +52,7 @@ export function ScoutingRadarChart({ playerData, clusterAverages }: ScoutingRada
           <ResponsiveContainer width="100%" height="100%">
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={chartData}>
             <PolarGrid stroke="rgba(255,255,255,0.1)" />
-            <PolarAngleAxis dataKey="subject" tick={{ fill: "#ccc", fontSize: 14 }} />
+            <PolarAngleAxis dataKey="subject" tick={{ fill: "#ccc", fontSize: 28 }} />
             <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
             <Tooltip 
               contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', borderColor: 'rgba(255,255,255,0.1)', borderRadius: '8px' }}

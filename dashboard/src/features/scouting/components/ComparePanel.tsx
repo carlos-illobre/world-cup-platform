@@ -127,7 +127,7 @@ export function ComparePanel({ players, onRemove, onClose }: ComparePanelProps) 
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
                   <PolarGrid stroke="rgba(255,255,255,0.1)" />
-                  <PolarAngleAxis dataKey="subject" tick={{ fill: "#ccc", fontSize: 13 }} />
+                  <PolarAngleAxis dataKey="subject" tick={{ fill: "#ccc", fontSize: 26 }} />
                   <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
                   {players.map((p, i) => (
                     <Radar

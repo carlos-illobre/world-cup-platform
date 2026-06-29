@@ -66,13 +66,15 @@ def _get_team_info_by_name_safe(request: Request, team_name: str) -> dict:
 
 @router.get("/dates")
 def get_dates(request: Request, response: Response):
-    response.headers["Cache-Control"] = "public, max-age=31536000"
+    response.headers["Cache-Control"] = "public, max-age=3600"
     df_matches = get_df(request, 'world_cup_matches')
     if df_matches.empty:
         return {"data": []}
     
-    if 'date_only' not in df_matches.columns and 'kickoff_at' in df_matches.columns:
-        df_matches['date_only'] = pd.to_datetime(df_matches['kickoff_at'], utc=True).dt.strftime('%Y-%m-%d')
+    if 'kickoff_at' in df_matches.columns:
+        # Always extract the local date from the kickoff string (format: "YYYY-MM-DD HH:MM:SS±TZ")
+        # This preserves the venue's local date rather than converting to UTC
+        df_matches['date_only'] = df_matches['kickoff_at'].astype(str).str[:10]
     
     date_counts = df_matches.groupby('date_only').size()
     dates = []
@@ -87,13 +89,15 @@ def get_dates(request: Request, response: Response):
 
 @router.get("/dates/{fecha_id}/matches")
 def get_matches_by_date(request: Request, response: Response, fecha_id: str):
-    response.headers["Cache-Control"] = "public, max-age=31536000"
+    response.headers["Cache-Control"] = "public, max-age=3600"
     df_matches = get_df(request, 'world_cup_matches')
     if df_matches.empty:
         return {"data": []}
         
-    if 'date_only' not in df_matches.columns and 'kickoff_at' in df_matches.columns:
-        df_matches['date_only'] = pd.to_datetime(df_matches['kickoff_at'], utc=True).dt.strftime('%Y-%m-%d')
+    if 'kickoff_at' in df_matches.columns:
+        # Always extract the local date from the kickoff string (format: "YYYY-MM-DD HH:MM:SS±TZ")
+        # This preserves the venue's local date rather than converting to UTC
+        df_matches['date_only'] = df_matches['kickoff_at'].astype(str).str[:10]
 
     day_matches = df_matches[df_matches['date_only'] == fecha_id]
     stadiums_geo = get_df(request, 'stadiums_geo')

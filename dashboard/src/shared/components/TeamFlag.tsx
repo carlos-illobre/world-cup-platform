@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface TeamFlagProps {
   flagUrl: string;
   teamName: string;
@@ -17,10 +19,12 @@ const SIZE_CLASSES: Record<NonNullable<TeamFlagProps["size"]>, string> = {
  * Shows a placeholder when flagUrl is empty or missing.
  */
 export function TeamFlag({ flagUrl, teamName, size = "md", className }: TeamFlagProps) {
-  if (!flagUrl) {
+  const [error, setError] = useState(false);
+
+  if (!flagUrl || error) {
     return (
       <div className={`rounded-sm bg-white/10 border border-white/20 flex items-center justify-center text-gray-500 ${SIZE_CLASSES[size]} ${className ?? ""}`}>
-        <span className="text-[8px] font-bold">?</span>
+        <span className="text-[8px] font-bold">{teamName?.slice(0, 2).toUpperCase() || "?"}</span>
       </div>
     );
   }
@@ -30,9 +34,7 @@ export function TeamFlag({ flagUrl, teamName, size = "md", className }: TeamFlag
       src={flagUrl}
       alt={teamName}
       className={`rounded-sm object-cover ring-1 ring-border ${SIZE_CLASSES[size]} ${className ?? ""}`}
-      onError={(e) => {
-        (e.target as HTMLImageElement).style.display = 'none';
-      }}
+      onError={() => setError(true)}
     />
   );
 }

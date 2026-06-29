@@ -40,6 +40,8 @@ interface GeoclimaticInfoPanelProps {
 /**
  * Panel de información geoclimática del partido:
  * foto del estadio, sede, altitud, temperatura y humedad.
+ * Estas condiciones son INPUT del modelo de predicción de riesgo de lesión
+ * (afectan la predicción a través de features de interacción clima × jugador).
  */
 export function GeoclimaticInfoPanel({
   contextoPartido,
@@ -92,6 +94,13 @@ export function GeoclimaticInfoPanel({
           value={contextoPartido?.weather?.humidity != null ? formatearHumedad(contextoPartido.weather.humidity) : "—"}
         />
       </ul>
+
+      {/* Indicator that these feed into the model */}
+      {!loading && contextoPartido?.weather?.temp_c != null && (
+        <p className="mt-3 text-[10px] leading-tight text-neon-blue/60 border-t border-border/30 pt-2">
+          📊 Estas condiciones alimentan el modelo de riesgo de lesión
+        </p>
+      )}
     </GlassPanel>
   );
 }

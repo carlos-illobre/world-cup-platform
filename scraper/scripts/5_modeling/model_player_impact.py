@@ -7,8 +7,18 @@ import shap
 import matplotlib.pyplot as plt
 import joblib
 import os
+import shutil
 
 os.makedirs('unified_data/models', exist_ok=True)
+
+# Additional output directories for the platform
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PLATFORM_PLOTS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'shap_plots')
+PLATFORM_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'metrics')
+BACKEND_PLOTS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_plots')
+BACKEND_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_metrics')
+for d in [PLATFORM_PLOTS_DIR, PLATFORM_METRICS_DIR, BACKEND_PLOTS_DIR, BACKEND_METRICS_DIR]:
+    os.makedirs(d, exist_ok=True)
 
 print("Loading players data...")
 df = pd.read_csv('unified_data/master_players_featured.csv')
@@ -55,6 +65,8 @@ print(report)
 
 with open('unified_data/models/player_impact_metrics.txt', 'w') as f:
     f.write(report)
+for dest_dir in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+    shutil.copy2('unified_data/models/player_impact_metrics.txt', os.path.join(dest_dir, 'player_impact_metrics.txt'))
 
 joblib.dump(model, 'unified_data/models/player_impact_xgb.pkl')
 
@@ -65,6 +77,8 @@ print(top_players.to_string(index=False))
 
 with open('unified_data/models/player_impact_top20.txt', 'w') as f:
     f.write(top_players.to_string(index=False))
+for dest_dir in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+    shutil.copy2('unified_data/models/player_impact_top20.txt', os.path.join(dest_dir, 'player_impact_top20.txt'))
 
 # SHAP Analysis
 explainer = shap.TreeExplainer(model)
@@ -76,5 +90,7 @@ plt.title("SHAP Summary Plot - Player Impact Score")
 plt.tight_layout()
 plt.savefig('unified_data/models/player_impact_shap_summary.png')
 plt.close()
+for dest_dir in [PLATFORM_PLOTS_DIR, BACKEND_PLOTS_DIR]:
+    shutil.copy2('unified_data/models/player_impact_shap_summary.png', os.path.join(dest_dir, 'player_impact_shap_summary.png'))
 
 print("Player Impact Score modeling complete.")

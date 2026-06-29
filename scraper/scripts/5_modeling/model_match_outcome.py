@@ -8,9 +8,35 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
 import os
+import shutil
 
 # Create models directory if it doesn't exist
 os.makedirs('unified_data/models', exist_ok=True)
+
+# Additional output directories for the platform
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PLATFORM_PLOTS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'shap_plots')
+PLATFORM_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'metrics')
+BACKEND_PLOTS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_plots')
+BACKEND_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_metrics')
+for d in [PLATFORM_PLOTS_DIR, PLATFORM_METRICS_DIR, BACKEND_PLOTS_DIR, BACKEND_METRICS_DIR]:
+    os.makedirs(d, exist_ok=True)
+
+def save_plot_to_all(filename):
+    """Copy a saved plot to platform and backend directories."""
+    src = os.path.join('unified_data/models', filename)
+    for dest_dir in [PLATFORM_PLOTS_DIR, BACKEND_PLOTS_DIR]:
+        shutil.copy2(src, os.path.join(dest_dir, filename))
+    print(f"  → Copied to platform + backend: {filename}")
+
+def save_metrics_to_all(text, filename):
+    """Save metrics and copy to all directories."""
+    primary = os.path.join('unified_data/models', filename)
+    with open(primary, 'w') as f:
+        f.write(text)
+    for dest_dir in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+        shutil.copy2(primary, os.path.join(dest_dir, filename))
+    print(f"  → Metrics saved to platform + backend: {filename}")
 
 print("Loading data...")
 df = pd.read_csv('unified_data/master_matches_featured.csv')
@@ -105,8 +131,7 @@ XGBoost Classification Report:
 
 print(report)
 
-with open('unified_data/models/match_outcome_metrics.txt', 'w') as f:
-    f.write(report)
+save_metrics_to_all(report, 'match_outcome_metrics.txt')
 
 # Confusion Matrix
 cm = confusion_matrix(y_test, xgb_preds)
@@ -118,6 +143,7 @@ plt.title('XGBoost Match Outcome Confusion Matrix')
 plt.tight_layout()
 plt.savefig('unified_data/models/match_outcome_confusion_matrix.png')
 plt.close()
+save_plot_to_all('match_outcome_confusion_matrix.png')
 
 # Save Model
 joblib.dump(xgb_model, 'unified_data/models/match_outcome_xgb.pkl')
@@ -142,5 +168,6 @@ plt.title("SHAP Summary Plot (Predicting Win)")
 plt.tight_layout()
 plt.savefig('unified_data/models/match_outcome_shap_summary_win.png')
 plt.close()
+save_plot_to_all('match_outcome_shap_summary_win.png')
 
 print("Match Outcome prediction complete.")

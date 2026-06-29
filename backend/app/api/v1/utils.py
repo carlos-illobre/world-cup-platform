@@ -17,8 +17,13 @@ def get_team_info(request: Request, team_id):
         int_id = int(team_id)
         if int_id in teams.index:
             t = teams.loc[int_id]
-            iso_code = str(t['iso2_code']) if pd.notna(t.get('iso2_code')) else "un"
-            return {"name": str(t['team_name']), "code": str(t['fifa_code']), "flag_url": f"https://flagcdn.com/w320/{iso_code.lower()}.png"}
+            # Skip placeholder teams (e.g., "Winner UEFA Playoff D")
+            is_placeholder = t.get('is_placeholder')
+            if is_placeholder is True or str(is_placeholder).strip().lower() == 'true':
+                return {"name": "Por Definir", "code": "TBD", "flag_url": ""}
+            iso_code = str(t['iso2_code']).strip() if pd.notna(t.get('iso2_code')) else ""
+            flag_url = f"https://flagcdn.com/w80/{iso_code.lower()}.png" if iso_code else ""
+            return {"name": str(t['team_name']), "code": str(t['fifa_code']), "flag_url": flag_url}
     except (ValueError, TypeError, KeyError):
         pass
 
@@ -36,8 +41,9 @@ def get_team_info_by_name(request: Request, team_name: str):
         
     if len(team_row) > 0:
         t = team_row.iloc[0]
-        iso_code = str(t['iso2_code']) if pd.notna(t.get('iso2_code')) else "un"
-        return {"name": str(t['team_name']), "code": str(t['fifa_code']), "flag_url": f"https://flagcdn.com/w320/{iso_code.lower()}.png"}
+        iso_code = str(t['iso2_code']).strip() if pd.notna(t.get('iso2_code')) else ""
+        flag_url = f"https://flagcdn.com/w80/{iso_code.lower()}.png" if iso_code else ""
+        return {"name": str(t['team_name']), "code": str(t['fifa_code']), "flag_url": flag_url}
     
     raise HTTPException(status_code=404, detail=f"Team '{team_name}' not found")
 

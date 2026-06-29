@@ -43,6 +43,34 @@ DATA_PATH = r'c:\Users\carlo\Downloads\world_cup_scraper\unified_data\master_inj
 OUTPUT_DIR = r'c:\Users\carlo\Downloads\world_cup_scraper\unified_data\models'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+# Additional output directories for the platform
+PLATFORM_PLOTS_DIR = os.path.join(os.path.dirname(__file__), '..', '..', 'models', 'shap_plots')
+PLATFORM_METRICS_DIR = os.path.join(os.path.dirname(__file__), '..', '..', 'models', 'metrics')
+BACKEND_PLOTS_DIR = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'backend', 'static', 'model_plots')
+BACKEND_METRICS_DIR = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'backend', 'static', 'model_metrics')
+for d in [PLATFORM_PLOTS_DIR, PLATFORM_METRICS_DIR, BACKEND_PLOTS_DIR, BACKEND_METRICS_DIR]:
+    os.makedirs(d, exist_ok=True)
+
+import shutil
+
+def save_plot(fig, filename, dpi=150):
+    """Save plot to all output directories (original + platform + backend)."""
+    primary = os.path.join(OUTPUT_DIR, filename)
+    fig.savefig(primary, dpi=dpi, bbox_inches='tight')
+    for dest_dir in [PLATFORM_PLOTS_DIR, BACKEND_PLOTS_DIR]:
+        shutil.copy2(primary, os.path.join(dest_dir, filename))
+    plt.close(fig)
+    print(f"Saved: {filename} (+ platform + backend)")
+
+def save_metrics(text, filename):
+    """Save metrics text to all output directories."""
+    primary = os.path.join(OUTPUT_DIR, filename)
+    with open(primary, 'w', encoding='utf-8') as f:
+        f.write(text)
+    for dest_dir in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+        shutil.copy2(primary, os.path.join(dest_dir, filename))
+    print(f"Saved metrics: {filename} (+ platform + backend)")
+
 RANDOM_STATE = 42
 np.random.seed(RANDOM_STATE)
 
@@ -287,9 +315,7 @@ ax.legend(loc='lower left')
 ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig(os.path.join(OUTPUT_DIR, 'injury_survival_curves.png'), dpi=150, bbox_inches='tight')
-plt.close()
-print("Saved: injury_survival_curves.png")
+save_plot(fig, 'injury_survival_curves.png')
 
 # =====================================================================
 # MODEL 2: XGBoost Classifier (Primary)
@@ -452,9 +478,7 @@ ax.set_xlabel('Predicted', fontsize=12)
 ax.set_ylabel('Actual', fontsize=12)
 ax.set_title('XGBoost - Confusion Matrix (Temporal Test Set)', fontsize=14, fontweight='bold')
 plt.tight_layout()
-plt.savefig(os.path.join(OUTPUT_DIR, 'injury_confusion_matrix.png'), dpi=150, bbox_inches='tight')
-plt.close()
-print("Saved: injury_confusion_matrix.png")
+save_plot(fig, 'injury_confusion_matrix.png')
 
 # --- ROC Curve Comparison ---
 fig, ax = plt.subplots(figsize=(8, 6))
@@ -469,9 +493,7 @@ ax.set_title('ROC Curve Comparison — Temporal Test Set', fontsize=14, fontweig
 ax.legend(fontsize=11)
 ax.grid(True, alpha=0.3)
 plt.tight_layout()
-plt.savefig(os.path.join(OUTPUT_DIR, 'injury_roc_curve.png'), dpi=150, bbox_inches='tight')
-plt.close()
-print("Saved: injury_roc_curve.png")
+save_plot(fig, 'injury_roc_curve.png')
 
 # --- Feature Importance (XGBoost built-in) ---
 fig, ax = plt.subplots(figsize=(10, 10))
@@ -483,9 +505,7 @@ ax.set_title(f'Top {top_n} XGBoost Feature Importances', fontsize=14, fontweight
 ax.set_xlabel('Importance (Gain)')
 ax.grid(True, alpha=0.3, axis='x')
 plt.tight_layout()
-plt.savefig(os.path.join(OUTPUT_DIR, 'injury_feature_importance.png'), dpi=150, bbox_inches='tight')
-plt.close()
-print("Saved: injury_feature_importance.png")
+save_plot(fig, 'injury_feature_importance.png')
 
 # =====================================================================
 # SHAP INTERPRETABILITY
@@ -507,9 +527,7 @@ shap.summary_plot(shap_values, X_shap, feature_names=feature_names,
                   show=False, max_display=25)
 plt.title('SHAP Summary — XGBoost Injury Risk Model', fontsize=14, fontweight='bold')
 plt.tight_layout()
-plt.savefig(os.path.join(OUTPUT_DIR, 'injury_shap_summary.png'), dpi=150, bbox_inches='tight')
-plt.close()
-print("Saved: injury_shap_summary.png")
+save_plot(plt.gcf(), 'injury_shap_summary.png')
 
 # --- SHAP Dependence Plots for Top 3 Features ---
 mean_abs_shap = np.abs(shap_values).mean(axis=0)
@@ -524,9 +542,7 @@ for i, feat in enumerate(top3_features):
     ax.set_title(f'SHAP Dependence — {feat}', fontsize=14, fontweight='bold')
     plt.tight_layout()
     fname = f'injury_shap_dep_{i+1}_{feat.replace("/", "_").replace(" ", "_")}.png'
-    plt.savefig(os.path.join(OUTPUT_DIR, fname), dpi=150, bbox_inches='tight')
-    plt.close()
-    print(f"Saved: {fname}")
+    save_plot(fig, fname)
 
 # =====================================================================
 # METRICS REPORT
@@ -632,8 +648,7 @@ report_lines.append(f"  Feature importance:   injury_feature_importance.png")
 report_lines.append(f"  This report:          injury_model_metrics.txt")
 
 report_text = '\n'.join(report_lines)
-with open(os.path.join(OUTPUT_DIR, 'injury_model_metrics.txt'), 'w', encoding='utf-8') as f:
-    f.write(report_text)
+save_metrics(report_text, 'injury_model_metrics.txt')
 
 print(report_text)
 print("\n✅ ALL DONE! All outputs saved to:", OUTPUT_DIR)

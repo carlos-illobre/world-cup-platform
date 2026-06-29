@@ -306,7 +306,7 @@ export function TeamComparePage() {
               <ResponsiveContainer width="100%" height={350}>
                 <RadarChart data={radarData}>
                   <PolarGrid stroke="#333" />
-                  <PolarAngleAxis dataKey="metric" tick={{ fill: "#9ca3af", fontSize: 12 }} />
+                  <PolarAngleAxis dataKey="metric" tick={{ fill: "#9ca3af", fontSize: 24 }} />
                   <PolarRadiusAxis tick={false} axisLine={false} domain={[0, 100]} />
                   <Radar
                     name={teamA}

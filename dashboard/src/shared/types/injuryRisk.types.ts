@@ -84,10 +84,27 @@ export interface ContextoPartido {
 // Inferencia de riesgo de lesión (resultado del modelo IA)
 // ─────────────────────────────────────────────────────────────────────────────
 
+export interface FactorClimatico {
+  feature: string;
+  contribution: number;
+}
+
+export interface ImpactoClimatico {
+  adjustment_points: number;
+  venue_temp_c: number;
+  venue_humidity_pct: number;
+  venue_elevation_m: number;
+  top_factors: FactorClimatico[];
+}
+
 export interface InferenciaRiesgoLesion {
   class: ClaseRiesgo;
   label: string;
   justification: string;
+  model_used?: string;
+  risk_proba?: number;
+  base_risk_score?: number;
+  climate_impact?: ImpactoClimatico | null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

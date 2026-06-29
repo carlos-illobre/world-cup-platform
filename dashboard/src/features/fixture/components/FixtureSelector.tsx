@@ -36,7 +36,7 @@ export function FixtureSelector() {
   } = useGetPartidosPorFechaQuery(fechaSeleccionada ?? "", {
     skip: !fechaSeleccionada,
   });
-
+  
   function handleSeleccionarFecha(fechaId: string) {
     dispatch(seleccionarFecha(fechaId));
     dispatch(resetearJugadorSeleccionado());

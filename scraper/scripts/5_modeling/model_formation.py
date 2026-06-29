@@ -7,6 +7,7 @@ from sklearn.metrics import accuracy_score, f1_score
 from xgboost import XGBClassifier
 import joblib
 import os
+import shutil
 
 # Paths
 DATA_PATH = r"c:\Users\carlo\Downloads\world_cup_scraper\unified_data\master_matches_featured.csv"
@@ -14,6 +15,13 @@ MODEL_DIR = r"c:\Users\carlo\Downloads\world_cup_scraper\unified_data\models"
 os.makedirs(MODEL_DIR, exist_ok=True)
 MODEL_PATH = os.path.join(MODEL_DIR, "formation_xgb_model.pkl")
 METRICS_PATH = os.path.join(MODEL_DIR, "formation_metrics.txt")
+
+# Additional output directories for the platform
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PLATFORM_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', 'models', 'metrics')
+BACKEND_METRICS_DIR = os.path.join(SCRIPT_DIR, '..', '..', '..', 'backend', 'static', 'model_metrics')
+for d in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+    os.makedirs(d, exist_ok=True)
 
 def main():
     # Load data
@@ -100,6 +108,9 @@ def main():
         f.write(f"Accuracy: {xgb_acc:.4f}\n")
         f.write(f"F1 Score: {xgb_f1:.4f}\n\n")
         f.write(f"Most Optimal Formation: {best_formation_name} (Prob W: {best_prob_w:.4f})\n")
+
+    for dest_dir in [PLATFORM_METRICS_DIR, BACKEND_METRICS_DIR]:
+        shutil.copy2(METRICS_PATH, os.path.join(dest_dir, "formation_metrics.txt"))
 
     print(f"Generated {MODEL_PATH}")
     print(f"Generated {METRICS_PATH}")

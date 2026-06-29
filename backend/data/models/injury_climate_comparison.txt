@@ -1,0 +1,47 @@
+======================================================================
+INJURY RISK MODEL — CLIMATE ENHANCEMENT REPORT
+======================================================================
+
+Dataset: C:\Users\carlo\Downloads\world-cup-platform\backend\data\csv\master_injuries_featured.csv
+Total samples: 8611
+Train: 6888 | Test: 1723 (temporal 80/20 split)
+Base features: 123
+Climate features added: 12
+Total features (enhanced): 135
+
+──────────────────────────────────────────────────────────────────────
+MODEL COMPARISON (Temporal Test Set)
+──────────────────────────────────────────────────────────────────────
+Metric            Baseline    Climate  Improvement
+───────────────────────────────────────────────
+AUC-ROC             0.6272     0.6221      -0.0051
+F1-Score            0.5996     0.5966      -0.0029
+Precision           0.5646     0.5613      -0.0033
+Recall              0.6391     0.6367      -0.0024
+Accuracy            0.5868     0.5833      -0.0035
+
+──────────────────────────────────────────────────────────────────────
+CLIMATE FEATURE IMPORTANCE (% of total model gain)
+──────────────────────────────────────────────────────────────────────
+                      Feature  Importance
+    climate_adaptation_stress    0.013323
+   climate_heat_x_injury_freq    0.011053
+    climate_temp_differential    0.010478
+climate_altitude_differential    0.009299
+     climate_dehydration_risk    0.008267
+          climate_heat_stress    0.008036
+climate_humidity_differential    0.006277
+      climate_altitude_factor    0.001759
+     climate_heat_x_recurrent    0.000000
+       climate_altitude_x_age    0.000000
+     climate_is_high_altitude    0.000000
+      climate_is_extreme_heat    0.000000
+
+Total climate contribution: 6.85% of model importance
+
+──────────────────────────────────────────────────────────────────────
+VERDICT
+──────────────────────────────────────────────────────────────────────
+❌ Climate features HURT the model (AUC -0.0051).
+   Keep using the base model. Climate modulation via weights
+   (as currently implemented) is the safer approach.

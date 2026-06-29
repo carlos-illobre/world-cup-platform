@@ -1,0 +1,5 @@
+Player Impact Score Prediction Metrics
+========================================
+RMSE: 7.4747
+MAE: 4.9811
+R2 Score: -0.0647

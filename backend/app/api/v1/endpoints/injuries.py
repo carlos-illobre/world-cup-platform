@@ -62,41 +62,8 @@ def get_injury_risk(
     if override_days_since is not None:
         player_row['days_since_last_injury'] = override_days_since
 
-    inference = predict_injury_risk(
-        models=request.app.state.models,
-        player_row=player_row,
-        injuries_df=injuries_df,
-        override_frequency=override_frequency,
-        override_days_since=override_days_since,
-    )
-    risk_score = inference['risk_score']
-
-    # --- Real stats for radar (derived from actual playing data) ---
-    from app.api.v1.ml.physiological_imputer import predict_physiological_profile
-    physio = predict_physiological_profile(player_row)
-    
-    cardio = physio['cardio']
-    endurance = physio['endurance']
-    respiratory = physio['respiratory']
-    recovery = physio['recovery']
-
-    # engagement: based on interceptions (real defensive engagement metric)
-    performance_int = p.get('Performance_Int_allcomps', None)
-    if pd.notna(performance_int) and performance_int is not None:
-        engagement = min(int(float(performance_int) * 5), 99)
-    else:
-        engagement = 50
-
-    # Photo
-    base_url = str(request.base_url).rstrip('/')
-    photo_path = p.get('photo_url', '')
-    face_url = (
-        f"{base_url}{photo_path}"
-        if photo_path and pd.notna(photo_path) and photo_path != ""
-        else ""
-    )
-
-    # --- Match context (stadium from real DB + Open-Meteo weather) ---
+    # --- Obtain geoclimatic data BEFORE prediction (feeds into climate modulation) ---
+    geo_climate = None
     match_context = None
     if match is not None:
         try:
@@ -150,6 +117,42 @@ def get_injury_risk(
         except Exception:
             pass
 
+    # --- Real ML inference (now with climate modulation) ---
+    inference = predict_injury_risk(
+        models=request.app.state.models,
+        player_row=player_row,
+        injuries_df=injuries_df,
+        override_frequency=override_frequency,
+        override_days_since=override_days_since,
+        geo_climate=geo_climate,
+    )
+    risk_score = inference['risk_score']
+
+    # --- Real stats for radar (derived from actual playing data) ---
+    from app.api.v1.ml.physiological_imputer import predict_physiological_profile
+    physio = predict_physiological_profile(player_row)
+    
+    cardio = physio['cardio']
+    endurance = physio['endurance']
+    respiratory = physio['respiratory']
+    recovery = physio['recovery']
+
+    # engagement: based on interceptions (real defensive engagement metric)
+    performance_int = p.get('Performance_Int_allcomps', None)
+    if pd.notna(performance_int) and performance_int is not None:
+        engagement = min(int(float(performance_int) * 5), 99)
+    else:
+        engagement = 50
+
+    # Photo
+    base_url = str(request.base_url).rstrip('/')
+    photo_path = p.get('photo_url', '')
+    face_url = (
+        f"{base_url}{photo_path}"
+        if photo_path and pd.notna(photo_path) and photo_path != ""
+        else ""
+    )
+
     return {
         "data": {
             "player": {
@@ -186,6 +189,8 @@ def get_injury_risk(
                 "label": inference['diagnosis'],
                 "model_used": inference['model_used'],
                 "risk_proba": inference.get('risk_proba'),
+                "base_risk_score": inference.get('base_risk_score'),
+                "climate_impact": inference.get('climate_impact'),
                 "justification": (
                     "Monitor closely and adjust training volume."
                     if risk_score > 50

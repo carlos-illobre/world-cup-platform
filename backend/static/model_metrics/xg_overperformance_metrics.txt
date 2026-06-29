@@ -1,0 +1,14 @@
+XGBoost - RMSE: 0.1419, MAE: 0.0271
+Linear Regression - RMSE: 0.0997, MAE: 0.0232
+
+Top 10 Overperformers (Actual xG Overperformance):
+Folarin Balogun (United States): 1.1000
+Connor Metcalfe (Australia): 0.7000
+Cyle Larin (Canada): 0.7000
+Vinicius Júnior (Brazil): 0.7000
+Ladislav Krejčí (Czechia): 0.7000
+Oh Hyeon-gyu (Korea Republic): 0.7000
+Ismael Saibari (Morocco): 0.7000
+Mauricio (Paraguay): 0.7000
+Boualem Khoukhi (Qatar): 0.7000
+John McGinn (Scotland): 0.7000

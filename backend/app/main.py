@@ -72,6 +72,7 @@ async def lifespan(app: FastAPI):
         'teams_featured':   ('data/csv/master_teams_featured.csv',      {}),
         'world_cup_matches':('data/csv/world_cup_matches.csv',          {}),
         'wc_groups':        ('data/csv/world_cup_2026_groups.csv',      {}),
+        'historical_wc':    ('data/csv/historical_world_cups.csv', {}),
     }
     logger.info("═══ FASE 2: Cargando datasets CSV ═══")
     t = _time_it("Todos los CSVs")

@@ -1,0 +1,105 @@
+======================================================================
+INJURY RISK PREDICTION — MODEL METRICS REPORT
+======================================================================
+
+Dataset: c:\Users\carlo\Downloads\world_cup_scraper\unified_data\master_injuries_featured.csv
+Total samples: 8611
+Train samples: 6888 (temporal: 2001-01-28 to 2025-04-21)
+Test  samples: 1723 (temporal: 2025-04-21 to 2026-06-11)
+Features used: 123
+Target: will_be_injured_next_6months
+
+----------------------------------------------------------------------
+1. SURVIVAL ANALYSIS (Cox Proportional Hazards)
+----------------------------------------------------------------------
+C-Index (concordance): 0.7491
+Penalizer: 0.1
+Training samples (after NaN drop): 6874
+
+----------------------------------------------------------------------
+2. XGBoost Classifier (Primary)
+----------------------------------------------------------------------
+Best Hyperparameters: {'learning_rate': 0.01, 'max_depth': 4, 'n_estimators': 300}
+
+  5-Fold Stratified CV (Training Set):
+           auc: 0.6595 ± 0.0179
+            f1: 0.6244 ± 0.0476
+     precision: 0.6096 ± 0.0213
+        recall: 0.6523 ± 0.1021
+
+  Temporal Test Set:
+    AUC-ROC:   0.6221
+    F1-Score:  0.6066
+    Precision: 0.5572
+    Recall:    0.6655
+    Accuracy:  0.5821
+
+  Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.62      0.50      0.55       889
+           1       0.56      0.67      0.61       834
+
+    accuracy                           0.58      1723
+   macro avg       0.59      0.58      0.58      1723
+weighted avg       0.59      0.58      0.58      1723
+
+
+----------------------------------------------------------------------
+3. Logistic Regression (Baseline)
+----------------------------------------------------------------------
+  5-Fold Stratified CV (Training Set):
+           auc: 0.6531 ± 0.0157
+            f1: 0.6200 ± 0.0455
+     precision: 0.6029 ± 0.0084
+        recall: 0.6448 ± 0.0875
+
+  Temporal Test Set:
+    AUC-ROC:   0.6307
+    F1-Score:  0.6331
+    Precision: 0.5668
+    Recall:    0.7170
+    Accuracy:  0.5978
+
+  Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.65      0.49      0.55       889
+           1       0.57      0.72      0.63       834
+
+    accuracy                           0.60      1723
+   macro avg       0.61      0.60      0.59      1723
+weighted avg       0.61      0.60      0.59      1723
+
+
+----------------------------------------------------------------------
+MODEL COMPARISON (Temporal Test Set)
+----------------------------------------------------------------------
+Metric             XGBoost     LogReg     Winner
+---------------------------------------------
+AUC-ROC             0.6221     0.6307     LogReg
+F1-Score            0.6066     0.6331     LogReg
+Precision           0.5572     0.5668     LogReg
+Recall              0.6655     0.7170     LogReg
+Accuracy            0.5821     0.5978     LogReg
+
+----------------------------------------------------------------------
+TOP SHAP FEATURES
+----------------------------------------------------------------------
+  1. Dias_Baja (mean |SHAP| = 0.2502)
+  2. injury_frequency (mean |SHAP| = 0.1470)
+  3. injury_count_last_12m (mean |SHAP| = 0.0811)
+
+----------------------------------------------------------------------
+OUTPUT FILES
+----------------------------------------------------------------------
+  Model script:         model_injury_risk.py
+  XGBoost model:        injury_xgboost_model.pkl
+  LogReg model:         injury_logistic_model.pkl
+  SHAP summary:         injury_shap_summary.png
+  SHAP dependence:      injury_shap_dep_*.png
+  Survival curves:      injury_survival_curves.png
+  Confusion matrix:     injury_confusion_matrix.png
+  ROC curve:            injury_roc_curve.png
+  Feature importance:   injury_feature_importance.png
+  This report:          injury_model_metrics.txt

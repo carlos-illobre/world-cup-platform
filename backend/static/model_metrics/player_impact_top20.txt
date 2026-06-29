@@ -1,0 +1,21 @@
+           Player       Country     Age              Club  impact_score_normalized
+          Stopira    Cape Verde 38.0602         Torreense               100.000000
+  Assan Ouédraogo       Germany 20.0903        RB Leipzig                97.449715
+     Igor Sergeev    Uzbekistan 33.1150        Persepolis                94.542228
+      Ricardo Adé         Haiti 36.0575         LDU Quito                83.805737
+    Kento Shiogai         Japan 21.2108         Wolfsburg                74.988176
+  Farés Ghedjemis       Algeria 23.7611         Frosinone                72.377201
+       Jan Kuchta       Czechia 29.4216     Sparta Prague                71.864973
+        Gio Reyna United States 23.5749          Gladbach                71.680278
+   Thelo Aasgaard        Norway 24.1095           Rangers                66.707081
+         Noa Lang   Netherlands 26.9829       Galatasaray                66.020931
+      Deniz Undav       Germany 29.8953         Stuttgart                65.752848
+  Mikel Oyarzabal         Spain 29.1396     Real Sociedad                65.643018
+            Rayan        Brazil 19.8542       Bournemouth                65.399396
+    David Doudera       Czechia 28.0301     Slavia Prague                63.800908
+ Gilson Benchimol    Cape Verde 24.4490 FK Akron Tolyatti                63.051002
+         Taha Ali        Sweden 27.9446             Malmö                61.721561
+Gustavo Caballero      Paraguay 24.7201        Portsmouth                61.368969
+     Kevin Felida       Curaçao 26.5804         Den Bosch                61.281324
+Alexandro Maidana      Paraguay 20.8761        Talleres–C                61.234434
+  Tomoki Hayakawa         Japan 27.2738   Kashima Antlers                61.134955

@@ -147,6 +147,73 @@ def _build_player_list(df: pd.DataFrame, base_url: str) -> list:
     
     return results
 
+@router.get("/clusters/scatter")
+def get_cluster_scatter(request: Request, response: Response):
+    """
+    Returns PCA-reduced 2D coordinates for each clustered player.
+    Uses the same 10 per-90 features that fed the K-Means algorithm,
+    applies StandardScaler + PCA(n_components=2) to project them into 2D.
+    """
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.decomposition import PCA
+
+    response.headers["Cache-Control"] = "public, max-age=3600"
+    cache = getattr(request.app.state, 'cache', {})
+    if 'cluster_scatter' in cache:
+        return cache['cluster_scatter']
+
+    data = request.app.state.data
+    if 'players' not in data:
+        raise HTTPException(status_code=500, detail="Data not loaded")
+
+    players_df = data['players']
+    features = [
+        'goals_per_90', 'assists_per_90', 'shots_per_90', 'sot_per_90',
+        'tackles_won_per_90', 'interceptions_per_90', 'crosses_per_90',
+        'fouls_committed_per_90', 'fouls_drawn_per_90', 'offsides_per_90'
+    ]
+
+    # Filter players that have cluster and all features
+    clustered = players_df[players_df['cluster'].notna()].copy()
+    clustered = clustered.dropna(subset=features)
+
+    if clustered.empty:
+        return {"items": [], "explained_variance": []}
+
+    X = clustered[features].values.astype(float)
+
+    # Same preprocessing as the original K-Means pipeline
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    pca = PCA(n_components=2, random_state=42)
+    X_2d = pca.fit_transform(X_scaled)
+
+    items = []
+    names = clustered['Player'].values
+    clusters = clustered['cluster'].values
+    countries = clustered['Country'].values
+
+    for i in range(len(clustered)):
+        items.append({
+            "name": str(names[i]),
+            "cluster": str(int(clusters[i])),
+            "country": str(countries[i]),
+            "pc1": round(float(X_2d[i, 0]), 4),
+            "pc2": round(float(X_2d[i, 1]), 4),
+        })
+
+    result = {
+        "items": items,
+        "explained_variance": [round(float(v), 4) for v in pca.explained_variance_ratio_],
+        "total_explained": round(float(pca.explained_variance_ratio_.sum()), 4),
+    }
+
+    # Cache for subsequent requests
+    cache['cluster_scatter'] = result
+    return result
+
+
 @router.get("/clusters/averages")
 def get_cluster_averages(request: Request, response: Response):
     """

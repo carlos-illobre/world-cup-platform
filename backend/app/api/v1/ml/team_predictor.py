@@ -53,6 +53,7 @@ def predict_team_group_points(
     teams_df: pd.DataFrame,
     matches_df: pd.DataFrame = None,
     groups_df: pd.DataFrame = None,
+    historical_wc_df: pd.DataFrame = None,
 ) -> dict:
     """
     Predicts expected group stage points for a team by SIMULATING the 3 group
@@ -128,6 +129,7 @@ def predict_team_group_points(
                         temp_max=25.0,
                         precipitation=0.0,
                         wind_speed=10.0,
+                        historical_wc_df=historical_wc_df,
                     )
                     # Expected points = P(win)*3 + P(draw)*1 + P(loss)*0
                     p_win = result['probabilities']['win_A']

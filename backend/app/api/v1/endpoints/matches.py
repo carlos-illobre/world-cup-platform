@@ -406,6 +406,9 @@ def predict_match(request: Request, req: MatchPredictionRequest):
         raise HTTPException(status_code=503, detail="Match data not loaded")
 
     try:
+        # Load historical World Cup data for H2H calculation
+        historical_wc_df = get_df(request, 'historical_wc')
+
         result = predict_match_outcome(
             models=models,
             team_a=req.team_a,
@@ -414,7 +417,40 @@ def predict_match(request: Request, req: MatchPredictionRequest):
             temp_max=req.temp_max,
             precipitation=req.precipitation,
             wind_speed=req.wind_speed,
+            historical_wc_df=historical_wc_df,
         )
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/model/feature-importance")
+def get_match_feature_importance(request: Request):
+    """
+    Returns real feature importance (by gain) from the loaded match_weather XGBoost model.
+    Used by the MatchModelPanel for data science students.
+    """
+    models = request.app.state.models
+    model = models.get('match_weather')
+    if model is None:
+        raise HTTPException(status_code=503, detail="match_weather model not loaded")
+
+    try:
+        booster = model.get_booster()
+        importance = booster.get_score(importance_type='gain')
+
+        total_gain = sum(importance.values()) if importance else 1
+        items = []
+        for feat, gain in sorted(importance.items(), key=lambda x: x[1], reverse=True):
+            items.append({
+                "feature": feat,
+                "gain": round(gain, 2),
+                "importance_pct": round((gain / total_gain) * 100, 1) if total_gain > 0 else 0,
+            })
+
+        return {
+            "total_features": len(items),
+            "items": items,
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error extracting feature importance: {str(e)}")

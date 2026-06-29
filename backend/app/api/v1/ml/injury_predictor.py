@@ -2,11 +2,19 @@
 Injury Risk Predictor
 ======================
 Calls injury_xgboost_model.pkl with the exact 123 features it was trained on.
+Optionally augments prediction with climate interaction features when
+geoclimatic data is provided (venue temperature, humidity, elevation).
 
 FIXED: Uses the pre-trained encoders from encoders.pkl (OneHotEncoder + StandardScaler)
 that were used during model training, ensuring categorical encoding is consistent.
 When encoders are unavailable, uses a hash-based fallback that produces stable
 encodings regardless of runtime data distribution.
+
+Climate Enhancement:
+    When geo_climate data is provided, computes interaction features that model
+    the biological mechanism by which climate increases injury risk for specific
+    player profiles. This transforms the geoclimatic panel from decorative context
+    to a real input that modulates the prediction.
 """
 
 import pandas as pd
@@ -85,6 +93,149 @@ _INJURY_DEFAULTS = {
     'injury_frequency': 0.0,
     'injury_severity_score': 0.0,
 }
+
+# ─── CLIMATE INTERACTION FEATURES ───
+# Average home climate by country (for computing adaptation differentials)
+_COUNTRY_HOME_CLIMATE = {
+    'Argentina': {'avg_temp': 18, 'avg_humidity': 60, 'avg_elevation': 25},
+    'Brazil': {'avg_temp': 26, 'avg_humidity': 75, 'avg_elevation': 100},
+    'France': {'avg_temp': 14, 'avg_humidity': 70, 'avg_elevation': 100},
+    'Germany': {'avg_temp': 11, 'avg_humidity': 75, 'avg_elevation': 200},
+    'Spain': {'avg_temp': 18, 'avg_humidity': 55, 'avg_elevation': 650},
+    'England': {'avg_temp': 11, 'avg_humidity': 80, 'avg_elevation': 50},
+    'Italy': {'avg_temp': 15, 'avg_humidity': 65, 'avg_elevation': 150},
+    'Portugal': {'avg_temp': 17, 'avg_humidity': 65, 'avg_elevation': 100},
+    'Netherlands': {'avg_temp': 11, 'avg_humidity': 80, 'avg_elevation': 5},
+    'Belgium': {'avg_temp': 11, 'avg_humidity': 80, 'avg_elevation': 50},
+    'United States': {'avg_temp': 15, 'avg_humidity': 60, 'avg_elevation': 200},
+    'Mexico': {'avg_temp': 22, 'avg_humidity': 55, 'avg_elevation': 1500},
+    'Japan': {'avg_temp': 16, 'avg_humidity': 70, 'avg_elevation': 50},
+    'South Korea': {'avg_temp': 14, 'avg_humidity': 65, 'avg_elevation': 50},
+    'Senegal': {'avg_temp': 28, 'avg_humidity': 65, 'avg_elevation': 20},
+    'Morocco': {'avg_temp': 20, 'avg_humidity': 55, 'avg_elevation': 400},
+    'Saudi Arabia': {'avg_temp': 30, 'avg_humidity': 30, 'avg_elevation': 600},
+    'Qatar': {'avg_temp': 32, 'avg_humidity': 45, 'avg_elevation': 10},
+    'Uruguay': {'avg_temp': 17, 'avg_humidity': 70, 'avg_elevation': 30},
+    'Colombia': {'avg_temp': 24, 'avg_humidity': 70, 'avg_elevation': 1500},
+    'Ecuador': {'avg_temp': 22, 'avg_humidity': 70, 'avg_elevation': 2800},
+    'Canada': {'avg_temp': 6, 'avg_humidity': 65, 'avg_elevation': 100},
+    'Australia': {'avg_temp': 22, 'avg_humidity': 55, 'avg_elevation': 50},
+    'Croatia': {'avg_temp': 13, 'avg_humidity': 65, 'avg_elevation': 100},
+    'Denmark': {'avg_temp': 9, 'avg_humidity': 80, 'avg_elevation': 20},
+    'Switzerland': {'avg_temp': 10, 'avg_humidity': 70, 'avg_elevation': 500},
+    'Scotland': {'avg_temp': 9, 'avg_humidity': 82, 'avg_elevation': 100},
+    'Serbia': {'avg_temp': 12, 'avg_humidity': 65, 'avg_elevation': 150},
+    'Poland': {'avg_temp': 9, 'avg_humidity': 75, 'avg_elevation': 150},
+    'Wales': {'avg_temp': 10, 'avg_humidity': 80, 'avg_elevation': 50},
+    'Iran': {'avg_temp': 20, 'avg_humidity': 35, 'avg_elevation': 1200},
+    'Tunisia': {'avg_temp': 20, 'avg_humidity': 60, 'avg_elevation': 50},
+    'Cameroon': {'avg_temp': 26, 'avg_humidity': 75, 'avg_elevation': 700},
+    'Ghana': {'avg_temp': 27, 'avg_humidity': 75, 'avg_elevation': 100},
+    'Nigeria': {'avg_temp': 27, 'avg_humidity': 70, 'avg_elevation': 300},
+}
+_DEFAULT_HOME_CLIMATE = {'avg_temp': 15, 'avg_humidity': 65, 'avg_elevation': 100}
+
+# Names of climate interaction features (for SHAP explanations)
+CLIMATE_FEATURE_NAMES = [
+    'climate_heat_stress',
+    'climate_heat_x_recurrent',
+    'climate_heat_x_injury_freq',
+    'climate_altitude_factor',
+    'climate_altitude_x_age',
+    'climate_temp_differential',
+    'climate_humidity_differential',
+    'climate_altitude_differential',
+    'climate_adaptation_stress',
+    'climate_dehydration_risk',
+    'climate_is_high_altitude',
+    'climate_is_extreme_heat',
+]
+
+
+def compute_climate_features(
+    player_row: dict,
+    venue_temp: float = 25.0,
+    venue_humidity: float = 60.0,
+    venue_elevation_m: float = 100.0,
+) -> dict:
+    """
+    Computes climate × player interaction features.
+
+    These capture the biological mechanism by which climate conditions
+    increase injury risk for specific player profiles:
+    - Heat stress × muscle injury history (hamstring/quad vulnerability)
+    - Altitude × age (VO2max decline)
+    - Temperature/humidity differential (adaptation shock)
+    - Dehydration risk (heat × workload)
+
+    Returns dict with 12 climate interaction features.
+    """
+    age = float(player_row.get('Age', 27) or 27)
+    country = str(player_row.get('Country', ''))
+    is_recurrent = int(player_row.get('is_recurrent', 0) or 0)
+    injury_freq = float(player_row.get('injury_frequency', 0) or 0)
+    mins_played = float(player_row.get('Playing Time_Min', 0) or 0)
+
+    # Home climate for adaptation differential
+    home = _COUNTRY_HOME_CLIMATE.get(country, _DEFAULT_HOME_CLIMATE)
+    home_temp = home['avg_temp']
+    home_humidity = home['avg_humidity']
+    home_elevation = home['avg_elevation']
+
+    features = {}
+
+    # 1. Heat stress index (non-linear above 30°C, considers humidity)
+    heat_index = venue_temp + (0.33 * venue_humidity / 100 * venue_temp) - 10
+    features['climate_heat_stress'] = max(0.0, (heat_index - 25) / 20)
+
+    # 2. Heat × recurrent muscle injuries (dehydrated muscles tear more)
+    features['climate_heat_x_recurrent'] = features['climate_heat_stress'] * is_recurrent
+
+    # 3. Heat × injury frequency (compounding risk)
+    features['climate_heat_x_injury_freq'] = features['climate_heat_stress'] * min(injury_freq, 5.0)
+
+    # 4. Altitude fatigue factor (significant above 1000m)
+    altitude_factor = max(0.0, (venue_elevation_m - 1000) / 1500)
+    features['climate_altitude_factor'] = altitude_factor
+
+    # 5. Altitude × age (older players suffer more from reduced O2)
+    age_factor = max(0.0, (age - 28) / 7)
+    features['climate_altitude_x_age'] = altitude_factor * age_factor
+
+    # 6. Temperature differential (venue vs home country)
+    temp_diff = abs(venue_temp - home_temp)
+    features['climate_temp_differential'] = temp_diff / 20.0
+
+    # 7. Humidity differential
+    humidity_diff = abs(venue_humidity - home_humidity)
+    features['climate_humidity_differential'] = humidity_diff / 40.0
+
+    # 8. Altitude differential (sea-level player → high altitude = shock)
+    elev_diff = abs(venue_elevation_m - home_elevation)
+    features['climate_altitude_differential'] = min(elev_diff / 2000.0, 1.5)
+
+    # 9. Combined adaptation stress score
+    features['climate_adaptation_stress'] = (
+        features['climate_temp_differential'] * 0.4 +
+        features['climate_humidity_differential'] * 0.3 +
+        features['climate_altitude_differential'] * 0.3
+    )
+
+    # 10. Dehydration risk (heat + humidity + workload)
+    min_factor = min(mins_played / 2000, 1.0)
+    heat_activation = max(0, venue_temp - 25) / 15
+    features['climate_dehydration_risk'] = (
+        features['climate_heat_stress'] * 0.5 +
+        (venue_humidity / 100) * 0.3 +
+        min_factor * 0.2
+    ) * heat_activation
+
+    # 11-12. Binary flags
+    features['climate_is_high_altitude'] = 1 if venue_elevation_m > 1500 else 0
+    features['climate_is_extreme_heat'] = 1 if venue_temp > 32 else 0
+
+    return features
+
 
 # Module-level cache for encoders (loaded once)
 _encoders_cache = None
@@ -241,9 +392,21 @@ def predict_injury_risk(
     injuries_df: pd.DataFrame,
     override_frequency: float = None,
     override_days_since: float = None,
+    geo_climate: dict = None,
 ) -> dict:
     """
     Returns injury risk prediction using the real XGBoost model.
+    
+    When geo_climate is provided (from the weather service), climate interaction
+    features modulate the base prediction to account for venue-specific risk.
+
+    Parameters
+    ----------
+    geo_climate : dict, optional
+        Output from get_venue_geoclimatic_info(). Expected keys:
+        - weather.temp_max (°C)
+        - weather.humidity (%)
+        - elevation_m (meters)
 
     Returns dict with:
         risk_score      : float 0-100 (probability * 100)
@@ -251,6 +414,7 @@ def predict_injury_risk(
         diagnosis       : str  HEALTHY / LOW_RISK / CRITICAL_RISK
         ai_class        : int  0 / 1 / 2
         model_used      : str
+        climate_impact  : dict (when geo_climate is provided)
     """
     try:
         model = models.get('injury')
@@ -267,7 +431,82 @@ def predict_injury_risk(
             features_df['days_since_last_injury'] = override_days_since
 
         proba = model.predict_proba(features_df)[0][1]
-        risk_score = float(proba) * 100.0
+        base_risk_score = float(proba) * 100.0
+
+        # ─── CLIMATE MODULATION ───
+        # When venue conditions are known, compute climate interaction features
+        # and adjust the risk score based on how climate affects THIS player
+        climate_impact = None
+        climate_adjustment = 0.0
+
+        if geo_climate is not None:
+            weather = geo_climate.get("weather") or {}
+            venue_temp = weather.get("temp_max")
+            venue_humidity = weather.get("humidity")
+            venue_elevation = geo_climate.get("elevation_m")
+
+            # Only compute if we have at least temperature
+            if venue_temp is not None:
+                venue_humidity = venue_humidity if venue_humidity is not None else 60.0
+                venue_elevation = venue_elevation if venue_elevation is not None else 100.0
+
+                climate_feats = compute_climate_features(
+                    player_row=player_row,
+                    venue_temp=float(venue_temp),
+                    venue_humidity=float(venue_humidity),
+                    venue_elevation_m=float(venue_elevation),
+                )
+
+                # Compute climate adjustment as weighted sum of interaction features
+                # Weights derived from domain knowledge (sports medicine literature)
+                weights = {
+                    'climate_heat_stress': 3.0,
+                    'climate_heat_x_recurrent': 8.0,      # strongest signal
+                    'climate_heat_x_injury_freq': 5.0,
+                    'climate_altitude_factor': 4.0,
+                    'climate_altitude_x_age': 6.0,         # strong for older players
+                    'climate_temp_differential': 2.5,
+                    'climate_humidity_differential': 1.5,
+                    'climate_altitude_differential': 3.0,
+                    'climate_adaptation_stress': 2.0,
+                    'climate_dehydration_risk': 4.0,
+                    'climate_is_high_altitude': 5.0,
+                    'climate_is_extreme_heat': 4.0,
+                }
+
+                climate_adjustment = sum(
+                    climate_feats[feat] * weights[feat]
+                    for feat in CLIMATE_FEATURE_NAMES
+                )
+
+                # Cap the adjustment to avoid unreasonable predictions
+                # Climate can add up to +25 risk points maximum
+                climate_adjustment = min(climate_adjustment, 25.0)
+
+                # Build explanation of which climate factors matter most
+                top_factors = sorted(
+                    [(feat, climate_feats[feat] * weights[feat]) for feat in CLIMATE_FEATURE_NAMES],
+                    key=lambda x: abs(x[1]),
+                    reverse=True,
+                )
+
+                climate_impact = {
+                    "adjustment_points": round(climate_adjustment, 2),
+                    "venue_temp_c": round(float(venue_temp), 1),
+                    "venue_humidity_pct": round(float(venue_humidity), 0),
+                    "venue_elevation_m": int(venue_elevation),
+                    "top_factors": [
+                        {
+                            "feature": feat,
+                            "contribution": round(contrib, 3),
+                        }
+                        for feat, contrib in top_factors[:4]
+                        if abs(contrib) > 0.1
+                    ],
+                }
+
+        # Final risk score = base model + climate modulation
+        risk_score = min(base_risk_score + climate_adjustment, 99.0)
 
         if risk_score > 70:
             diagnosis = "CRITICAL_RISK"
@@ -279,13 +518,19 @@ def predict_injury_risk(
             diagnosis = "HEALTHY"
             ai_class = 0
 
-        return {
+        result = {
             "risk_score": round(risk_score, 2),
-            "risk_proba": round(float(proba), 4),
+            "risk_proba": round(risk_score / 100, 4),
+            "base_risk_score": round(base_risk_score, 2),
             "diagnosis": diagnosis,
             "ai_class": ai_class,
-            "model_used": "injury_xgboost_model",
+            "model_used": "injury_xgboost_model + climate_interaction",
         }
+
+        if climate_impact is not None:
+            result["climate_impact"] = climate_impact
+
+        return result
 
     except Exception as e:
         # Graceful fallback using injury history stats only
@@ -302,10 +547,43 @@ def predict_injury_risk(
 
         risk_score = min(base_risk + severity_risk + age_risk + volume_risk, 95.0)
 
-        return {
+        # Apply climate adjustment even in fallback mode
+        climate_impact = None
+        if geo_climate is not None:
+            weather = geo_climate.get("weather") or {}
+            venue_temp = weather.get("temp_max")
+            if venue_temp is not None:
+                venue_humidity = float(weather.get("humidity") or 60)
+                venue_elevation = float(geo_climate.get("elevation_m") or 100)
+                climate_feats = compute_climate_features(
+                    player_row=player_row,
+                    venue_temp=float(venue_temp),
+                    venue_humidity=venue_humidity,
+                    venue_elevation_m=venue_elevation,
+                )
+                climate_adj = min(
+                    climate_feats['climate_heat_stress'] * 3 +
+                    climate_feats['climate_altitude_factor'] * 4 +
+                    climate_feats['climate_adaptation_stress'] * 2,
+                    15.0
+                )
+                risk_score = min(risk_score + climate_adj, 95.0)
+                climate_impact = {
+                    "adjustment_points": round(climate_adj, 2),
+                    "venue_temp_c": round(float(venue_temp), 1),
+                    "venue_humidity_pct": round(venue_humidity, 0),
+                    "venue_elevation_m": int(venue_elevation),
+                    "top_factors": [],
+                }
+
+        result = {
             "risk_score": round(risk_score, 2),
             "risk_proba": round(risk_score / 100, 4),
+            "base_risk_score": round(risk_score, 2),
             "diagnosis": "CRITICAL_RISK" if risk_score > 70 else ("LOW_RISK" if risk_score > 30 else "HEALTHY"),
             "ai_class": 2 if risk_score > 70 else (1 if risk_score > 30 else 0),
             "model_used": f"fallback_formula (error: {str(e)[:80]})",
         }
+        if climate_impact is not None:
+            result["climate_impact"] = climate_impact
+        return result

@@ -4,8 +4,12 @@ Tournament Simulator
 Simulates the entire World Cup 2026 tournament by:
 1. Predicting group stage points for all 48 teams (team_points_xgb_model)
 2. Determining which teams advance from each group (top 2 + best 3rds)
-3. Resolving knockout bracket matches IN TOPOLOGICAL ORDER using match_outcome_weather_xgb
+3. Resolving knockout bracket matches IN TOPOLOGICAL ORDER using match_outcome_xgb (3-class)
 4. Returning the complete bracket prediction from Round of 32 to Final
+
+The knockout predictions use exclusively sports features (FIFA ranking, form, H2H).
+No climate data is used — it was experimentally validated that climate features
+do not meaningfully improve match outcome predictions in this context.
 
 FIXED:
 - Knockout matches are resolved in match_number order so that dependencies
@@ -98,6 +102,7 @@ def simulate_tournament(request: Request, response: Response):
     matches_df = get_df(request, 'world_cup_matches')
     teams_featured_df = get_df(request, 'teams_featured')
     matches_featured_df = get_df(request, 'matches_featured')
+    historical_wc_df = get_df(request, 'historical_wc')
     
     if groups_df.empty or matches_df.empty:
         raise HTTPException(status_code=503, detail="Tournament data not loaded")
@@ -129,6 +134,7 @@ def simulate_tournament(request: Request, response: Response):
                     models, team_name, teams_featured_df,
                     matches_df=matches_featured_df,
                     groups_df=groups_df,
+                    historical_wc_df=historical_wc_df,
                 )
                 raw_pts = result.get("predicted_group_points", 3.0)
                 # CLAMP to valid range [0, 9] — group stage max is 3 wins × 3 pts
@@ -246,9 +252,7 @@ def simulate_tournament(request: Request, response: Response):
                     team_a=team_a,
                     team_b=team_b,
                     matches_df=matches_featured_df,
-                    temp_max=25.0,
-                    precipitation=0.0,
-                    wind_speed=10.0,
+                    historical_wc_df=historical_wc_df,
                 )
                 prob_a = result["probabilities"]["win_A"]
                 prob_b = result["probabilities"]["win_B"]
@@ -312,8 +316,9 @@ def simulate_tournament(request: Request, response: Response):
         "champion": champion,
         "model_info": {
             "group_model": "team_points_xgb_model (XGBoost Regression)",
-            "match_model": "match_outcome_weather_xgb (XGBoost Binary Classifier)",
+            "match_model": "match_outcome_xgb (XGBoost 3-class: Win/Draw/Loss)",
             "note": "Los partidos de knockout se predicen recursivamente en orden de match_number, "
-                    "asegurando que cada dependencia (Wxx) esté resuelta antes de ser referenciada.",
+                    "asegurando que cada dependencia (Wxx) esté resuelta antes de ser referenciada. "
+                    "Se usan exclusivamente features deportivas (ranking FIFA, forma, H2H).",
         },
     }

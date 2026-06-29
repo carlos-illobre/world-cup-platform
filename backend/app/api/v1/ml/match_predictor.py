@@ -54,6 +54,7 @@ def _get_team_stats(team_name: str, matches_df: pd.DataFrame) -> dict:
         'h2h_losses': latest.get('h2h_losses', 0),
         'days_since_last_match': latest.get('days_since_last_match', 30),
         'form_last_5': latest.get('form_last_5', 0),
+        'form_last_10': latest.get('form_last_10', 0),
         'goals_scored_last_5': latest.get('goals_scored_last_5', 0),
         'goals_conceded_last_5': latest.get('goals_conceded_last_5', 0),
     }
@@ -73,24 +74,80 @@ def _get_team_fifa_info(team_name: str, matches_df: pd.DataFrame) -> dict:
     return {'points': np.nan, 'rank': np.nan}
 
 
-def _get_h2h_stats(team_a: str, team_b: str, matches_df: pd.DataFrame) -> dict:
+def _get_h2h_stats(team_a: str, team_b: str, matches_df: pd.DataFrame, historical_wc_df: pd.DataFrame = None) -> dict:
     """
     Extracts head-to-head stats between two teams from historical match data.
+    First checks master_matches_featured, then falls back to historical_world_cups.csv
+    which has all World Cup matches since 1930.
     Returns h2h_wins (team_a wins), h2h_losses (team_a losses), h2h_draws.
     """
-    # Matches where team_a played against team_b
+    # 1. Try from master_matches_featured (recent matches with Result column)
     h2h = matches_df[
         (matches_df['Country'] == team_a) &
         (matches_df['Opponent'] == team_b)
     ]
 
     if not h2h.empty:
-        # Compute from direct match records
         results = h2h['Result'].dropna()
         wins = int((results == 'W').sum())
         losses = int((results == 'L').sum())
         draws = int((results == 'D').sum())
-        return {'h2h_wins': wins, 'h2h_losses': losses, 'h2h_draws': draws}
+        if wins + losses + draws > 0:
+            return {'h2h_wins': wins, 'h2h_losses': losses, 'h2h_draws': draws}
+
+    # 2. Also check reverse direction in matches_featured
+    h2h_rev = matches_df[
+        (matches_df['Country'] == team_b) &
+        (matches_df['Opponent'] == team_a)
+    ]
+    if not h2h_rev.empty:
+        results = h2h_rev['Result'].dropna()
+        # Reverse: team_b's wins are team_a's losses
+        wins = int((results == 'L').sum())
+        losses = int((results == 'W').sum())
+        draws = int((results == 'D').sum())
+        if wins + losses + draws > 0:
+            return {'h2h_wins': wins, 'h2h_losses': losses, 'h2h_draws': draws}
+
+    # 3. Fall back to historical World Cup data (all WC matches since 1930)
+    if historical_wc_df is not None and not historical_wc_df.empty:
+        # Columns: Year, Stage, Country1, Country2, Score1, Score2, Venue, City
+        mask_a = (
+            (historical_wc_df['Country1'] == team_a) &
+            (historical_wc_df['Country2'] == team_b)
+        )
+        mask_b = (
+            (historical_wc_df['Country1'] == team_b) &
+            (historical_wc_df['Country2'] == team_a)
+        )
+        h2h_hist = historical_wc_df[mask_a | mask_b]
+
+        if not h2h_hist.empty:
+            wins = 0
+            losses = 0
+            draws = 0
+            for _, row in h2h_hist.iterrows():
+                s1 = int(row['Score1'])
+                s2 = int(row['Score2'])
+                # Determine if team_a is Country1 or Country2
+                if row['Country1'] == team_a:
+                    if s1 > s2:
+                        wins += 1
+                    elif s1 < s2:
+                        losses += 1
+                    else:
+                        # Draw in score (could be penalty shootout win)
+                        # For WC finals with draws, the team listed first in a final
+                        # that drew typically won on penalties — treat as win for them
+                        draws += 1
+                else:  # team_a is Country2
+                    if s2 > s1:
+                        wins += 1
+                    elif s2 < s1:
+                        losses += 1
+                    else:
+                        draws += 1
+            return {'h2h_wins': wins, 'h2h_losses': losses, 'h2h_draws': draws}
 
     # No direct H2H found — default to 0
     return {'h2h_wins': 0, 'h2h_losses': 0, 'h2h_draws': 0}
@@ -104,6 +161,7 @@ def predict_match_outcome(
     temp_max: float = 20.0,
     precipitation: float = 0.0,
     wind_speed: float = 10.0,
+    historical_wc_df: pd.DataFrame = None,
 ) -> dict:
     """
     Predicts match outcome using real data from master_matches_featured.
@@ -134,7 +192,7 @@ def predict_match_outcome(
 
     # --- Build feature vector from real data ---
     stats_a = _get_team_stats(team_a, matches_df)
-    h2h = _get_h2h_stats(team_a, team_b, matches_df)
+    h2h = _get_h2h_stats(team_a, team_b, matches_df, historical_wc_df)
 
     # Get FIFA info for both teams from their own match histories
     fifa_info_a = _get_team_fifa_info(team_a, matches_df)
@@ -196,14 +254,22 @@ def predict_match_outcome(
     if pd.isna(days_since):
         days_since = 30
 
-    features = pd.DataFrame([{
+    # Build full feature dict (superset of all features needed by both models)
+    all_features = {
         'Country_FIFA_Points': float(fifa_pts_a),
         'Opponent_FIFA_Points': float(fifa_pts_b),
+        'Country_FIFA_Rank': float(rank_a),
+        'Opponent_FIFA_Rank': float(rank_b),
         'ranking_diff': ranking_diff,
         'h2h_wins': h2h['h2h_wins'],
         'h2h_losses': h2h['h2h_losses'],
+        'h2h_draws': h2h.get('h2h_draws', 0),
+        'h2h_matches': h2h['h2h_wins'] + h2h['h2h_losses'] + h2h.get('h2h_draws', 0),
+        'h2h_goals_for': 0,  # Not available at runtime without full lookup
+        'h2h_goals_against': 0,
         'days_since_last_match': days_since,
         'form_last_5': form,
+        'form_last_10': stats_a.get('form_last_10', form * 2),  # Use real if available
         'goals_scored_last_5': goals_scored,
         'goals_conceded_last_5': goals_conceded,
         'temp_max': float(temp_max),
@@ -211,38 +277,61 @@ def predict_match_outcome(
         'wind_speed': float(wind_speed),
         'is_raining': 1 if float(precipitation) > 2.0 else 0,
         'is_hot': 1 if float(temp_max) > 30.0 else 0,
-    }])
+    }
 
-    features = features[WEATHER_MODEL_FEATURES]
+    # Weather model features (14)
+    features = pd.DataFrame([{k: all_features[k] for k in WEATHER_MODEL_FEATURES}])
 
-    # --- Predict using the 3-class model if available, else binary ---
-    model_3class = models.get('match_outcome')  # W/D/L direct prediction
-
+    # --- Predict: always use weather model (includes climate) as primary ---
+    # The weather model is binary (win/not-win) but accounts for climate conditions.
+    # The 3-class model doesn't use weather features so it won't react to slider changes.
+    # Strategy: Use weather model probability, then use 3-class to refine D/L split.
+    
+    proba_arr = model.predict_proba(features)[0]
+    prob_win_a_raw = float(proba_arr[1])
+    
+    # Try to refine Draw vs Loss split using 3-class model
+    model_3class = models.get('match_outcome')
     if model_3class is not None and hasattr(model_3class, 'predict_proba'):
-        # Use the 3-class model (predicts 0=Loss, 1=Draw, 2=Win)
-        # It may use a different feature set; try weather features first
         try:
-            proba_arr = model_3class.predict_proba(features)[0]
-            if len(proba_arr) == 3:
-                # classes: 0=Loss, 1=Draw, 2=Win
-                prob_win_a = float(proba_arr[2])
-                prob_draw = float(proba_arr[1])
-                prob_win_b = float(proba_arr[0])
-                model_name = "match_outcome_xgb (3-class)"
+            booster_3c = model_3class.get_booster()
+            expected_features = booster_3c.feature_names
+            features_3class = pd.DataFrame([{f: all_features.get(f, 0) for f in expected_features}])
+            proba_3c = model_3class.predict_proba(features_3class)[0]
+            # proba_3c: [P(Loss), P(Draw), P(Win)]
+            
+            # Blend: Use weather model's win probability (climate-aware),
+            # but use 3-class model's Draw/Loss ratio for the remaining probability
+            prob_win_a = prob_win_a_raw
+            remaining = 1.0 - prob_win_a
+            
+            # 3-class model's D/(D+L) ratio
+            p_draw_3c = float(proba_3c[1])
+            p_loss_3c = float(proba_3c[0])
+            dl_total = p_draw_3c + p_loss_3c
+            if dl_total > 0.01:
+                draw_ratio = p_draw_3c / dl_total
             else:
-                raise ValueError("Not 3-class")
+                draw_ratio = 0.5
+            
+            prob_draw = remaining * draw_ratio
+            prob_win_b = remaining * (1.0 - draw_ratio)
+            model_name = "blend (weather + 3-class)"
         except Exception:
-            # Fallback to binary model
-            proba_arr = model.predict_proba(features)[0]
-            prob_win_a_raw = float(proba_arr[1])
             prob_win_a, prob_draw, prob_win_b = _distribute_binary_proba(prob_win_a_raw)
             model_name = "match_outcome_weather_xgb"
     else:
-        # Binary model: 0=not win, 1=win for team_a
-        proba_arr = model.predict_proba(features)[0]
-        prob_win_a_raw = float(proba_arr[1])
         prob_win_a, prob_draw, prob_win_b = _distribute_binary_proba(prob_win_a_raw)
         model_name = "match_outcome_weather_xgb"
+    
+    # Ensure minimums and normalize
+    prob_win_a = max(prob_win_a, 0.03)
+    prob_draw = max(prob_draw, 0.05)
+    prob_win_b = max(prob_win_b, 0.03)
+    total = prob_win_a + prob_draw + prob_win_b
+    prob_win_a /= total
+    prob_draw /= total
+    prob_win_b /= total
 
     prediction = team_a if prob_win_a > prob_win_b else team_b
     if abs(prob_win_a - prob_win_b) < 0.05:

@@ -135,6 +135,7 @@ def get_team_prediction(request: Request, response: Response, team_name: str):
         matches_df = get_df(request, 'matches')
 
     groups_df = get_df(request, 'wc_groups')
+    historical_wc_df = get_df(request, 'historical_wc')
 
     try:
         result = predict_team_group_points(
@@ -143,6 +144,7 @@ def get_team_prediction(request: Request, response: Response, team_name: str):
             teams_df=teams_df,
             matches_df=matches_df,
             groups_df=groups_df,
+            historical_wc_df=historical_wc_df,
         )
         return {"data": result}
     except ValueError as e:

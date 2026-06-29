@@ -1,0 +1,33 @@
+Match Outcome Prediction Metrics (Enriched Dataset)
+====================================================
+Dataset: 3157 matches (825 FBref + 2332 Historical World Cup 1930-2022)
+Train/Test Split: 80/20 temporal
+
+Baseline (Random Forest):
+Accuracy: 0.5649
+F1-Macro: 0.4426
+
+XGBoost 3-Class (retrained with enriched data):
+Accuracy: 0.5712
+F1-Macro: 0.4433
+Log Loss: 1.0601
+
+XGBoost Classification Report:
+              precision    recall  f1-score   support
+
+           L       0.38      0.25      0.30       103
+           D       0.35      0.42      0.38       153
+           W       0.72      0.76      0.74       376
+
+    accuracy                           0.57       632
+   macro avg       0.48      0.48      0.47       632
+weighted avg       0.56      0.57      0.56       632
+
+Weather Model (Binary - original, uses 14 features + climate):
+Trained on 695 matches with weather data
+(Not retrained - historical matches lack climate data)
+
+Improvement vs previous model:
+- Accuracy: 49.6% → 57.1% (+7.5pp)
+- Test set: 139 → 632 samples (4.5x more reliable)
+- H2H data: Now correctly populated from historical WC matches

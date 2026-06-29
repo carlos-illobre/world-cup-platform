@@ -392,9 +392,9 @@ def build_master_matches():
     matches_merged = pd.merge(matches_merged, stadiums.drop(columns=['Country']), on='Stadium', how='left')
     
     # Calculate difference columns
-    # ranking_diff: team rank minus opponent rank. 
-    # (negative means team is ranked better, e.g. 1st vs 10th -> -9)
-    matches_merged['ranking_diff'] = matches_merged['Country_FIFA_Rank'] - matches_merged['Opponent_FIFA_Rank']
+    # ranking_diff: team points minus opponent points. 
+    # (positive means team has more points/better ranked)
+    matches_merged['ranking_diff'] = matches_merged['Country_FIFA_Points'] - matches_merged['Opponent_FIFA_Points']
     matches_merged['is_higher_ranked'] = (matches_merged['Country_FIFA_Rank'] < matches_merged['Opponent_FIFA_Rank']).astype(int)
     
     # Calculate days since last match per country

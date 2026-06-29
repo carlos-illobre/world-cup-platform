@@ -118,10 +118,10 @@
   --foreground: oklch(0.97 0.01 240);
 }
 
-@layer base {
+  @layer base {
   html {
-    /* 125% = 20px root. text-sm→17.5px, text-base→20px, text-xs→15px. Mejora legibilidad. */
-    font-size: 125%;
+    /* 137.5% = 22px root. Mejora legibilidad significativamente en pantallas grandes. */
+    font-size: 137.5%;
   }
 
   * {

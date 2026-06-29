@@ -18,12 +18,15 @@ export const squadApi = createApi({
     /** Obtiene los jugadores de un partido con filtro de búsqueda opcional. */
     getJugadoresPorPartido: builder.query<
       OpcionJugador[],
-      { matchNumber: number; searchQuery?: string }
+      { matchNumber: number; searchQuery?: string; teams?: string }
     >({
-      query: ({ matchNumber, searchQuery }) => {
+      query: ({ matchNumber, searchQuery, teams }) => {
         const params = new URLSearchParams();
         if (searchQuery?.trim()) {
           params.set("q", searchQuery.trim());
+        }
+        if (teams) {
+          params.set("teams", teams);
         }
         params.set("_t", Date.now().toString());
         const query = params.toString();
@@ -37,11 +40,15 @@ export const squadApi = createApi({
     }),
 
     /** Obtiene el plantel completo de ambos equipos con inferencia de riesgo pre-calculada. */
-    getInferenciaPlantilla: builder.query<InferenciaPlantillaPartido, number>({
-      query: (matchNumber) =>
-        `/api/v1/matches/${matchNumber}/squad/inference?_t=${Date.now()}`,
+    getInferenciaPlantilla: builder.query<InferenciaPlantillaPartido, { matchNumber: number; teams?: string }>({
+      query: ({ matchNumber, teams }) => {
+        const params = new URLSearchParams();
+        if (teams) params.set("teams", teams);
+        params.set("_t", Date.now().toString());
+        return `/api/v1/matches/${matchNumber}/squad/inference?${params.toString()}`;
+      },
       transformResponse: (response: InferenciaPlantillaResponse) => response.data,
-      providesTags: (_result, _error, matchNumber) => [
+      providesTags: (_result, _error, { matchNumber }) => [
         { type: "InferenciaPlantilla", id: matchNumber },
       ],
       keepUnusedDataFor: 2 * 60,

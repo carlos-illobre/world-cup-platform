@@ -61,9 +61,9 @@ export function BeeswarmChart({ data }: BeeswarmChartProps) {
           Distribución de Impact Score por Perfil Táctico
         </h3>
         <p className="text-sm text-muted-foreground leading-relaxed mt-1">
-          Cada punto es un jugador posicionado horizontalmente según su <strong className="text-white">Impact Score</strong> (métrica compuesta de G+A/90 + PPM + On/Off) 
-          y verticalmente por su perfil K-Means. La línea punteada marca el promedio global. 
-          Los puntos a la derecha de la línea están rindiendo por encima del promedio.
+          Cada punto es un jugador. <strong className="text-white">Posición horizontal</strong> = cuánto aporta al equipo (Impact Score). 
+          <strong className="text-white">Fila vertical</strong> = su perfil táctico según la IA. 
+          La línea punteada marca el promedio: los puntos a su derecha rinden por encima de lo normal.
         </p>
       </div>
       <ClusterLegend />
@@ -78,7 +78,7 @@ export function BeeswarmChart({ data }: BeeswarmChartProps) {
               domain={['dataMin - 0.5', 'dataMax + 0.5']}
               tick={{ fill: "#bbb", fontSize: 13 }}
               axisLine={{ stroke: 'rgba(255,255,255,0.1)' }}
-              label={{ value: "Impact Score →", position: "bottom", fill: "#aaa", fontSize: 13, offset: 10 }}
+              label={{ value: "Impact Score (mayor = más aporta) →", position: "bottom", fill: "#aaa", fontSize: 12, offset: 10 }}
             />
             <YAxis
               type="number"

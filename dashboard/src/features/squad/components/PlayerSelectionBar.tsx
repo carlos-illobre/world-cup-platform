@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { PlayerSearchCombobox } from "@/features/squad/components/PlayerSearchCombobox";
 import { seleccionarJugador, selectJugadorSeleccionadoId } from "@/features/squad/squadSlice";
-import { selectNumeroPartidoSeleccionado } from "@/features/fixture/fixtureSlice";
+import { selectNumeroPartidoSeleccionado, selectSimulatedTeams } from "@/features/fixture/fixtureSlice";
 import { useGetJugadoresPorPartidoQuery } from "@/features/squad/squadApi";
 import { UI_LABELS } from "@/shared/constants/uiLabels";
 
@@ -13,9 +13,10 @@ export function PlayerSelectionBar() {
   const dispatch = useAppDispatch();
   const jugadorSeleccionadoId = useAppSelector(selectJugadorSeleccionadoId);
   const numeroPartido = useAppSelector(selectNumeroPartidoSeleccionado);
+  const simulatedTeams = useAppSelector(selectSimulatedTeams);
 
   const { data: jugadores = [], isLoading } = useGetJugadoresPorPartidoQuery(
-    { matchNumber: numeroPartido! },
+    { matchNumber: numeroPartido!, teams: simulatedTeams || undefined },
     { skip: !numeroPartido },
   );
 

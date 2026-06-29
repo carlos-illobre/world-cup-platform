@@ -228,9 +228,6 @@ export function TeamComparePage() {
           <div>
             <h1 className="text-4xl font-display font-extrabold tracking-tight mb-2">
               Comparador de Selecciones
-              <span className="ml-3 bg-neon-blue/20 text-neon-blue text-sm px-3 py-1 rounded-full border border-neon-blue/30 font-bold tracking-widest uppercase">
-                AI Powered
-              </span>
             </h1>
             <p className="text-gray-300 max-w-2xl text-base">
               Compara dos selecciones usando métricas de squad reales y predicciones

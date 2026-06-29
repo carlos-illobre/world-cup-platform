@@ -51,27 +51,33 @@ def predict_team_group_points(
     models: dict,
     team_name: str,
     teams_df: pd.DataFrame,
+    matches_df: pd.DataFrame = None,
+    groups_df: pd.DataFrame = None,
 ) -> dict:
     """
-    Predicts expected group stage points for a team using real squad stats.
+    Predicts expected group stage points for a team by SIMULATING the 3 group
+    matches using the match_outcome_weather_xgb model.
+
+    If group/match data is available, it simulates Team vs each opponent in the
+    group and sums expected points. If not, falls back to a quality heuristic.
 
     Parameters
     ----------
     models : dict
-        App state models dict (must contain 'team_points').
+        App state models dict.
     team_name : str
-        Exact team name as in master_teams_featured.
+        Team name as in master_teams_featured.
     teams_df : pd.DataFrame
         master_teams_featured loaded at startup.
+    matches_df : pd.DataFrame, optional
+        master_matches_featured (needed for match simulation).
+    groups_df : pd.DataFrame, optional
+        world_cup_2026_groups (to know group opponents).
 
     Returns
     -------
     dict with predicted_points, team_stats, and model info.
     """
-    model = models.get('team_points')
-    if model is None:
-        raise ValueError("team_points model not loaded")
-
     if teams_df is None or teams_df.empty:
         raise ValueError("teams_featured data not loaded")
 
@@ -82,7 +88,6 @@ def predict_team_group_points(
             teams_df['Country'].str.lower() == team_name.lower()
         ]
     if team_row.empty:
-        # Partial match
         team_row = teams_df[
             teams_df['Country'].str.lower().str.contains(team_name.lower(), na=False)
         ]
@@ -90,29 +95,93 @@ def predict_team_group_points(
         raise ValueError(f"Team '{team_name}' not found in teams_featured data")
 
     t = team_row.iloc[0]
+    actual_team_name = t['Country']
 
-    # Build feature vector
+    # --- Try to simulate group matches ---
+    predicted_points = None
+    method = "match_simulation"
+
+    if models.get('match_weather') is not None and matches_df is not None and not matches_df.empty and groups_df is not None and not groups_df.empty:
+        from app.api.v1.ml.match_predictor import predict_match_outcome
+
+        # Find the team's group opponents
+        team_group_row = groups_df[groups_df['team'] == actual_team_name]
+        if team_group_row.empty:
+            team_group_row = groups_df[
+                groups_df['team'].str.lower() == actual_team_name.lower()
+            ]
+
+        if not team_group_row.empty:
+            group_name = team_group_row.iloc[0]['group']
+            group_teams = groups_df[groups_df['group'] == group_name]['team'].tolist()
+            opponents = [t2 for t2 in group_teams if t2.lower() != actual_team_name.lower()]
+
+            # Simulate 3 matches and compute expected points
+            total_expected_points = 0.0
+            for opp in opponents[:3]:  # Max 3 group matches
+                try:
+                    result = predict_match_outcome(
+                        models=models,
+                        team_a=actual_team_name,
+                        team_b=opp,
+                        matches_df=matches_df,
+                        temp_max=25.0,
+                        precipitation=0.0,
+                        wind_speed=10.0,
+                    )
+                    # Expected points = P(win)*3 + P(draw)*1 + P(loss)*0
+                    p_win = result['probabilities']['win_A']
+                    p_draw = result['probabilities']['draw']
+                    expected_pts = p_win * 3.0 + p_draw * 1.0
+                    total_expected_points += expected_pts
+                except Exception:
+                    # If prediction fails for an opponent, use neutral expectation
+                    total_expected_points += 1.5  # average of 3*0.33 + 1*0.33
+
+            predicted_points = round(total_expected_points, 2)
+
+    # --- Fallback: quality heuristic if simulation not possible ---
+    if predicted_points is None:
+        method = "squad_quality_heuristic"
+        market_val = float(t.get('squad_avg_market_value', 0) or 0)
+        top_league = float(t.get('squad_top_league_ratio', 0) or 0)
+        impact = float(t.get('squad_avg_impact_score', 0) or 0)
+        total_caps = float(t.get('squad_total_caps', 0) or 0)
+        allcomps_goals = float(t.get('squad_total_allcomps_goals', 0) or 0)
+
+        mv_score = min(market_val / 50_000_000, 1.0)
+        tl_score = top_league
+        impact_score = min(max((impact + 3) / 4.8, 0), 1.0)
+        caps_score = min(total_caps / 500, 1.0)
+        goals_score = min(allcomps_goals / 80, 1.0)
+
+        quality = (
+            mv_score * 0.30 +
+            tl_score * 0.25 +
+            impact_score * 0.20 +
+            caps_score * 0.15 +
+            goals_score * 0.10
+        )
+        predicted_points = round(quality * 9.0, 2)
+
+    # Clamp
+    predicted_points = max(0.0, min(9.0, predicted_points))
+
+    # Build stats response
     feat = {}
     for col in TEAM_POINTS_FEATURES:
         val = t.get(col, np.nan)
         feat[col] = float(val) if pd.notna(val) else np.nan
 
-    features_df = pd.DataFrame([feat])[TEAM_POINTS_FEATURES]
-
-    # Model predicts directly (regression or classifier)
-    prediction = model.predict(features_df)[0]
-    predicted_points = float(prediction)
-
-    # Return actual stats used
     stats_used = {
         col: (round(float(feat[col]), 3) if pd.notna(feat[col]) else None)
         for col in TEAM_POINTS_FEATURES
     }
 
     return {
-        "team": team_name,
-        "predicted_group_points": round(predicted_points, 2),
-        "model_used": "team_points_xgb_model",
+        "team": actual_team_name,
+        "predicted_group_points": predicted_points,
+        "model_used": method,
         "squad_stats": {
             "avg_age": stats_used.get("squad_avg_age"),
             "total_injuries": stats_used.get("squad_total_injuries"),

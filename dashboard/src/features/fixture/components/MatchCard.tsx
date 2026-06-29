@@ -1,16 +1,57 @@
-import { MapPin, Mountain, Thermometer, Droplets } from "lucide-react";
+import { useState } from "react";
+import { MapPin, Mountain, Thermometer, Droplets, Sparkles } from "lucide-react";
 import { TeamFlag } from "@/shared/components/TeamFlag";
 import { UI_LABELS } from "@/shared/constants/uiLabels";
+import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
 import type { PartidoResumido } from "@/shared/types/injuryRisk.types";
 
 interface MatchCardProps {
   partido: PartidoResumido;
   isSelected: boolean;
   onSelect: (matchNumber: number) => void;
+  onSimulateTeams?: (matchNumber: number, homeTeam: string, awayTeam: string) => void;
 }
 
 /** Card de partido con banderas de los equipos, resultado VS y sede. */
-export function MatchCard({ partido, isSelected, onSelect }: MatchCardProps) {
+export function MatchCard({ partido, isSelected, onSelect, onSimulateTeams }: MatchCardProps) {
+  const [simulating, setSimulating] = useState(false);
+  const [simulatedTeams, setSimulatedTeams] = useState<{ home: string; away: string } | null>(null);
+
+  const hasTBD = partido.home.code === "TBD" || partido.away.code === "TBD";
+  const displayHome = simulatedTeams ? { ...partido.home, name: simulatedTeams.home, code: simulatedTeams.home.slice(0, 3).toUpperCase() } : partido.home;
+  const displayAway = simulatedTeams ? { ...partido.away, name: simulatedTeams.away, code: simulatedTeams.away.slice(0, 3).toUpperCase() } : partido.away;
+
+  async function handleSimulate(e: React.MouseEvent) {
+    e.stopPropagation();
+    setSimulating(true);
+    try {
+      const res = await fetch(`${INJURY_API_BASE_URL}/api/v1/tournament/simulate`);
+      if (!res.ok) throw new Error("Simulation failed");
+      const data = await res.json();
+
+      // Find this match in the knockout rounds
+      const matchNum = partido.match_number;
+      const allMatches = [
+        ...(data.knockout?.round_of_32 || []),
+        ...(data.knockout?.round_of_16 || []),
+        ...(data.knockout?.quarter_finals || []),
+        ...(data.knockout?.semi_finals || []),
+        ...(data.knockout?.third_place || []),
+        ...(data.knockout?.final || []),
+      ];
+      const simMatch = allMatches.find((m: any) => m.match_number === matchNum);
+      if (simMatch) {
+        setSimulatedTeams({ home: simMatch.team_a, away: simMatch.team_b });
+        // Notify parent so it can trigger squad reload with the correct teams
+        onSimulateTeams?.(matchNum, simMatch.team_a, simMatch.team_b);
+      }
+    } catch (err) {
+      console.error("Simulation error:", err);
+    } finally {
+      setSimulating(false);
+    }
+  }
+
   return (
     <button
       type="button"
@@ -31,8 +72,8 @@ export function MatchCard({ partido, isSelected, onSelect }: MatchCardProps) {
       )}
       <div className="flex w-full items-center justify-center gap-3">
         <div className="flex flex-col items-center gap-1">
-          <TeamFlag flagUrl={partido.home.flag_url} teamName={partido.home.name} size="md" />
-          <span className="text-xs font-bold text-foreground/90">{partido.home.code}</span>
+          <TeamFlag flagUrl={displayHome.flag_url} teamName={displayHome.name} size="md" />
+          <span className="text-xs font-bold text-foreground/90">{displayHome.code}</span>
         </div>
 
         <span className="font-display text-sm font-extrabold text-glow-blue">
@@ -40,10 +81,26 @@ export function MatchCard({ partido, isSelected, onSelect }: MatchCardProps) {
         </span>
 
         <div className="flex flex-col items-center gap-1">
-          <TeamFlag flagUrl={partido.away.flag_url} teamName={partido.away.name} size="md" />
-          <span className="text-xs font-bold text-foreground/90">{partido.away.code}</span>
+          <TeamFlag flagUrl={displayAway.flag_url} teamName={displayAway.name} size="md" />
+          <span className="text-xs font-bold text-foreground/90">{displayAway.code}</span>
         </div>
       </div>
+
+      {/* Simulate button for TBD matches */}
+      {hasTBD && !simulatedTeams && (
+        <button
+          type="button"
+          onClick={handleSimulate}
+          disabled={simulating}
+          className="mt-1 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-bold hover:bg-purple-500/30 transition-all disabled:opacity-50"
+        >
+          <Sparkles className="w-3 h-3" />
+          {simulating ? "Simulando..." : "Predecir equipos"}
+        </button>
+      )}
+      {simulatedTeams && (
+        <span className="text-[10px] text-purple-400 font-medium mt-0.5">✨ Predicción del simulador</span>
+      )}
 
       <span className="flex items-center gap-1 text-xs font-medium text-muted-foreground">
         <MapPin className="h-3 w-3 shrink-0 text-neon-blue" />

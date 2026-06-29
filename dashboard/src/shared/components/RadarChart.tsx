@@ -1,9 +1,9 @@
 import { EJES_RADAR } from "@/shared/constants/radarAxes";
 import type { MetricasRadar } from "@/shared/types/injuryRisk.types";
 
-const RADAR_SIZE = 200;
+const RADAR_SIZE = 280;
 const RADAR_CENTER = RADAR_SIZE / 2;
-const RADAR_RADIUS = 72;
+const RADAR_RADIUS = 100;
 
 function calcularPuntoPerfil(index: number, valor: number) {
   const angle = (Math.PI * 2 * index) / EJES_RADAR.length - Math.PI / 2;
@@ -17,8 +17,8 @@ function calcularPuntoPerfil(index: number, valor: number) {
 function calcularPuntoEtiqueta(index: number) {
   const angle = (Math.PI * 2 * index) / EJES_RADAR.length - Math.PI / 2;
   return {
-    x: RADAR_CENTER + Math.cos(angle) * (RADAR_RADIUS + 18),
-    y: RADAR_CENTER + Math.sin(angle) * (RADAR_RADIUS + 16),
+    x: RADAR_CENTER + Math.cos(angle) * (RADAR_RADIUS + 26),
+    y: RADAR_CENTER + Math.sin(angle) * (RADAR_RADIUS + 22),
   };
 }
 
@@ -81,7 +81,7 @@ export function RadarChart({ data }: { data: MetricasRadar }) {
       {/* Puntos en vértices */}
       {EJES_RADAR.map((eje, i) => {
         const punto = calcularPuntoPerfil(i, data[eje.key]);
-        return <circle key={eje.key} cx={punto.x} cy={punto.y} r={2.5} fill={eje.color} />;
+        return <circle key={eje.key} cx={punto.x} cy={punto.y} r={3.5} fill={eje.color} />;
       })}
 
       {/* Etiquetas de ejes */}
@@ -92,7 +92,7 @@ export function RadarChart({ data }: { data: MetricasRadar }) {
             key={eje.key}
             x={etiqueta.x}
             y={etiqueta.y}
-            fontSize={7.5}
+            fontSize={11}
             fontWeight={700}
             letterSpacing={0.5}
             textAnchor="middle"

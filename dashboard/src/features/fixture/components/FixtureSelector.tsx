@@ -6,6 +6,7 @@ import {
   selectNumeroPartidoSeleccionado,
   seleccionarFecha,
   seleccionarPartido,
+  setSimulatedTeams,
 } from "@/features/fixture/fixtureSlice";
 import { resetearJugadorSeleccionado } from "@/features/squad/squadSlice";
 import {
@@ -43,6 +44,12 @@ export function FixtureSelector() {
 
   function handleSeleccionarPartido(matchNumber: number) {
     dispatch(seleccionarPartido(matchNumber));
+    dispatch(resetearJugadorSeleccionado());
+  }
+
+  function handleSimulateTeams(matchNumber: number, homeTeam: string, awayTeam: string) {
+    dispatch(seleccionarPartido(matchNumber));
+    dispatch(setSimulatedTeams(`${homeTeam},${awayTeam}`));
     dispatch(resetearJugadorSeleccionado());
   }
 
@@ -94,6 +101,7 @@ export function FixtureSelector() {
               partido={partido}
               isSelected={partido.match_number === numeroPartidoSeleccionado}
               onSelect={handleSeleccionarPartido}
+              onSimulateTeams={handleSimulateTeams}
             />
           ))
         )}

@@ -61,18 +61,6 @@ def list_teams(request: Request, response: Response):
                     "FW": _to_native(row.get('squad_depth_FW')),
                 },
             },
-            "group_stage": {
-                "rank": _to_native(row.get('group_rank')),
-                "matches_played": _to_native(row.get('group_matches_played')),
-                "wins": _to_native(row.get('group_wins')),
-                "draws": _to_native(row.get('group_draws')),
-                "losses": _to_native(row.get('group_losses')),
-                "goals_for": _to_native(row.get('group_goals_for')),
-                "goals_against": _to_native(row.get('group_goals_against')),
-                "goal_diff": _to_native(row.get('group_goals_difference')),
-                "points": _to_native(row.get('group_points')),
-                "last_5_form": str(row.get('group_last_5_form', '')) if pd.notna(row.get('group_last_5_form')) else None,
-            },
         })
 
     return {"data": result, "total": len(result)}
@@ -134,19 +122,27 @@ def get_team(request: Request, response: Response, team_name: str):
 @router.get("/{team_name}/prediction")
 def get_team_prediction(request: Request, response: Response, team_name: str):
     """
-    Predicts expected group stage points using team_points_xgb_model.
-    All inputs come from real master_teams_featured data.
+    Predicts expected group stage points by simulating 3 group matches
+    using the match_outcome model against the team's actual group opponents.
     """
     response.headers["Cache-Control"] = "no-cache"
     teams_df = get_df(request, 'teams_featured')
     if teams_df.empty:
         raise HTTPException(status_code=503, detail="teams_featured data not loaded")
 
+    matches_df = get_df(request, 'matches_featured')
+    if matches_df.empty:
+        matches_df = get_df(request, 'matches')
+
+    groups_df = get_df(request, 'wc_groups')
+
     try:
         result = predict_team_group_points(
             models=request.app.state.models,
             team_name=team_name,
             teams_df=teams_df,
+            matches_df=matches_df,
+            groups_df=groups_df,
         )
         return {"data": result}
     except ValueError as e:

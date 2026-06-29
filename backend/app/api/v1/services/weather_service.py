@@ -75,7 +75,7 @@ def get_weather_for_venue(
                 "longitude": longitude,
                 "start_date": date_str,
                 "end_date": date_str,
-                "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max",
+                "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,relative_humidity_2m_max",
                 "timezone": "auto",
             }
         else:
@@ -85,7 +85,7 @@ def get_weather_for_venue(
             params = {
                 "latitude": latitude,
                 "longitude": longitude,
-                "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max",
+                "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,relative_humidity_2m_mean",
                 "timezone": "auto",
                 "start_date": date_str,
                 "end_date": date_str,
@@ -111,7 +111,7 @@ def get_weather_for_venue(
             "temp_min": daily["temperature_2m_min"][0] if daily.get("temperature_2m_min") else None,
             "precipitation": daily["precipitation_sum"][0] if daily.get("precipitation_sum") else 0.0,
             "wind_speed_max": daily["wind_speed_10m_max"][0] if daily.get("wind_speed_10m_max") else None,
-            "humidity": None,  # Not available in daily endpoint without hourly
+            "humidity": daily.get("relative_humidity_2m_max", daily.get("relative_humidity_2m_mean", [None]))[0],
         }
 
         # Cache the result

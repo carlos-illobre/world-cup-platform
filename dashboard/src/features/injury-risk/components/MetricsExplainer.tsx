@@ -66,42 +66,17 @@ export function MetricsExplainer() {
           {/* Radar */}
           <section>
             <h4 className="text-green-400 font-bold text-base mb-1">
-              📊 Radar de Performance (5 ejes)
+              📊 Radar de Performance Fisiológica
             </h4>
             <div className="text-gray-300 space-y-1 mt-1">
-              <p><strong className="text-white">Cardio:</strong> min(Playing_Time_90s × 10, 99). Cuántos "90 minutos completos" jugó — más minutos = mejor capacidad cardiovascular demostrada.</p>
-              <p><strong className="text-white">Endurance:</strong> Playing_Time_Min%. Porcentaje de minutos disponibles que efectivamente jugó en la temporada.</p>
+              <p><strong className="text-white">Cardio:</strong> Estimación ML basada en el volumen total de minutos jugados en la temporada (FBref). A más minutos comprobados en alta competencia, mayor capacidad aeróbica probada.</p>
+              <p><strong className="text-white">Endurance:</strong> Estimación ML basada en el % de minutos posibles que el jugador completó, ajustado por un factor de edad óptima de resistencia.</p>
               <p><strong className="text-white">Engagement:</strong> min(Performance_Int × 5, 99). Intercepciones por partido — mide la participación defensiva activa del jugador.</p>
-              <p><strong className="text-white">Respiratory:</strong> max(90 - riesgo × 0.5, 50). Inversamente proporcional al riesgo de lesión.</p>
-              <p><strong className="text-white">Recovery:</strong> max(100 - riesgo, 40). Capacidad de recuperación estimada basada en el riesgo general.</p>
+              <p><strong className="text-white">Respiratory:</strong> Métrica combinada de Fitness General derivada de la relación ponderada entre Cardio y Recuperación.</p>
+              <p><strong className="text-white">Recovery:</strong> Estimación ML basada en la edad del jugador y el impacto histórico de sus lesiones previas (penalizando días de baja).</p>
             </div>
             <p className="text-gray-400 mt-2 text-xs">
-              Los 3 primeros ejes provienen de datos reales de FBref (estadísticas de juego).
-              Los 2 últimos son derivados del modelo de riesgo.
-            </p>
-          </section>
-
-          {/* Physiological metrics */}
-          <section>
-            <h4 className="text-purple-400 font-bold text-base mb-1">
-              🧬 Métricas Fisiológicas (KNN Model)
-            </h4>
-            <p className="text-gray-200">
-              <strong>Modelo:</strong> <code className="text-purple-300">physiological_knn.pkl</code> — K-Nearest Neighbors Regressor (K=15, weights='distance').
-            </p>
-            <p className="text-gray-300 mt-1">
-              <strong>Cómo funciona:</strong> Recibe 3 inputs (edad, BMI, índice de fatiga) y busca los 15 atletas 
-              más similares en un dataset de sensores biométricos reales. Devuelve el promedio ponderado de sus 
-              métricas fisiológicas:
-            </p>
-            <div className="text-gray-300 space-y-1 mt-2 ml-4">
-              <p><strong className="text-white">Calidad de Sueño (0-100%):</strong> Estimación de la calidad del descanso basada en perfiles similares. Valores bajos (&lt;60%) sugieren acumulación de fatiga.</p>
-              <p><strong className="text-white">Hidratación (0-100%):</strong> Nivel de hidratación estimado. Valores &lt;70% incrementan el riesgo de calambres y lesiones musculares.</p>
-              <p><strong className="text-white">Temperatura Corporal (°C):</strong> Temperatura basal estimada. Valores &gt;37.5°C pueden indicar proceso inflamatorio activo.</p>
-              <p><strong className="text-white">Nivel de Estrés (LOW/MODERATE/HIGH/CRITICAL):</strong> Categorización del estrés fisiológico basada en umbrales empíricos del modelo.</p>
-            </div>
-            <p className="text-gray-400 mt-2 text-xs">
-              Fuente original: dataset multimodal_sports_injury_dataset.csv con registros reales de sensores biométricos de atletas de élite.
+              Todas estas métricas son calculadas en el backend mediante un imputer correlacional que utiliza datos reales de juego y lesiones, sin inventar parámetros biométricos (sensores).
             </p>
           </section>
 

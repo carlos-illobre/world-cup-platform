@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
 import { useAppSelector } from "@/app/hooks";
 import { selectJugadorSeleccionadoId } from "@/features/squad/squadSlice";
@@ -8,6 +8,7 @@ import { Activity, AlertTriangle, TrendingUp } from "lucide-react";
  * Panel "What-If" para simular cambios en parámetros de lesión.
  * Modifica injury_frequency y days_since_last_injury para ver
  * cómo cambia la predicción de riesgo del modelo XGBoost.
+ * Se ejecuta automáticamente al mover los sliders (con debounce).
  */
 export function WhatIfSimulator() {
   const jugadorId = useAppSelector(selectJugadorSeleccionadoId);
@@ -16,36 +17,29 @@ export function WhatIfSimulator() {
   const [simResult, setSimResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const runSimulation = async () => {
+  // Auto-run simulation when sliders change (debounced 500ms)
+  useEffect(() => {
     if (!jugadorId) return;
-    setLoading(true);
-    setError(null);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      const overrideFrequency = additionalMatches * 0.5; // 5 matches → frequency of 2.5/year
+      const overrideDays = daysSinceInjury;
 
-    // Convert additional matches in 15 days to an injury_frequency proxy
-    // injury_frequency = injuries_per_unit_time. More matches → higher frequency estimate
-    const overrideFrequency = additionalMatches * 0.15; // approximation
-    const overrideDays = daysSinceInjury;
+      setLoading(true);
+      setError(null);
 
-    try {
-      const params = new URLSearchParams();
-      params.set("override_frequency", overrideFrequency.toFixed(3));
-      params.set("override_days_since", overrideDays.toString());
-
-      const res = await fetch(
-        `${INJURY_API_BASE_URL}/api/v1/injuries/risk/${encodeURIComponent(jugadorId)}?${params.toString()}`
-      );
-      if (!res.ok) {
-        throw new Error(`Error ${res.status}`);
-      }
-      const data = await res.json();
-      setSimResult(data.data);
-    } catch (e: any) {
-      setError(e.message || "Error en simulación");
-    } finally {
-      setLoading(false);
-    }
-  };
+      fetch(
+        `${INJURY_API_BASE_URL}/api/v1/injuries/risk/${encodeURIComponent(jugadorId)}?override_frequency=${overrideFrequency.toFixed(3)}&override_days_since=${overrideDays}`
+      )
+        .then(res => { if (!res.ok) throw new Error(`Error ${res.status}`); return res.json(); })
+        .then(data => setSimResult(data.data))
+        .catch(e => setError(e.message || "Error en simulación"))
+        .finally(() => setLoading(false));
+    }, 500);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, [additionalMatches, daysSinceInjury, jugadorId]);
 
   if (!jugadorId) return null;
 
@@ -63,8 +57,7 @@ export function WhatIfSimulator() {
         </h3>
       </div>
       <p className="text-base text-gray-200 mb-6">
-        Ajusta los parámetros para simular escenarios hipotéticos y ver cómo varía 
-        la predicción de riesgo del modelo XGBoost.
+        Ajusta los parámetros para simular escenarios hipotéticos. El resultado se actualiza automáticamente.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -109,13 +102,12 @@ export function WhatIfSimulator() {
         </div>
       </div>
 
-      <button
-        onClick={runSimulation}
-        disabled={loading}
-        className="w-full md:w-auto bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2.5 px-6 rounded-xl transition-all disabled:opacity-50 shadow-[0_0_15px_rgba(234,179,8,0.3)]"
-      >
-        {loading ? "Simulando..." : "⚡ Ejecutar Simulación What-If"}
-      </button>
+      {loading && (
+        <div className="mt-4 flex items-center gap-2 text-sm text-gray-400">
+          <div className="w-4 h-4 border-2 border-neon-blue border-t-transparent rounded-full animate-spin" />
+          Recalculando...
+        </div>
+      )}
 
       {error && (
         <div className="mt-4 bg-red-500/10 border border-red-500/30 rounded-lg p-3 text-sm text-red-300">

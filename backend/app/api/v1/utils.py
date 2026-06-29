@@ -9,11 +9,21 @@ def get_df(request: Request, key: str):
 
 def get_team_info(request: Request, team_id):
     teams = get_df(request, 'world_cup_teams')
-    if teams.empty or pd.isna(team_id) or team_id not in teams.index:
-        raise HTTPException(status_code=404, detail=f"Team with ID {team_id} not found")
-    t = teams.loc[team_id]
-    iso_code = str(t['iso2_code']) if pd.notna(t.get('iso2_code')) else "un"
-    return {"name": str(t['team_name']), "code": str(t['fifa_code']), "flag_url": f"https://flagcdn.com/w320/{iso_code.lower()}.png"}
+    if teams.empty or pd.isna(team_id):
+        return {"name": "Por Definir", "code": "TBD", "flag_url": ""}
+    
+    # Try numeric ID lookup
+    try:
+        int_id = int(team_id)
+        if int_id in teams.index:
+            t = teams.loc[int_id]
+            iso_code = str(t['iso2_code']) if pd.notna(t.get('iso2_code')) else "un"
+            return {"name": str(t['team_name']), "code": str(t['fifa_code']), "flag_url": f"https://flagcdn.com/w320/{iso_code.lower()}.png"}
+    except (ValueError, TypeError, KeyError):
+        pass
+
+    # If team_id is not in the index, return placeholder (knockout matches with undetermined teams)
+    return {"name": "Por Definir", "code": "TBD", "flag_url": ""}
 
 def get_team_info_by_name(request: Request, team_name: str):
     teams = get_df(request, 'world_cup_teams')

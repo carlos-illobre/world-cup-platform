@@ -6,11 +6,14 @@ interface FixtureState {
   fechaSeleccionada: string | null;
   /** Número de partido seleccionado */
   numeroPartidoSeleccionado: number | null;
+  /** Simulated teams for knockout matches: "TeamA,TeamB" */
+  simulatedTeams: string | null;
 }
 
 const initialState: FixtureState = {
   fechaSeleccionada: null,
   numeroPartidoSeleccionado: null,
+  simulatedTeams: null,
 };
 
 /**
@@ -24,23 +27,31 @@ const fixtureSlice = createSlice({
     seleccionarFecha(state, action: PayloadAction<string>) {
       state.fechaSeleccionada = action.payload;
       state.numeroPartidoSeleccionado = null;
+      state.simulatedTeams = null;
     },
     seleccionarPartido(state, action: PayloadAction<number>) {
       state.numeroPartidoSeleccionado = action.payload;
+      state.simulatedTeams = null;
+    },
+    setSimulatedTeams(state, action: PayloadAction<string>) {
+      state.simulatedTeams = action.payload;
     },
     resetearFixture(state) {
       state.fechaSeleccionada = null;
       state.numeroPartidoSeleccionado = null;
+      state.simulatedTeams = null;
     },
   },
 });
 
-export const { seleccionarFecha, seleccionarPartido, resetearFixture } = fixtureSlice.actions;
+export const { seleccionarFecha, seleccionarPartido, setSimulatedTeams, resetearFixture } = fixtureSlice.actions;
 
 // Selectores
 export const selectFechaSeleccionada = (state: RootState) =>
   state.fixture.fechaSeleccionada;
 export const selectNumeroPartidoSeleccionado = (state: RootState) =>
   state.fixture.numeroPartidoSeleccionado;
+export const selectSimulatedTeams = (state: RootState) =>
+  state.fixture.simulatedTeams;
 
 export default fixtureSlice.reducer;

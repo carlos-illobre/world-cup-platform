@@ -130,9 +130,6 @@ export function GroupsSimulatorPage() {
           <div>
             <h1 className="text-4xl font-display font-extrabold tracking-tight mb-2">
               Simulador de Fase de Grupos
-              <span className="ml-3 bg-neon-blue/20 text-neon-blue text-sm px-3 py-1 rounded-full border border-neon-blue/30 font-bold tracking-widest uppercase">
-                AI Powered
-              </span>
             </h1>
             <p className="text-gray-300 max-w-2xl text-base">
               Predicción de puntos de grupo para las 48 selecciones del Mundial 2026 

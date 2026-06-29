@@ -167,15 +167,16 @@ def get_cluster_averages(request: Request, response: Response):
     attrs = ['pace', 'shooting', 'passing', 'dribbling', 'defending', 'physic',
              'xg_overperformance', 'impact_score_raw']
     existing_attrs = [attr for attr in attrs if attr in clustered.columns]
-    averages = clustered.groupby('cluster')[existing_attrs].mean().to_dict(orient='index')
+    averages = clustered.groupby('cluster')[existing_attrs].mean()
     
     results = {}
-    for cluster_id, metrics in averages.items():
+    for cluster_id, metrics in averages.iterrows():
         c_id = str(int(cluster_id)) if isinstance(cluster_id, (float, np.floating)) else str(cluster_id)
-        formatted_metrics = {k: to_native(v) for k, v in metrics.items()}
-        if 'physic' in formatted_metrics:
-            formatted_metrics['physical'] = formatted_metrics.pop('physic')
-        results[c_id] = formatted_metrics
+        formatted = {}
+        for k, v in metrics.items():
+            key_name = 'physical' if k == 'physic' else k
+            formatted[key_name] = round(float(v), 2) if pd.notna(v) else None
+        results[c_id] = formatted
         
     return results
 
@@ -280,3 +281,42 @@ def _format_player(player_id, p, base_url):
             "overall": to_native(p.get('overall'))
         }
     }
+
+
+@router.get("/model/feature-importance")
+def get_impact_feature_importance(request: Request, response: Response):
+    """
+    Returns real feature importance (gain) from the loaded player_impact XGBoost model.
+    """
+    import xgboost as xgb
+    from app.api.v1.ml.team_predictor import PLAYER_IMPACT_FEATURES
+
+    response.headers["Cache-Control"] = "public, max-age=3600"
+    model = request.app.state.models.get('player_impact')
+    if model is None:
+        raise HTTPException(status_code=503, detail="Player impact model not loaded")
+
+    try:
+        booster = model.get_booster()
+        importance_dict = booster.get_score(importance_type='gain')
+        feature_names = PLAYER_IMPACT_FEATURES
+        total_gain = sum(importance_dict.values()) if importance_dict else 1.0
+
+        results = []
+        for fname, gain in sorted(importance_dict.items(), key=lambda x: x[1], reverse=True):
+            if fname.startswith('f') and fname[1:].isdigit():
+                idx = int(fname[1:])
+                real_name = feature_names[idx] if idx < len(feature_names) else fname
+            else:
+                real_name = fname
+
+            results.append({
+                "feature": real_name,
+                "gain": round(gain, 4),
+                "importance_pct": round((gain / total_gain) * 100, 2),
+            })
+
+        return {"items": results[:20], "total_features": len(importance_dict)}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Could not extract feature importance: {str(e)}")

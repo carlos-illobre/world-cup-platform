@@ -19,6 +19,7 @@
 9. [Codificación Final y Feature Matrices (Fase 3b)](#9-codificación-final-y-feature-matrices-fase-3b)
 10. [Despliegue — API + Dashboard (Fase 6)](#10-despliegue--api--dashboard-fase-6)
 11. [Aplicaciones Profesionales para Ejecutivos de Negocio](#11-aplicaciones-profesionales-para-ejecutivos-de-negocio)
+12. [Guía de Uso del Dashboard — ¿Para qué sirve cada página?](#12-guía-de-uso-del-dashboard--para-qué-sirve-cada-página)
 
 ---
 
@@ -27,7 +28,7 @@
 El proyecto implementa una arquitectura de Data Lake por capas semánticas que garantiza la **inmutabilidad de los datos crudos** y la **reproducibilidad** de todo el pipeline. Un científico de datos que reciba este repositorio puede regenerar cualquier artefacto ejecutando los scripts en orden.
 
 ```
-world_cup_scraper/
+scraper/
 │
 ├── data/
 │   ├── 1_raw/           → Archivos CSV originales (solo lectura — fuente de verdad)
@@ -239,7 +240,7 @@ def clean_country_name(name):
     return synonyms.get(name, name)
 ```
 
-Esta función se aplica a **todas** las columnas de país antes de cualquier join, garantizando que `"USA"`, `"United States"` y `"us United States"` colapsen al mismo token canónico.
+Esta normalización se aplica **directamente sobre los archivos CSV** en la etapa de limpieza, garantizando que todos los datasets (`master_players_enriched.csv`, `master_matches_featured.csv`, `master_injuries_featured.csv`, `master_teams_featured.csv`, `world_cup_2026_groups.csv`) utilicen el mismo token canónico para cada país. No se realizan parches en runtime — los datos ya están limpios al momento de la carga.
 
 ---
 
@@ -328,7 +329,7 @@ matches_merged['days_since_last_match'] = groupby('Country').Date.diff().dt.days
 
 ---
 
-### 4.3 `master_teams.csv` (52 filas × 27 columnas)
+### 4.3 `master_teams.csv` (48 filas × 20 columnas)
 
 Agregación de `master_players` a nivel de selección nacional mediante `groupby('Country')`:
 
@@ -341,7 +342,7 @@ Agregación de `master_players` a nivel de selección nacional mediante `groupby
 | `squad_total_wc_goals` | `Performance_Gls` (WC) | `sum()` |
 | `squad_total_allcomps_goals` | `Performance_Gls_allcomps` | `sum()` |
 
-Se agrega además el standing del Grupo de la Copa del Mundo (`group_rank`, `group_points`, etc.) mediante LEFT JOIN desde `cleaned_results.csv`.
+**Nota:** Las columnas `group_rank`, `group_points`, `group_wins`, etc. fueron eliminadas del dataset de producción por representar solo 16 muestras de un único partido cada una (datos de WC 2022), insuficientes para entrenamiento confiable y potencialmente ruidosos para la inferencia. La predicción de puntos de grupo se realiza ahora mediante simulación de partidos (ver Sección 7.4).
 
 ---
 
@@ -956,48 +957,50 @@ XGBRegressor(n_estimators=150, learning_rate=0.05, max_depth=4, random_state=42)
 
 ---
 
-### 7.4 Modelo de Puntos de Grupo por Equipo
+### 7.4 Predicción de Puntos de Grupo por Equipo
 
-**Archivo:** `model_team_performance.py` → `team_points_xgb_model.pkl`  
-**Dataset:** `master_teams_featured.csv` (52 equipos)
+**Método:** Simulación de partidos con `match_outcome_weather_xgb.pkl`  
+**Enfoque:** Monte Carlo implícito — simular los 3 partidos del grupo y sumar puntos esperados.
 
-#### Variable Target
+#### Contexto y Decisión de Diseño
 
-```
-group_points ∈ ℝ+   (puntos obtenidos en la fase de grupos)
-```
+El modelo original `team_points_xgb_model.pkl` fue entrenado con solo 16 muestras (equipos que habían jugado 1 partido de grupo previo al scraping), donde el target `group_points ∈ {0, 1, 3}` representaba el resultado de un solo partido. Con 19 features y 16 muestras (ratio features:muestras de 1.2:1), el modelo sobreajustaba severamente y producía predicciones discretizadas e invertidas (asignaba 0 puntos a Argentina/Francia y 3 a equipos débiles).
 
-#### Features (19 variables de squad)
+**Decisión:** Se descartó el modelo `team_points_xgb` y las 16 muestras ruidosas. En su lugar, la predicción de puntos de grupo se realiza simulando los 3 enfrentamientos reales del equipo en su grupo usando el modelo de partido `match_outcome_weather_xgb` (entrenado con 825 partidos reales).
 
-```python
-TEAM_POINTS_FEATURES = [
-    'squad_total_market_value', 'squad_avg_market_value',
-    'squad_total_injuries', 'squad_total_wc_goals', 'squad_avg_wc_goals',
-    'squad_total_wc_assists', 'squad_total_allcomps_goals',
-    'squad_total_allcomps_assists', 'squad_avg_age', 'squad_median_age',
-    'squad_total_caps', 'squad_avg_caps', 'squad_injury_burden',
-    'squad_depth_DF', 'squad_depth_FW', 'squad_depth_GK', 'squad_depth_MF',
-    'squad_top_league_ratio', 'squad_avg_impact_score'
-]
-```
-
-**Importante — Exclusión anti-leakage:** Las columnas `group_rank`, `group_wins`, `group_draws`, `group_losses`, `group_goals_for`, `group_goals_against`, `group_goals_difference`, `group_last_5_form` se excluyen explícitamente porque son **consecuencia del target** (se derivarían de los puntos que queremos predecir):
+#### Algoritmo de Simulación
 
 ```python
-leaky_cols = ['group_rank','group_matches_played','group_wins',...]
-X = df.drop(columns=leaky_cols + ['Country','group_points'])
+def predict_team_group_points(team_name, group_opponents):
+    total_expected_points = 0.0
+    for opponent in group_opponents:  # 3 partidos de grupo
+        result = predict_match_outcome(team_name, opponent)
+        # Expected points = P(win) × 3 + P(draw) × 1 + P(loss) × 0
+        expected_pts = result['win_A'] * 3.0 + result['draw'] * 1.0
+        total_expected_points += expected_pts
+    return total_expected_points  # Rango [0, 9]
 ```
 
-#### Evaluación (5-Fold CV)
+**Ventajas:**
+- Usa un modelo con 825 muestras de entrenamiento (vs 16 del modelo anterior).
+- Considera la fuerza relativa de cada oponente específico del grupo.
+- La predicción es transitiva: si Argentina es fuerte contra Jordán y también contra Argelia, sus puntos de grupo reflejan eso.
+- Sin riesgo de sobreajuste: reutiliza un modelo validado con split temporal.
 
-| Modelo | RMSE | MAE |
+**Desventajas:**
+- Asume independencia entre partidos (no modela el efecto de un resultado previo sobre el siguiente).
+- No captura ventaja de sede (todos se simulan como neutral con clima estándar).
+
+#### Resultados de ejemplo
+
+| Equipo | Pts esperados | Interpretación |
 |---|---|---|
-| Linear Regression | 2.2344 | 1.3845 |
-| **XGBoost Regressor** | **0.8333** | **0.4090** |
-
-XGBoost supera significativamente a la Regresión Lineal. Esto sugiere que la relación entre características del plantel y puntos obtenidos tiene componentes no lineales importantes — por ejemplo, el valor de mercado tiene rendimientos decrecientes a partir de cierto umbral.
-
-**Limitación principal:** El dataset tiene solo 52 filas (una por selección). Con tan pocos datos, el modelo corre riesgo de sobreajuste. El CV de 5 folds usa solo ~41 muestras para entrenamiento por fold.
+| Argentina | 5.01 | Favorito claro de su grupo (J) |
+| Brazil | 4.71 | Domina grupo C |
+| England | 3.81 | Esperable ~1 victoria + 1 empate |
+| USA | 3.38 | Anfitrión, grupo medio-bajo |
+| New Zealand | 0.90 | Equipo más débil del grupo G |
+| Haiti | 1.32 | Débil en grupo C con Brasil |
 
 ---
 
@@ -1088,41 +1091,23 @@ Se excluyen explícitamente features que son derivadas del target para evitar le
 
 ---
 
-### 7.7 Modelo Fisiológico KNN
+### 7.7 Modelo Fisiológico KNN (Descartado)
 
-**Archivo:** script de entrenamiento en `world-cup/backend/docs/physiological_estimation_algorithm.md`  
-→ `physiological_knn.pkl`
+**Archivo:** `physiological_knn.pkl`  
+**Estado:** ⚠️ **DESCARTADO en producción** — el modelo se carga pero no se utiliza para inferencia.
 
-#### Propósito
+#### Motivo del descarte
 
-Estimar métricas biométricas de un jugador (`sleep_quality`, `hydration_level`, `body_temperature`, `stress_level`, `training_load`) a partir de solo tres variables observables: `age`, `bmi`, `fatigue_index`.
+El modelo KNN estaba entrenado sobre `multimodal_sports_injury_dataset.csv`, un dataset genérico de sensores biométricos de atletas **sin relación con los jugadores del Mundial 2026**. Los valores predichos (sleep_quality, hydration_level, body_temperature, stress_level, training_load) eran imputaciones estadísticas por similitud de edad/BMI, **no mediciones reales** de los jugadores.
 
-#### Algoritmo: K-Nearest Neighbors Regressor (KNN)
+Presentar estas estimaciones en el dashboard como si fueran datos fisiológicos del jugador constituía información fabricada que podía inducir decisiones erróneas. En un proyecto de ciencia de datos, la ausencia de datos reales debe comunicarse como tal, no enmascararse con imputaciones de fuentes no relacionadas.
 
-```python
-KNeighborsRegressor(n_neighbors=15, weights='distance')
-```
+#### Qué se muestra ahora
 
-**Mecanismo:** Para un jugador `P` con vector `[age, bmi, fatigue_index]`, el modelo:
-1. Encuentra los 15 jugadores más similares en el espacio normalizado (StandardScaler aplicado antes).
-2. Calcula el promedio ponderado de sus métricas fisiológicas, donde el peso de cada vecino es proporcional a `1/distancia`.
-
-**Fórmula de predicción:**
-```
-ŷ = Σᵢ wᵢ · yᵢ  /  Σᵢ wᵢ
-donde wᵢ = 1 / d(P, vecino_i)
-```
-
-**Dataset de entrenamiento:** `multimodal_sports_injury_dataset.csv` — dataset de sensores biométricos de atletas de élite con registros reales de sueño, hidratación y temperatura corporal.
-
-**Ventajas:**
-- No hace asunciones sobre la distribución de los datos.
-- Se adapta naturalmente a regiones densas del espacio (jugadores con perfiles muy comunes tienen mejores vecinos).
-
-**Desventajas:**
-- Costoso en tiempo de inferencia a escala (O(n) por predicción). Mitigado por el pequeño tamaño del dataset de entrenamiento.
-- Sensible a la escala — requiere normalización previa obligatoria.
-- No extrapola fuera del rango del dataset de entrenamiento.
+El endpoint de riesgo de lesión (`/api/v1/injuries/risk/{id}`) devuelve:
+- **Datos reales:** Riesgo de lesión del modelo XGBoost, fatigue_index, estadísticas de juego.
+- **Campos fisiológicos:** `null` — indicando que los datos no están disponibles sin sensores biométricos reales.
+- **Radar:** Basado en stats reales del jugador (90s jugados, porcentaje de minutos, intercepciones).
 
 ---
 
@@ -1242,15 +1227,19 @@ FastAPI Backend (Python)
 ├── Endpoints de inferencia:
 │   ├── POST /api/v1/matches/predictions        → match_outcome_weather_xgb
 │   ├── GET  /api/v1/injuries/risk/{id}         → injury_xgboost_model
-│   │                                           → physiological_knn
-│   ├── GET  /api/v1/teams/{name}/prediction    → team_points_xgb_model
+│   ├── GET  /api/v1/teams/{name}/prediction    → simulación de 3 partidos con match_outcome_weather_xgb
 │   ├── GET  /api/v1/teams/{name}/formation     → formation_xgb_model
-│   └── GET  /api/v1/players/{id}/impact        → player_impact_xgb_enriched
+│   ├── GET  /api/v1/players/{id}/impact        → player_impact_xgb_enriched
+│   └── GET  /api/v1/tournament/simulate        → simulación completa (grupo + knockout)
 │
 └── Sin reentrenamiento en producción → latencia de inferencia < 50ms
 ```
 
 **Decisión de arquitectura:** Cargar todos los modelos y datasets en memoria al iniciar el servidor elimina la latencia de disco por petición. Para 12 modelos y ~200MB de datos en RAM, esto es viable en cualquier instancia con ≥ 4GB de RAM.
+
+**Modelos descartados en producción:**
+- `team_points_xgb_model.pkl` — entrenado con 16 muestras, produce resultados no confiables. Reemplazado por simulación de partidos.
+- `physiological_knn.pkl` — entrenado sobre dataset genérico ajeno a los jugadores del Mundial. El endpoint devuelve `null` para campos fisiológicos.
 
 ### 10.2 Flujo de una Predicción de Partido
 
@@ -1261,26 +1250,38 @@ Cliente → POST /api/v1/matches/predictions
 
          ↓
 1. match_predictor.py: busca datos de Argentina en master_matches_featured
-   → extrae: Country_FIFA_Points = 1889.0, form_last_5 = 9.0,
-             goals_scored_last_5 = 3.33, h2h_wins = 0
+   → extrae: Country_FIFA_Points = 1889.0, Country_FIFA_Rank = 1,
+             form_last_5 = 9.0, goals_scored_last_5 = 3.33
 
-2. Busca FIFA points de France → 1851.9
-   ranking_diff = 1889 - 1851.9 = 37.1
+2. Busca FIFA info de France → Points = 1851.9, Rank = 2
+   ranking_diff = Rank_A - Rank_B = 1 - 2 = -1
+   (negativo = Argentina tiene MEJOR ranking)
 
-3. Construye vector de 14 features → DataFrame(1, 14)
+3. Busca H2H directo Argentina vs France en matches_df
+   → h2h_wins = 0, h2h_losses = 0
 
-4. match_weather_model.predict_proba([[1889, 1851.9, 37.1, 0, 0,
-                                       30, 9, 3.33, 0, 22, 0, 8, 0, 0]])
-   → [0.049, 0.946]  (prob_draw_or_loss, prob_win_Argentina)
+4. Construye vector de 14 features → DataFrame(1, 14)
 
-5. Ajuste probabilidades:
-   prob_draw = 0.27 (constante empírica)
-   prob_A_adj = max(0.946 * (1 - 0.27), 0.05) = 0.69
-   prob_B = 1 - 0.69 - 0.27 = 0.04  → Normalizar
+5. Intenta modelo 3-class (match_outcome_xgb) que predice W/D/L directamente.
+   Si falla, usa modelo binario (match_outcome_weather_xgb):
+   → predict_proba → prob_win_A_raw = 0.82
 
-   → { win_A: 0.056, draw: 0.27, win_B: 0.674 }
-   → prediction: "France"
+6. Distribución dinámica del empate:
+   uncertainty = 1.0 - |0.82 - 0.5| × 2 = 0.36
+   prob_draw = 0.20 + 0.15 × 0.36 = 0.254
+   remaining = 1.0 - 0.254 = 0.746
+   prob_A = 0.746 × 0.82 = 0.612
+   prob_B = 0.746 × 0.18 = 0.134
+   → Normalizar a sum=1
+
+   → { win_A: 0.612, draw: 0.254, win_B: 0.134 }
+   → prediction: "Argentina"
+
+7. SHAP: calcula contribuciones por feature vía pred_contribs de XGBoost
+   → Top feature: ranking_diff (peso -0.95, favorece a Argentina)
 ```
+
+**Nota sobre `ranking_diff`:** La feature se define como `Country_FIFA_Rank - Opponent_FIFA_Rank`. Un valor negativo indica que el equipo A tiene mejor ranking (número más bajo = mejor). El modelo fue entrenado con esta convención y es la feature con mayor peso SHAP (~2.0).
 
 ---
 
@@ -1378,6 +1379,124 @@ Y genera probabilidades de victoria/empate/derrota en menos de 50 milisegundos.
 | Gestión de carga de entrenamiento | Cuerpo técnico / Fisioterapeutas | Prevención de lesiones y extensión de la carrera del atleta |
 
 > **Conclusión para el ejecutivo:** Este sistema convierte datos deportivos en decisiones de negocio cuantificables. No reemplaza el criterio humano — lo amplifica con el procesamiento simultáneo de cientos de variables que ningún analista podría considerar manualmente en el tiempo disponible antes de una decisión crítica.
+
+---
+
+## 12. Guía de Uso del Dashboard — ¿Para qué sirve cada página?
+
+Esta sección explica, en lenguaje no técnico, **qué decisión permite tomar cada pantalla** del dashboard y cómo usarla.
+
+---
+
+### 12.1 Player Profiling & Scouting
+
+**Pregunta que responde:** *"¿A quién convoco/ficho y por qué?"*
+
+Esta pantalla es una herramienta de decisión de scouting. No es un catálogo de datos — está diseñada para que un director técnico, scout o analista llegue a una conclusión concreta sobre qué jugador elegir.
+
+#### Flujo de uso típico
+
+| Paso | Acción | Resultado |
+|------|--------|-----------|
+| 1 | Filtrar por perfil táctico, país, edad, y ordenar por métrica relevante | Se reduce el universo de 1,186 jugadores a un grupo manejable |
+| 2 | Identificar 3-4 candidatos en el grid | Las cards muestran Impact Score (color semántico), perfil K-Means y xG Overperformance |
+| 3 | Click en ✨ (Sparkles) en un jugador | Se abre un panel con 8 alternativas del mismo perfil táctico, ordenadas por similitud |
+| 4 | Agregar jugadores al comparador (👤+) | Se acumulan en la barra flotante inferior |
+| 5 | Click en "Comparar" | Se abre un modal con radar superpuesto, tabla de métricas y veredicto algorítmico |
+| 6 | Leer el veredicto y decidir | El sistema pondera Impact (40%) + xG (20%) + Salud (20%) + Overall (20%) y sugiere al mejor candidato |
+
+#### Escenarios concretos
+
+**"Necesito un reemplazo para mi extremo lesionado"**
+→ Filtrar Perfil: Carrilero/Extremo · Edad max: 28 · Ordenar por Impact Score · Usar "Jugadores Similares" sobre el lesionado · Comparar las 3 mejores opciones
+
+**"Quiero descubrir promesas sub-23"**
+→ Edad: 17-22 · Ordenar por Impact Score · Cambiar a Vista Analytics → el gráfico Moneyball muestra las joyas ocultas (cuadrante superior izquierdo = jóvenes con alto impacto)
+
+**"¿Quién rinde más de lo que parece?"**
+→ Ordenar por xG Overperformance · Filtrar Cluster: Goleador · Los que aparecen arriba con Overall FIFA bajo son jugadores infravalorados que definen partidos
+
+#### Vista Analytics
+
+La pestaña "Visual Analytics" ofrece 6 gráficos interactivos para análisis de patrones:
+
+- **Moneyball (Impacto vs Edad):** Identifica joyas ocultas (jóvenes con alto impacto) y veteranos en declive
+- **Trade-Off (Impacto vs Lesiones):** Muestra la tensión riesgo/recompensa que el Squad Optimizer resuelve
+- **xG Overperformance:** Encuentra finalizadores clínicos que superan consistentemente sus goles esperados
+- **Distribución por Perfil Táctico (Beeswarm):** Compara el rendimiento dentro de cada cluster K-Means
+- **Ranking por Cluster:** Top 10 mundial de cada perfil táctico
+- **Radar individual:** Atributos FIFA del jugador vs promedio de su cluster
+
+---
+
+### 12.2 Match Prediction
+
+*(Pendiente de documentar)*
+
+---
+
+### 12.3 Squad Optimizer
+
+*(Pendiente de documentar)*
+
+---
+
+### 12.4 Inteligencia Táctica — Desgaste Físico
+
+**Pregunta que responde:** *"¿Cuáles son los puntos débiles físicos de ambos equipos y cómo los exploto?"*
+
+Esta pantalla permite a un director técnico analizar el estado físico de **ambos equipos** antes de un partido para tomar decisiones tácticas: a quién presionar del rival, a quién proteger del propio plantel, y cómo ajustar la intensidad.
+
+#### Flujo de uso típico
+
+| Paso | Acción | Resultado |
+|------|--------|-----------|
+| 1 | Seleccionar una fecha del fixture | Se muestran los partidos disponibles con estadio y clima |
+| 2 | Seleccionar un partido | Se despliega el Mapa de Vulnerabilidades con ambos planteles |
+| 3 | Leer el panel "Estado Físico de Ambos Equipos" | Resumen instantáneo: cuántos jugadores de cada equipo están en riesgo |
+| 4 | Analizar el listado de jugadores (ordenados por riesgo) | Los más vulnerables están arriba con barra roja y label "Crítico" |
+| 5 | Click en un jugador específico (propio o rival) | Se abre su diagnóstico individual: radar fisiológico, gauge de riesgo, contexto geoclimático |
+| 6 | Usar el Simulador What-If | Mover los sliders para simular escenarios ("¿qué pasa si juega 3 partidos en 15 días?") |
+
+#### Escenarios concretos
+
+**"El lateral derecho rival viene sobrecargado — lo presiono por esa banda"**
+→ Seleccionás el partido → ves que el lateral rival tiene 68% de riesgo (Crítico) → decidís poner a tu extremo más rápido por esa banda para explotarlo en los últimos 30 minutos.
+
+**"¿Mi mediocampista clave puede jugar dos partidos en una semana?"**
+→ Seleccionás al jugador → ves que su riesgo actual es 45% → usás el What-If poniendo "3 partidos en 15 días" → el riesgo sube a 62% → decidís descansarlo en el primer partido para que esté fresco en el segundo.
+
+**"El rival juega en altitud y calor — ¿cuánto les afecta?"**
+→ El panel geoclimático muestra 2,240m de altitud y 32°C → los jugadores del rival con bajo cardio estimado van a sufrir más → intensificás el ritmo en el segundo tiempo.
+
+**"¿Quién es el eslabón débil del rival para presionar?"**
+→ Mirás el plantel rival ordenado por riesgo → los 3-4 primeros (en rojo) son los que probablemente rindan menos → les asignás marca personalizada con tus jugadores más frescos.
+
+#### Componentes de la pantalla
+
+- **Selector de Fixture**: Fechas + partidos con foto de estadio, temperatura, altitud y humedad real (Open-Meteo API)
+- **Botón "Predecir equipos"** (partidos de knockout): Usa el simulador de torneo para determinar qué selecciones jugarían ese partido
+- **Panel "Estado Físico de Ambos Equipos"**: Resumen táctico neutral sin asumir cuál es tu equipo
+- **Mapa de Vulnerabilidades**: Ambos planteles lado a lado, cada jugador con barra de riesgo (0-100%) y badge Crítico/Moderado/Apto
+- **Diagnóstico Individual** (al clickear un jugador): Radar fisiológico + gauge circular de riesgo + datos geoclimáticos del estadio
+- **Simulador What-If**: Dos sliders reactivos (partidos adicionales en 15 días + días desde última lesión) que recalculan el riesgo en tiempo real
+
+#### Vista "Modelo & Validación" (para científicos de datos)
+
+La pestaña técnica documenta paso a paso:
+
+1. **Fuentes de datos**: Transfermarkt (8,611 lesiones) + FBref (stats de juego)
+2. **Feature Engineering**: 123 features, incluyendo rolling por jugador (injury_frequency, days_since_last_injury, is_recurrent, severity_score)
+3. **Modelo XGBoost**: Binary Classifier, diagrama de inferencia, feature importance real del modelo cargado, histograma de distribución de riesgo
+4. **Perfil Fisiológico**: Fórmulas correlacionales (cardio, endurance, recovery, respiratory) con explicación de por qué NO son datos de sensores
+5. **Simulador What-If**: Cómo funciona técnicamente (override de 2 features + re-predicción = análisis de sensibilidad)
+6. **Cómo leer el Panel**: Los 3 niveles de diagnóstico, interpretación del radar y datos geoclimáticos
+
+---
+
+### 12.5 Tournament Simulator
+
+*(Pendiente de documentar)*
 
 ---
 

@@ -7,6 +7,63 @@ from app.api.v1.services.weather_service import get_venue_geoclimatic_info
 
 router = APIRouter()
 
+
+def _resolve_knockout_team(token: str, groups_df, request: Request) -> str:
+    """
+    Resolves a knockout bracket token (e.g., '1A', '2B', '3ABCDF') to an actual team name
+    using the groups data. For simple group positions (1A = 1st of Group A), it uses the
+    groups CSV assuming teams are listed in strength order.
+    For complex tokens (W73, RU101), returns None (can't resolve without running simulation).
+    """
+    token = token.strip()
+    
+    # Simple group position: '1A' = 1st in Group A, '2B' = 2nd in Group B
+    if len(token) == 2 and token[0] in ('1', '2', '3', '4') and token[1].isalpha():
+        position = int(token[0])
+        group_letter = token[1]
+        if not groups_df.empty:
+            group_teams = groups_df[groups_df['group'] == f"Group {group_letter}"]
+            if group_teams.empty:
+                group_teams = groups_df[groups_df['group'] == group_letter]
+            if not group_teams.empty and position <= len(group_teams):
+                # Clean team name (remove ISO prefix if present)
+                team_raw = str(group_teams.iloc[position - 1].get('team', ''))
+                if len(team_raw) > 3 and team_raw[:2].islower() and team_raw[2] == ' ':
+                    return team_raw[3:]
+                if len(team_raw) > 4 and team_raw[:3].islower() and team_raw[3] == ' ':
+                    return team_raw[4:]
+                return team_raw
+    
+    # Best 3rd place tokens (e.g., '3ABCDF') — just pick first available from those groups
+    if token.startswith('3') and len(token) > 2:
+        group_letters = token[1:]
+        if not groups_df.empty:
+            for letter in group_letters:
+                group_teams = groups_df[groups_df['group'] == f"Group {letter}"]
+                if group_teams.empty:
+                    group_teams = groups_df[groups_df['group'] == letter]
+                if not group_teams.empty and len(group_teams) >= 3:
+                    team_raw = str(group_teams.iloc[2].get('team', ''))
+                    if len(team_raw) > 3 and team_raw[:2].islower() and team_raw[2] == ' ':
+                        return team_raw[3:]
+                    if len(team_raw) > 4 and team_raw[:3].islower() and team_raw[3] == ' ':
+                        return team_raw[4:]
+                    return team_raw
+    
+    # Winner/Loser tokens (W73, RU101) — can't resolve without simulation
+    return None
+
+
+def _get_team_info_by_name_safe(request: Request, team_name: str) -> dict:
+    """Safely get team info by name, returning a placeholder if not found."""
+    if not team_name:
+        return {"name": "Por Definir", "code": "TBD", "flag_url": ""}
+    try:
+        from app.api.v1.utils import get_team_info_by_name
+        return get_team_info_by_name(request, team_name)
+    except Exception:
+        return {"name": team_name, "code": "TBD", "flag_url": ""}
+
 @router.get("/dates")
 def get_dates(request: Request, response: Response):
     response.headers["Cache-Control"] = "public, max-age=31536000"
@@ -64,11 +121,24 @@ def get_matches_by_date(request: Request, response: Response, fecha_id: str):
                 "altitude": geo_climate.get("elevation_m") or 0,
             }
 
+        home = get_team_info(request, m.get('home_team_id'))
+        away = get_team_info(request, m.get('away_team_id'))
+
+        # For knockout matches where teams are TBD, try to resolve from match_label
+        match_label = str(m.get('match_label', ''))
+        if home['code'] == 'TBD' or away['code'] == 'TBD':
+            if ' vs ' in match_label:
+                parts = match_label.split(' vs ')
+                if home['code'] == 'TBD' and len(parts) > 0:
+                    home = {"name": parts[0].strip(), "code": "TBD", "flag_url": ""}
+                if away['code'] == 'TBD' and len(parts) > 1:
+                    away = {"name": parts[1].strip(), "code": "TBD", "flag_url": ""}
+
         matches.append({
             "id": f"match-{m.get('match_number', 0)}",
             "match_number": int(m.get('match_number', 0)),
-            "home": get_team_info(request, m.get('home_team_id')),
-            "away": get_team_info(request, m.get('away_team_id')),
+            "home": home,
+            "away": away,
             "venue": venue_name,
             "stadium_url": stadium_url,
             "kickoff_at": kickoff_str,
@@ -138,7 +208,7 @@ def get_context(request: Request, response: Response, match_id: int):
     }}
 
 @router.get("/{match_id}/squad")
-def get_squad(request: Request, response: Response, match_id: int):
+def get_squad(request: Request, response: Response, match_id: int, teams: str = None):
     response.headers["Cache-Control"] = "no-cache"
     df_matches = get_df(request, 'world_cup_matches')
     if df_matches.empty:
@@ -149,6 +219,30 @@ def get_squad(request: Request, response: Response, match_id: int):
     m = m.iloc[0]
     home_team = get_team_info(request, m.get('home_team_id'))
     away_team = get_team_info(request, m.get('away_team_id'))
+
+    # Override teams from query param (format: "TeamA,TeamB") — used for simulated knockout matches
+    if teams:
+        team_parts = teams.split(',', 1)
+        if len(team_parts) == 2:
+            home_team = _get_team_info_by_name_safe(request, team_parts[0].strip())
+            away_team = _get_team_info_by_name_safe(request, team_parts[1].strip())
+
+    # For knockout matches where teams are TBD, resolve from match_label using groups
+    match_label = str(m.get('match_label', ''))
+    if (home_team['code'] == 'TBD' or away_team['code'] == 'TBD') and ' vs ' in match_label:
+        groups_df = get_df(request, 'wc_groups')
+        parts = match_label.split(' vs ')
+        resolved_teams = []
+        for token in parts:
+            token = token.strip()
+            resolved_name = _resolve_knockout_team(token, groups_df, request)
+            resolved_teams.append(resolved_name)
+        
+        if len(resolved_teams) >= 2:
+            if home_team['code'] == 'TBD' and resolved_teams[0]:
+                home_team = _get_team_info_by_name_safe(request, resolved_teams[0])
+            if away_team['code'] == 'TBD' and resolved_teams[1]:
+                away_team = _get_team_info_by_name_safe(request, resolved_teams[1])
 
     df_players = get_df(request, 'squads')
     if df_players.empty:
@@ -163,12 +257,20 @@ def get_squad(request: Request, response: Response, match_id: int):
             for idx, p in team_players.iterrows():
                 player_name = p['Player']
                 true_idx = idx
+                photo_path = p.get('photo_url', '')
+                
+                # Try to resolve from main players df (has better photo mapping)
                 if not players_main_df.empty:
                     match_p = players_main_df[players_main_df['Player'] == player_name]
+                    if match_p.empty:
+                        # Case-insensitive fallback
+                        match_p = players_main_df[players_main_df['Player'].str.lower() == player_name.lower()]
                     if not match_p.empty:
                         true_idx = match_p.index[0]
+                        # Use photo from main players df if squad doesn't have one
+                        if not photo_path:
+                            photo_path = match_p.iloc[0].get('photo_url', '')
                         
-                photo_path = p.get('photo_url', '')
                 face_url = f"{base_url}{photo_path}" if photo_path else ""
                 squad_players.append({
                     "id": str(true_idx),
@@ -182,7 +284,7 @@ def get_squad(request: Request, response: Response, match_id: int):
     return {"data": squad_players}
 
 @router.get("/{match_id}/squad/inference")
-def get_squad_inference(request: Request, response: Response, match_id: int):
+def get_squad_inference(request: Request, response: Response, match_id: int, teams: str = None):
     """
     Returns squad players with real injury risk inference from
     injury_xgboost_model for each player.
@@ -198,6 +300,13 @@ def get_squad_inference(request: Request, response: Response, match_id: int):
 
     home_team = get_team_info(request, m.get('home_team_id'))
     away_team = get_team_info(request, m.get('away_team_id'))
+
+    # Override teams from query param (format: "TeamA,TeamB") — used for simulated knockout matches
+    if teams:
+        team_parts = teams.split(',', 1)
+        if len(team_parts) == 2:
+            home_team = _get_team_info_by_name_safe(request, team_parts[0].strip())
+            away_team = _get_team_info_by_name_safe(request, team_parts[1].strip())
 
     df_players = get_df(request, 'squads')
     if df_players.empty:

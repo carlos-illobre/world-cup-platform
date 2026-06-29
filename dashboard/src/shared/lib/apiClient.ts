@@ -1,6 +1,8 @@
 /** URL base del microservicio de predicción de lesiones (FastAPI). */
 export const INJURY_API_BASE_URL =
-  import.meta.env.VITE_INJURY_API_BASE_URL ?? "http://localhost:8000";
+  typeof window === "undefined"
+    ? "http://backend:8000"
+    : (import.meta.env.VITE_INJURY_API_BASE_URL ?? "http://localhost:8000");
 
 /**
  * Función genérica para fetch JSON — usada como base para RTK Query

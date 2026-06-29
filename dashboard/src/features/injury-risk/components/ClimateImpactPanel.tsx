@@ -118,7 +118,7 @@ export function ClimateImpactPanel({
       )}
 
       {/* Explanation footer */}
-      <p className="mt-3 text-[10px] leading-tight text-muted-foreground/70">
+      <p className="mt-3 text-xs leading-tight text-muted-foreground/80">
         El modelo ajusta el riesgo base según interacciones clima × perfil del
         jugador{playerCountry ? ` (adaptado a ${playerCountry})` : ""}.
         Basado en literatura de medicina deportiva (Ekstrand et al., FIFA Medical Reports).

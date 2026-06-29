@@ -97,7 +97,7 @@ export function GeoclimaticInfoPanel({
 
       {/* Indicator that these feed into the model */}
       {!loading && contextoPartido?.weather?.temp_c != null && (
-        <p className="mt-3 text-[10px] leading-tight text-neon-blue/60 border-t border-border/30 pt-2">
+        <p className="mt-3 text-xs leading-tight text-neon-blue/80 border-t border-border/30 pt-2">
           📊 Estas condiciones alimentan el modelo de riesgo de lesión
         </p>
       )}

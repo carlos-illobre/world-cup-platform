@@ -86,21 +86,21 @@ function PositionDonut({ players }: SquadChartsProps) {
 function AdjustedScoreRanking({ players }: SquadChartsProps) {
   const sorted = useMemo(() => {
     return [...players]
-      .filter((p) => p.adjusted_score != null)
-      .sort((a, b) => (a.adjusted_score ?? 0) - (b.adjusted_score ?? 0))
+      .filter((p) => (p.composite_score ?? p.adjusted_score) != null)
+      .sort((a, b) => (a.composite_score ?? a.adjusted_score ?? 0) - (b.composite_score ?? b.adjusted_score ?? 0))
       .map((p) => ({
         name: p.name?.split(" ").slice(-1)[0] || "?", // Last name only for space
         fullName: p.name,
-        adjusted_score: p.adjusted_score,
+        adjusted_score: p.composite_score ?? p.adjusted_score,
         position_category: p.position_category,
       }));
   }, [players]);
 
   return (
     <div className="rounded-xl border border-white/5 bg-black/20 p-5 flex flex-col">
-      <h4 className="font-display text-lg font-bold text-white mb-1">Ranking por Adjusted Score</h4>
+      <h4 className="font-display text-lg font-bold text-white mb-1">Ranking por Score Compuesto</h4>
       <p className="text-sm text-muted-foreground mb-3">
-        Score de impacto penalizado por lesiones. Verde = contribución neta positiva. Rojo = el riesgo médico reduce su aporte.
+        Score multi-objetivo: rendimiento posicional - riesgo lesión + adaptación climática + balance etario. Verde = contribución neta positiva.
       </p>
       <div className="flex-1 min-h-[350px]">
         <ResponsiveContainer width="100%" height="100%">
@@ -143,10 +143,10 @@ function AdjustedScoreRanking({ players }: SquadChartsProps) {
 function AgeVsAdjustedScatter({ players }: SquadChartsProps) {
   const data = useMemo(() => {
     return players
-      .filter((p) => p.age != null && p.adjusted_score != null)
+      .filter((p) => p.age != null && (p.composite_score ?? p.adjusted_score) != null)
       .map((p) => ({
         age: p.age,
-        adjusted_score: p.adjusted_score,
+        adjusted_score: p.composite_score ?? p.adjusted_score,
         name: p.name,
         position_category: p.position_category,
       }));
@@ -154,7 +154,7 @@ function AgeVsAdjustedScatter({ players }: SquadChartsProps) {
 
   return (
     <div className="rounded-xl border border-white/5 bg-black/20 p-5 flex flex-col">
-      <h4 className="font-display text-lg font-bold text-white mb-1">Edad vs Score Ajustado</h4>
+      <h4 className="font-display text-lg font-bold text-white mb-1">Edad vs Score Compuesto</h4>
       <p className="text-sm text-muted-foreground mb-3">
         Detecta si el optimizer favoreció juventud o experiencia. Cuadrante superior izquierdo = pilares futuros del equipo.
       </p>

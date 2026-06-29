@@ -183,10 +183,13 @@ export function ClusterScatterChart() {
       </div>
 
       <p className="text-xs text-gray-500 leading-relaxed">
-        <strong className="text-gray-300">¿Qué es PCA?</strong> Principal Component Analysis reduce las 10 dimensiones
-        originales a 2 ejes que capturan la mayor variabilidad posible. Jugadores cercanos en este gráfico
-        tienen estadísticas similares. Los colores representan los 5 clusters asignados por K-Means.
-        La separación visual entre grupos confirma que el clustering encontró patrones reales en los datos.
+        <strong className="text-gray-300">¿Qué representan los ejes?</strong> Cada eje es un <em>componente principal</em> — una combinación lineal
+        ponderada de las 10 features per-90 (goles, asistencias, tiros, entradas, intercepciones, centros, faltas cometidas, faltas recibidas, tiros a puerta, offside).
+        <strong className="text-white"> No son una métrica individual</strong>: PC1 captura la dirección de mayor variación en el espacio de 10 dimensiones
+        (típicamente separa jugadores ofensivos de defensivos), y PC2 captura la segunda mayor variación ortogonal a PC1
+        (típicamente distingue entre estilos dentro de cada grupo, como finalizador vs creador).
+        Los valores numéricos de los ejes no tienen unidades interpretables — lo que importa es la <strong className="text-white">distancia relativa entre jugadores</strong>:
+        puntos cercanos tienen estadísticas similares, puntos lejanos juegan de forma muy distinta.
       </p>
     </div>
   );

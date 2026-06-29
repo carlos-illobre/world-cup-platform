@@ -130,6 +130,7 @@ def predict_team_group_points(
                         precipitation=0.0,
                         wind_speed=10.0,
                         historical_wc_df=historical_wc_df,
+                        teams_featured_df=teams_df,
                     )
                     # Expected points = P(win)*3 + P(draw)*1 + P(loss)*0
                     p_win = result['probabilities']['win_A']

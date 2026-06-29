@@ -98,7 +98,7 @@ export function MatchCard({ partido, isSelected, onSelect, onSimulateTeams }: Ma
         </button>
       )}
       {simulatedTeams && (
-        <span className="text-[10px] text-purple-400 font-medium mt-0.5">✨ Predicción del simulador</span>
+        <span className="text-xs text-purple-400 font-medium mt-0.5">✨ Predicción del simulador</span>
       )}
 
       <span className="flex items-center gap-1 text-xs font-medium text-muted-foreground">

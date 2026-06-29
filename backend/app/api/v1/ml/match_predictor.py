@@ -12,8 +12,20 @@ import pandas as pd
 import numpy as np
 import xgboost as xgb
 
-# Exact feature order the weather model expects
+# Feature order the weather model expects (enhanced v2: 19 features)
 WEATHER_MODEL_FEATURES = [
+    'Country_FIFA_Points', 'Opponent_FIFA_Points', 'ranking_diff',
+    'h2h_wins', 'h2h_losses', 'days_since_last_match',
+    'form_last_5', 'goals_scored_last_5', 'goals_conceded_last_5',
+    'temp_max', 'precipitation', 'wind_speed', 'is_raining', 'is_hot',
+    # New squad features (v2)
+    'impact_diff', 'market_value_ratio',
+    'country_squad_avg_impact_score', 'country_squad_top_league_ratio',
+    'win_rate_neutral',
+]
+
+# Fallback: original 14-feature list for backwards compatibility
+WEATHER_MODEL_FEATURES_V1 = [
     'Country_FIFA_Points', 'Opponent_FIFA_Points', 'ranking_diff',
     'h2h_wins', 'h2h_losses', 'days_since_last_match',
     'form_last_5', 'goals_scored_last_5', 'goals_conceded_last_5',
@@ -162,6 +174,7 @@ def predict_match_outcome(
     precipitation: float = 0.0,
     wind_speed: float = 10.0,
     historical_wc_df: pd.DataFrame = None,
+    teams_featured_df: pd.DataFrame = None,
 ) -> dict:
     """
     Predicts match outcome using real data from master_matches_featured.
@@ -279,8 +292,62 @@ def predict_match_outcome(
         'is_hot': 1 if float(temp_max) > 30.0 else 0,
     }
 
-    # Weather model features (14)
-    features = pd.DataFrame([{k: all_features[k] for k in WEATHER_MODEL_FEATURES}])
+    # --- Squad quality features (v2) ---
+    squad_impact_a = 0.0
+    squad_impact_b = 0.0
+    squad_top_league_a = 0.0
+    squad_top_league_b = 0.0
+    squad_market_a = 1.0
+    squad_market_b = 1.0
+    win_rate_neutral_val = stats_a.get('win_rate_neutral', 0.0)
+    if pd.isna(win_rate_neutral_val):
+        win_rate_neutral_val = 0.0
+
+    if teams_featured_df is not None and not teams_featured_df.empty:
+        def _get_squad_feat(team_name, col, default=0.0):
+            row = teams_featured_df[teams_featured_df['Country'] == team_name]
+            if row.empty:
+                row = teams_featured_df[teams_featured_df['Country'].str.lower() == team_name.lower()]
+            if not row.empty:
+                val = row.iloc[0].get(col, default)
+                return float(val) if pd.notna(val) else default
+            return default
+
+        squad_impact_a = _get_squad_feat(team_a, 'squad_avg_impact_score', 0.0)
+        squad_impact_b = _get_squad_feat(team_b, 'squad_avg_impact_score', 0.0)
+        squad_top_league_a = _get_squad_feat(team_a, 'squad_top_league_ratio', 0.0)
+        squad_top_league_b = _get_squad_feat(team_b, 'squad_top_league_ratio', 0.0)
+        squad_market_a = _get_squad_feat(team_a, 'squad_avg_market_value', 1.0)
+        squad_market_b = _get_squad_feat(team_b, 'squad_avg_market_value', 1.0)
+
+    impact_diff = squad_impact_a - squad_impact_b
+    market_total = squad_market_a + squad_market_b
+    market_value_ratio = squad_market_a / market_total if market_total > 0 else 0.5
+
+    all_features['country_squad_avg_impact_score'] = squad_impact_a
+    all_features['opponent_squad_avg_impact_score'] = squad_impact_b
+    all_features['country_squad_top_league_ratio'] = squad_top_league_a
+    all_features['opponent_squad_top_league_ratio'] = squad_top_league_b
+    all_features['impact_diff'] = impact_diff
+    all_features['market_value_ratio'] = market_value_ratio
+    all_features['win_rate_neutral'] = float(win_rate_neutral_val)
+    all_features['win_rate_home'] = float(stats_a.get('win_rate_home', 0) or 0)
+    all_features['win_rate_away'] = float(stats_a.get('win_rate_away', 0) or 0)
+
+    # --- Determine which features the weather model expects ---
+    # Try to detect from the booster's feature names (handles v1 and v2)
+    try:
+        booster = model.get_booster()
+        model_feature_names = booster.feature_names
+        if model_feature_names:
+            weather_features_to_use = model_feature_names
+        else:
+            weather_features_to_use = WEATHER_MODEL_FEATURES
+    except Exception:
+        weather_features_to_use = WEATHER_MODEL_FEATURES
+
+    # Fall back to v1 if the model doesn't have the new features
+    features = pd.DataFrame([{k: all_features.get(k, 0) for k in weather_features_to_use}])
 
     # --- Predict: always use weather model (includes climate) as primary ---
     # The weather model is binary (win/not-win) but accounts for climate conditions.
@@ -338,7 +405,7 @@ def predict_match_outcome(
         prediction = "Draw"
 
     # --- SHAP Explainability: compute feature contributions ---
-    explanations = _compute_shap_explanations(model, features, team_a, team_b)
+    explanations = _compute_shap_explanations(model, features, team_a, team_b, weather_features_to_use)
 
     return {
         "team_a": team_a,
@@ -403,11 +470,14 @@ def _distribute_binary_proba(prob_win_a_raw: float) -> tuple:
 _FEATURE_LABELS = {
     'Country_FIFA_Points': 'Puntos FIFA (Equipo A)',
     'Opponent_FIFA_Points': 'Puntos FIFA (Equipo B)',
+    'Country_FIFA_Rank': 'Ranking FIFA (Equipo A)',
+    'Opponent_FIFA_Rank': 'Ranking FIFA (Equipo B)',
     'ranking_diff': 'Diferencia de Ranking FIFA',
     'h2h_wins': 'Victorias en H2H histórico',
     'h2h_losses': 'Derrotas en H2H histórico',
     'days_since_last_match': 'Días desde último partido',
     'form_last_5': 'Racha Reciente (Últimos 5)',
+    'form_last_10': 'Racha Reciente (Últimos 10)',
     'goals_scored_last_5': 'Goles a favor (Últimos 5)',
     'goals_conceded_last_5': 'Goles en contra (Últimos 5)',
     'temp_max': 'Temperatura Máxima (°C)',
@@ -415,11 +485,22 @@ _FEATURE_LABELS = {
     'wind_speed': 'Velocidad del Viento (km/h)',
     'is_raining': 'Lluvia (>2mm)',
     'is_hot': 'Calor extremo (>30°C)',
+    # New v2 features
+    'impact_diff': 'Diferencial de Calidad de Plantel',
+    'market_value_ratio': 'Ratio de Valor de Mercado',
+    'country_squad_avg_impact_score': 'Impact Score Plantel (Eq. A)',
+    'opponent_squad_avg_impact_score': 'Impact Score Plantel (Eq. B)',
+    'country_squad_top_league_ratio': 'Ratio Top-League (Eq. A)',
+    'opponent_squad_top_league_ratio': 'Ratio Top-League (Eq. B)',
+    'win_rate_neutral': 'Win Rate en Sede Neutral',
+    'win_rate_home': 'Win Rate Local',
+    'win_rate_away': 'Win Rate Visitante',
 }
 
 
 def _compute_shap_explanations(
-    model, features_df: pd.DataFrame, team_a: str, team_b: str
+    model, features_df: pd.DataFrame, team_a: str, team_b: str,
+    feature_names: list = None,
 ) -> list:
     """
     Computes SHAP-like feature contributions using XGBoost's native
@@ -431,11 +512,12 @@ def _compute_shap_explanations(
         dmatrix = xgb.DMatrix(features_df)
         contribs = booster.predict(dmatrix, pred_contribs=True)[0]
 
-        feature_names = WEATHER_MODEL_FEATURES
+        if feature_names is None:
+            feature_names = WEATHER_MODEL_FEATURES
         # contribs has len(features)+1 entries — last one is the bias
         feature_contribs = [
             (feature_names[i], float(contribs[i]))
-            for i in range(len(feature_names))
+            for i in range(min(len(feature_names), len(contribs) - 1))
         ]
         feature_contribs.sort(key=lambda x: abs(x[1]), reverse=True)
 

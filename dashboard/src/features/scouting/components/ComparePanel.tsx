@@ -112,7 +112,7 @@ export function ComparePanel({ players, onRemove, onClose }: ComparePanelProps) 
               <h3 className="font-bold text-white text-sm">{p.name}</h3>
               <p className="text-xs text-gray-400">{p.country} • {p.position}</p>
               <p className="text-xs text-gray-500">{p.club}</p>
-              <span className="mt-2 text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: `${CLUSTER_COLORS[p.cluster]}20`, color: CLUSTER_COLORS[p.cluster] }}>
+              <span className="mt-2 text-[11px] font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: `${CLUSTER_COLORS[p.cluster]}20`, color: CLUSTER_COLORS[p.cluster] }}>
                 {CLUSTER_NAMES[p.cluster] || "—"}
               </span>
             </div>
@@ -204,7 +204,7 @@ export function ComparePanel({ players, onRemove, onClose }: ComparePanelProps) 
                 🤖 Veredicto del Algoritmo
               </h3>
               <p className="text-sm text-gray-200 leading-relaxed">{verdict}</p>
-              <p className="text-[10px] text-gray-500 mt-2">
+              <p className="text-xs text-gray-300 mt-2">
                 Basado en: Impact Score (40%) + xG Overperformance (20%) + Historial de Lesiones (20%) + Overall FIFA (20%)
               </p>
             </div>

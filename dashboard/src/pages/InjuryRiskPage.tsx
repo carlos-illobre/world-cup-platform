@@ -57,33 +57,43 @@ export function InjuryRiskPage() {
     : null;
 
   return (
-    <main className="min-h-screen px-3 py-4 sm:px-6 sm:py-6 lg:px-8">
-      <div className="mx-auto max-w-[1400px] space-y-4 sm:space-y-5">
-        <AppHeader />
+    <main className="min-h-screen bg-[#0a0a0a] text-white">
+      <AppHeader />
+      <div className="mx-auto max-w-7xl px-4 py-8">
 
-        {/* View Mode Toggle */}
-        <div className="flex items-center justify-between">
+        {/* Header */}
+        <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <h1 className="text-2xl font-display font-bold text-white">
+            <h1 className="text-4xl font-display font-extrabold tracking-tight mb-2">
               {viewMode === "decision" ? "Inteligencia Táctica — Desgaste Físico" : "Modelo & Validación — Predicción de Lesiones"}
             </h1>
-            <p className="text-sm text-gray-400 mt-1">
+            <p className="text-gray-300 max-w-2xl text-base">
               {viewMode === "decision"
                 ? "Identifica las vulnerabilidades físicas de ambos equipos para explotar los puntos débiles del rival y proteger a tus jugadores clave."
                 : "Documentación técnica del pipeline de predicción de lesiones para estudiantes de Ciencia de Datos."
               }
             </p>
           </div>
+
+          {/* View Toggle */}
           <div className="flex bg-black/40 p-1 rounded-xl border border-white/10 shrink-0">
             <button
               onClick={() => setViewMode("decision")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${viewMode === "decision" ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]" : "text-gray-300 hover:text-white"}`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                viewMode === "decision"
+                  ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]"
+                  : "text-gray-300 hover:text-white"
+              }`}
             >
               <HeartPulse className="w-4 h-4" /> Panel de Decisión
             </button>
             <button
               onClick={() => setViewMode("model")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${viewMode === "model" ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]" : "text-gray-300 hover:text-white"}`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                viewMode === "model"
+                  ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]"
+                  : "text-gray-300 hover:text-white"
+              }`}
             >
               <FlaskConical className="w-4 h-4" /> Modelo & Validación
             </button>
@@ -95,7 +105,7 @@ export function InjuryRiskPage() {
 
         {/* Decision View — Tactical Intelligence */}
         {viewMode === "decision" && (
-          <>
+          <div className="space-y-5">
             <FixtureSelector />
 
             {mensajeErrorCatalogo && <ErrorBanner message={mensajeErrorCatalogo} />}
@@ -121,7 +131,7 @@ export function InjuryRiskPage() {
                 <WhatIfSimulator />
               </>
             )}
-          </>
+          </div>
         )}
       </div>
     </main>

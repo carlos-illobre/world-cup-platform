@@ -412,6 +412,7 @@ def predict_match(request: Request, req: MatchPredictionRequest):
     try:
         # Load historical World Cup data for H2H calculation
         historical_wc_df = get_df(request, 'historical_wc')
+        teams_featured_df = get_df(request, 'teams_featured')
 
         result = predict_match_outcome(
             models=models,
@@ -422,6 +423,7 @@ def predict_match(request: Request, req: MatchPredictionRequest):
             precipitation=req.precipitation,
             wind_speed=req.wind_speed,
             historical_wc_df=historical_wc_df,
+            teams_featured_df=teams_featured_df,
         )
         return result
     except Exception as e:
@@ -458,3 +460,69 @@ def get_match_feature_importance(request: Request):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting feature importance: {str(e)}")
+
+
+@router.get("/stadiums")
+def list_stadiums(request: Request, response: Response):
+    """Returns list of WC 2026 stadiums with their IDs, names, cities and coordinates."""
+    response.headers["Cache-Control"] = "public, max-age=86400"
+    stadiums_df = get_df(request, 'stadiums_geo')
+    if stadiums_df.empty:
+        return {"data": []}
+
+    result = []
+    for sid, row in stadiums_df.iterrows():
+        result.append({
+            "id": int(sid),
+            "stadium": str(row.get("Stadium", "")),
+            "city": str(row.get("City", "")),
+            "country": str(row.get("Country", "")),
+            "latitude": float(row["Latitude"]) if pd.notna(row.get("Latitude")) else None,
+            "longitude": float(row["Longitude"]) if pd.notna(row.get("Longitude")) else None,
+            "elevation_m": int(row["Elevation_m"]) if pd.notna(row.get("Elevation_m")) else None,
+        })
+    return {"data": result}
+
+
+@router.get("/stadiums/{stadium_id}/weather")
+def get_stadium_weather(request: Request, stadium_id: int, date: str):
+    """
+    Fetches real weather data from Open-Meteo for a specific stadium and date.
+    Date format: YYYY-MM-DD.
+    Returns temp_max, precipitation, wind_speed_max from the API.
+    """
+    from app.api.v1.services.weather_service import get_weather_for_venue
+
+    stadiums_df = get_df(request, 'stadiums_geo')
+    if stadiums_df.empty:
+        raise HTTPException(status_code=503, detail="Stadiums data not loaded")
+
+    if stadium_id not in stadiums_df.index:
+        raise HTTPException(status_code=404, detail=f"Stadium ID {stadium_id} not found")
+
+    row = stadiums_df.loc[stadium_id]
+    lat = row.get("Latitude")
+    lon = row.get("Longitude")
+
+    if pd.isna(lat) or pd.isna(lon):
+        raise HTTPException(status_code=400, detail="Stadium has no coordinates")
+
+    weather = get_weather_for_venue(float(lat), float(lon), date)
+
+    if weather is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"No weather data available for {date}. Open-Meteo forecast only covers ~16 days ahead; historical data requires past dates."
+        )
+
+    return {
+        "stadium_id": stadium_id,
+        "stadium": str(row.get("Stadium", "")),
+        "city": str(row.get("City", "")),
+        "date": date,
+        "weather": {
+            "temp_max": weather.get("temp_max"),
+            "precipitation": weather.get("precipitation", 0),
+            "wind_speed": weather.get("wind_speed_max"),
+        },
+    }

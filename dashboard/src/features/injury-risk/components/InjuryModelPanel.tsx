@@ -94,7 +94,7 @@ function RiskDistribution() {
       <div className="flex gap-1.5 px-2 mt-1">
         {data.histogram.map((bucket: any) => (
           <div key={bucket.bucket + "-label"} className="flex-1 text-center">
-            <span className="text-[10px] text-gray-500">{bucket.min}%</span>
+            <span className="text-[11px] text-gray-400">{bucket.min}%</span>
           </div>
         ))}
       </div>
@@ -508,7 +508,7 @@ export function InjuryModelPanel() {
                 <div key={feat} className="bg-black/60 rounded-lg px-3 py-2 border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1">
                   <span className="text-xs font-mono text-orange-300 w-44 shrink-0">{feat}</span>
                   <span className="text-xs text-gray-400 flex-1">{desc}</span>
-                  <span className="text-[10px] text-gray-600 italic">{when}</span>
+                  <span className="text-[11px] text-gray-400 italic">{when}</span>
                 </div>
               ))}
             </div>

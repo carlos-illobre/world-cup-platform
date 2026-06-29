@@ -82,16 +82,16 @@ export function MatchModelPanel() {
           Este sistema predice la <strong className="text-white">probabilidad de victoria, empate o derrota</strong> entre
           dos selecciones usando un modelo XGBoost entrenado con 3,157 partidos internacionales históricos
           (clasificatorias + amistosos + todos los Mundiales desde 1930),
-          16 features por partido y condiciones climáticas reales del estadio.
+          hasta 19 features por partido incluyendo calidad de plantel y condiciones climáticas reales del estadio.
         </p>
         <div className="bg-black/40 rounded-lg p-4 border border-white/5">
           <p className="text-sm text-gray-400 font-semibold mb-2">📐 Pipeline de predicción:</p>
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-lg">Seleccionar Equipos</span>
             <span className="text-gray-600">→</span>
-            <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-lg">Extraer Stats Reales</span>
+            <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-lg">Extraer Stats + Squad</span>
             <span className="text-gray-600">→</span>
-            <span className="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-lg">Construir 14 Features</span>
+            <span className="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-lg">Construir 19 Features</span>
             <span className="text-gray-600">→</span>
             <span className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-lg">XGBoost predict_proba()</span>
             <span className="text-gray-600">→</span>
@@ -148,11 +148,12 @@ export function MatchModelPanel() {
       </Section>
 
       {/* Section 2: Feature Engineering */}
-      <Section title="Paso 2 — Feature Engineering: las 14 variables del modelo" icon={<Beaker className="w-5 h-5 text-purple-400" />}>
+      <Section title="Paso 2 — Feature Engineering: las variables del modelo" icon={<Beaker className="w-5 h-5 text-purple-400" />}>
         <div className="space-y-4">
           <p className="text-base text-gray-300 leading-relaxed">
-            El modelo usa exactamente <strong className="text-white">14 features</strong> para predecir el resultado.
-            Cada una captura un aspecto diferente de la fuerza relativa entre los dos equipos:
+            El modelo enhanced (v2) usa hasta <strong className="text-white">19 features</strong> para el modelo weather
+            y <strong className="text-white">25 features</strong> para el modelo 3-class.
+            Se dividen en 4 categorías que capturan diferentes dimensiones de la fuerza relativa:
           </p>
 
           <div className="bg-black/40 rounded-lg p-4 border border-purple-500/20">
@@ -161,32 +162,56 @@ export function MatchModelPanel() {
               <div className="bg-black/60 rounded-lg p-3 border border-white/5">
                 <p className="font-mono text-purple-300 text-xs mb-1">Country_FIFA_Points / Opponent_FIFA_Points</p>
                 <p className="text-gray-400">Puntos FIFA oficiales de cada equipo. Rango típico: 1200-1900.</p>
-                <p className="text-xs text-gray-500 mt-1">Se obtiene del último registro de cada selección en master_matches_featured.csv.</p>
               </div>
               <div className="bg-black/60 rounded-lg p-3 border border-white/5">
                 <p className="font-mono text-purple-300 text-xs mb-1">ranking_diff</p>
-                <p className="text-gray-400">= Country_FIFA_Points - Opponent_FIFA_Points</p>
-                <p className="text-xs text-gray-500 mt-1">Variable con mayor poder predictivo. Un valor positivo (+37) indica que el Equipo A tiene más puntos FIFA. En el entrenamiento esta variable explica la mayor parte de la varianza.</p>
+                <p className="text-gray-400">= Country_FIFA_Points - Opponent_FIFA_Points. Variable con mayor poder predictivo.</p>
               </div>
               <div className="bg-black/60 rounded-lg p-3 border border-white/5">
                 <p className="font-mono text-purple-300 text-xs mb-1">h2h_wins / h2h_losses</p>
                 <p className="text-gray-400">Victorias y derrotas del Equipo A vs Equipo B en Copas del Mundo anteriores.</p>
-                <p className="text-xs text-gray-500 mt-1">Captura la ventaja psicológica. Ej: Argentina 3-1 France en H2H mundialista.</p>
               </div>
               <div className="bg-black/60 rounded-lg p-3 border border-white/5">
-                <p className="font-mono text-purple-300 text-xs mb-1">days_since_last_match</p>
-                <p className="text-gray-400">Días transcurridos desde el último partido oficial del Equipo A.</p>
-                <p className="text-xs text-gray-500 mt-1">Valores bajos (&lt;3 días) = fatiga. Valores altos (&gt;30) = falta de ritmo.</p>
-              </div>
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
-                <p className="font-mono text-purple-300 text-xs mb-1">form_last_5</p>
-                <p className="text-gray-400">Suma de puntos en los últimos 5 partidos (V=3, E=1, D=0). Rango: 0-15.</p>
-                <p className="text-xs text-gray-500 mt-1">Captura el momentum competitivo. 15 = 5 victorias consecutivas.</p>
+                <p className="font-mono text-purple-300 text-xs mb-1">form_last_5 / form_last_10</p>
+                <p className="text-gray-400">Suma de puntos en los últimos 5/10 partidos. form_last_10 da más estabilidad a la señal.</p>
               </div>
               <div className="bg-black/60 rounded-lg p-3 border border-white/5">
                 <p className="font-mono text-purple-300 text-xs mb-1">goals_scored_last_5 / goals_conceded_last_5</p>
                 <p className="text-gray-400">Promedio de goles a favor y en contra en los últimos 5 partidos.</p>
-                <p className="text-xs text-gray-500 mt-1">Refleja la efectividad ofensiva y solidez defensiva actual.</p>
+              </div>
+              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
+                <p className="font-mono text-purple-300 text-xs mb-1">days_since_last_match</p>
+                <p className="text-gray-400">Fatiga (&lt;3 días) o falta de ritmo (&gt;30 días).</p>
+              </div>
+              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
+                <p className="font-mono text-purple-300 text-xs mb-1">win_rate_neutral</p>
+                <p className="text-gray-400">Win rate histórico en sedes neutrales. Clave para Mundiales donde casi todos los partidos son neutrales.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+            <h4 className="text-sm font-bold text-orange-300 mb-3">🆕 Features de calidad de plantel (v2 — de master_teams_featured.csv)</h4>
+            <div className="space-y-3 text-sm text-gray-300">
+              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
+                <p className="font-mono text-orange-300 text-xs mb-1">impact_diff</p>
+                <p className="text-gray-400">= impact_score_A - impact_score_B. El impact_score es un compuesto de atributos FIFA
+                  (pace, shooting, dribbling, defending, physic) calculado por el modelo player_impact_xgb para cada jugador
+                  y promediado a nivel de selección.</p>
+                <p className="text-xs text-gray-500 mt-1">Captura la calidad individual del plantel. Un equipo con Mbappé y Haaland
+                  tiene mayor impact que uno sin estrellas, incluso si el ranking es similar.</p>
+              </div>
+              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
+                <p className="font-mono text-orange-300 text-xs mb-1">market_value_ratio</p>
+                <p className="text-gray-400">= market_value_A / (market_value_A + market_value_B). Rango 0-1, donde 0.5 = equilibrio.</p>
+                <p className="text-xs text-gray-500 mt-1">El valor de mercado es un consenso de scouts/transfermarkt sobre la profundidad
+                  y calidad del plantel. No es lo mismo que el ranking FIFA.</p>
+              </div>
+              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
+                <p className="font-mono text-orange-300 text-xs mb-1">country_squad_top_league_ratio / opponent_squad_top_league_ratio</p>
+                <p className="text-gray-400">% de jugadores que compiten en las top-5 ligas europeas (PL, LaLiga, Bundesliga, Serie A, Ligue 1).</p>
+                <p className="text-xs text-gray-500 mt-1">Equipos con más jugadores en ligas top están acostumbrados a competir
+                  al más alto nivel cada semana. Ej: España ~80% vs Haití ~5%.</p>
               </div>
             </div>
           </div>
@@ -195,24 +220,9 @@ export function MatchModelPanel() {
             <h4 className="text-sm font-bold text-yellow-300 mb-3">Features climáticas (del estadio)</h4>
             <div className="space-y-3 text-sm text-gray-300">
               <div className="bg-black/60 rounded-lg p-3 border border-white/5">
-                <p className="font-mono text-yellow-300 text-xs mb-1">temp_max</p>
-                <p className="text-gray-400">Temperatura máxima en °C. Obtenida de Open-Meteo usando GPS del estadio.</p>
-                <p className="text-xs text-gray-500 mt-1">Temperaturas &gt;30°C reducen la intensidad del pressing y favorecen equipos acostumbrados al calor.</p>
-              </div>
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
-                <p className="font-mono text-yellow-300 text-xs mb-1">precipitation</p>
-                <p className="text-gray-400">Precipitación acumulada en mm. Lluvia &gt;2mm afecta el terreno de juego.</p>
-                <p className="text-xs text-gray-500 mt-1">Terreno mojado reduce la velocidad del balón, afectando equipos con juego de posesión.</p>
-              </div>
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
-                <p className="font-mono text-yellow-300 text-xs mb-1">wind_speed</p>
-                <p className="text-gray-400">Velocidad máxima del viento en km/h.</p>
-                <p className="text-xs text-gray-500 mt-1">Vientos fuertes alteran trayectorias de centros y tiros libres.</p>
-              </div>
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
-                <p className="font-mono text-yellow-300 text-xs mb-1">is_raining / is_hot</p>
-                <p className="text-gray-400">Variables binarias derivadas: is_raining = precipitation &gt; 2, is_hot = temp_max &gt; 30</p>
-                <p className="text-xs text-gray-500 mt-1">Simplifican condiciones extremas en señales claras para el modelo.</p>
+                <p className="font-mono text-yellow-300 text-xs mb-1">temp_max / precipitation / wind_speed / is_raining / is_hot</p>
+                <p className="text-gray-400">Condiciones meteorológicas del estadio. Obtenidas de Open-Meteo usando GPS. Temperaturas &gt;30°C
+                  y lluvia &gt;2mm afectan el rendimiento de equipos no habituados.</p>
               </div>
             </div>
           </div>
@@ -221,9 +231,8 @@ export function MatchModelPanel() {
             <h4 className="text-sm font-bold text-gray-200 mb-2">⚠️ Nota sobre Data Leakage</h4>
             <p className="text-sm text-gray-400 leading-relaxed">
               Todas las features se calculan <strong className="text-white">antes del partido</strong>: ranking FIFA vigente,
-              forma en los últimos 5 partidos anteriores, y H2H acumulado hasta ese momento. El resultado del partido
-              que se quiere predecir <strong className="text-white">nunca</strong> se incluye en los features de entrada.
-              El split temporal usa el 80% más antiguo para entrenar y el 20% más reciente para evaluar.
+              forma en los últimos 5 partidos anteriores, y H2H acumulado hasta ese momento. Las features de plantel
+              son estáticas (se fijan antes del torneo). El split temporal usa el 80% más antiguo para entrenar.
             </p>
           </div>
         </div>
@@ -240,11 +249,11 @@ export function MatchModelPanel() {
           <div className="bg-black/40 rounded-lg p-4 border border-neon-blue/20">
             <h4 className="text-sm font-bold text-neon-blue mb-3">Diagrama de inferencia (Blend Strategy)</h4>
             <div className="bg-black/60 rounded-lg p-4 border border-white/5 font-mono text-sm text-gray-300 space-y-1">
-              <p><span className="text-green-400">INPUT:</span> 14 features (ranking + H2H + forma + <span className="text-yellow-300">clima</span>)</p>
+              <p><span className="text-green-400">INPUT:</span> 19 features (ranking + H2H + forma + <span className="text-orange-300">squad quality</span> + <span className="text-yellow-300">clima</span>)</p>
               <p className="text-gray-600">      ↓</p>
-              <p><span className="text-yellow-400">WEATHER MODEL (binario):</span> → P(Win_A) <span className="text-gray-500">← sensible al clima</span></p>
+              <p><span className="text-yellow-400">WEATHER MODEL (binario, 19 feat):</span> → P(Win_A) <span className="text-gray-500">← sensible al clima + squad</span></p>
               <p className="text-gray-600">      ↓</p>
-              <p><span className="text-purple-400">3-CLASS MODEL (16 feat):</span> → ratio D/(D+L) <span className="text-gray-500">← mejor en separar empate vs derrota</span></p>
+              <p><span className="text-purple-400">3-CLASS MODEL (25 feat):</span> → ratio D/(D+L) <span className="text-gray-500">← mejor en separar empate vs derrota</span></p>
               <p className="text-gray-600">      ↓  [blend]</p>
               <p><span className="text-neon-blue">OUTPUT:</span> P(W) del weather model + remaining × ratio del 3-class</p>
             </div>
@@ -253,9 +262,10 @@ export function MatchModelPanel() {
           <div className="bg-black/40 rounded-lg p-4 border border-white/5">
             <h4 className="text-sm font-bold text-gray-200 mb-3">¿Por qué usar Blend en vez de un solo modelo?</h4>
             <p className="text-sm text-gray-400 mb-3">
-              El modelo weather (binario, 14 features) es el único que incluye <strong className="text-yellow-300">condiciones climáticas</strong> (temp, lluvia, viento).
+              El modelo weather (binario, 19 features) incluye <strong className="text-yellow-300">condiciones climáticas</strong> y
+              <strong className="text-orange-300"> calidad de plantel</strong>.
               Pero como es binario (win/not-win), no distingue bien entre Empate y Derrota. El modelo de 3 clases
-              (16 features, sin clima) sí diferencia D vs L pero no reacciona a cambios de temperatura.
+              (25 features, sin clima) sí diferencia D vs L pero no reacciona a cambios de temperatura.
             </p>
             <div className="bg-black/60 rounded-lg p-3 border border-white/5 font-mono text-xs text-gray-300 space-y-1">
               <p className="text-gray-500">// Blend strategy:</p>
@@ -278,11 +288,11 @@ export function MatchModelPanel() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
               <p className="text-xs text-gray-500">Tipo</p>
-              <p className="text-base font-bold text-white">3-Class Classifier</p>
+              <p className="text-base font-bold text-white">3-Class + Weather</p>
             </div>
             <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
               <p className="text-xs text-gray-500">Features</p>
-              <p className="text-base font-bold text-white">16</p>
+              <p className="text-base font-bold text-white">19-25</p>
             </div>
             <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
               <p className="text-xs text-gray-500">Muestras entrenamiento</p>
@@ -320,19 +330,19 @@ export function MatchModelPanel() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
-              <p className="text-xs text-gray-500">Accuracy (XGBoost)</p>
-              <p className="text-xl font-bold text-yellow-400">57.1%</p>
+              <p className="text-xs text-gray-500">Accuracy (XGBoost Enhanced)</p>
+              <p className="text-xl font-bold text-yellow-400">57.6%</p>
               <p className="text-xs text-gray-500 mt-1">sobre 632 partidos test</p>
             </div>
             <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
               <p className="text-xs text-gray-500">F1-Macro</p>
-              <p className="text-xl font-bold text-orange-400">0.443</p>
+              <p className="text-xl font-bold text-orange-400">0.466</p>
               <p className="text-xs text-gray-500 mt-1">promedio de 3 clases</p>
             </div>
             <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
-              <p className="text-xs text-gray-500">Baseline (RF)</p>
-              <p className="text-xl font-bold text-gray-300">56.5%</p>
-              <p className="text-xs text-gray-500 mt-1">accuracy Random Forest</p>
+              <p className="text-xs text-gray-500">Modelo Anterior (16 feat)</p>
+              <p className="text-xl font-bold text-gray-300">57.1%</p>
+              <p className="text-xs text-gray-500 mt-1">accuracy sin squad features</p>
             </div>
             <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
               <p className="text-xs text-gray-500">Random Baseline</p>
@@ -497,7 +507,7 @@ export function MatchModelPanel() {
             <ul className="text-sm text-gray-400 space-y-2 list-disc list-inside">
               <li><strong className="text-white">Dataset enriquecido:</strong> 3,157 partidos (825 FBref + 2,332 históricos WC). Más datos que antes pero aún limitado vs modelos comerciales con 50,000+.</li>
               <li><strong className="text-white">Empates subrepresentados:</strong> Solo ~25% de los partidos son empates, creando desbalance de clases que dificulta su predicción.</li>
-              <li><strong className="text-white">Sin datos de jugadores:</strong> El modelo solo ve al equipo como unidad. No sabe si Messi está lesionado o si un portero titular fue sustituido.</li>
+              <li><strong className="text-white">Squad features estáticas:</strong> Ahora incluimos calidad de plantel, pero los datos son una foto fija pre-torneo. No se actualizan si un jugador clave se lesiona durante el Mundial.</li>
               <li><strong className="text-white">Clima limitado:</strong> Solo 3 variables climáticas. Factores como altitud, humedad, y tipo de césped no se incluyen.</li>
               <li><strong className="text-white">Estacionalidad no capturada:</strong> No distingue entre fase de grupos (equipos conservadores) y eliminatorias (partidos más abiertos).</li>
             </ul>

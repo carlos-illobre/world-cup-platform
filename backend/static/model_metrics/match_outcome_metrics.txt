@@ -1,33 +1,72 @@
-Match Outcome Prediction Metrics (Enriched Dataset)
+Match Outcome Prediction Metrics (Enhanced Model v2)
 ====================================================
-Dataset: 3157 matches (825 FBref + 2332 Historical World Cup 1930-2022)
+Dataset: 3157 matches (695 FBref + 2462 Historical World Cup 1930-2022)
 Train/Test Split: 80/20 temporal
+Train: 2525 | Test: 632
 
-Baseline (Random Forest):
-Accuracy: 0.5649
-F1-Macro: 0.4426
+═══ ENHANCED MODEL (v2) — 19 features ═══
+Accuracy: 0.5759
+F1-Macro: 0.4656
+Log Loss: 0.9589
 
-XGBoost 3-Class (retrained with enriched data):
-Accuracy: 0.5712
-F1-Macro: 0.4433
-Log Loss: 1.0601
-
-XGBoost Classification Report:
+Classification Report:
               precision    recall  f1-score   support
 
-           L       0.38      0.25      0.30       103
-           D       0.35      0.42      0.38       153
-           W       0.72      0.76      0.74       376
+           L       0.37      0.24      0.29       103
+           D       0.34      0.41      0.37       153
+           W       0.73      0.73      0.73       376
 
-    accuracy                           0.57       632
-   macro avg       0.48      0.48      0.47       632
-weighted avg       0.56      0.57      0.56       632
+    accuracy                           0.58       632
+   macro avg       0.48      0.46      0.47       632
+weighted avg       0.58      0.58      0.57       632
 
-Weather Model (Binary - original, uses 14 features + climate):
-Trained on 695 matches with weather data
-(Not retrained - historical matches lack climate data)
 
-Improvement vs previous model:
-- Accuracy: 49.6% → 57.1% (+7.5pp)
-- Test set: 139 → 632 samples (4.5x more reliable)
-- H2H data: Now correctly populated from historical WC matches
+═══ COMPARISON ═══
+Previous model (16 features):  Acc=0.5712, F1=0.4433
+Enhanced model (19 features): Acc=0.5759, F1=0.4656
+Improvement: +0.47pp accuracy, +2.23pp F1
+
+Random Forest baseline:         Acc=0.5981, F1=0.4416
+
+═══ FEATURES USED ═══
+3-Class Model (19 features):
+  - Country_FIFA_Points
+  - Opponent_FIFA_Points
+  - ranking_diff
+  - Country_FIFA_Rank
+  - Opponent_FIFA_Rank
+  - h2h_wins
+  - h2h_losses
+  - days_since_last_match
+  - form_last_5
+  - form_last_10
+  - goals_scored_last_5
+  - goals_conceded_last_5
+  - win_rate_neutral
+  - country_squad_avg_impact_score
+  - opponent_squad_avg_impact_score
+  - country_squad_top_league_ratio
+  - opponent_squad_top_league_ratio
+  - impact_diff
+  - market_value_ratio
+
+═══ NEW FEATURES RATIONALE ═══
+- impact_diff: Differential of squad-level impact scores (FIFA attributes composite).
+  Higher values mean team A has stronger individual players.
+- market_value_ratio: Proportion of total market value belonging to team A.
+  0.5 = equal, >0.5 = team A richer/deeper squad.
+- squad_top_league_ratio: % of players in top-5 European leagues.
+  Higher = players compete at highest level regularly.
+- win_rate_neutral: Historical win rate in neutral venues.
+  Critical for World Cup where most matches are neutral.
+- form_last_10: 10-game rolling form (more stable than 5-game).
+
+═══ WHY THESE IMPROVE THE MODEL ═══
+The original model only captured team strength via FIFA ranking (a single number).
+The new features add multiple dimensions:
+1. Squad quality (individual player talent via impact_score)
+2. Economic power (market value as proxy for depth)
+3. Competitive environment (top_league_ratio)
+4. World Cup relevance (neutral venue performance)
+These are orthogonal to ranking — a team can be highly ranked but have
+an aging squad, or vice versa.

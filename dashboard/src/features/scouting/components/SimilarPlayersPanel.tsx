@@ -145,7 +145,7 @@ export function SimilarPlayersPanel({ player, onClose, onAddToCompare }: Similar
             })}
 
             {similar.length > 0 && (
-              <p className="text-[10px] text-gray-600 text-center pt-3">
+              <p className="text-xs text-gray-300 text-center pt-3">
                 Similitud calculada por: distancia en Impact Score + posición + cercanía en edad, dentro del mismo perfil K-Means.
               </p>
             )}

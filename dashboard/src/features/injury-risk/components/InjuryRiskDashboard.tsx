@@ -95,7 +95,7 @@ export function InjuryRiskDashboard() {
               ) : jugador && (
                 <div className="text-center">
                   <p className="text-xs font-display font-bold text-white">{jugador.name}</p>
-                  <p className="text-[10px] text-gray-400">{jugador.national_team}</p>
+                  <p className="text-xs text-gray-400">{jugador.national_team}</p>
                 </div>
               )}
               {/* Gauge below photo */}

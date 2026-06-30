@@ -9,6 +9,11 @@ No hardcoded or mocked values.
 from fastapi import APIRouter, Request, Response, HTTPException
 import pandas as pd
 import numpy as np
+from app.api.v1.country_utils import (
+    canonicalize_country_name,
+    country_mask,
+    strip_country_prefix,
+)
 from app.api.v1.utils import get_df
 from app.api.v1.ml.team_predictor import (
     predict_team_group_points,
@@ -91,9 +96,10 @@ def get_wc_groups(request: Request, response: Response):
         grp = str(row.get('group', 'Unknown'))
         if grp not in groups:
             groups[grp] = []
+        team_name = strip_country_prefix(str(row.get('team', '')))
         groups[grp].append({
             "rank": _to_native(row.get('rank')),
-            "team": str(row.get('team', '')),
+            "team": team_name,
             "mp": _to_native(row.get('mp')),
             "w": _to_native(row.get('w')),
             "d": _to_native(row.get('d')),
@@ -116,12 +122,11 @@ def get_team(request: Request, response: Response, team_name: str):
     if teams_df.empty:
         raise HTTPException(status_code=503, detail="teams_featured data not loaded")
 
-    row_df = teams_df[teams_df['Country'] == team_name]
-    if row_df.empty:
-        row_df = teams_df[teams_df['Country'].str.lower() == team_name.lower()]
+    resolved_team_name = canonicalize_country_name(team_name)
+    row_df = teams_df[country_mask(teams_df, 'Country', resolved_team_name)]
     if row_df.empty:
         row_df = teams_df[
-            teams_df['Country'].str.lower().str.contains(team_name.lower(), na=False)
+            teams_df['Country'].str.lower().str.contains(resolved_team_name.lower(), na=False)
         ]
     if row_df.empty:
         raise HTTPException(status_code=404, detail=f"Team '{team_name}' not found")
@@ -134,7 +139,8 @@ def get_team(request: Request, response: Response, team_name: str):
 @router.get("/{team_name}/prediction")
 def get_team_prediction(request: Request, response: Response, team_name: str):
     """
-    Predicts expected group stage points using team_points_xgb_model.
+    Estimates group stage points using team_points_xgb_model.
+    Returned points are rounded to valid table points.
     All inputs come from real master_teams_featured data.
     """
     response.headers["Cache-Control"] = "no-cache"

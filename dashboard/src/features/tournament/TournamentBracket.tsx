@@ -14,7 +14,7 @@ interface MatchResult {
 }
 
 interface TournamentData {
-  group_stage: Record<string, { team: string; predicted_points: number }[]>;
+  group_stage: Record<string, { team: string; pts: number; predicted_points: number }[]>;
   best_third_place: { team: string; group: string; points: number }[];
   knockout: {
     round_of_32: MatchResult[];
@@ -152,7 +152,7 @@ export function TournamentBracket() {
               <div className="flex flex-wrap gap-2">
                 {data.best_third_place.map((t) => (
                   <span key={t.team} className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded border border-blue-500/20">
-                    {t.team} ({t.group}, {t.points.toFixed(1)} pts)
+                    {t.team} ({t.group}, {t.points} pts)
                   </span>
                 ))}
               </div>
@@ -171,8 +171,8 @@ export function TournamentBracket() {
           <div className="bg-purple-500/5 border border-purple-500/20 rounded-xl p-4 mt-6">
             <h4 className="text-sm font-bold text-purple-300 mb-2">🔬 Metodología</h4>
             <p className="text-sm text-gray-300 leading-relaxed">
-              <strong>Fase de Grupos:</strong> Se usa <code className="text-purple-300">team_points_xgb_model</code> (XGBoost Regressor, 19 features de squad) 
-              para predecir los puntos de cada selección. Los 2 primeros de cada grupo + los 8 mejores terceros avanzan.
+              <strong>Fase de Grupos:</strong> Se simula cada partido del grupo con <code className="text-purple-300">match_outcome_weather_xgb</code> y se arma la tabla con puntos reales:
+              3 por victoria, 1 por empate y 0 por derrota. Los 2 primeros de cada grupo + los 8 mejores terceros avanzan.
             </p>
             <p className="text-sm text-gray-300 leading-relaxed mt-2">
               <strong>Fase de Eliminación:</strong> Se usa <code className="text-purple-300">match_outcome_weather_xgb</code> (XGBoost Classifier, 14 features) 

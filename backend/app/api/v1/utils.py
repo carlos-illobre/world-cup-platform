@@ -1,5 +1,10 @@
 import pandas as pd
 from fastapi import Request, HTTPException
+from app.api.v1.country_utils import (
+    canonicalize_country_name,
+    country_mask,
+    playoff_team_override,
+)
 
 def get_df(request: Request, key: str):
     data = getattr(request.app.state, 'data', {})
@@ -12,6 +17,13 @@ def get_team_info(request: Request, team_id):
     if teams.empty or pd.isna(team_id) or team_id not in teams.index:
         raise HTTPException(status_code=404, detail=f"Team with ID {team_id} not found")
     t = teams.loc[team_id]
+    override = playoff_team_override(t.get('team_name'), t.get('fifa_code'))
+    if override:
+        return {
+            "name": override["name"],
+            "code": override["code"],
+            "flag_url": f"https://flagcdn.com/w320/{override['iso2_code']}.png",
+        }
     iso_code = str(t['iso2_code']) if pd.notna(t.get('iso2_code')) else "un"
     return {"name": str(t['team_name']), "code": str(t['fifa_code']), "flag_url": f"https://flagcdn.com/w320/{iso_code.lower()}.png"}
 
@@ -20,12 +32,20 @@ def get_team_info_by_name(request: Request, team_name: str):
     if teams.empty or pd.isna(team_name):
         raise HTTPException(status_code=404, detail="Team name not provided or data unavailable")
     
-    team_row = teams[teams['team_name'] == team_name]
+    resolved_team_name = canonicalize_country_name(team_name)
+    team_row = teams[country_mask(teams, 'team_name', resolved_team_name)]
     if len(team_row) == 0:
-        team_row = teams[teams['team_name'].str.lower().str.contains(team_name.lower(), na=False)]
+        team_row = teams[teams['team_name'].str.lower().str.contains(resolved_team_name.lower(), na=False)]
         
     if len(team_row) > 0:
         t = team_row.iloc[0]
+        override = playoff_team_override(t.get('team_name'), t.get('fifa_code'))
+        if override:
+            return {
+                "name": override["name"],
+                "code": override["code"],
+                "flag_url": f"https://flagcdn.com/w320/{override['iso2_code']}.png",
+            }
         iso_code = str(t['iso2_code']) if pd.notna(t.get('iso2_code')) else "un"
         return {"name": str(t['team_name']), "code": str(t['fifa_code']), "flag_url": f"https://flagcdn.com/w320/{iso_code.lower()}.png"}
     

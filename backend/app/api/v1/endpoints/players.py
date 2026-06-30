@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Request, Response
 import pandas as pd
 import numpy as np
 from difflib import get_close_matches
+from app.api.v1.country_utils import country_mask
 from app.api.v1.ml.team_predictor import predict_player_impact
 
 router = APIRouter()
@@ -68,9 +69,7 @@ def search_players(
             players_df = substring_df
 
     if country:
-        players_df = players_df[
-            players_df['Country'].str.lower() == country.lower()
-        ]
+        players_df = players_df[country_mask(players_df, 'Country', country)]
         
     if cluster:
         players_df = players_df[

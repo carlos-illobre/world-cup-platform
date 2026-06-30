@@ -9,6 +9,7 @@ and master_teams_featured.csv.
 import pandas as pd
 import numpy as np
 import xgboost as xgb
+from app.api.v1.country_utils import canonicalize_country_name, country_mask
 
 # Exact feature order the weather model expects
 WEATHER_MODEL_FEATURES = [
@@ -25,13 +26,8 @@ def _get_team_stats(team_name: str, matches_df: pd.DataFrame) -> dict:
     Returns the aggregated stats for the most recent matches.
     """
     # Normalize team name for matching
-    team_matches = matches_df[matches_df['Country'] == team_name]
-
-    if team_matches.empty:
-        # Try case-insensitive match
-        team_matches = matches_df[
-            matches_df['Country'].str.lower() == team_name.lower()
-        ]
+    resolved_team_name = canonicalize_country_name(team_name)
+    team_matches = matches_df[country_mask(matches_df, 'Country', resolved_team_name)]
 
     if team_matches.empty:
         return {}
@@ -54,11 +50,8 @@ def _get_team_stats(team_name: str, matches_df: pd.DataFrame) -> dict:
 
 def _get_team_fifa_points(team_name: str, matches_df: pd.DataFrame) -> float:
     """Gets the FIFA points for a team from matches data."""
-    team_matches = matches_df[matches_df['Country'] == team_name]
-    if team_matches.empty:
-        team_matches = matches_df[
-            matches_df['Country'].str.lower() == team_name.lower()
-        ]
+    resolved_team_name = canonicalize_country_name(team_name)
+    team_matches = matches_df[country_mask(matches_df, 'Country', resolved_team_name)]
     if not team_matches.empty:
         val = team_matches.iloc[-1].get('Country_FIFA_Points', np.nan)
         if pd.notna(val):
@@ -72,14 +65,16 @@ def _get_h2h_stats(team_a: str, team_b: str, matches_df: pd.DataFrame) -> dict:
     Returns h2h_wins (team_a wins), h2h_losses (team_a losses), h2h_draws.
     """
     # Matches where team_a played against team_b
+    team_a_resolved = canonicalize_country_name(team_a)
+    team_b_resolved = canonicalize_country_name(team_b)
     h2h = matches_df[
-        (matches_df['Country'] == team_a) &
-        (matches_df['Opponent'] == team_b)
+        country_mask(matches_df, 'Country', team_a_resolved) &
+        country_mask(matches_df, 'Opponent', team_b_resolved)
     ]
 
     if h2h.empty:
         # Try using existing h2h columns from the most recent match of team_a
-        team_a_matches = matches_df[matches_df['Country'] == team_a]
+        team_a_matches = matches_df[country_mask(matches_df, 'Country', team_a_resolved)]
         if not team_a_matches.empty:
             latest = team_a_matches.iloc[-1]
             return {
@@ -130,22 +125,25 @@ def predict_match_outcome(
     if model is None:
         raise ValueError("match_weather model not loaded")
 
+    team_a_resolved = canonicalize_country_name(team_a)
+    team_b_resolved = canonicalize_country_name(team_b)
+
     # --- Build feature vector from real data ---
-    stats_a = _get_team_stats(team_a, matches_df)
-    h2h = _get_h2h_stats(team_a, team_b, matches_df)
+    stats_a = _get_team_stats(team_a_resolved, matches_df)
+    h2h = _get_h2h_stats(team_a_resolved, team_b_resolved, matches_df)
 
     # FIFA points: for team_a use its own, for team_b get from its perspective
     fifa_a = stats_a.get('Country_FIFA_Points', np.nan)
     if pd.isna(fifa_a):
-        fifa_a = _get_team_fifa_points(team_a, matches_df)
+        fifa_a = _get_team_fifa_points(team_a_resolved, matches_df)
 
     # Get team_b FIFA points from its own matches
-    fifa_b = _get_team_fifa_points(team_b, matches_df)
+    fifa_b = _get_team_fifa_points(team_b_resolved, matches_df)
     if pd.isna(fifa_b):
         # Fall back to opponent_fifa_points of team_a's matches vs team_b
         opp_rows = matches_df[
-            (matches_df['Country'] == team_a) &
-            (matches_df['Opponent'] == team_b)
+            country_mask(matches_df, 'Country', team_a_resolved) &
+            country_mask(matches_df, 'Opponent', team_b_resolved)
         ]
         if not opp_rows.empty:
             fifa_b = float(opp_rows.iloc[-1].get('Opponent_FIFA_Points', 1400))
@@ -209,16 +207,16 @@ def predict_match_outcome(
     prob_draw /= total
     prob_win_b /= total
 
-    prediction = team_a if prob_win_a_adj > prob_win_b else team_b
+    prediction = team_a_resolved if prob_win_a_adj > prob_win_b else team_b_resolved
     if abs(prob_win_a_adj - prob_win_b) < 0.05:
         prediction = "Draw"
 
     # --- SHAP Explainability: compute feature contributions ---
-    explanations = _compute_shap_explanations(model, features, team_a, team_b)
+    explanations = _compute_shap_explanations(model, features, team_a_resolved, team_b_resolved)
 
     return {
-        "team_a": team_a,
-        "team_b": team_b,
+        "team_a": team_a_resolved,
+        "team_b": team_b_resolved,
         "probabilities": {
             "win_A": round(prob_win_a_adj, 3),
             "draw": round(prob_draw, 3),

@@ -1,13 +1,14 @@
 """
 Team Predictors
 ================
-- team_points_xgb_model.pkl  → predicts expected group stage points
+- team_points_xgb_model.pkl  → estimates group-stage points, rounded to table points
 - formation_xgb_model.pkl    → predicts the most likely tactical formation
 - player_impact_xgb_enriched.pkl → scores a player's impact from FIFA attrs
 """
 
 import pandas as pd
 import numpy as np
+from app.api.v1.country_utils import canonicalize_country_name, country_mask
 
 # --- Team Points Model (19 features) ---
 TEAM_POINTS_FEATURES = [
@@ -53,7 +54,8 @@ def predict_team_group_points(
     teams_df: pd.DataFrame,
 ) -> dict:
     """
-    Predicts expected group stage points for a team using real squad stats.
+    Estimates group stage points for a team using real squad stats.
+    The model output is continuous, but the API exposes valid table points only.
 
     Parameters
     ----------
@@ -75,16 +77,13 @@ def predict_team_group_points(
     if teams_df is None or teams_df.empty:
         raise ValueError("teams_featured data not loaded")
 
-    # Match team name (case-insensitive fallback)
-    team_row = teams_df[teams_df['Country'] == team_name]
-    if team_row.empty:
-        team_row = teams_df[
-            teams_df['Country'].str.lower() == team_name.lower()
-        ]
+    # Match team name (accepts localized names and common aliases).
+    resolved_team_name = canonicalize_country_name(team_name)
+    team_row = teams_df[country_mask(teams_df, 'Country', resolved_team_name)]
     if team_row.empty:
         # Partial match
         team_row = teams_df[
-            teams_df['Country'].str.lower().str.contains(team_name.lower(), na=False)
+            teams_df['Country'].str.lower().str.contains(resolved_team_name.lower(), na=False)
         ]
     if team_row.empty:
         raise ValueError(f"Team '{team_name}' not found in teams_featured data")
@@ -101,7 +100,7 @@ def predict_team_group_points(
 
     # Model predicts directly (regression or classifier)
     prediction = model.predict(features_df)[0]
-    predicted_points = float(prediction)
+    predicted_points = max(0, min(9, int(round(float(prediction)))))
 
     # Return actual stats used
     stats_used = {
@@ -110,8 +109,8 @@ def predict_team_group_points(
     }
 
     return {
-        "team": team_name,
-        "predicted_group_points": round(predicted_points, 2),
+        "team": str(t.get('Country', team_name)),
+        "predicted_group_points": predicted_points,
         "model_used": "team_points_xgb_model",
         "squad_stats": {
             "avg_age": stats_used.get("squad_avg_age"),
@@ -167,11 +166,8 @@ def predict_team_formation(
         raise ValueError("matches_featured data not loaded")
 
     # Get team matches
-    team_matches = matches_df[matches_df['Country'] == team_name]
-    if team_matches.empty:
-        team_matches = matches_df[
-            matches_df['Country'].str.lower() == team_name.lower()
-        ]
+    resolved_team_name = canonicalize_country_name(team_name)
+    team_matches = matches_df[country_mask(matches_df, 'Country', resolved_team_name)]
 
     # Compute formation usage frequency from history
     formation_counts = {}
@@ -234,7 +230,7 @@ def predict_team_formation(
     )
 
     return {
-        "team": team_name,
+        "team": resolved_team_name,
         "recommended_formation": recommended,
         "formation_win_probabilities": sorted_formations,
         "historical_formations": {k: v for k, v in formation_counts.items() if v > 0},

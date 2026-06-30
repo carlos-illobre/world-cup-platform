@@ -1,5 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
+import {
+  resolvePlayoffPlayerTeam,
+  resolvePlayoffSquadInference,
+} from "@/shared/lib/playoffTeams";
 import type {
   OpcionJugador,
   InferenciaPlantillaPartido,
@@ -29,22 +33,24 @@ export const squadApi = createApi({
         const query = params.toString();
         return `/api/v1/matches/${matchNumber}/squad?${query}`;
       },
-      transformResponse: (response: { data: OpcionJugador[] }) => response.data,
+      transformResponse: (response: { data: OpcionJugador[] }) =>
+        response.data.map(resolvePlayoffPlayerTeam),
       providesTags: (_result, _error, { matchNumber }) => [
         { type: "Plantilla", id: matchNumber },
       ],
-      keepUnusedDataFor: 2 * 60,
+      keepUnusedDataFor: 0,
     }),
 
     /** Obtiene el plantel completo de ambos equipos con inferencia de riesgo pre-calculada. */
     getInferenciaPlantilla: builder.query<InferenciaPlantillaPartido, number>({
       query: (matchNumber) =>
         `/api/v1/matches/${matchNumber}/squad/inference?_t=${Date.now()}`,
-      transformResponse: (response: InferenciaPlantillaResponse) => response.data,
+      transformResponse: (response: InferenciaPlantillaResponse) =>
+        resolvePlayoffSquadInference(response.data),
       providesTags: (_result, _error, matchNumber) => [
         { type: "InferenciaPlantilla", id: matchNumber },
       ],
-      keepUnusedDataFor: 2 * 60,
+      keepUnusedDataFor: 0,
     }),
   }),
 });

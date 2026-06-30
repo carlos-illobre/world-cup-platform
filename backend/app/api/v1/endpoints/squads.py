@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, Request
 import pandas as pd
+from app.api.v1.country_utils import country_mask, resolve_country_in_df
 
 router = APIRouter()
 
@@ -10,7 +11,7 @@ def get_squad(request: Request, country: str):
         raise HTTPException(status_code=500, detail="Data not loaded")
     
     squad_df = data['squads']
-    country_squad = squad_df[squad_df['Country'].str.lower() == country.lower()]
+    country_squad = squad_df[country_mask(squad_df, 'Country', country)]
     
     if len(country_squad) == 0:
         raise HTTPException(status_code=404, detail="Squad for country not found")
@@ -37,7 +38,7 @@ def get_squad(request: Request, country: str):
         })
         
     return {
-        "country": country, 
+        "country": resolve_country_in_df(squad_df, 'Country', country),
         "squad_size": len(players), 
         "players": players
     }

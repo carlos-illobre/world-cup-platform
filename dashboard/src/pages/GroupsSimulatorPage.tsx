@@ -60,31 +60,32 @@ export function GroupsSimulatorPage() {
       });
   }, []);
 
-  // Load predictions for all teams when groups are loaded
+  // Simulate group fixtures and load real 3/1/0 standings when groups are loaded.
   useEffect(() => {
     const allTeams = Object.values(groups).flat().map((t) => t.team);
     if (allTeams.length === 0) return;
 
-    allTeams.forEach((team) => {
-      if (predictions[team]) return;
-      fetch(`${INJURY_API_BASE_URL}/api/v1/teams/${encodeURIComponent(team)}/prediction`)
-        .then((r) => r.json())
-        .then((data) => {
-          setPredictions((prev) => ({
-            ...prev,
-            [team]: {
-              team,
-              predicted_group_points: data.data?.predicted_group_points ?? 0,
-            },
-          }));
-        })
-        .catch(() => {
-          setPredictions((prev) => ({
-            ...prev,
-            [team]: { team, predicted_group_points: 0 },
-          }));
+    fetch(`${INJURY_API_BASE_URL}/api/v1/tournament/simulate?_t=${Date.now()}`)
+      .then((r) => r.json())
+      .then((data) => {
+        const next: Record<string, TeamPrediction> = {};
+        Object.values(data.group_stage || {})
+          .flat()
+          .forEach((team: any) => {
+            next[team.team] = {
+              team: team.team,
+              predicted_group_points: Number(team.pts ?? team.predicted_points ?? 0),
+            };
+          });
+        setPredictions(next);
+      })
+      .catch(() => {
+        const next: Record<string, TeamPrediction> = {};
+        allTeams.forEach((team) => {
+          next[team] = { team, predicted_group_points: 0 };
         });
-    });
+        setPredictions(next);
+      });
   }, [groups]);
 
   // Load formations + team details for data science view
@@ -135,8 +136,8 @@ export function GroupsSimulatorPage() {
               </span>
             </h1>
             <p className="text-gray-300 max-w-2xl text-base">
-              Predicción de puntos de grupo para las 48 selecciones del Mundial 2026 
-              usando el modelo XGBoost de regresión (team_points_xgb_model).
+              Simulación de la fase de grupos del Mundial 2026 con puntos de tabla reales:
+              3 por victoria, 1 por empate y 0 por derrota.
             </p>
           </div>
 
@@ -192,7 +193,7 @@ export function GroupsSimulatorPage() {
                         <tr className="text-gray-400 text-xs border-b border-white/10">
                           <th className="text-left py-2 pl-2">#</th>
                           <th className="text-left py-2">Selección</th>
-                          <th className="text-right py-2 pr-2">Pts Pred.</th>
+                          <th className="text-right py-2 pr-2">Pts</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -218,7 +219,7 @@ export function GroupsSimulatorPage() {
                                     idx < 2 ? "text-green-400" : "text-gray-300"
                                   }
                                 >
-                                  {team.predicted_points.toFixed(1)}
+                                  {team.predicted_points}
                                 </span>
                               ) : (
                                 <span className="text-gray-500 animate-pulse">
@@ -252,30 +253,30 @@ export function GroupsSimulatorPage() {
             {/* Model Info */}
             <div className="glass-panel rounded-2xl p-6 border border-white/5">
               <h3 className="text-xl font-bold text-white mb-3">
-                🤖 Modelo: team_points_xgb_model (XGBoost Regression)
+                🤖 Modelo: match_outcome_weather_xgb + tabla 3/1/0
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div className="bg-black/30 rounded-xl p-4 border border-white/5">
                   <p className="text-xs text-gray-400 uppercase tracking-wider">Algoritmo</p>
-                  <p className="text-lg font-bold text-neon-blue">XGBoost Regressor</p>
+                  <p className="text-lg font-bold text-neon-blue">XGBoost Classifier</p>
                 </div>
                 <div className="bg-black/30 rounded-xl p-4 border border-white/5">
-                  <p className="text-xs text-gray-400 uppercase tracking-wider">RMSE</p>
-                  <p className="text-lg font-bold text-yellow-400">0.83 puntos</p>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider">Regla de puntos</p>
+                  <p className="text-lg font-bold text-yellow-400">3 / 1 / 0</p>
                 </div>
                 <div className="bg-black/30 rounded-xl p-4 border border-white/5">
-                  <p className="text-xs text-gray-400 uppercase tracking-wider">Features</p>
-                  <p className="text-lg font-bold text-purple-400">19 variables</p>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider">Salida</p>
+                  <p className="text-lg font-bold text-purple-400">Tabla real</p>
                 </div>
               </div>
               <p className="text-sm text-gray-300">
-                El modelo predice los puntos esperados en fase de grupos usando 19 features 
-                del squad: valor de mercado, edad promedio, goles históricos, profundidad de 
-                plantilla, ratio top-league, impacto promedio e historial de lesiones.
+                El simulador predice el resultado de cada partido del grupo y después suma
+                puntos de tabla: victoria 3, empate 1, derrota 0. Por eso los puntos siempre
+                son enteros y nunca valores decimales.
               </p>
               <div className="mt-4">
                 <p className="text-xs text-gray-400 uppercase tracking-wider mb-2">
-                  19 Features del Modelo
+                  Features del squad disponibles
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {TEAM_POINTS_FEATURES.map((f) => (
@@ -315,7 +316,7 @@ export function GroupsSimulatorPage() {
                             <span className="font-bold text-white">{t.team}</span>
                             <span className="text-sm font-mono text-neon-blue">
                               {pred
-                                ? `${pred.predicted_group_points.toFixed(2)} pts`
+                                ? `${pred.predicted_group_points} pts`
                                 : "..."}
                             </span>
                           </div>

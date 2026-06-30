@@ -13,7 +13,7 @@ const SQUAD_COUNTRIES = [
   { label: "Australia", value: "Australia" },
   { label: "Austria", value: "Austria" },
   { label: "Bélgica (Belgium)", value: "Belgium" },
-  { label: "Bosnia-Herzegovina", value: "Bosnia and Herzegovina" },
+  { label: "Bosnia-Herzegovina", value: "Bosnia-Herzegovina" },
   { label: "Brasil (Brazil)", value: "Brazil" },
   { label: "Cabo Verde", value: "Cape Verde" },
   { label: "Canadá (Canada)", value: "Canada" },

@@ -82,6 +82,11 @@ const RADAR_METRICS = [
   { key: "squad_avg_impact_score", label: "Impact Score" },
 ];
 
+const formatGroupPoints = (value?: number | null) => {
+  if (value == null || Number.isNaN(Number(value))) return "—";
+  return String(Math.max(0, Math.min(9, Math.round(Number(value)))));
+};
+
 // --- Autocomplete Component ---
 function TeamAutocomplete({
   label,
@@ -233,8 +238,8 @@ export function TeamComparePage() {
               </span>
             </h1>
             <p className="text-gray-300 max-w-2xl text-base">
-              Compara dos selecciones usando métricas de squad reales y predicciones
-              del modelo XGBoost de puntos de grupo.
+              Compara dos selecciones usando métricas de squad reales y una estimación
+              redondeada de puntos de grupo.
             </p>
           </div>
 
@@ -288,14 +293,14 @@ export function TeamComparePage() {
               <div className="glass-panel rounded-2xl p-6 border border-white/5 text-center">
                 <h3 className="text-xl font-bold text-neon-blue mb-2">{teamA}</h3>
                 <p className="text-4xl font-black text-white">
-                  {predA?.predicted_group_points?.toFixed(1) ?? "—"}
+                  {formatGroupPoints(predA?.predicted_group_points)}
                 </p>
                 <p className="text-sm text-gray-400 mt-1">Puntos predichos (grupo)</p>
               </div>
               <div className="glass-panel rounded-2xl p-6 border border-white/5 text-center">
                 <h3 className="text-xl font-bold text-purple-400 mb-2">{teamB}</h3>
                 <p className="text-4xl font-black text-white">
-                  {predB?.predicted_group_points?.toFixed(1) ?? "—"}
+                  {formatGroupPoints(predB?.predicted_group_points)}
                 </p>
                 <p className="text-sm text-gray-400 mt-1">Puntos predichos (grupo)</p>
               </div>
@@ -389,12 +394,12 @@ export function TeamComparePage() {
             {/* Model Info */}
             <div className="glass-panel rounded-2xl p-6 border border-white/5">
               <h3 className="text-xl font-bold text-white mb-3">
-                🤖 Modelo: team_points_xgb_model (XGBoost Regression)
+                🤖 Modelo de referencia: team_points_xgb_model
               </h3>
               <p className="text-sm text-gray-300 mb-4">
                 El modelo utiliza 19 features derivadas del squad (datos reales de
-                master_teams_featured.csv) para predecir los puntos esperados en fase de
-                grupos. RMSE del modelo: <strong className="text-yellow-400">0.83</strong>.
+                master_teams_featured.csv). En esta pantalla se muestra el valor redondeado
+                para mantener los puntos como enteros de tabla.
               </p>
               <div className="flex flex-wrap gap-2">
                 {TEAM_POINTS_FEATURES.map((f) => (
@@ -452,7 +457,7 @@ export function TeamComparePage() {
                   Predicción {teamA}
                 </h4>
                 <p className="text-3xl font-black text-white">
-                  {predA?.predicted_group_points?.toFixed(2) ?? "—"} pts
+                  {formatGroupPoints(predA?.predicted_group_points)} pts
                 </p>
                 <p className="text-xs text-gray-400 mt-1">
                   Modelo: {predA?.model_used ?? "team_points_xgb_model"}
@@ -463,7 +468,7 @@ export function TeamComparePage() {
                   Predicción {teamB}
                 </h4>
                 <p className="text-3xl font-black text-white">
-                  {predB?.predicted_group_points?.toFixed(2) ?? "—"} pts
+                  {formatGroupPoints(predB?.predicted_group_points)} pts
                 </p>
                 <p className="text-xs text-gray-400 mt-1">
                   Modelo: {predB?.model_used ?? "team_points_xgb_model"}

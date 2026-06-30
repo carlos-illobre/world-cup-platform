@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
+import { resolvePlayoffMatch, resolvePlayoffTeam } from "@/shared/lib/playoffTeams";
 import type { FechaJornada, PartidoResumido, ContextoPartido } from "@/shared/types/injuryRisk.types";
 
 /**
@@ -23,17 +24,22 @@ export const fixtureApi = createApi({
     getPartidosPorFecha: builder.query<PartidoResumido[], string>({
       query: (fechaId) =>
         `/api/v1/matches/dates/${encodeURIComponent(fechaId)}/matches`,
-      transformResponse: (response: { data: PartidoResumido[] }) => response.data,
+      transformResponse: (response: { data: PartidoResumido[] }) =>
+        response.data.map(resolvePlayoffMatch),
       providesTags: (_result, _error, fechaId) => [{ type: "Partidos", id: fechaId }],
-      keepUnusedDataFor: 5 * 60,
+      keepUnusedDataFor: 0,
     }),
 
     /** Obtiene el contexto geoclimático de un partido. */
     getPartidoContexto: builder.query<ContextoPartido, number>({
       query: (matchNumber) => `/api/v1/matches/${matchNumber}/context`,
-      transformResponse: (response: { data: ContextoPartido }) => response.data,
+      transformResponse: (response: { data: ContextoPartido }) => ({
+        ...response.data,
+        home: resolvePlayoffTeam(response.data.home),
+        away: resolvePlayoffTeam(response.data.away),
+      }),
       providesTags: (_result, _error, matchNumber) => [{ type: "ContextoPartido", id: matchNumber }],
-      keepUnusedDataFor: 5 * 60,
+      keepUnusedDataFor: 0,
     }),
   }),
 });

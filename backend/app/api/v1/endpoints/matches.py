@@ -2,6 +2,7 @@ from fastapi import APIRouter, Request, Response, HTTPException
 from pydantic import BaseModel
 import pandas as pd
 from app.api.v1.utils import get_df, get_team_info, get_venue_info
+from app.api.v1.country_utils import country_mask
 from app.api.v1.ml.match_predictor import predict_match_outcome
 from app.api.v1.services.weather_service import get_venue_geoclimatic_info
 
@@ -159,7 +160,7 @@ def get_squad(request: Request, response: Response, match_id: int):
     if not df_players.empty:
         players_main_df = get_df(request, 'players')
         for t in [home_team, away_team]:
-            team_players = df_players[df_players['Country'] == t['name']]
+            team_players = df_players[country_mask(df_players, 'Country', t['name'])]
             for idx, p in team_players.iterrows():
                 player_name = p['Player']
                 true_idx = idx
@@ -213,7 +214,7 @@ def get_squad_inference(request: Request, response: Response, match_id: int):
         players_list = []
         if not df_players.empty:
             players_main_df = get_df(request, 'players')
-            team_players = df_players[df_players['Country'] == t['name']]
+            team_players = df_players[country_mask(df_players, 'Country', t['name'])]
             for idx, p in team_players.iterrows():
                 player_name = p['Player']
                 true_idx = idx

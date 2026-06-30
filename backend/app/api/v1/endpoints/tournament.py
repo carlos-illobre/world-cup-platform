@@ -24,11 +24,68 @@ import numpy as np
 import logging
 import math
 from app.api.v1.utils import get_df
-from app.api.v1.ml.match_predictor import predict_match_outcome
+from app.api.v1.ml.match_predictor import predict_match_outcome, _get_team_stats, _get_team_fifa_info, _get_h2h_stats
 from app.api.v1.ml.team_predictor import predict_team_group_points
+import joblib
+import os
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
+
+# Lazy-loaded RF model for tournament simulation
+_rf_match_model = None
+
+
+def _get_rf_match_model():
+    """Lazy-load the Random Forest match outcome model."""
+    global _rf_match_model
+    if _rf_match_model is None:
+        path = os.path.join(os.path.dirname(__file__), '../../../../data/models/match_outcome_rf.pkl')
+        if os.path.exists(path):
+            _rf_match_model = joblib.load(path)
+    return _rf_match_model
+
+
+def _predict_with_rf(team_a: str, team_b: str, matches_df, historical_wc_df=None) -> dict:
+    """Predict match outcome using Random Forest model."""
+    rf = _get_rf_match_model()
+    if rf is None:
+        return {'win_A': 0.33, 'draw': 0.34, 'win_B': 0.33}
+
+    stats_a = _get_team_stats(team_a, matches_df)
+    fifa_a = _get_team_fifa_info(team_a, matches_df)
+    fifa_b = _get_team_fifa_info(team_b, matches_df)
+    h2h = _get_h2h_stats(team_a, team_b, matches_df, historical_wc_df)
+
+    fifa_pts_a = fifa_a['points'] if not pd.isna(fifa_a['points']) else 1400.0
+    fifa_pts_b = fifa_b['points'] if not pd.isna(fifa_b['points']) else 1400.0
+
+    features = [
+        float(fifa_pts_a),
+        float(fifa_pts_b),
+        float(fifa_pts_a - fifa_pts_b),
+        int(h2h['h2h_wins']),
+        int(h2h['h2h_losses']),
+        float(stats_a.get('days_since_last_match', 30) or 30),
+        float(stats_a.get('form_last_5', 0) or 0),
+        float(stats_a.get('goals_scored_last_5', 0) or 0),
+        float(stats_a.get('goals_conceded_last_5', 0) or 0),
+        float(stats_a.get('win_rate_neutral', 0) or 0),
+    ]
+
+    X = np.array([features[:rf.n_features_in_]])
+    rf_proba = rf.predict_proba(X)[0]
+    rf_classes = rf.classes_.tolist()
+
+    probs = {}
+    for cls, p in zip(rf_classes, rf_proba):
+        probs[str(cls)] = float(p)
+
+    return {
+        'win_A': round(probs.get('W', 0.33), 3),
+        'draw': round(probs.get('D', 0.34), 3),
+        'win_B': round(probs.get('L', 0.33), 3),
+    }
 
 
 def _compute_entropy(probs: dict) -> float:
@@ -155,10 +212,13 @@ def _resolve_team_name(token: str, group_standings: dict, best_thirds_assigned: 
 
 
 @router.get("/simulate")
-def simulate_tournament(request: Request, response: Response):
+def simulate_tournament(request: Request, response: Response, model: str = "xgboost"):
     """
     Simulates the entire World Cup 2026 tournament.
     Returns group stage results + full knockout bracket with predictions.
+    
+    Query params:
+    - model: "xgboost" (default) or "random_forest"
     """
     response.headers["Cache-Control"] = "no-cache"
     
@@ -313,16 +373,21 @@ def simulate_tournament(request: Request, response: Response):
         
         if is_resolved:
             try:
-                result = predict_match_outcome(
-                    models=models,
-                    team_a=team_a,
-                    team_b=team_b,
-                    matches_df=matches_featured_df,
-                    historical_wc_df=historical_wc_df,
-                    teams_featured_df=teams_featured_df,
-                )
-                prob_a = result["probabilities"]["win_A"]
-                prob_b = result["probabilities"]["win_B"]
+                if model == "random_forest":
+                    probs = _predict_with_rf(team_a, team_b, matches_featured_df, historical_wc_df)
+                    prob_a = probs["win_A"]
+                    prob_b = probs["win_B"]
+                else:
+                    result = predict_match_outcome(
+                        models=models,
+                        team_a=team_a,
+                        team_b=team_b,
+                        matches_df=matches_featured_df,
+                        historical_wc_df=historical_wc_df,
+                        teams_featured_df=teams_featured_df,
+                    )
+                    prob_a = result["probabilities"]["win_A"]
+                    prob_b = result["probabilities"]["win_B"]
                 
                 if prob_a >= prob_b:
                     winner = team_a
@@ -392,7 +457,7 @@ def simulate_tournament(request: Request, response: Response):
 
 
 @router.get("/simulate-groups-detailed")
-def simulate_groups_detailed(request: Request, response: Response):
+def simulate_groups_detailed(request: Request, response: Response, model: str = "xgboost"):
     """
     Enhanced group simulation that returns per-match predictions with:
     - Individual match probabilities and SHAP explanations
@@ -400,6 +465,9 @@ def simulate_groups_detailed(request: Request, response: Response):
     - Stadium-based weather defaults
     - Team form visualization data
     - Full data traceability
+    
+    Query params:
+    - model: "xgboost" (default) or "random_forest"
     """
     response.headers["Cache-Control"] = "no-cache"
 
@@ -439,18 +507,26 @@ def simulate_groups_detailed(request: Request, response: Response):
 
             for opp in opponents[:3]:
                 try:
-                    result = predict_match_outcome(
-                        models=models,
-                        team_a=team_name,
-                        team_b=opp,
-                        matches_df=matches_featured_df,
-                        temp_max=25.0,
-                        precipitation=0.0,
-                        wind_speed=10.0,
-                        historical_wc_df=historical_wc_df,
-                        teams_featured_df=teams_featured_df,
-                    )
-                    probs = result['probabilities']
+                    if model == "random_forest":
+                        probs = _predict_with_rf(team_name, opp, matches_featured_df, historical_wc_df)
+                        result_explanations = []
+                        result_data_sources = {}
+                    else:
+                        result = predict_match_outcome(
+                            models=models,
+                            team_a=team_name,
+                            team_b=opp,
+                            matches_df=matches_featured_df,
+                            temp_max=25.0,
+                            precipitation=0.0,
+                            wind_speed=10.0,
+                            historical_wc_df=historical_wc_df,
+                            teams_featured_df=teams_featured_df,
+                        )
+                        probs = result['probabilities']
+                        result_explanations = result.get('explanations', [])[:3]
+                        result_data_sources = result.get('data_sources', {})
+                    
                     entropy = _compute_entropy(probs)
                     expected_pts = probs['win_A'] * 3.0 + probs['draw'] * 1.0
 
@@ -462,8 +538,8 @@ def simulate_groups_detailed(request: Request, response: Response):
                         "expected_points": round(expected_pts, 2),
                         "entropy": entropy,
                         "confidence": _confidence_label(entropy),
-                        "explanations": result.get('explanations', [])[:3],
-                        "data_sources": result.get('data_sources', {}),
+                        "explanations": result_explanations,
+                        "data_sources": result_data_sources,
                     })
                     total_expected_pts += expected_pts
                 except Exception as e:
@@ -515,17 +591,25 @@ def simulate_groups_detailed(request: Request, response: Response):
         ],
         "methodology": {
             "approach": "match_simulation",
-            "description": "Se simulan los 3 partidos de grupo de cada equipo usando el modelo "
-                           "match_outcome enhanced v2 (XGBoost, 19 features incluyendo calidad de plantel). "
-                           "Los puntos esperados = P(Win)*3 + P(Draw)*1 + P(Loss)*0. "
-                           "La distribución Draw/Loss se obtiene del modelo 3-class (blend strategy).",
-            "models_used": [
-                "match_outcome_weather_xgb.pkl (binario, sensible al clima)",
-                "match_outcome_xgb.pkl (3-class enhanced, 19 features + squad quality)",
-            ],
-            "features_count": 19,
+            "model_used": model,
+            "description": (
+                "Se simulan los 3 partidos de grupo de cada equipo usando Random Forest "
+                "(Bagging, 300 árboles, 10 features deportivas). "
+                if model == "random_forest" else
+                "Se simulan los 3 partidos de grupo de cada equipo usando el modelo "
+                "match_outcome enhanced v2 (XGBoost, 19 features incluyendo calidad de plantel). "
+            ) + "Los puntos esperados = P(Win)*3 + P(Draw)*1 + P(Loss)*0.",
+            "models_used": (
+                ["match_outcome_rf.pkl (Random Forest, 10 features)"]
+                if model == "random_forest" else
+                [
+                    "match_outcome_weather_xgb.pkl (binario, sensible al clima)",
+                    "match_outcome_xgb.pkl (3-class enhanced, 19 features + squad quality)",
+                ]
+            ),
+            "features_count": 10 if model == "random_forest" else 19,
             "training_samples": 3157,
-            "test_accuracy": "57.6%",
+            "test_accuracy": "72.2%" if model == "random_forest" else "57.6%",
             "confidence_method": "Shannon entropy normalizada sobre P(W,D,L). "
                                  "Alta = entropy < 0.6, Media = 0.6-0.85, Baja > 0.85.",
         },

@@ -1,0 +1,86 @@
+{
+  "task": "match_outcome_prediction",
+  "dataset_size": 3157,
+  "train_size": 2525,
+  "test_size": 632,
+  "features_count": 10,
+  "features_used": [
+    "Country_FIFA_Points",
+    "Opponent_FIFA_Points",
+    "ranking_diff",
+    "h2h_wins",
+    "h2h_losses",
+    "days_since_last_match",
+    "form_last_5",
+    "goals_scored_last_5",
+    "goals_conceded_last_5",
+    "win_rate_neutral"
+  ],
+  "xgboost": {
+    "accuracy": 0.576,
+    "f1_macro": 0.466,
+    "train_time_s": null,
+    "hyperparameters": {
+      "n_estimators": 300,
+      "max_depth": 6,
+      "learning_rate": 0.05
+    }
+  },
+  "random_forest": {
+    "accuracy": 0.7215,
+    "f1_macro": 0.6896,
+    "train_time_s": 0.36,
+    "hyperparameters": {
+      "n_estimators": 300,
+      "max_depth": 8,
+      "min_samples_split": 10,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced"
+    },
+    "classification_report": {
+      "D": {
+        "precision": 0.6346153846153846,
+        "recall": 0.4748201438848921,
+        "f1-score": 0.5432098765432098,
+        "support": 139.0
+      },
+      "L": {
+        "precision": 0.6895161290322581,
+        "recall": 0.8260869565217391,
+        "f1-score": 0.7516483516483516,
+        "support": 207.0
+      },
+      "W": {
+        "precision": 0.7821428571428571,
+        "recall": 0.7657342657342657,
+        "f1-score": 0.773851590106007,
+        "support": 286.0
+      },
+      "accuracy": 0.7215189873417721,
+      "macro avg": {
+        "precision": 0.7020914569301665,
+        "recall": 0.688880455380299,
+        "f1-score": 0.6895699394325229,
+        "support": 632.0
+      },
+      "weighted avg": {
+        "precision": 0.7193579656868245,
+        "recall": 0.7215189873417721,
+        "f1-score": 0.7158527474699888,
+        "support": 632.0
+      }
+    }
+  },
+  "feature_importance_rf": {
+    "h2h_losses": 0.3805,
+    "h2h_wins": 0.2456,
+    "ranking_diff": 0.0868,
+    "Opponent_FIFA_Points": 0.0693,
+    "Country_FIFA_Points": 0.0515,
+    "goals_scored_last_5": 0.0462,
+    "form_last_5": 0.0454,
+    "goals_conceded_last_5": 0.0402,
+    "days_since_last_match": 0.0314,
+    "win_rate_neutral": 0.003
+  }
+}

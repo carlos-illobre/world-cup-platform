@@ -210,11 +210,14 @@ export function MatchPredictionPage() {
   const [prediction, setPrediction] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedModel, setSelectedModel] = useState<"xgboost" | "random_forest" | "both">("both");
+  const [rfPrediction, setRfPrediction] = useState<any>(null);
 
   const predictMatch = async (tA: string, tB: string, t: number, p: number, w: number) => {
     setLoading(true);
     setError(null);
     try {
+      // Always fetch XGBoost prediction
       const res = await fetch(`${INJURY_API_BASE_URL}/api/v1/matches/predictions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -232,10 +235,22 @@ export function MatchPredictionPage() {
       }
       const data = await res.json();
       setPrediction(data);
+
+      // Also fetch RF comparison prediction
+      try {
+        const rfRes = await fetch(
+          `${INJURY_API_BASE_URL}/api/v1/models/compare/match-outcome/predict-comparison?team_a=${encodeURIComponent(tA)}&team_b=${encodeURIComponent(tB)}&temp_max=${t}&precipitation=${p}&wind_speed=${w}`
+        );
+        if (rfRes.ok) {
+          const rfData = await rfRes.json();
+          setRfPrediction(rfData.random_forest);
+        }
+      } catch { /* RF comparison is optional */ }
     } catch (e: any) {
       console.error(e);
       setError(e.message || "Error al conectar con el servidor");
       setPrediction(null);
+      setRfPrediction(null);
     }
     setLoading(false);
   };
@@ -262,7 +277,7 @@ export function MatchPredictionPage() {
             </h1>
             <p className="text-gray-300 max-w-2xl text-base">
               {viewMode === "decision"
-                ? "Simulador XGBoost que predice probabilidades de victoria usando datos reales de ranking FIFA, forma reciente, historial H2H y condiciones climáticas."
+                ? "Simulador que predice probabilidades de victoria usando datos reales de ranking FIFA, forma reciente, historial H2H y condiciones climáticas. Podés elegir entre XGBoost y Random Forest."
                 : "Documentación técnica del pipeline de predicción de partidos para estudiantes de Ciencia de Datos."
               }
             </p>
@@ -311,6 +326,45 @@ export function MatchPredictionPage() {
             <div className="space-y-5">
               <TeamAutocomplete label="Equipo A (Local)" value={teamA} onChange={setTeamA} />
               <TeamAutocomplete label="Equipo B (Visitante)" value={teamB} onChange={setTeamB} />
+
+              {/* Model Selector */}
+              <div>
+                <label className="block text-gray-300 text-sm font-medium mb-2">
+                  🧠 Algoritmo de predicción
+                </label>
+                <div className="flex gap-1 bg-black/40 p-1 rounded-lg border border-white/10">
+                  <button
+                    onClick={() => setSelectedModel("xgboost")}
+                    className={`flex-1 px-3 py-2 rounded-md text-xs font-bold transition-all ${
+                      selectedModel === "xgboost"
+                        ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                        : "text-gray-400 hover:text-gray-200"
+                    }`}
+                  >
+                    XGBoost
+                  </button>
+                  <button
+                    onClick={() => setSelectedModel("random_forest")}
+                    className={`flex-1 px-3 py-2 rounded-md text-xs font-bold transition-all ${
+                      selectedModel === "random_forest"
+                        ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
+                        : "text-gray-400 hover:text-gray-200"
+                    }`}
+                  >
+                    Random Forest
+                  </button>
+                  <button
+                    onClick={() => setSelectedModel("both")}
+                    className={`flex-1 px-3 py-2 rounded-md text-xs font-bold transition-all ${
+                      selectedModel === "both"
+                        ? "bg-purple-500/20 text-purple-300 border border-purple-500/40"
+                        : "text-gray-400 hover:text-gray-200"
+                    }`}
+                  >
+                    Comparar ambos
+                  </button>
+                </div>
+              </div>
 
               <div>
                 <label className="block text-gray-300 text-sm font-medium mb-2">
@@ -408,48 +462,138 @@ export function MatchPredictionPage() {
                 </div>
               )}
 
-              {/* Probability Display */}
-              <div className="w-full flex justify-between items-end mb-3 px-4">
-                <div className="flex flex-col items-center">
-                  <span className="text-4xl font-black text-neon-blue">
-                    {(prediction.probabilities.win_A * 100).toFixed(0)}%
+              {/* Model indicator */}
+              {selectedModel !== "both" && (
+                <div className="flex justify-center mb-4">
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full border ${
+                    selectedModel === "xgboost"
+                      ? "bg-amber-500/10 text-amber-300 border-amber-500/30"
+                      : "bg-cyan-500/10 text-cyan-300 border-cyan-500/30"
+                  }`}>
+                    {selectedModel === "xgboost" ? "🌳 XGBoost (Gradient Boosting)" : "🌲 Random Forest (Bagging)"}
                   </span>
-                  <span className="text-sm text-gray-300 mt-1">{prediction.team_a}</span>
                 </div>
-                <div className="flex flex-col items-center">
-                  <span className="text-2xl font-bold text-gray-300">
-                    {(prediction.probabilities.draw * 100).toFixed(0)}%
-                  </span>
-                  <span className="text-sm text-gray-300">Empate</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <span className="text-4xl font-black text-purple-400">
-                    {(prediction.probabilities.win_B * 100).toFixed(0)}%
-                  </span>
-                  <span className="text-sm text-gray-300 mt-1">{prediction.team_b}</span>
-                </div>
-              </div>
+              )}
 
-              <div className="w-full h-5 bg-gray-800 rounded-full flex overflow-hidden shadow-inner">
-                <div
-                  style={{ width: `${prediction.probabilities.win_A * 100}%` }}
-                  className="bg-neon-blue transition-all duration-500"
-                />
-                <div
-                  style={{ width: `${prediction.probabilities.draw * 100}%` }}
-                  className="bg-gray-500 transition-all duration-500"
-                />
-                <div
-                  style={{ width: `${prediction.probabilities.win_B * 100}%` }}
-                  className="bg-purple-500 transition-all duration-500"
-                />
-              </div>
+              {/* Dual model comparison view */}
+              {selectedModel === "both" && rfPrediction && !rfPrediction.error && (
+                <div className="mb-5 space-y-4">
+                  {/* XGBoost result */}
+                  <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">XGBoost</span>
+                      <span className="text-xs text-gray-500">Gradient Boosting — 19 features + clima</span>
+                    </div>
+                    <div className="flex justify-between items-center px-2">
+                      <div className="text-center">
+                        <span className="text-2xl font-black text-amber-300">{(prediction.probabilities.win_A * 100).toFixed(0)}%</span>
+                        <p className="text-[10px] text-gray-400">{prediction.team_a}</p>
+                      </div>
+                      <div className="text-center">
+                        <span className="text-lg font-bold text-gray-400">{(prediction.probabilities.draw * 100).toFixed(0)}%</span>
+                        <p className="text-[10px] text-gray-400">Empate</p>
+                      </div>
+                      <div className="text-center">
+                        <span className="text-2xl font-black text-amber-300">{(prediction.probabilities.win_B * 100).toFixed(0)}%</span>
+                        <p className="text-[10px] text-gray-400">{prediction.team_b}</p>
+                      </div>
+                    </div>
+                    <div className="w-full h-2.5 bg-black/40 rounded-full flex overflow-hidden mt-2">
+                      <div style={{ width: `${prediction.probabilities.win_A * 100}%` }} className="bg-amber-400 transition-all duration-500" />
+                      <div style={{ width: `${prediction.probabilities.draw * 100}%` }} className="bg-gray-500 transition-all duration-500" />
+                      <div style={{ width: `${prediction.probabilities.win_B * 100}%` }} className="bg-amber-600 transition-all duration-500" />
+                    </div>
+                  </div>
 
-              {/* Predicted winner */}
-              <p className="text-center mt-4 text-sm text-gray-300">
-                Predicción del modelo:{" "}
-                <strong className="text-white text-base">{prediction.prediction}</strong>
-              </p>
+                  {/* Random Forest result */}
+                  <div className="bg-cyan-500/5 border border-cyan-500/20 rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Random Forest</span>
+                      <span className="text-xs text-gray-500">Bagging — 300 árboles independientes</span>
+                    </div>
+                    <div className="flex justify-between items-center px-2">
+                      <div className="text-center">
+                        <span className="text-2xl font-black text-cyan-300">{(rfPrediction.probabilities.win_A * 100).toFixed(0)}%</span>
+                        <p className="text-[10px] text-gray-400">{prediction.team_a}</p>
+                      </div>
+                      <div className="text-center">
+                        <span className="text-lg font-bold text-gray-400">{(rfPrediction.probabilities.draw * 100).toFixed(0)}%</span>
+                        <p className="text-[10px] text-gray-400">Empate</p>
+                      </div>
+                      <div className="text-center">
+                        <span className="text-2xl font-black text-cyan-300">{(rfPrediction.probabilities.win_B * 100).toFixed(0)}%</span>
+                        <p className="text-[10px] text-gray-400">{prediction.team_b}</p>
+                      </div>
+                    </div>
+                    <div className="w-full h-2.5 bg-black/40 rounded-full flex overflow-hidden mt-2">
+                      <div style={{ width: `${rfPrediction.probabilities.win_A * 100}%` }} className="bg-cyan-400 transition-all duration-500" />
+                      <div style={{ width: `${rfPrediction.probabilities.draw * 100}%` }} className="bg-gray-500 transition-all duration-500" />
+                      <div style={{ width: `${rfPrediction.probabilities.win_B * 100}%` }} className="bg-cyan-600 transition-all duration-500" />
+                    </div>
+                  </div>
+
+                  {/* Agreement indicator */}
+                  <div className={`text-center text-xs px-3 py-2 rounded-lg border ${
+                    prediction.prediction === rfPrediction.prediction
+                      ? "bg-green-500/10 border-green-500/30 text-green-400"
+                      : "bg-yellow-500/10 border-yellow-500/30 text-yellow-400"
+                  }`}>
+                    {prediction.prediction === rfPrediction.prediction
+                      ? `✓ Ambos modelos coinciden: ${prediction.prediction}`
+                      : `⚠ Los modelos no coinciden — XGBoost: ${prediction.prediction} | RF: ${rfPrediction.prediction}`
+                    }
+                  </div>
+                </div>
+              )}
+
+              {/* Single model probability display (XGBoost or RF) */}
+              {selectedModel !== "both" && (
+                <>
+                  {/* Choose which prediction to show */}
+                  {(() => {
+                    const activePred = selectedModel === "random_forest" && rfPrediction && !rfPrediction.error
+                      ? rfPrediction : prediction;
+                    return (
+                      <>
+                        <div className="w-full flex justify-between items-end mb-3 px-4">
+                          <div className="flex flex-col items-center">
+                            <span className="text-4xl font-black text-neon-blue">
+                              {(activePred.probabilities.win_A * 100).toFixed(0)}%
+                            </span>
+                            <span className="text-sm text-gray-300 mt-1">{prediction.team_a}</span>
+                          </div>
+                          <div className="flex flex-col items-center">
+                            <span className="text-2xl font-bold text-gray-300">
+                              {(activePred.probabilities.draw * 100).toFixed(0)}%
+                            </span>
+                            <span className="text-sm text-gray-300">Empate</span>
+                          </div>
+                          <div className="flex flex-col items-center">
+                            <span className="text-4xl font-black text-purple-400">
+                              {(activePred.probabilities.win_B * 100).toFixed(0)}%
+                            </span>
+                            <span className="text-sm text-gray-300 mt-1">{prediction.team_b}</span>
+                          </div>
+                        </div>
+
+                        <div className="w-full h-5 bg-gray-800 rounded-full flex overflow-hidden shadow-inner">
+                          <div style={{ width: `${activePred.probabilities.win_A * 100}%` }} className="bg-neon-blue transition-all duration-500" />
+                          <div style={{ width: `${activePred.probabilities.draw * 100}%` }} className="bg-gray-500 transition-all duration-500" />
+                          <div style={{ width: `${activePred.probabilities.win_B * 100}%` }} className="bg-purple-500 transition-all duration-500" />
+                        </div>
+
+                        <p className="text-center mt-4 text-sm text-gray-300">
+                          Predicción del modelo:{" "}
+                          <strong className="text-white text-base">
+                            {selectedModel === "random_forest" && rfPrediction && !rfPrediction.error
+                              ? rfPrediction.prediction : prediction.prediction}
+                          </strong>
+                        </p>
+                      </>
+                    );
+                  })()}
+                </>
+              )}
 
               {/* SHAP Explainability */}
               {prediction.explanations && prediction.explanations.length > 0 && (

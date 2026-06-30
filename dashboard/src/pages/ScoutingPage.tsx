@@ -49,6 +49,7 @@ export function ScoutingPage() {
   const [top10Data, setTop10Data] = useState<any[]>([]);
   const [selectedCluster, setSelectedCluster] = useState<string>("3");
   const [selectedPlayerForRadar, setSelectedPlayerForRadar] = useState<any>(null);
+  const [clusteringAlgo, setClusteringAlgo] = useState<"kmeans" | "hdbscan">("kmeans");
 
   // Sort options for the dropdown
   const SORT_OPTIONS = [
@@ -103,6 +104,7 @@ export function ScoutingPage() {
         if (cluster) query.append("cluster", cluster);
         if (sortBy) query.append("sort_by", sortBy);
         if (sortOrder) query.append("order", sortOrder);
+        if (clusteringAlgo !== "kmeans") query.append("clustering_algo", clusteringAlgo);
 
         const data = await fetchJson(`/api/v1/players?${query.toString()}`);
         let items = data.items || [];
@@ -129,7 +131,7 @@ export function ScoutingPage() {
       }
     }
     loadData();
-  }, [debouncedSearchTerm, country, cluster, sortBy, sortOrder, minAge, maxAge]);
+  }, [debouncedSearchTerm, country, cluster, sortBy, sortOrder, minAge, maxAge, clusteringAlgo]);
 
   // Cargar Top 10 para el cluster seleccionado
   useEffect(() => {
@@ -280,10 +282,53 @@ export function ScoutingPage() {
                 onChange={(e) => setCluster(e.target.value)}
               >
                 <option value="">Todos los estilos</option>
-                {Object.entries(STYLE_NAMES).map(([key, name]) => (
-                  <option key={key} value={key}>{name}</option>
-                ))}
+                {clusteringAlgo === "kmeans"
+                  ? Object.entries(STYLE_NAMES).map(([key, name]) => (
+                      <option key={key} value={key}>{name}</option>
+                    ))
+                  : /* HDBSCAN clusters with business names */
+                    [
+                      { id: "0", name: "Atacante de Volumen" },
+                      { id: "1", name: "Destructor Puro" },
+                      { id: "2", name: "Mediocampista Combativo" },
+                      { id: "3", name: "Ancla Defensiva" },
+                      { id: "4", name: "Creador Letal" },
+                      { id: "5", name: "Goleador Puro" },
+                      { id: "6", name: "Mediapunta Resolutivo" },
+                      { id: "7", name: "Asistidor Especialista" },
+                      { id: "8", name: "Finalizador Discreto" },
+                      { id: "9", name: "Oportunista de Area" },
+                      { id: "10", name: "Portero / Inactivo" },
+                      { id: "11", name: "Suplente sin Minutos" },
+                    ].map(({ id, name }) => (
+                      <option key={id} value={id}>{name}</option>
+                    ))
+                }
               </select>
+            </div>
+
+            {/* Clustering Algorithm Selector */}
+            <div className="flex gap-0.5 bg-black/50 p-0.5 rounded-lg border border-white/10 shrink-0">
+              <button
+                onClick={() => { setClusteringAlgo("kmeans"); setCluster(""); }}
+                className={`px-2.5 py-2 rounded-md text-[11px] font-bold transition-all ${
+                  clusteringAlgo === "kmeans"
+                    ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                    : "text-gray-400 hover:text-gray-200"
+                }`}
+              >
+                K-Means
+              </button>
+              <button
+                onClick={() => { setClusteringAlgo("hdbscan"); setCluster(""); }}
+                className={`px-2.5 py-2 rounded-md text-[11px] font-bold transition-all ${
+                  clusteringAlgo === "hdbscan"
+                    ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
+                    : "text-gray-400 hover:text-gray-200"
+                }`}
+              >
+                HDBSCAN
+              </button>
             </div>
 
             {/* Age Range */}

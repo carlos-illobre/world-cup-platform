@@ -204,6 +204,15 @@ export function SquadOptimizerPage() {
     setLoading(false);
   };
 
+  // Auto-trigger optimization when weights or country change (debounced 600ms)
+  useEffect(() => {
+    if (!country) return;
+    const timer = setTimeout(() => {
+      fetchSquad();
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [country, wPerf, wInjury, wClimate, wAge, useClimate, stadiumTemp]);
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
       <AppHeader />
@@ -223,6 +232,12 @@ export function SquadOptimizerPage() {
                 : "Documentación técnica del algoritmo de optimización para estudiantes de Ciencia de Datos."
               }
             </p>
+            {viewMode === "decision" && (
+              <div className="flex items-center gap-2 mt-2">
+                <span className="text-[10px] px-2 py-0.5 rounded bg-green-500/20 text-green-300 border border-green-500/30 font-bold">PuLP CBC Solver</span>
+                <span className="text-[10px] text-gray-500">Programación Lineal Entera · Impact Score via XGBoost</span>
+              </div>
+            )}
           </div>
 
           {/* View Toggle */}

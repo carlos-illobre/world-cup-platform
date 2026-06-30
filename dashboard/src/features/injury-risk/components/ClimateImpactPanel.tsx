@@ -76,27 +76,27 @@ export function ClimateImpactPanel({
           <ThermometerSun className="mb-1 h-4 w-4 text-orange-400" />
           <span className="text-xs text-muted-foreground">Temp</span>
           <span className="text-sm font-bold text-foreground">
-            {climateImpact.venue_temp_c}°C
+            {climateImpact.venue_temp_c != null ? `${climateImpact.venue_temp_c}°C` : "—"}
           </span>
         </div>
         <div className="flex flex-col items-center rounded-lg bg-black/20 p-2">
           <Wind className="mb-1 h-4 w-4 text-blue-400" />
           <span className="text-xs text-muted-foreground">Humedad</span>
           <span className="text-sm font-bold text-foreground">
-            {climateImpact.venue_humidity_pct}%
+            {climateImpact.venue_humidity_pct != null ? `${climateImpact.venue_humidity_pct}%` : "—"}
           </span>
         </div>
         <div className="flex flex-col items-center rounded-lg bg-black/20 p-2">
           <Mountain className="mb-1 h-4 w-4 text-purple-400" />
           <span className="text-xs text-muted-foreground">Altitud</span>
           <span className="text-sm font-bold text-foreground">
-            {climateImpact.venue_elevation_m}m
+            {climateImpact.venue_elevation_m != null ? `${climateImpact.venue_elevation_m}m` : "—"}
           </span>
         </div>
       </div>
 
       {/* Top contributing factors */}
-      {climateImpact.top_factors.length > 0 && (
+      {climateImpact.top_factors && climateImpact.top_factors.length > 0 && (
         <div className="space-y-1.5">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Factores principales

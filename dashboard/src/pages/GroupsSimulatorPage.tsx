@@ -279,10 +279,13 @@ export function GroupsSimulatorPage() {
   const [groupsData, setGroupsData] = useState<GroupsDetailedResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
+  const [selectedModel, setSelectedModel] = useState<"xgboost" | "random_forest">("xgboost");
 
   // Load detailed group simulation
   useEffect(() => {
-    fetch(`${INJURY_API_BASE_URL}/api/v1/tournament/simulate-groups-detailed`)
+    setLoading(true);
+    const params = selectedModel !== "xgboost" ? `?model=${selectedModel}` : "";
+    fetch(`${INJURY_API_BASE_URL}/api/v1/tournament/simulate-groups-detailed${params}`)
       .then(r => r.json())
       .then(data => {
         setGroupsData(data);
@@ -292,7 +295,7 @@ export function GroupsSimulatorPage() {
         console.error(e);
         setLoading(false);
       });
-  }, []);
+  }, [selectedModel]);
 
   const groupEntries = groupsData?.groups
     ? Object.entries(groupsData.groups).sort(([a], [b]) => a.localeCompare(b))
@@ -329,7 +332,7 @@ export function GroupsSimulatorPage() {
                   : "text-gray-300 hover:text-white"
               }`}
             >
-              <LayoutGrid className="w-4 h-4" /> Vista Negocio
+              <LayoutGrid className="w-4 h-4" /> Panel de Decisión
             </button>
             <button
               onClick={() => setViewMode("datascience")}
@@ -339,7 +342,7 @@ export function GroupsSimulatorPage() {
                   : "text-gray-300 hover:text-white"
               }`}
             >
-              <BarChart2 className="w-4 h-4" /> Vista Ciencia de Datos
+              <BarChart2 className="w-4 h-4" /> Modelo & Validación
             </button>
           </div>
         </div>
@@ -354,6 +357,41 @@ export function GroupsSimulatorPage() {
         {/* ==================== BUSINESS VIEW ==================== */}
         {!loading && viewMode === "business" && groupsData && (
           <>
+            {/* Algorithm selector */}
+            <div className="flex items-center gap-3 bg-black/20 border border-white/5 rounded-lg px-4 py-2.5 mb-4">
+              <span className="text-xs text-gray-400 font-medium shrink-0">Algoritmo:</span>
+              <div className="flex gap-1 bg-black/40 p-0.5 rounded-lg border border-white/5">
+                <button
+                  onClick={() => setSelectedModel("xgboost")}
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+                    selectedModel === "xgboost"
+                      ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
+                >
+                  XGBoost
+                </button>
+                <button
+                  onClick={() => setSelectedModel("random_forest")}
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+                    selectedModel === "random_forest"
+                      ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
+                >
+                  Random Forest
+                </button>
+              </div>
+              <span className="text-[10px] text-gray-500 ml-auto hidden md:inline">
+                {selectedModel === "xgboost"
+                  ? "Blend Strategy (Weather + 3-Class) · 19 features · Acc 57.6%"
+                  : "Bagging 300 árboles · 10 features · Acc 72.2%"}
+              </span>
+              {loading && (
+                <div className="w-3 h-3 border-2 border-neon-blue border-t-transparent rounded-full animate-spin" />
+              )}
+            </div>
+
             {/* Group Filter Tabs */}
             <div className="mb-6 flex flex-wrap gap-1.5">
               <button
@@ -485,7 +523,7 @@ export function GroupsSimulatorPage() {
             )}
 
             {/* Tournament Bracket */}
-            <TournamentBracket />
+            <TournamentBracket model={selectedModel} />
 
             {/* Backtesting */}
             <BacktestPanel />

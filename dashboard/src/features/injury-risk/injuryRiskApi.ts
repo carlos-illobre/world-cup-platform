@@ -14,13 +14,16 @@ export const injuryRiskApi = createApi({
     /** Obtiene el reporte de preparación completo para un jugador en un partido específico. */
     getReportePreparacion: builder.query<
       ReportePreparacion,
-      { matchNumber: number; jugadorId: string }
+      { matchNumber: number; jugadorId: string; model?: string }
     >({
-      query: ({ matchNumber, jugadorId }) =>
-        `/api/v1/injuries/risk/${encodeURIComponent(jugadorId)}?match=${matchNumber}`,
+      query: ({ matchNumber, jugadorId, model }) => {
+        const params = new URLSearchParams({ match: String(matchNumber) });
+        if (model) params.set("model", model);
+        return `/api/v1/injuries/risk/${encodeURIComponent(jugadorId)}?${params.toString()}`;
+      },
       transformResponse: (response: ReportePreparacionResponse) => response.data,
-      providesTags: (_result, _error, { matchNumber, jugadorId }) => [
-        { type: "ReportePreparacion", id: `${matchNumber}-${jugadorId}` },
+      providesTags: (_result, _error, { matchNumber, jugadorId, model }) => [
+        { type: "ReportePreparacion", id: `${matchNumber}-${jugadorId}-${model || 'xgboost'}` },
       ],
     }),
   }),

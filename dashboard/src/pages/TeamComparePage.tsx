@@ -227,6 +227,8 @@ export function TeamComparePage() {
   const [formationA, setFormationA] = useState<any>(null);
   const [formationB, setFormationB] = useState<any>(null);
   const [h2hPrediction, setH2hPrediction] = useState<any>(null);
+  const [h2hRfPrediction, setH2hRfPrediction] = useState<any>(null);
+  const [selectedModel, setSelectedModel] = useState<"xgboost" | "random_forest" | "both">("both");
   const [allTeams, setAllTeams] = useState<any[]>([]);
   const [groupsData, setGroupsData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
@@ -332,6 +334,12 @@ export function TeamComparePage() {
         .then((r) => r.json())
         .then(setH2hPrediction)
         .catch(() => setH2hPrediction(null));
+
+      // Also fetch RF prediction
+      fetch(`${INJURY_API_BASE_URL}/api/v1/models/compare/match-outcome/predict-comparison?team_a=${encodeURIComponent(teamA)}&team_b=${encodeURIComponent(teamB)}&temp_max=${tempMax}&precipitation=${precipitation}&wind_speed=${windSpeed}`)
+        .then((r) => r.json())
+        .then((data) => setH2hRfPrediction(data.random_forest))
+        .catch(() => setH2hRfPrediction(null));
     }, 300);
     return () => clearTimeout(timer);
   }, [teamA, teamB, tempMax, precipitation, windSpeed]);
@@ -400,7 +408,7 @@ export function TeamComparePage() {
                   : "text-gray-300 hover:text-white"
               }`}
             >
-              <LayoutGrid className="w-4 h-4" /> Vista Negocio
+              <LayoutGrid className="w-4 h-4" /> Panel de Decisión
             </button>
             <button
               onClick={() => setViewMode("datascience")}
@@ -410,7 +418,7 @@ export function TeamComparePage() {
                   : "text-gray-300 hover:text-white"
               }`}
             >
-              <BarChart2 className="w-4 h-4" /> Vista Ciencia de Datos
+              <BarChart2 className="w-4 h-4" /> Modelo & Validación
             </button>
           </div>
         </div>
@@ -531,6 +539,43 @@ export function TeamComparePage() {
         {viewMode === "business" && dataA && dataB && (
           <div className="space-y-8">
 
+            {/* Algorithm selector */}
+            <div className="flex items-center gap-3 bg-black/20 border border-white/5 rounded-lg px-4 py-2.5">
+              <span className="text-xs text-gray-400 font-medium shrink-0">Algoritmo H2H:</span>
+              <div className="flex gap-1 bg-black/40 p-0.5 rounded-lg border border-white/5">
+                <button
+                  onClick={() => setSelectedModel("xgboost")}
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+                    selectedModel === "xgboost"
+                      ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
+                >
+                  XGBoost
+                </button>
+                <button
+                  onClick={() => setSelectedModel("random_forest")}
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+                    selectedModel === "random_forest"
+                      ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
+                >
+                  Random Forest
+                </button>
+                <button
+                  onClick={() => setSelectedModel("both")}
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+                    selectedModel === "both"
+                      ? "bg-purple-500/20 text-purple-300 border border-purple-500/40"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
+                >
+                  Comparar
+                </button>
+              </div>
+            </div>
+
             {/* === H2H Direct Prediction === */}
             {h2hPrediction?.probabilities && (
               <div className="glass-panel rounded-2xl p-6 border border-white/5">
@@ -542,32 +587,116 @@ export function TeamComparePage() {
                   <ConfidenceBadge entropy={h2hEntropy} />
                 </div>
 
-                {/* Probability bar */}
-                <div className="flex justify-between items-end mb-3 px-4">
-                  <div className="flex flex-col items-center">
-                    <span className="text-3xl font-black text-neon-blue">
-                      {(h2hPrediction.probabilities.win_A * 100).toFixed(0)}%
-                    </span>
-                    <span className="text-sm text-gray-300 mt-1">{teamA}</span>
+                {/* BOTH models comparison */}
+                {selectedModel === "both" && h2hRfPrediction?.probabilities && (
+                  <div className="space-y-3 mb-4">
+                    <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">XGBoost</span>
+                      </div>
+                      <div className="flex justify-between items-center px-2">
+                        <span className="text-2xl font-black text-amber-300">{(h2hPrediction.probabilities.win_A * 100).toFixed(0)}%</span>
+                        <span className="text-lg font-bold text-gray-400">{(h2hPrediction.probabilities.draw * 100).toFixed(0)}%</span>
+                        <span className="text-2xl font-black text-amber-300">{(h2hPrediction.probabilities.win_B * 100).toFixed(0)}%</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-black/40 rounded-full flex overflow-hidden mt-2">
+                        <div style={{ width: `${h2hPrediction.probabilities.win_A * 100}%` }} className="bg-amber-400" />
+                        <div style={{ width: `${h2hPrediction.probabilities.draw * 100}%` }} className="bg-gray-500" />
+                        <div style={{ width: `${h2hPrediction.probabilities.win_B * 100}%` }} className="bg-amber-600" />
+                      </div>
+                    </div>
+                    <div className="bg-cyan-500/5 border border-cyan-500/20 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Random Forest</span>
+                      </div>
+                      <div className="flex justify-between items-center px-2">
+                        <span className="text-2xl font-black text-cyan-300">{(h2hRfPrediction.probabilities.win_A * 100).toFixed(0)}%</span>
+                        <span className="text-lg font-bold text-gray-400">{(h2hRfPrediction.probabilities.draw * 100).toFixed(0)}%</span>
+                        <span className="text-2xl font-black text-cyan-300">{(h2hRfPrediction.probabilities.win_B * 100).toFixed(0)}%</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-black/40 rounded-full flex overflow-hidden mt-2">
+                        <div style={{ width: `${h2hRfPrediction.probabilities.win_A * 100}%` }} className="bg-cyan-400" />
+                        <div style={{ width: `${h2hRfPrediction.probabilities.draw * 100}%` }} className="bg-gray-500" />
+                        <div style={{ width: `${h2hRfPrediction.probabilities.win_B * 100}%` }} className="bg-cyan-600" />
+                      </div>
+                    </div>
+                    <div className={`text-center text-xs px-3 py-2 rounded-lg border ${
+                      h2hPrediction.prediction === h2hRfPrediction.prediction
+                        ? "bg-green-500/10 border-green-500/30 text-green-400"
+                        : "bg-yellow-500/10 border-yellow-500/30 text-yellow-400"
+                    }`}>
+                      {h2hPrediction.prediction === h2hRfPrediction.prediction
+                        ? `✓ Ambos coinciden: ${h2hPrediction.prediction}`
+                        : `⚠ XGBoost: ${h2hPrediction.prediction} | RF: ${h2hRfPrediction.prediction}`}
+                    </div>
                   </div>
-                  <div className="flex flex-col items-center">
-                    <span className="text-xl font-bold text-gray-400">
-                      {(h2hPrediction.probabilities.draw * 100).toFixed(0)}%
-                    </span>
-                    <span className="text-xs text-gray-400">Empate</span>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <span className="text-3xl font-black text-purple-400">
-                      {(h2hPrediction.probabilities.win_B * 100).toFixed(0)}%
-                    </span>
-                    <span className="text-sm text-gray-300 mt-1">{teamB}</span>
-                  </div>
-                </div>
-                <div className="w-full h-4 bg-gray-800 rounded-full flex overflow-hidden shadow-inner">
-                  <div style={{ width: `${h2hPrediction.probabilities.win_A * 100}%` }} className="bg-neon-blue transition-all duration-500" />
-                  <div style={{ width: `${h2hPrediction.probabilities.draw * 100}%` }} className="bg-gray-500 transition-all duration-500" />
-                  <div style={{ width: `${h2hPrediction.probabilities.win_B * 100}%` }} className="bg-purple-500 transition-all duration-500" />
-                </div>
+                )}
+
+                {/* Single model view */}
+                {selectedModel !== "both" && (() => {
+                  const pred = selectedModel === "random_forest" && h2hRfPrediction?.probabilities
+                    ? h2hRfPrediction : h2hPrediction;
+                  return (
+                    <>
+                      <div className="flex justify-between items-end mb-3 px-4">
+                        <div className="flex flex-col items-center">
+                          <span className="text-3xl font-black text-neon-blue">
+                            {(pred.probabilities.win_A * 100).toFixed(0)}%
+                          </span>
+                          <span className="text-sm text-gray-300 mt-1">{teamA}</span>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <span className="text-xl font-bold text-gray-400">
+                            {(pred.probabilities.draw * 100).toFixed(0)}%
+                          </span>
+                          <span className="text-xs text-gray-400">Empate</span>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <span className="text-3xl font-black text-purple-400">
+                            {(pred.probabilities.win_B * 100).toFixed(0)}%
+                          </span>
+                          <span className="text-sm text-gray-300 mt-1">{teamB}</span>
+                        </div>
+                      </div>
+                      <div className="w-full h-4 bg-gray-800 rounded-full flex overflow-hidden shadow-inner">
+                        <div style={{ width: `${pred.probabilities.win_A * 100}%` }} className="bg-neon-blue transition-all duration-500" />
+                        <div style={{ width: `${pred.probabilities.draw * 100}%` }} className="bg-gray-500 transition-all duration-500" />
+                        <div style={{ width: `${pred.probabilities.win_B * 100}%` }} className="bg-purple-500 transition-all duration-500" />
+                      </div>
+                    </>
+                  );
+                })()}
+
+                {/* Probability bar — original single model (fallback for "both" when RF is loading) */}
+                {selectedModel === "both" && !h2hRfPrediction?.probabilities && (
+                  <>
+                    <div className="flex justify-between items-end mb-3 px-4">
+                      <div className="flex flex-col items-center">
+                        <span className="text-3xl font-black text-neon-blue">
+                          {(h2hPrediction.probabilities.win_A * 100).toFixed(0)}%
+                        </span>
+                        <span className="text-sm text-gray-300 mt-1">{teamA}</span>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <span className="text-xl font-bold text-gray-400">
+                          {(h2hPrediction.probabilities.draw * 100).toFixed(0)}%
+                        </span>
+                        <span className="text-xs text-gray-400">Empate</span>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <span className="text-3xl font-black text-purple-400">
+                          {(h2hPrediction.probabilities.win_B * 100).toFixed(0)}%
+                        </span>
+                        <span className="text-sm text-gray-300 mt-1">{teamB}</span>
+                      </div>
+                    </div>
+                    <div className="w-full h-4 bg-gray-800 rounded-full flex overflow-hidden shadow-inner">
+                      <div style={{ width: `${h2hPrediction.probabilities.win_A * 100}%` }} className="bg-neon-blue transition-all duration-500" />
+                      <div style={{ width: `${h2hPrediction.probabilities.draw * 100}%` }} className="bg-gray-500 transition-all duration-500" />
+                      <div style={{ width: `${h2hPrediction.probabilities.win_B * 100}%` }} className="bg-purple-500 transition-all duration-500" />
+                    </div>
+                  </>
+                )}
 
                 {/* Weather conditions used */}
                 <div className="mt-3 flex justify-center gap-4 text-xs text-gray-400 bg-black/20 px-3 py-1.5 rounded-lg border border-white/5">

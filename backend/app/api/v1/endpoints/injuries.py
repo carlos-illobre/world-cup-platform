@@ -1,9 +1,147 @@
 from fastapi import APIRouter, Request, HTTPException
 import pandas as pd
+import numpy as np
+import joblib
+import os
 from app.api.v1.utils import get_df, get_team_info_by_name, get_venue_info, get_team_info
 from app.api.v1.ml.injury_predictor import predict_injury_risk
 
 router = APIRouter()
+
+# Cache for the RF model (loaded on first use)
+_rf_injury_model = None
+
+
+def _get_rf_model():
+    """Lazy-load the Random Forest injury model."""
+    global _rf_injury_model
+    if _rf_injury_model is None:
+        path = os.path.join(os.path.dirname(__file__), '../../../../data/models/injury_rf_model.pkl')
+        if os.path.exists(path):
+            _rf_injury_model = joblib.load(path)
+    return _rf_injury_model
+
+
+def _predict_with_random_forest(
+    request, player_row: dict, injuries_df, 
+    override_frequency=None, override_days_since=None, geo_climate=None
+) -> dict:
+    """
+    Predict injury risk using the Random Forest model.
+    Uses the same key features the RF was trained on.
+    """
+    rf_model = _get_rf_model()
+    if rf_model is None:
+        # Fallback to XGBoost if RF not available
+        return predict_injury_risk(
+            models=request.app.state.models,
+            player_row=player_row,
+            injuries_df=injuries_df,
+            override_frequency=override_frequency,
+            override_days_since=override_days_since,
+            geo_climate=geo_climate,
+        )
+
+    # Build feature vector matching training features
+    key_features = [
+        'Age', 'Dias_Baja', 'Partidos_Perdidos', 'prior_injuries',
+        'prior_days_out', 'days_since_last_injury', 'injury_count_last_12m',
+        'total_days_out_last_12m', 'avg_recovery_time', 'is_recurrent',
+        'months_since_last_injury', 'injury_frequency', 'injury_severity_score',
+        'MarketValue_EUR', 'MP', 'Playing Time_Min', 'Playing Time_90s',
+    ]
+
+    # Merge injury history for this player
+    inj_record = {}
+    if injuries_df is not None and not injuries_df.empty:
+        player_name = player_row.get('Player', '')
+        matches = injuries_df[injuries_df['Jugador'] == player_name]
+        if matches.empty and 'Player' in injuries_df.columns:
+            matches = injuries_df[injuries_df['Player'] == player_name]
+        if not matches.empty:
+            latest = matches.iloc[-1]
+            for col in key_features:
+                if col in latest.index:
+                    inj_record[col] = latest[col]
+
+    # Build feature vector
+    feat = {}
+    for col in key_features:
+        if col in inj_record:
+            feat[col] = float(inj_record[col]) if pd.notna(inj_record[col]) else 0.0
+        elif col in player_row:
+            val = player_row[col]
+            feat[col] = float(val) if pd.notna(val) else 0.0
+        else:
+            feat[col] = 0.0
+
+    # Apply overrides
+    if override_frequency is not None:
+        feat['injury_frequency'] = override_frequency
+    if override_days_since is not None:
+        feat['days_since_last_injury'] = override_days_since
+
+    # Predict - only use features the model was trained on
+    n_expected = rf_model.n_features_in_
+    feature_values = [feat[f] for f in key_features[:n_expected]]
+    X = np.array([feature_values])
+
+    proba = rf_model.predict_proba(X)[0][1]
+    risk_score = float(proba) * 100.0
+
+    # Climate modulation (same logic as XGBoost)
+    climate_impact = None
+    if geo_climate is not None:
+        from app.api.v1.ml.injury_predictor import compute_climate_features, CLIMATE_FEATURE_NAMES
+        weather = geo_climate.get("weather") or {}
+        venue_temp = weather.get("temp_max")
+        if venue_temp is not None:
+            venue_humidity = float(weather.get("humidity") or 60)
+            venue_elevation = float(geo_climate.get("elevation_m") or 100)
+            climate_feats = compute_climate_features(
+                player_row=player_row,
+                venue_temp=float(venue_temp),
+                venue_humidity=venue_humidity,
+                venue_elevation_m=venue_elevation,
+            )
+            weights = {
+                'climate_heat_stress': 3.0, 'climate_heat_x_recurrent': 8.0,
+                'climate_heat_x_injury_freq': 5.0, 'climate_altitude_factor': 4.0,
+                'climate_altitude_x_age': 6.0, 'climate_temp_differential': 2.5,
+                'climate_humidity_differential': 1.5, 'climate_altitude_differential': 3.0,
+                'climate_adaptation_stress': 2.0, 'climate_dehydration_risk': 4.0,
+                'climate_is_high_altitude': 5.0, 'climate_is_extreme_heat': 4.0,
+            }
+            climate_adjustment = min(sum(
+                climate_feats[f] * weights[f] for f in CLIMATE_FEATURE_NAMES
+            ), 25.0)
+            risk_score = min(risk_score + climate_adjustment, 99.0)
+            climate_impact = {
+                "adjustment_points": round(climate_adjustment, 2),
+                "venue_temp_c": round(float(venue_temp), 1),
+            }
+
+    if risk_score > 70:
+        diagnosis = "CRITICAL_RISK"
+        ai_class = 2
+    elif risk_score > 30:
+        diagnosis = "LOW_RISK"
+        ai_class = 1
+    else:
+        diagnosis = "HEALTHY"
+        ai_class = 0
+
+    result = {
+        "risk_score": round(risk_score, 2),
+        "risk_proba": round(risk_score / 100, 4),
+        "base_risk_score": round(float(proba) * 100, 2),
+        "diagnosis": diagnosis,
+        "ai_class": ai_class,
+        "model_used": "injury_random_forest",
+    }
+    if climate_impact:
+        result["climate_impact"] = climate_impact
+    return result
 
 
 @router.get("/risk/{player_id}")
@@ -13,6 +151,7 @@ def get_injury_risk(
     match: str = None,
     override_frequency: float = None,
     override_days_since: float = None,
+    model: str = "xgboost",
 ):
     """
     Returns injury risk for a player using the real injury_xgboost_model.
@@ -22,6 +161,7 @@ def get_injury_risk(
     Optional query params for What-If simulation:
     - override_frequency: overrides injury_frequency feature
     - override_days_since: overrides days_since_last_injury feature
+    - model: "xgboost" (default) or "random_forest"
     """
     data = request.app.state.data
     if 'players' not in data:
@@ -118,14 +258,24 @@ def get_injury_risk(
             pass
 
     # --- Real ML inference (now with climate modulation) ---
-    inference = predict_injury_risk(
-        models=request.app.state.models,
-        player_row=player_row,
-        injuries_df=injuries_df,
-        override_frequency=override_frequency,
-        override_days_since=override_days_since,
-        geo_climate=geo_climate,
-    )
+    if model == "random_forest":
+        inference = _predict_with_random_forest(
+            request=request,
+            player_row=player_row,
+            injuries_df=injuries_df,
+            override_frequency=override_frequency,
+            override_days_since=override_days_since,
+            geo_climate=geo_climate,
+        )
+    else:
+        inference = predict_injury_risk(
+            models=request.app.state.models,
+            player_row=player_row,
+            injuries_df=injuries_df,
+            override_frequency=override_frequency,
+            override_days_since=override_days_since,
+            geo_climate=geo_climate,
+        )
     risk_score = inference['risk_score']
 
     # --- Real stats for radar (derived from actual playing data) ---

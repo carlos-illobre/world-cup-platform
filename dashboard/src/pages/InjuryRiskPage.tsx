@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/app/hooks";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { AppHeader } from "@/shared/components/AppHeader";
 import { ErrorBanner } from "@/shared/components/ErrorBanner";
 import { FixtureSelector } from "@/features/fixture/components/FixtureSelector";
@@ -20,10 +20,17 @@ import { useGetReportePreparacionQuery } from "@/features/injury-risk/injuryRisk
 import { UI_LABELS } from "@/shared/constants/uiLabels";
 import { selectFechaSeleccionada } from "@/features/fixture/fixtureSlice";
 import { HeartPulse, FlaskConical } from "lucide-react";
+import {
+  getInjuryModel,
+  setInjuryModel as setInjuryModelStore,
+  subscribeInjuryModel,
+} from "@/features/injury-risk/injuryModelStore";
 
 /** Página principal del sistema de predicción de riesgo de lesiones del Mundial. */
 export function InjuryRiskPage() {
   const [viewMode, setViewMode] = useState<"decision" | "model">("decision");
+  const injuryModel = useSyncExternalStore(subscribeInjuryModel, getInjuryModel, getInjuryModel);
+  const setInjuryModel = setInjuryModelStore;
   const fechaSeleccionada = useAppSelector(selectFechaSeleccionada);
   const numeroPartido = useAppSelector(selectNumeroPartidoSeleccionado);
   const jugadorId = useAppSelector(selectJugadorSeleccionadoId);
@@ -42,7 +49,7 @@ export function InjuryRiskPage() {
   );
 
   const { error: errorDiagnostico } = useGetReportePreparacionQuery(
-    { matchNumber: numeroPartido!, jugadorId: jugadorId! },
+    { matchNumber: numeroPartido!, jugadorId: jugadorId!, model: injuryModel },
     { skip: !seleccionCompleta },
   );
 
@@ -106,6 +113,38 @@ export function InjuryRiskPage() {
         {/* Decision View — Tactical Intelligence */}
         {viewMode === "decision" && (
           <div className="space-y-5">
+            {/* Model selector for decision view */}
+            <div className="flex items-center gap-3 bg-black/30 border border-white/10 rounded-xl px-4 py-3">
+              <span className="text-xs text-gray-400 font-medium shrink-0">Algoritmo:</span>
+              <div className="flex gap-1 bg-black/40 p-0.5 rounded-lg border border-white/5">
+                <button
+                  onClick={() => setInjuryModel("xgboost")}
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+                    injuryModel === "xgboost"
+                      ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
+                >
+                  XGBoost
+                </button>
+                <button
+                  onClick={() => setInjuryModel("random_forest")}
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+                    injuryModel === "random_forest"
+                      ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
+                >
+                  Random Forest
+                </button>
+              </div>
+              <span className="text-[10px] text-gray-500 ml-auto hidden md:inline">
+                {injuryModel === "xgboost"
+                  ? "Gradient Boosting · 123 features · AUC 0.622"
+                  : "Bagging · 17 features · AUC 0.671"}
+              </span>
+            </div>
+
             <FixtureSelector />
 
             {mensajeErrorCatalogo && <ErrorBanner message={mensajeErrorCatalogo} />}

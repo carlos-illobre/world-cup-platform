@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronRight, Database, Brain, Beaker, BarChart3, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { ChevronDown, ChevronRight, Database, Brain, Beaker, BarChart3, AlertTriangle, CheckCircle2, GitCompare } from "lucide-react";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
 import { ModelPlot } from "@/shared/components/ModelPlot";
+import { ClassificationComparison } from "@/shared/components/AlgorithmComparison";
 
 interface GroupsModelPanelProps {
   methodology: {
@@ -604,6 +605,14 @@ export function GroupsModelPanel({ methodology, groupsData }: GroupsModelPanelPr
           </p>
         </div>
       )}
+
+      {/* Algorithm Comparison Section */}
+      <Section title="Comparación de Algoritmos — XGBoost vs Random Forest" icon={<GitCompare className="w-5 h-5 text-orange-400" />} defaultOpen={false}>
+        <ClassificationComparison
+          endpoint="match-outcome"
+          title="Match Outcome — XGBoost vs Random Forest"
+        />
+      </Section>
     </div>
   );
 }

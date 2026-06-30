@@ -44,7 +44,8 @@ function PositionDonut({ players }: SquadChartsProps) {
     <div className="rounded-xl border border-white/5 bg-black/20 p-5 flex flex-col">
       <h4 className="font-display text-lg font-bold text-white mb-1">Distribución por Posición</h4>
       <p className="text-sm text-muted-foreground mb-3">
-        Composición del plantel seleccionado por línea. El optimizer respeta: 3 GK, 7-10 DF, 6-10 MF, 5-8 FW.
+        Verifica que la estructura táctica es viable. Restricciones del optimizer: 3 GK, 7-10 DF, 6-10 MF, 5-8 FW.
+        Si subís el peso de rendimiento, pueden aparecer más atacantes. Si subís riesgo de lesión, se refuerzan posiciones con menos historial médico.
       </p>
       <div className="flex-1 min-h-[200px]">
         <ResponsiveContainer width="100%" height="100%">
@@ -100,7 +101,8 @@ function AdjustedScoreRanking({ players }: SquadChartsProps) {
     <div className="rounded-xl border border-white/5 bg-black/20 p-5 flex flex-col">
       <h4 className="font-display text-lg font-bold text-white mb-1">Ranking por Score Compuesto</h4>
       <p className="text-sm text-muted-foreground mb-3">
-        Score multi-objetivo: rendimiento posicional - riesgo lesión + adaptación climática + balance etario. Verde = contribución neta positiva.
+        Cada barra = un jugador. Verde = contribución neta positiva, rojo = negativa.
+        <strong className="text-white"> Cómo usarlo:</strong> si un jugador tiene score negativo pero está seleccionado, es porque cumple una restricción posicional (ej: necesitamos 3 GK aunque su score individual sea bajo).
       </p>
       <div className="flex-1 min-h-[350px]">
         <ResponsiveContainer width="100%" height="100%">
@@ -156,7 +158,9 @@ function AgeVsAdjustedScatter({ players }: SquadChartsProps) {
     <div className="rounded-xl border border-white/5 bg-black/20 p-5 flex flex-col">
       <h4 className="font-display text-lg font-bold text-white mb-1">Edad vs Score Compuesto</h4>
       <p className="text-sm text-muted-foreground mb-3">
-        Detecta si el optimizer favoreció juventud o experiencia. Cuadrante superior izquierdo = pilares futuros del equipo.
+        <strong className="text-white">Cómo usarlo:</strong> Cuadrante superior-izquierdo = jóvenes de alto aporte (pilares futuros).
+        Superior-derecho = veteranos con alto score (experiencia). Inferior = jugadores que están por restricción posicional.
+        Si subís el peso "Edad", los puntos migran hacia la izquierda.
       </p>
       <div className="flex-1 min-h-[250px]">
         <ResponsiveContainer width="100%" height="100%">
@@ -237,7 +241,8 @@ function InjuriesByPosition({ players }: SquadChartsProps) {
     <div className="rounded-xl border border-white/5 bg-black/20 p-5 flex flex-col">
       <h4 className="font-display text-lg font-bold text-white mb-1">Carga de Lesiones por Línea</h4>
       <p className="text-sm text-muted-foreground mb-3">
-        Total de lesiones históricas acumuladas por posición. Identifica dónde se concentra el riesgo médico del plantel.
+        Total de lesiones históricas reales (fuente: Transfermarkt) acumuladas por posición.
+        <strong className="text-white"> Cómo usarlo:</strong> Si una línea tiene carga excesiva, subí el peso "Riesgo de Lesión" para que el optimizer priorice jugadores más sanos en esa posición.
       </p>
       <div className="flex-1 min-h-[200px]">
         <ResponsiveContainer width="100%" height="100%">
@@ -279,15 +284,23 @@ export function SquadCharts({ players }: SquadChartsProps) {
 
   return (
     <div className="space-y-6 mt-8">
-      <h3 className="text-xl font-display font-bold text-white border-b border-white/10 pb-2">
-        📊 Análisis Visual del Plantel
-      </h3>
+      <div className="border-b border-white/10 pb-3">
+        <h3 className="text-xl font-display font-bold text-white">
+          📊 Análisis Visual del Plantel Optimizado
+        </h3>
+        <p className="text-sm text-gray-400 mt-1">
+          Estos gráficos se actualizan automáticamente cada vez que el optimizer genera un nuevo plantel.
+          Úsalos para validar que la composición cumple tus criterios tácticos.
+        </p>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <PositionDonut players={players} />
         <InjuriesByPosition players={players} />
       </div>
-      <AdjustedScoreRanking players={players} />
-      <AgeVsAdjustedScatter players={players} />
+      <div className="grid grid-cols-1 gap-6">
+        <AdjustedScoreRanking players={players} />
+        <AgeVsAdjustedScatter players={players} />
+      </div>
     </div>
   );
 }

@@ -12,7 +12,8 @@ import { Skeleton } from "@/shared/components/Skeleton";
 import { UI_LABELS } from "@/shared/constants/uiLabels";
 import { traducirCalificacion } from "@/shared/lib/displayMappers";
 import { UserRound } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
+import { getInjuryModel, subscribeInjuryModel } from "@/features/injury-risk/injuryModelStore";
 
 /**
  * Dashboard principal de riesgo de lesión — vista de decisión.
@@ -21,12 +22,13 @@ import { useState, useEffect } from "react";
 export function InjuryRiskDashboard() {
   const numeroPartido = useAppSelector(selectNumeroPartidoSeleccionado);
   const jugadorId = useAppSelector(selectJugadorSeleccionadoId);
+  const injuryModel = useSyncExternalStore(subscribeInjuryModel, getInjuryModel, getInjuryModel);
 
   const {
     data: reporte,
     isLoading,
   } = useGetReportePreparacionQuery(
-    { matchNumber: numeroPartido!, jugadorId: jugadorId! },
+    { matchNumber: numeroPartido!, jugadorId: jugadorId!, model: injuryModel },
     { skip: !numeroPartido || !jugadorId },
   );
 

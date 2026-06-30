@@ -1,10 +1,42 @@
 from fastapi import APIRouter, HTTPException, Request, Response
 import pandas as pd
 import numpy as np
+import joblib
+import os
 from difflib import get_close_matches
 from app.api.v1.ml.team_predictor import predict_player_impact
 
 router = APIRouter()
+
+# Cache HDBSCAN labels (loaded once)
+_hdbscan_labels_cache = None
+
+
+def _load_hdbscan_labels() -> dict:
+    """Load HDBSCAN cluster assignments. Returns {player_name: cluster_label}."""
+    global _hdbscan_labels_cache
+    if _hdbscan_labels_cache is not None:
+        return _hdbscan_labels_cache
+    try:
+        path = os.path.join(os.path.dirname(__file__), '../../../../data/models/clustering_hdbscan.pkl')
+        data = joblib.load(path)
+        names = data.get('player_names', [])
+        labels = data.get('labels', [])
+        _hdbscan_labels_cache = dict(zip(names, labels))
+        return _hdbscan_labels_cache
+    except Exception:
+        return {}
+
+
+def _apply_hdbscan_labels(df: pd.DataFrame) -> pd.DataFrame:
+    """Override the 'cluster' column with HDBSCAN labels."""
+    mapping = _load_hdbscan_labels()
+    if not mapping:
+        return df
+    df['cluster'] = df['Player'].map(mapping)
+    # HDBSCAN uses -1 for noise; convert to NaN so they appear as "unassigned"
+    df.loc[df['cluster'] == -1, 'cluster'] = np.nan
+    return df
 
 def to_native(val):
     if pd.isna(val): return None
@@ -37,17 +69,25 @@ def search_players(
     sort_by: str = "",
     order: str = "desc",
     limit: int = 20,
+    clustering_algo: str = "kmeans",
 ):
     """
     Search players by name (substring, case-insensitive) and optionally
     filter by country. Returns up to `limit` results.
+    
+    clustering_algo: "kmeans" (default) or "hdbscan" — determines which
+    cluster labels are used for filtering and display.
     """
     response.headers["Cache-Control"] = "no-cache"
     data = request.app.state.data
     if 'players' not in data:
         raise HTTPException(status_code=500, detail="Data not loaded")
         
-    players_df = data['players']
+    players_df = data['players'].copy()
+    
+    # If HDBSCAN is selected, override the cluster column with HDBSCAN labels
+    if clustering_algo == "hdbscan":
+        players_df = _apply_hdbscan_labels(players_df)
     
     if name:
         # Substring search first

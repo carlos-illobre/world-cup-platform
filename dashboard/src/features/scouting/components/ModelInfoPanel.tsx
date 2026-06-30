@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronRight, Database, Brain, Target, Layers, BarChart3 } from "lucide-react";
+import { ChevronDown, ChevronRight, Database, Brain, Target, Layers, BarChart3, GitCompare } from "lucide-react";
 import { CLUSTER_NAMES, CLUSTER_COLORS } from "../constants";
 import { fetchJson } from "@/shared/lib/apiClient";
 import { ClusterScatterChart } from "./ClusterScatterChart";
+import { HdbscanScatterChart } from "./HdbscanScatterChart";
 import { ModelPlot } from "@/shared/components/ModelPlot";
+import { ClusteringComparison, RegressionComparison } from "@/shared/components/AlgorithmComparison";
 
 interface ModelInfoPanelProps {
   clusterAverages: any;
@@ -240,43 +242,35 @@ export function ModelInfoPanel({ clusterAverages, totalPlayers }: ModelInfoPanel
         </div>
       </Section>
 
-      {/* Section 3: Clustering */}
-      <Section title="Paso 3 — ¿Cómo se agrupan los jugadores por estilo? (K-Means)" icon={<Layers className="w-5 h-5 text-purple-400" />} color="purple-400">
-        <div className="space-y-4">
-          <p className="text-base text-gray-300 leading-relaxed">
-            El algoritmo <strong className="text-white">K-Means</strong> agrupa jugadores que <em>juegan de forma similar</em> según sus estadísticas reales, 
-            sin importar su posición nominal. Un mediocampista ofensivo puede quedar en el mismo cluster que un delantero 
-            si ambos generan goles y asistencias a tasas similares.
-          </p>
+      {/* Section 3: Clustering — K-Means vs HDBSCAN */}
+      <Section title="Paso 3 — Clustering de Jugadores: K-Means vs HDBSCAN" icon={<Layers className="w-5 h-5 text-purple-400" />} color="purple-400">
+        <div className="space-y-6">
 
-          {/* Conceptual diagram */}
-          <div className="bg-black/40 rounded-lg p-4 border border-purple-500/20">
-            <h4 className="text-sm font-bold text-purple-300 mb-3">¿Cómo funciona K-Means? (en simple)</h4>
-            <div className="space-y-2 text-sm text-gray-300">
-              <p>1️⃣ <strong className="text-white">Se eligen 5 puntos al azar</strong> como "centroides" iniciales en el espacio de 10 dimensiones.</p>
-              <p>2️⃣ <strong className="text-white">Cada jugador se asigna</strong> al centroide más cercano (por distancia euclidiana).</p>
-              <p>3️⃣ <strong className="text-white">Se recalcula cada centroide</strong> como el promedio de todos los jugadores asignados a él.</p>
-              <p>4️⃣ <strong className="text-white">Se repiten pasos 2-3</strong> hasta que los centroides no se mueven (convergencia). Máximo 300 iteraciones.</p>
-              <p>5️⃣ <strong className="text-white">Se repite TODO 15 veces</strong> (n_init=15) con diferentes puntos iniciales y se queda con la mejor solución (menor inertia).</p>
-            </div>
+          {/* Intro */}
+          <div className="bg-gradient-to-r from-purple-500/5 to-cyan-500/5 border border-white/10 rounded-xl p-5">
+            <p className="text-base text-gray-300 leading-relaxed">
+              El clustering agrupa jugadores que <em>juegan de forma similar</em> según 10 estadísticas reales per-90.
+              Ejecutamos <strong className="text-white">dos algoritmos diferentes</strong> sobre los mismos datos para comparar
+              sus resultados. Ambos usan las mismas 10 features y el mismo preprocesamiento (StandardScaler).
+            </p>
           </div>
 
-          {/* Input features */}
+          {/* Shared pipeline */}
           <div className="bg-black/40 rounded-lg p-4 border border-white/5">
-            <h4 className="text-sm font-bold text-gray-200 mb-3">Features de entrada (10 estadísticas per 90 min)</h4>
-            <p className="text-xs text-gray-400 mb-3">Todas normalizadas con StandardScaler (media=0, std=1) antes de entrenar — imprescindible para K-Means porque usa distancia euclidiana.</p>
+            <h4 className="text-sm font-bold text-gray-200 mb-3">Pipeline compartido</h4>
+            <div className="bg-black/60 rounded-lg p-3 border border-white/5 mb-3 font-mono text-sm text-gray-300 space-y-1">
+              <p><span className="text-green-400">INPUT:</span> 1,111 jugadores × 10 features per-90</p>
+              <p><span className="text-purple-300">PREPROCESO:</span> StandardScaler(mean=0, std=1)</p>
+              <p><span className="text-amber-300">ALG A:</span> K-Means(k=5, n_init=15)</p>
+              <p><span className="text-cyan-300">ALG B:</span> HDBSCAN(min_cluster_size=30, min_samples=10)</p>
+            </div>
             <div className="grid grid-cols-2 gap-2 text-sm">
               {[
-                { f: "goals_per_90", desc: "Goles cada 90 min" },
-                { f: "assists_per_90", desc: "Asistencias cada 90 min" },
-                { f: "shots_per_90", desc: "Tiros al arco cada 90 min" },
-                { f: "sot_per_90", desc: "Tiros a puerta cada 90 min" },
-                { f: "tackles_won_per_90", desc: "Entradas ganadas cada 90 min" },
-                { f: "interceptions_per_90", desc: "Intercepciones cada 90 min" },
-                { f: "crosses_per_90", desc: "Centros cada 90 min" },
-                { f: "fouls_committed_per_90", desc: "Faltas cometidas cada 90 min" },
-                { f: "fouls_drawn_per_90", desc: "Faltas recibidas cada 90 min" },
-                { f: "offsides_per_90", desc: "Fueras de juego cada 90 min" },
+                { f: "goals_per_90", desc: "Goles" }, { f: "assists_per_90", desc: "Asistencias" },
+                { f: "shots_per_90", desc: "Tiros al arco" }, { f: "sot_per_90", desc: "Tiros a puerta" },
+                { f: "tackles_won_per_90", desc: "Entradas ganadas" }, { f: "interceptions_per_90", desc: "Intercepciones" },
+                { f: "crosses_per_90", desc: "Centros" }, { f: "fouls_committed_per_90", desc: "Faltas cometidas" },
+                { f: "fouls_drawn_per_90", desc: "Faltas recibidas" }, { f: "offsides_per_90", desc: "Fueras de juego" },
               ].map(({ f, desc }) => (
                 <div key={f} className="flex items-start gap-2">
                   <span className="text-xs font-mono text-purple-300 shrink-0">{f}</span>
@@ -284,43 +278,48 @@ export function ModelInfoPanel({ clusterAverages, totalPlayers }: ModelInfoPanel
                 </div>
               ))}
             </div>
-            <p className="text-xs text-gray-500 mt-3">
-              <strong>¿Por qué per 90?</strong> Para no penalizar a suplentes que juegan menos minutos. Un jugador que mete 5 goles en 500 minutos 
-              es más eficiente que uno que mete 10 en 3000. Per 90 normaliza por tiempo de juego.
-            </p>
           </div>
 
-          {/* Evaluation */}
-          <div className="bg-black/40 rounded-lg p-4 border border-white/5">
-            <h4 className="text-sm font-bold text-gray-200 mb-3">Métricas de evaluación del clustering</h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
-                <p className="text-xs text-gray-500">Silhouette Score</p>
-                <p className="text-xl font-bold text-purple-400">0.312</p>
-                <p className="text-xs text-gray-500 mt-1">Rango: -1 a 1. Mayor = mejor separación.</p>
+          {/* Side-by-side algorithm cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-black/40 rounded-lg p-4 border border-amber-500/20">
+              <h4 className="text-sm font-bold text-amber-300 mb-2">🟡 K-Means</h4>
+              <div className="space-y-1 text-xs text-gray-300">
+                <p>1. Elige k=5 centroides al azar</p>
+                <p>2. Asigna cada jugador al más cercano</p>
+                <p>3. Recalcula centroides como promedio</p>
+                <p>4. Repite hasta convergencia</p>
               </div>
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
-                <p className="text-xs text-gray-500">Inertia (WCSS)</p>
-                <p className="text-xl font-bold text-gray-300">4,891</p>
-                <p className="text-xs text-gray-500 mt-1">Suma de distancias² al centroide</p>
-              </div>
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5 text-center">
-                <p className="text-xs text-gray-500">k elegido</p>
-                <p className="text-xl font-bold text-white">5</p>
-                <p className="text-xs text-gray-500 mt-1">Método: Elbow + Silhouette</p>
+              <div className="mt-2 space-y-0.5">
+                <p className="text-[11px] text-green-400">✓ 100% jugadores clasificados</p>
+                <p className="text-[11px] text-green-400">✓ Centroides interpretables</p>
+                <p className="text-[11px] text-red-400">✗ Requiere elegir k</p>
+                <p className="text-[11px] text-red-400">✗ Fuerza outliers en un cluster</p>
               </div>
             </div>
-            <p className="text-xs text-gray-400 leading-relaxed">
-              <strong className="text-gray-200">¿0.312 es bueno?</strong> Para datos deportivos de alta dimensión con solapamiento natural entre posiciones, sí. 
-              Un mediocampista ofensivo puede estar entre "Creador" y "Extremo" — ese solapamiento es inherente al dominio y no un defecto del modelo. 
-              Un Silhouette de 0.7+ solo se obtiene con datos sintéticos o dominios con separación perfecta.
-            </p>
+            <div className="bg-black/40 rounded-lg p-4 border border-cyan-500/20">
+              <h4 className="text-sm font-bold text-cyan-300 mb-2">🔵 HDBSCAN</h4>
+              <div className="space-y-1 text-xs text-gray-300">
+                <p>1. Calcula densidad local (core distance)</p>
+                <p>2. Construye grafo de alcanzabilidad mutua</p>
+                <p>3. Genera dendrograma condensado</p>
+                <p>4. Selecciona clusters por estabilidad</p>
+              </div>
+              <div className="mt-2 space-y-0.5">
+                <p className="text-[11px] text-green-400">✓ No requiere elegir k</p>
+                <p className="text-[11px] text-green-400">✓ Detecta outliers explícitamente</p>
+                <p className="text-[11px] text-red-400">✗ 68% queda como ruido</p>
+                <p className="text-[11px] text-red-400">✗ Sensible a min_cluster_size</p>
+              </div>
+            </div>
           </div>
 
-          {/* Cluster results */}
-          <div className="bg-black/40 rounded-lg p-4 border border-white/5">
-            <h4 className="text-sm font-bold text-gray-200 mb-3">Resultado: Los 5 perfiles descubiertos</h4>
-            <p className="text-xs text-gray-400 mb-3">Los nombres fueron asignados manualmente interpretando qué features dominan en cada centroide:</p>
+          {/* Full comparison component with metrics */}
+          <ClusteringComparison />
+
+          {/* K-Means cluster results */}
+          <div className="bg-black/40 rounded-lg p-4 border border-amber-500/20">
+            <h4 className="text-sm font-bold text-amber-300 mb-3">Resultado K-Means: 5 perfiles</h4>
             <div className="space-y-3">
               {clusterAverages && Object.entries(CLUSTER_NAMES).map(([id, name]) => {
                 const avg = clusterAverages[id] || {};
@@ -344,72 +343,84 @@ export function ModelInfoPanel({ clusterAverages, totalPlayers }: ModelInfoPanel
             </div>
           </div>
 
-          {/* Scatter plot — real PCA visualization of clusters */}
+          {/* PCA Scatter */}
           <div className="bg-black/40 rounded-lg p-4 border border-purple-500/20">
+            <h4 className="text-sm font-bold text-amber-300 mb-2">📊 Scatter PCA — K-Means (5 clusters, 0% ruido)</h4>
             <ClusterScatterChart />
           </div>
 
-          {/* PCA & t-SNE plots from original training */}
-          <div className="bg-black/40 rounded-lg p-4 border border-purple-500/20">
-            <h4 className="text-sm font-bold text-purple-300 mb-2">📊 Visualizaciones del Entrenamiento Original</h4>
-            <p className="text-xs text-gray-400 mb-4">
-              Generadas por <code className="text-purple-300">model_clustering.py</code> durante el entrenamiento. 
-              Muestran la misma reducción dimensional pero con todos los jugadores del dataset original (incluidos los imputados por minutos bajos).
-            </p>
+          {/* HDBSCAN Scatter */}
+          <div className="bg-black/40 rounded-lg p-4 border border-cyan-500/20">
+            <h4 className="text-sm font-bold text-cyan-300 mb-2">📊 Scatter PCA — HDBSCAN (clusters por densidad, ~68% ruido)</h4>
+            <HdbscanScatterChart />
+          </div>
+
+          {/* Training plots K-Means */}
+          <div className="bg-black/40 rounded-lg p-4 border border-amber-500/20">
+            <h4 className="text-sm font-bold text-amber-300 mb-2">📸 Plots del entrenamiento K-Means</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p className="text-xs font-bold text-gray-300 mb-2">PCA — Componentes Principales</p>
-                <ModelPlot src="player_clusters_pca.png" alt="Clusters de jugadores reducidos con PCA" caption="Reducción con PCA(n_components=2). Colores = perfiles de K-Means." />
-              </div>
-              <div>
-                <p className="text-xs font-bold text-gray-300 mb-2">t-SNE — Distribución no lineal</p>
-                <ModelPlot src="player_clusters_tsne.png" alt="Clusters de jugadores reducidos con t-SNE" caption="t-SNE(perplexity=30) preserva vecindades locales mejor que PCA." />
-              </div>
+              <ModelPlot src="player_clusters_pca.png" alt="K-Means PCA" caption="PCA(n_components=2). Colores = 5 perfiles." />
+              <ModelPlot src="player_clusters_tsne.png" alt="K-Means t-SNE" caption="t-SNE(perplexity=30). Vecindades locales." />
             </div>
           </div>
 
-          {/* Explanation: why the plots look different */}
-          <div className="bg-black/40 rounded-lg p-4 border border-yellow-500/20">
-            <h4 className="text-sm font-bold text-yellow-300 mb-3">⚠️ ¿Por qué los 3 gráficos de arriba se ven distintos?</h4>
-            <p className="text-sm text-gray-300 mb-3">
-              Aunque los tres representan los mismos clusters, difieren porque fueron generados en <strong className="text-white">contextos distintos</strong>:
+          {/* Training plots HDBSCAN */}
+          <div className="bg-black/40 rounded-lg p-4 border border-cyan-500/20">
+            <h4 className="text-sm font-bold text-cyan-300 mb-2">📸 Plots del entrenamiento HDBSCAN</h4>
+            <p className="text-xs text-gray-400 mb-3">
+              Generados por <code className="text-cyan-300">generate_hdbscan_plots.py</code> sobre los mismos 1,111 jugadores con la misma proyección PCA.
             </p>
-            <div className="space-y-3 text-sm text-gray-300">
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
-                <p className="font-bold text-purple-300 mb-1">Gráfico interactivo (arriba)</p>
-                <p className="text-xs text-gray-400">
-                  Se calcula <strong className="text-white">en tiempo real</strong> cada vez que cargás la página.
-                  El backend aplica <code className="text-purple-300">StandardScaler + PCA(n_components=2)</code> sobre los jugadores
-                  que actualmente tienen cluster asignado en <code className="text-purple-300">master_players_enriched.csv</code>.
-                  Si el dataset se actualizó desde el entrenamiento (nuevos jugadores, imputaciones), los componentes principales
-                  rotan ligeramente porque el <code className="text-purple-300">fit()</code> es nuevo.
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p className="text-xs font-bold text-gray-300 mb-2">PCA — HDBSCAN (clusters + ruido)</p>
+                <ModelPlot src="hdbscan_clusters_pca.png" alt="HDBSCAN PCA scatter" caption="Gris = ruido (68%). Color = clusters de alta densidad." />
               </div>
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
-                <p className="font-bold text-blue-300 mb-1">Imagen PCA estática</p>
-                <p className="text-xs text-gray-400">
-                  Generada <strong className="text-white">una sola vez</strong> durante el entrenamiento del K-Means en <code className="text-blue-300">model_clustering.py</code>.
-                  Puede incluir jugadores que luego fueron filtrados (ej: imputados por minutos bajos) y usa el Scaler/PCA del momento del entrenamiento.
-                  Los ejes pueden estar rotados o invertidos respecto al gráfico interactivo — PCA no garantiza orientación consistente entre fits independientes.
-                </p>
-              </div>
-              <div className="bg-black/60 rounded-lg p-3 border border-white/5">
-                <p className="font-bold text-green-300 mb-1">Imagen t-SNE estática</p>
-                <p className="text-xs text-gray-400">
-                  Usa un <strong className="text-white">algoritmo completamente diferente</strong>. t-SNE no preserva distancias globales ni varianza —
-                  optimiza preservar <em>vecindades locales</em> (jugadores similares quedan cerca, pero la posición global es arbitraria).
-                  Además es no determinista: el resultado depende de la semilla aleatoria y del parámetro <code className="text-green-300">perplexity=30</code>.
-                  Es normal que se vea radicalmente distinto al PCA.
-                </p>
+              <div>
+                <p className="text-xs font-bold text-gray-300 mb-2">Membership Probability</p>
+                <ModelPlot src="hdbscan_membership_proba.png" alt="HDBSCAN membership probabilities" caption="Distribución de confianza de pertenencia." />
               </div>
             </div>
-            <div className="bg-black/60 rounded-lg p-3 border border-white/5 mt-3">
-              <p className="text-xs text-gray-400">
-                <strong className="text-gray-200">¿Cuál es "correcto"?</strong> Los tres. Son proyecciones válidas del mismo espacio de 10 dimensiones a 2D.
-                Cada uno sacrifica información distinta: PCA maximiza varianza explicada, t-SNE maximiza separación local.
-                Lo importante es que <strong className="text-white">los colores (clusters) se mantengan coherentes</strong> — los mismos jugadores
-                aparecen en el mismo cluster en los 3 gráficos, solo cambia su posición en el plano 2D.
-              </p>
+            <div className="mt-4">
+              <p className="text-xs font-bold text-gray-300 mb-2">Comparación directa (misma proyección)</p>
+              <ModelPlot src="clustering_comparison_kmeans_vs_hdbscan.png" alt="K-Means vs HDBSCAN side by side" caption="Izq: K-Means asigna todos. Der: HDBSCAN solo clasifica zonas densas." />
+            </div>
+          </div>
+
+          {/* Recommendation */}
+          <div className="bg-gradient-to-r from-amber-500/5 to-cyan-500/5 border border-white/10 rounded-xl p-5">
+            <h4 className="text-sm font-bold text-white mb-2">🎯 ¿Cuál usar? Y ¿por qué HDBSCAN tiene 68% ruido?</h4>
+            <div className="space-y-3 text-sm text-gray-300">
+              <div className="bg-black/40 rounded-lg p-3 border border-cyan-500/20">
+                <p className="font-bold text-cyan-300 mb-1">¿El 68% ruido significa que HDBSCAN está mal?</p>
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  <strong className="text-white">No.</strong> HDBSCAN está dando la respuesta científicamente honesta:
+                  los jugadores de fútbol <em>no forman grupos discretos por densidad</em>. El espacio de features es un <strong className="text-white">continuo</strong> —
+                  un mediocampista ofensivo tiene estadísticas que transicionan suavemente hacia las de un delantero.
+                  No hay "vacíos" de densidad entre perfiles como los habría entre, por ejemplo, tipos de flores (Iris) o dígitos escritos (MNIST).
+                </p>
+                <p className="text-xs text-gray-400 leading-relaxed mt-2">
+                  Los ~350 jugadores que HDBSCAN <em>sí</em> clasifica son los <strong className="text-white">arquetipos extremos</strong>: goleadores puros,
+                  destructores puros, carrileros puros. El 68% restante son <strong className="text-white">jugadores polivalentes</strong> que mezclan
+                  características de múltiples perfiles — HDBSCAN correctamente dice "este jugador no pertenece claramente a ningún grupo denso".
+                </p>
+              </div>
+              <div className="bg-black/40 rounded-lg p-3 border border-amber-500/20">
+                <p className="font-bold text-amber-300 mb-1">¿Por qué K-Means no tiene este problema?</p>
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  Porque K-Means <strong className="text-white">fuerza</strong> una asignación. Usa distancia al centroide, no densidad.
+                  Siempre asigna cada punto al cluster más cercano, aunque esté en una zona de transición.
+                  Es como recortar un gradiente de color en 5 franjas fijas — cada píxel queda en una franja, aunque esté en el borde entre dos.
+                </p>
+              </div>
+              <div className="bg-black/40 rounded-lg p-3 border border-white/5">
+                <p className="font-bold text-white mb-1">Conclusión para el estudiante:</p>
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  Este dataset demuestra un caso real donde <strong className="text-white">K-Means es más útil operacionalmente</strong> (necesitamos
+                  clasificar a todos) pero <strong className="text-white">HDBSCAN es más honesto científicamente</strong> (revela que la estructura
+                  natural de los datos es continua, no discreta). En la literatura esto se llama un dominio con
+                  <em> "cluster structure"</em> débil — y es exactamente lo que uno esperaría de datos deportivos donde los jugadores son multifuncionales.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -756,6 +767,14 @@ export function ModelInfoPanel({ clusterAverages, totalPlayers }: ModelInfoPanel
             </p>
           </div>
         </div>
+      </Section>
+
+      {/* Section: Player Impact Comparison */}
+      <Section title="Comparación de Algoritmos — Impact Score: XGBoost vs Random Forest" icon={<GitCompare className="w-5 h-5 text-green-400" />} color="green-400">
+        <RegressionComparison
+          endpoint="player-impact"
+          title="Player Impact Score — XGBoost vs Random Forest"
+        />
       </Section>
     </div>
   );

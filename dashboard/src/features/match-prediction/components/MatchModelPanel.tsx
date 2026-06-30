@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronRight, Database, Brain, Beaker, CloudRain, BarChart3 } from "lucide-react";
+import { ChevronDown, ChevronRight, Database, Brain, Beaker, CloudRain, BarChart3, GitCompare } from "lucide-react";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
 import { ModelPlot } from "@/shared/components/ModelPlot";
+import { ClassificationComparison } from "@/shared/components/AlgorithmComparison";
 
 function Section({ title, icon, children, defaultOpen = false }: {
   title: string; icon: React.ReactNode; children: React.ReactNode; defaultOpen?: boolean;
@@ -525,6 +526,14 @@ export function MatchModelPanel() {
             </ul>
           </div>
         </div>
+      </Section>
+
+      {/* Section 6: Algorithm Comparison */}
+      <Section title="Paso 6 — Comparación de Algoritmos: XGBoost vs Random Forest" icon={<GitCompare className="w-5 h-5 text-orange-400" />}>
+        <ClassificationComparison
+          endpoint="match-outcome"
+          title="Match Outcome — XGBoost vs Random Forest"
+        />
       </Section>
 
     </div>

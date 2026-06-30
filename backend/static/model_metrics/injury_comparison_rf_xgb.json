@@ -1,0 +1,95 @@
+{
+  "task": "injury_risk_prediction",
+  "dataset_size": 8611,
+  "train_size": 6888,
+  "test_size": 1723,
+  "features_count": 17,
+  "features_used": [
+    "Age",
+    "Dias_Baja",
+    "Partidos_Perdidos",
+    "prior_injuries",
+    "prior_days_out",
+    "days_since_last_injury",
+    "injury_count_last_12m",
+    "total_days_out_last_12m",
+    "avg_recovery_time",
+    "is_recurrent",
+    "months_since_last_injury",
+    "injury_frequency",
+    "injury_severity_score",
+    "MarketValue_EUR",
+    "MP",
+    "Playing Time_Min",
+    "Playing Time_90s"
+  ],
+  "target": "will_be_injured_next_6months",
+  "xgboost": {
+    "accuracy": 0.5821,
+    "f1_score": 0.6066,
+    "auc_roc": 0.6221,
+    "hyperparameters": {
+      "learning_rate": 0.01,
+      "max_depth": 4,
+      "n_estimators": 300
+    }
+  },
+  "random_forest": {
+    "accuracy": 0.6198,
+    "f1_score": 0.5989,
+    "auc_roc": 0.6712,
+    "train_time_s": 0.42,
+    "hyperparameters": {
+      "n_estimators": 300,
+      "max_depth": 6,
+      "min_samples_split": 10,
+      "class_weight": "balanced"
+    },
+    "classification_report": {
+      "0": {
+        "precision": 0.6462053571428571,
+        "recall": 0.6314067611777535,
+        "f1-score": 0.6387203530060673,
+        "support": 917.0
+      },
+      "1": {
+        "precision": 0.5912938331318017,
+        "recall": 0.6066997518610422,
+        "f1-score": 0.5988977342314759,
+        "support": 806.0
+      },
+      "accuracy": 0.6198491004062682,
+      "macro avg": {
+        "precision": 0.6187495951373294,
+        "recall": 0.6190532565193978,
+        "f1-score": 0.6188090436187716,
+        "support": 1723.0
+      },
+      "weighted avg": {
+        "precision": 0.6205183644830135,
+        "recall": 0.6198491004062682,
+        "f1-score": 0.6200917803233508,
+        "support": 1723.0
+      }
+    }
+  },
+  "feature_importance_rf": {
+    "Dias_Baja": 0.193,
+    "injury_frequency": 0.1564,
+    "Partidos_Perdidos": 0.1255,
+    "prior_injuries": 0.1029,
+    "injury_count_last_12m": 0.1012,
+    "MarketValue_EUR": 0.0623,
+    "total_days_out_last_12m": 0.053,
+    "Age": 0.0363,
+    "days_since_last_injury": 0.036,
+    "prior_days_out": 0.0358,
+    "months_since_last_injury": 0.0353,
+    "avg_recovery_time": 0.0327,
+    "injury_severity_score": 0.016,
+    "Playing Time_Min": 0.0059,
+    "Playing Time_90s": 0.0048,
+    "is_recurrent": 0.0015,
+    "MP": 0.0014
+  }
+}

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronRight, Database, Brain, Beaker, Activity, AlertTriangle, Thermometer } from "lucide-react";
+import { ChevronDown, ChevronRight, Database, Brain, Beaker, Activity, AlertTriangle, Thermometer, GitCompare } from "lucide-react";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
 import { ModelPlot } from "@/shared/components/ModelPlot";
+import { ClassificationComparison } from "@/shared/components/AlgorithmComparison";
 
 function Section({ title, icon, children, defaultOpen = false }: { title: string; icon: React.ReactNode; children: React.ReactNode; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -591,6 +592,14 @@ export function InjuryModelPanel() {
             </p>
           </div>
         </div>
+      </Section>
+
+      {/* Section 8: Algorithm Comparison */}
+      <Section title="Paso 8 — Comparación de Algoritmos: XGBoost vs Random Forest" icon={<GitCompare className="w-5 h-5 text-orange-400" />}>
+        <ClassificationComparison
+          endpoint="injury"
+          title="Injury Prediction — XGBoost vs Random Forest"
+        />
       </Section>
     </div>
   );

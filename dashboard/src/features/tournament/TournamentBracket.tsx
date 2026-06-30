@@ -76,7 +76,7 @@ function RoundSection({ title, matches, color }: { title: string; matches: Match
   );
 }
 
-export function TournamentBracket() {
+export function TournamentBracket({ model = "xgboost" }: { model?: string }) {
   const [data, setData] = useState<TournamentData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -85,7 +85,8 @@ export function TournamentBracket() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${INJURY_API_BASE_URL}/api/v1/tournament/simulate`);
+      const params = model !== "xgboost" ? `?model=${model}` : "";
+      const res = await fetch(`${INJURY_API_BASE_URL}/api/v1/tournament/simulate${params}`);
       if (!res.ok) throw new Error(`Error ${res.status}`);
       const json = await res.json();
       setData(json);

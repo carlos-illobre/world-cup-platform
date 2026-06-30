@@ -1,0 +1,168 @@
+{
+  "task": "player_clustering",
+  "dataset_size": 1111,
+  "features_count": 10,
+  "features_used": [
+    "goals_per_90",
+    "assists_per_90",
+    "shots_per_90",
+    "sot_per_90",
+    "tackles_won_per_90",
+    "interceptions_per_90",
+    "crosses_per_90",
+    "fouls_committed_per_90",
+    "fouls_drawn_per_90",
+    "offsides_per_90"
+  ],
+  "kmeans": {
+    "n_clusters": 5,
+    "silhouette_score": 0.2979,
+    "noise_points": 0,
+    "noise_pct": 0.0,
+    "algorithm": "K-Means",
+    "hyperparameters": {
+      "n_clusters": 5,
+      "n_init": 15,
+      "max_iter": 300
+    },
+    "centroids": {
+      "0": {
+        "goals_per_90": 0.0439,
+        "assists_per_90": 0.7925,
+        "shots_per_90": 1.1638,
+        "sot_per_90": 0.9578,
+        "tackles_won_per_90": 0.7678,
+        "interceptions_per_90": 0.3582,
+        "crosses_per_90": 2.4688,
+        "fouls_committed_per_90": 0.5118,
+        "fouls_drawn_per_90": 1.3056,
+        "offsides_per_90": 0.299
+      },
+      "1": {
+        "goals_per_90": 1.1902,
+        "assists_per_90": 1.1346,
+        "shots_per_90": -0.3081,
+        "sot_per_90": -0.2334,
+        "tackles_won_per_90": -0.5692,
+        "interceptions_per_90": -0.5817,
+        "crosses_per_90": -0.3355,
+        "fouls_committed_per_90": -0.3734,
+        "fouls_drawn_per_90": -0.4736,
+        "offsides_per_90": -0.2151
+      },
+      "2": {
+        "goals_per_90": -0.3341,
+        "assists_per_90": -0.3659,
+        "shots_per_90": -0.5098,
+        "sot_per_90": -0.4624,
+        "tackles_won_per_90": -0.4634,
+        "interceptions_per_90": -0.4423,
+        "crosses_per_90": -0.39,
+        "fouls_committed_per_90": -0.5315,
+        "fouls_drawn_per_90": -0.4849,
+        "offsides_per_90": -0.3205
+      },
+      "3": {
+        "goals_per_90": -0.3684,
+        "assists_per_90": -0.2258,
+        "shots_per_90": 0.0387,
+        "sot_per_90": -0.0791,
+        "tackles_won_per_90": 1.0558,
+        "interceptions_per_90": 1.2661,
+        "crosses_per_90": 0.0335,
+        "fouls_committed_per_90": 0.9086,
+        "fouls_drawn_per_90": 0.5328,
+        "offsides_per_90": -0.0444
+      },
+      "4": {
+        "goals_per_90": 1.0621,
+        "assists_per_90": 0.1483,
+        "shots_per_90": 2.1405,
+        "sot_per_90": 2.2761,
+        "tackles_won_per_90": 0.029,
+        "interceptions_per_90": -0.1839,
+        "crosses_per_90": 0.0648,
+        "fouls_committed_per_90": 0.7952,
+        "fouls_drawn_per_90": 0.7965,
+        "offsides_per_90": 2.0304
+      }
+    },
+    "advantages": [
+      "Garantiza que TODOS los jugadores reciben un cluster (no hay ruido)",
+      "NÃºmero de clusters fijo y predecible",
+      "MÃ¡s fÃ¡cil de interpretar con centroides claros",
+      "Computacionalmente mÃ¡s eficiente en datasets grandes"
+    ],
+    "disadvantages": [
+      "Requiere especificar k a priori",
+      "Asume clusters esfÃ©ricos y de tamaÃ±o similar",
+      "Sensible a outliers (los fuerza en un cluster)",
+      "No detecta clusters de formas arbitrarias"
+    ]
+  },
+  "hdbscan": {
+    "n_clusters": 12,
+    "silhouette_score": 0.3588,
+    "noise_points": 756,
+    "noise_pct": 68.0,
+    "algorithm": "HDBSCAN",
+    "train_time_s": 0.04,
+    "hyperparameters": {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "metric": "euclidean",
+      "cluster_selection_method": "leaf"
+    },
+    "centroids": {
+      "0": {
+        "goals_per_90": 0.423,
+        "assists_per_90": -0.2009,
+        "shots_per_90": 0.1912,
+        "sot_per_90": -0.0007,
+        "tackles_won_per_90": -0.6944,
+        "interceptions_per_90": -0.6524,
+        "crosses_per_90": -0.2996,
+        "fouls_committed_per_90": -0.161,
+        "fouls_drawn_per_90": -0.2601,
+        "offsides_per_90": -0.3612
+      },
+      "1": {
+        "goals_per_90": -0.5761,
+        "assists_per_90": -0.548,
+        "shots_per_90": -0.4149,
+        "sot_per_90": -0.5461,
+        "tackles_won_per_90": -0.2403,
+        "interceptions_per_90": -0.6524,
+        "crosses_per_90": -0.504,
+        "fouls_committed_per_90": -0.3627,
+        "fouls_drawn_per_90": -0.3219,
+        "offsides_per_90": -0.3612
+      },
+      "2": {
+        "goals_per_90": -0.2763,
+        "assists_per_90": -0.3497,
+        "shots_per_90": -0.6803,
+        "sot_per_90": -0.5461,
+        "tackles_won_per_90": -0.6944,
+        "interceptions_per_90": -0.6524,
+        "crosses_per_90": -0.5178,
+        "fouls_committed_per_90": -0.7681,
+        "fouls_drawn_per_90": -0.6819,
+        "offsides_per_90": -0.3612
+      }
+    },
+    "advantages": [
+      "No requiere especificar nÃºmero de clusters a priori",
+      "Detecta clusters de formas arbitrarias (no solo esfÃ©ricos)",
+      "Identifica outliers/ruido explÃ­citamente (label=-1)",
+      "Robusto a variaciones de densidad",
+      "Proporciona probabilidad de pertenencia (membership probability)"
+    ],
+    "disadvantages": [
+      "Puede dejar jugadores sin cluster (ruido)",
+      "Los resultados dependen sensiblemente de min_cluster_size",
+      "MÃ¡s difÃ­cil de interpretar (clusters asimÃ©tricos)",
+      "Computacionalmente mÃ¡s costoso que K-Means"
+    ]
+  }
+}

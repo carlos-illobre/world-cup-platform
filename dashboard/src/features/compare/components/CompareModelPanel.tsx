@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, Database, Brain, Beaker, BarChart3, AlertTriangle, CheckCircle2, GitCompare, Layers } from "lucide-react";
 import { INJURY_API_BASE_URL } from "@/shared/lib/apiClient";
 import { ModelPlot } from "@/shared/components/ModelPlot";
+import { ClassificationComparison, RegressionComparison } from "@/shared/components/AlgorithmComparison";
 
 interface CompareModelPanelProps {
   teamA: string;
@@ -1025,6 +1026,22 @@ export function CompareModelPanel({ teamA, teamB, dataA, dataB, predA, predB, fo
             </p>
           </div>
         </div>
+      </Section>
+
+      {/* Algorithm Comparison: Match Outcome */}
+      <Section title="Comparación de Algoritmos — Predicción de Partidos: XGBoost vs Random Forest" icon={<GitCompare className="w-5 h-5 text-orange-400" />}>
+        <ClassificationComparison
+          endpoint="match-outcome"
+          title="Match Outcome — XGBoost vs Random Forest"
+        />
+      </Section>
+
+      {/* Algorithm Comparison: Team Points */}
+      <Section title="Comparación de Algoritmos — Predicción de Puntos: XGBoost vs Random Forest" icon={<GitCompare className="w-5 h-5 text-green-400" />}>
+        <RegressionComparison
+          endpoint="team-points"
+          title="Team Points — XGBoost vs Random Forest"
+        />
       </Section>
 
     </div>

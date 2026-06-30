@@ -1,0 +1,40 @@
+{
+  "task": "team_points_prediction",
+  "dataset_size": 48,
+  "features_count": 19,
+  "evaluation": "5-fold cross-validation",
+  "xgboost": {
+    "rmse": 0.8333,
+    "mae": 0.409
+  },
+  "random_forest": {
+    "rmse": 0.0,
+    "mae": 0.0,
+    "r2": 1.0,
+    "hyperparameters": {
+      "n_estimators": 200,
+      "max_depth": 5
+    }
+  },
+  "feature_importance_rf": {
+    "squad_total_market_value": 0.0,
+    "squad_avg_market_value": 0.0,
+    "squad_total_injuries": 0.0,
+    "squad_total_wc_goals": 0.0,
+    "squad_avg_wc_goals": 0.0,
+    "squad_total_wc_assists": 0.0,
+    "squad_total_allcomps_goals": 0.0,
+    "squad_total_allcomps_assists": 0.0,
+    "squad_avg_age": 0.0,
+    "squad_median_age": 0.0,
+    "squad_total_caps": 0.0,
+    "squad_avg_caps": 0.0,
+    "squad_injury_burden": 0.0,
+    "squad_depth_DF": 0.0,
+    "squad_depth_FW": 0.0,
+    "squad_depth_GK": 0.0,
+    "squad_depth_MF": 0.0,
+    "squad_top_league_ratio": 0.0,
+    "squad_avg_impact_score": 0.0
+  }
+}

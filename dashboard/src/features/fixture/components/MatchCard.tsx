@@ -11,6 +11,8 @@ interface MatchCardProps {
 
 /** Card de partido con banderas de los equipos, resultado VS y sede. */
 export function MatchCard({ partido, isSelected, onSelect }: MatchCardProps) {
+  const hasScore = partido.home_score != null && partido.away_score != null;
+
   return (
     <button
       type="button"
@@ -36,7 +38,9 @@ export function MatchCard({ partido, isSelected, onSelect }: MatchCardProps) {
         </div>
 
         <span className="font-display text-sm font-extrabold text-glow-blue">
-          {UI_LABELS.fixture.versus}
+          {hasScore
+            ? `${partido.home_score} - ${partido.away_score}`
+            : UI_LABELS.fixture.versus}
         </span>
 
         <div className="flex flex-col items-center gap-1">
@@ -49,6 +53,12 @@ export function MatchCard({ partido, isSelected, onSelect }: MatchCardProps) {
         <MapPin className="h-3 w-3 shrink-0 text-neon-blue" />
         <span className="truncate">{partido.venue}</span>
       </span>
+
+      {partido.last_fifa_sync_at && (
+        <span className="text-[10px] font-semibold uppercase tracking-wide text-neon-green/80">
+          FIFA actualizado
+        </span>
+      )}
 
       {partido.weather && (
         <div className="mt-2 flex w-full items-center justify-center gap-3 border-t border-white/5 pt-2 text-xs text-muted-foreground">

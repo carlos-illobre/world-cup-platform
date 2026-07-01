@@ -152,8 +152,16 @@ async def lifespan(app: FastAPI):
     try:
         squads_df = pd.read_csv('data/csv/optimal_squads.csv')
         if not players_df.empty:
-            player_to_photo = players_df.set_index('Player')['photo_url'].to_dict()
-            squads_df['photo_url'] = squads_df['Player'].map(player_to_photo).fillna("")
+            player_to_photo = (
+                players_df
+                .drop_duplicates(subset=['Player', 'Country'])
+                .set_index(['Player', 'Country'])['photo_url']
+                .to_dict()
+            )
+            squads_df['photo_url'] = squads_df.apply(
+                lambda row: player_to_photo.get((row.get('Player'), row.get('Country')), ""),
+                axis=1,
+            )
         state.data['squads'] = squads_df
     except Exception as e:
         logger.warning(f"  ✗ squads: {e}")

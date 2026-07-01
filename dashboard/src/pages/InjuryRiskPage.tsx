@@ -2,6 +2,7 @@ import { useAppSelector } from "@/app/hooks";
 import { AppHeader } from "@/shared/components/AppHeader";
 import { ErrorBanner } from "@/shared/components/ErrorBanner";
 import { FixtureSelector } from "@/features/fixture/components/FixtureSelector";
+import { RefreshFifaDataButton } from "@/features/fixture/components/RefreshFifaDataButton";
 import { PlayerSelectionBar } from "@/features/squad/components/PlayerSelectionBar";
 import { SquadInferencePanel } from "@/features/squad/components/SquadInferencePanel";
 import { InjuryRiskDashboard } from "@/features/injury-risk/components/InjuryRiskDashboard";
@@ -56,6 +57,8 @@ export function InjuryRiskPage() {
     <main className="min-h-screen px-3 py-4 sm:px-6 sm:py-6 lg:px-8">
       <div className="mx-auto max-w-[1400px] space-y-4 sm:space-y-5">
         <AppHeader />
+
+        <RefreshFifaDataButton />
 
         <FixtureSelector />
 

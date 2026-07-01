@@ -115,6 +115,9 @@ export interface OpcionJugador {
   team_code: string;
   flag_url: string;
   face_url: string;
+  position?: string | null;
+  club?: string | null;
+  injury_status?: InjuryStatus | null;
 }
 
 export interface FechaJornada {
@@ -132,7 +135,27 @@ export interface PartidoResumido {
   venue: string;
   stadium_url?: string;
   kickoff_at: string;
+  match_label?: string;
+  home_score?: number | null;
+  away_score?: number | null;
+  match_status?: number | null;
+  last_fifa_sync_at?: string | null;
   weather?: CondicionesClimaticas;
+}
+
+export interface FixtureRefreshResult {
+  ok: boolean;
+  message: string;
+  data: {
+    source: string;
+    season_id: string;
+    matches_received: number;
+    matches_updated: number;
+    team_slots_resolved: number;
+    score_fields_updated: number;
+    unresolved_match_numbers: number[];
+    synced_at: string;
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -146,10 +169,23 @@ export interface JugadorConInferencia {
   team_code: string;
   flag_url: string;
   face_url: string;
+  position?: string | null;
+  club?: string | null;
+  injury_status?: InjuryStatus | null;
   ai_inference: {
     class: ClaseRiesgo;
     label: string;
   };
+}
+
+export interface InjuryStatus {
+  type: string;
+  from?: string | null;
+  until?: string | null;
+  days_out?: number | null;
+  matches_missed?: number | null;
+  is_active: boolean;
+  days_to_recover: number;
 }
 
 export interface PlantillaConInferencia {

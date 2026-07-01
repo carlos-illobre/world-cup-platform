@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { AlertTriangle } from "lucide-react";
 import { PlayerAvatar } from "@/shared/components/PlayerAvatar";
 import { TeamFlag } from "@/shared/components/TeamFlag";
 import { ESTILOS_NIVEL_RIESGO } from "@/shared/constants/injuryRiskLevels";
@@ -30,9 +31,29 @@ export function PlayerInferenceRow({ jugador }: PlayerInferenceRowProps) {
         style={isSelected ? { boxShadow: "0 0 0 1px var(--neon-blue) inset" } : undefined}
       >
         <PlayerAvatar faceUrl={jugador.face_url} playerName={jugador.name} size="md" />
-        <span className="min-w-0 flex-1 truncate text-sm font-semibold text-foreground/90">
-          {jugador.name}
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-sm font-semibold text-foreground/90">
+            {jugador.name}
+          </span>
+          {(jugador.position || jugador.club) && (
+            <span className="block truncate text-xs font-semibold text-muted-foreground">
+              {[jugador.position, jugador.club].filter(Boolean).join(" · ")}
+            </span>
+          )}
         </span>
+        {jugador.injury_status && (
+          <span
+            className={`flex shrink-0 items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-extrabold uppercase ${
+              jugador.injury_status.is_active
+                ? "border border-red-400/70 text-red-300"
+                : "border border-yellow-400/70 text-yellow-300"
+            }`}
+            title={`${jugador.injury_status.type} hasta ${jugador.injury_status.until ?? "sin fecha"}`}
+          >
+            <AlertTriangle className="h-3 w-3" />
+            {jugador.injury_status.is_active ? "Lesión" : "Reciente"}
+          </span>
+        )}
         <TeamFlag
           flagUrl={jugador.flag_url}
           teamName={jugador.national_team}

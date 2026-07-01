@@ -51,7 +51,9 @@ export function PlayerSearchCombobox({
       ? jugadores.filter(
           (j) =>
             j.name.toLowerCase().includes(normalizedQuery) ||
-            j.national_team.toLowerCase().includes(normalizedQuery),
+            j.national_team.toLowerCase().includes(normalizedQuery) ||
+            (j.club ?? "").toLowerCase().includes(normalizedQuery) ||
+            (j.position ?? "").toLowerCase().includes(normalizedQuery),
         )
       : jugadores;
 
@@ -83,8 +85,15 @@ export function PlayerSearchCombobox({
               size="sm"
               className="ring-neon-blue/40"
             />
-            <span className="flex-1 truncate font-bold text-foreground">
-              {jugadorSeleccionado.name}
+            <span className="min-w-0 flex-1">
+              <span className="block truncate font-bold text-foreground">
+                {jugadorSeleccionado.name}
+              </span>
+              {(jugadorSeleccionado.position || jugadorSeleccionado.club) && (
+                <span className="block truncate text-xs font-semibold text-muted-foreground">
+                  {[jugadorSeleccionado.position, jugadorSeleccionado.club].filter(Boolean).join(" · ")}
+                </span>
+              )}
             </span>
             <TeamFlag
               flagUrl={jugadorSeleccionado.flag_url}
@@ -159,14 +168,31 @@ export function PlayerSearchCombobox({
                       playerName={jugador.name}
                       size="md"
                     />
-                    <span
-                      className={`flex-1 truncate text-sm font-semibold ${
-                        jugador.id === jugadorSeleccionadoId
-                          ? "text-glow-blue"
-                          : "text-foreground/90"
-                      }`}
-                    >
-                      {jugador.name}
+                    <span className="min-w-0 flex-1">
+                      <span
+                        className={`block truncate text-sm font-semibold ${
+                          jugador.id === jugadorSeleccionadoId
+                            ? "text-glow-blue"
+                            : "text-foreground/90"
+                        }`}
+                      >
+                        {jugador.name}
+                      </span>
+                      {(jugador.position || jugador.club || jugador.injury_status) && (
+                        <span className="block truncate text-xs font-semibold text-muted-foreground">
+                          {[
+                            jugador.position,
+                            jugador.club,
+                            jugador.injury_status
+                              ? jugador.injury_status.is_active
+                                ? `Lesionado: ${jugador.injury_status.type}`
+                                : `Reciente: ${jugador.injury_status.type}`
+                              : null,
+                          ]
+                            .filter(Boolean)
+                            .join(" · ")}
+                        </span>
+                      )}
                     </span>
                     <TeamFlag
                       flagUrl={jugador.flag_url}

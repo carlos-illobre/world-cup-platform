@@ -69,6 +69,52 @@ def _apply_group_result(standings: dict, team_a: str, team_b: str, result: str):
     b["predicted_points"] = b["pts"]
 
 
+def _apply_group_score(standings: dict, team_a: str, team_b: str, gf_a: int, gf_b: int):
+    a = standings[team_a]
+    b = standings[team_b]
+    a["mp"] += 1
+    b["mp"] += 1
+    a["gf"] += gf_a
+    a["ga"] += gf_b
+    b["gf"] += gf_b
+    b["ga"] += gf_a
+    if gf_a > gf_b:
+        a["w"] += 1
+        b["l"] += 1
+        a["pts"] += 3
+    elif gf_b > gf_a:
+        b["w"] += 1
+        a["l"] += 1
+        b["pts"] += 3
+    else:
+        a["d"] += 1
+        b["d"] += 1
+        a["pts"] += 1
+        b["pts"] += 1
+    a["gd"] = a["gf"] - a["ga"]
+    b["gd"] = b["gf"] - b["ga"]
+    a["predicted_points"] = a["pts"]
+    b["predicted_points"] = b["pts"]
+
+
+def _score_value(value):
+    if pd.isna(value):
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _row_team_name(request: Request, row, side: str) -> Optional[str]:
+    team_id = row.get(f'{side}_team_id')
+    try:
+        team = get_team_info(request, team_id)
+        return _clean_team_name(team["name"])
+    except Exception:
+        return None
+
+
 def _clean_team_name(team_name: str) -> str:
     team_name = str(team_name).strip()
     if len(team_name) > 3 and team_name[:2].islower() and team_name[2] == ' ':
@@ -190,31 +236,36 @@ def simulate_tournament(request: Request, response: Response):
         if team_a not in standings_by_team or team_b not in standings_by_team:
             continue
 
-        result_code = "D"
-        try:
-            result = predict_match_outcome(
-                models=models,
-                team_a=team_a,
-                team_b=team_b,
-                matches_df=matches_featured_df,
-                temp_max=25.0,
-                precipitation=0.0,
-                wind_speed=10.0,
-            )
-            probabilities = result.get("probabilities", {})
-            win_a = float(probabilities.get("win_A", 0))
-            draw = float(probabilities.get("draw", 0))
-            win_b = float(probabilities.get("win_B", 0))
-            if win_a >= draw and win_a >= win_b:
-                result_code = "A"
-            elif win_b >= draw and win_b > win_a:
-                result_code = "B"
-            else:
-                result_code = "D"
-        except Exception:
+        home_score = _score_value(match.get('home_score'))
+        away_score = _score_value(match.get('away_score'))
+        if home_score is not None and away_score is not None:
+            _apply_group_score(standings_by_team, team_a, team_b, home_score, away_score)
+        else:
             result_code = "D"
+            try:
+                result = predict_match_outcome(
+                    models=models,
+                    team_a=team_a,
+                    team_b=team_b,
+                    matches_df=matches_featured_df,
+                    temp_max=25.0,
+                    precipitation=0.0,
+                    wind_speed=10.0,
+                )
+                probabilities = result.get("probabilities", {})
+                win_a = float(probabilities.get("win_A", 0))
+                draw = float(probabilities.get("draw", 0))
+                win_b = float(probabilities.get("win_B", 0))
+                if win_a >= draw and win_a >= win_b:
+                    result_code = "A"
+                elif win_b >= draw and win_b > win_a:
+                    result_code = "B"
+                else:
+                    result_code = "D"
+            except Exception:
+                result_code = "D"
 
-        _apply_group_result(standings_by_team, team_a, team_b, result_code)
+            _apply_group_result(standings_by_team, team_a, team_b, result_code)
 
     for group_name, teams in group_results.items():
         teams.sort(
@@ -254,19 +305,29 @@ def simulate_tournament(request: Request, response: Response):
                 possible_groups = list(part[1:])
                 key = f"best_3rd_{match_number}_{part_index}"
 
+                selected_third = None
+
                 # Find the best unused 3rd from these specific groups.
                 for third in best_thirds:
                     grp_letter = third["group"].replace("Group ", "")
                     team = _clean_team_name(third["team"])
                     if grp_letter in possible_groups and team not in used_third_teams:
-                        group_winners[key] = team
-                        used_third_teams.add(team)
+                        selected_third = team
                         break
-                else:
-                    raise HTTPException(
-                        status_code=500,
-                        detail=f"No unused best-third team available for bracket slot {part}",
-                    )
+
+                # Some simulated tables can produce a best-third combination that
+                # does not fit every official token. Keep the bracket complete by
+                # using the next best unused third-place team.
+                if selected_third is None:
+                    for third in best_thirds:
+                        team = _clean_team_name(third["team"])
+                        if team not in used_third_teams:
+                            selected_third = team
+                            break
+
+                if selected_third is not None:
+                    group_winners[key] = selected_third
+                    used_third_teams.add(selected_third)
     
     # ═══════════════════════════════════════════════════════════
     # PHASE 2: Simulate Knockout Stage
@@ -288,25 +349,29 @@ def simulate_tournament(request: Request, response: Response):
         match_num = str(int(match['match_number']))
         label = str(match.get('match_label', ''))
         parts = label.split(' vs ')
-        
-        if len(parts) != 2:
-            continue
-        
-        team_a_token = parts[0].strip()
-        team_b_token = parts[1].strip()
-        
-        team_a = _resolve_team_name(
-            team_a_token,
-            group_winners,
-            match_results,
-            f"best_3rd_{match_num}_0" if team_a_token.startswith("3") else None,
-        )
-        team_b = _resolve_team_name(
-            team_b_token,
-            group_winners,
-            match_results,
-            f"best_3rd_{match_num}_1" if team_b_token.startswith("3") else None,
-        )
+
+        team_a = _row_team_name(request, match, 'home')
+        team_b = _row_team_name(request, match, 'away')
+
+        if team_a is None or team_b is None:
+            if len(parts) != 2:
+                continue
+
+            team_a_token = parts[0].strip()
+            team_b_token = parts[1].strip()
+
+            team_a = _resolve_team_name(
+                team_a_token,
+                group_winners,
+                match_results,
+                f"best_3rd_{match_num}_0" if team_a_token.startswith("3") else None,
+            )
+            team_b = _resolve_team_name(
+                team_b_token,
+                group_winners,
+                match_results,
+                f"best_3rd_{match_num}_1" if team_b_token.startswith("3") else None,
+            )
 
         if team_a == team_b:
             raise HTTPException(
@@ -328,34 +393,59 @@ def simulate_tournament(request: Request, response: Response):
                 )
             round_of_32_teams.update([team_a, team_b])
         
-        # Predict match outcome
+        # Use official FIFA result when available; predict only pending matches.
         prob_a = 0.5
         prob_b = 0.5
         winner = team_a
         loser = team_b
-        
-        try:
-            result = predict_match_outcome(
-                models=models,
-                team_a=team_a,
-                team_b=team_b,
-                matches_df=matches_featured_df,
-                temp_max=25.0,
-                precipitation=0.0,
-                wind_speed=10.0,
-            )
-            prob_a = result["probabilities"]["win_A"]
-            prob_b = result["probabilities"]["win_B"]
-            
-            if prob_a >= prob_b:
+
+        home_score = _score_value(match.get('home_score'))
+        away_score = _score_value(match.get('away_score'))
+        winner_team_id = match.get('winner_team_id')
+        official_winner = None
+        if pd.notna(winner_team_id):
+            try:
+                official_winner = _clean_team_name(get_team_info(request, winner_team_id)["name"])
+            except Exception:
+                official_winner = None
+
+        if official_winner:
+            winner = official_winner
+            loser = team_b if official_winner == team_a else team_a
+            prob_a = 1.0 if winner == team_a else 0.0
+            prob_b = 1.0 if winner == team_b else 0.0
+        elif home_score is not None and away_score is not None and home_score != away_score:
+            if home_score > away_score:
                 winner = team_a
                 loser = team_b
             else:
                 winner = team_b
                 loser = team_a
-        except Exception:
-            # If prediction fails, use team that appears first as winner
-            pass
+            prob_a = 1.0 if winner == team_a else 0.0
+            prob_b = 1.0 if winner == team_b else 0.0
+        else:
+            try:
+                result = predict_match_outcome(
+                    models=models,
+                    team_a=team_a,
+                    team_b=team_b,
+                    matches_df=matches_featured_df,
+                    temp_max=25.0,
+                    precipitation=0.0,
+                    wind_speed=10.0,
+                )
+                prob_a = result["probabilities"]["win_A"]
+                prob_b = result["probabilities"]["win_B"]
+
+                if prob_a >= prob_b:
+                    winner = team_a
+                    loser = team_b
+                else:
+                    winner = team_b
+                    loser = team_a
+            except Exception:
+                # If prediction fails, use team that appears first as winner.
+                pass
         
         match_result = {
             "match_number": int(match_num),
@@ -367,6 +457,7 @@ def simulate_tournament(request: Request, response: Response):
             "winner": winner,
             "loser": loser,
             "kickoff_at": str(match.get('kickoff_at', '')),
+            "source": "FIFA" if official_winner or (home_score is not None and away_score is not None and home_score != away_score) else "Predicción",
         }
         
         match_results[match_num] = match_result

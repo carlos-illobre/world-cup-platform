@@ -207,6 +207,22 @@ def predict_match_outcome(
     prob_draw /= total
     prob_win_b /= total
 
+    fifa_prior_a = 1.0 / (1.0 + np.exp(-(ranking_diff / 350.0)))
+    form_edge = (float(form) + float(goals_scored) - float(goals_conceded)) / 20.0
+    fifa_prior_a = min(max(fifa_prior_a + form_edge, 0.05), 0.95)
+    prior_win_a = fifa_prior_a * (1 - prob_draw)
+    prior_win_b = (1 - fifa_prior_a) * (1 - prob_draw)
+
+    model_weight = 0.35
+    prior_weight = 1 - model_weight
+    prob_win_a_adj = (prob_win_a_adj * model_weight) + (prior_win_a * prior_weight)
+    prob_win_b = (prob_win_b * model_weight) + (prior_win_b * prior_weight)
+
+    total = prob_win_a_adj + prob_draw + prob_win_b
+    prob_win_a_adj /= total
+    prob_draw /= total
+    prob_win_b /= total
+
     prediction = team_a_resolved if prob_win_a_adj > prob_win_b else team_b_resolved
     if abs(prob_win_a_adj - prob_win_b) < 0.05:
         prediction = "Draw"

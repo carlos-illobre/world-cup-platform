@@ -65,7 +65,7 @@ MODEL_FEATURES = [
 
 # Injury history fallback when a player has no recorded injury history
 _INJURY_DEFAULTS = {
-    'Altura': None,
+    'Altura': 180,
     'Tipo_Lesion': 'MISSING',
     'Dias_Baja': 0,
     'Partidos_Perdidos': 0,
@@ -170,6 +170,10 @@ def build_injury_features(player_row: dict, injuries_df: pd.DataFrame) -> pd.Dat
     # Ensure bool columns are int
     if 'is_recurrent' in df.columns:
         df['is_recurrent'] = df['is_recurrent'].astype(int)
+
+    for col in MODEL_FEATURES:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+    df = df.replace([np.inf, -np.inf], np.nan).fillna(0)
 
     return df[MODEL_FEATURES]
 

@@ -5,7 +5,9 @@ interface StartupScreenProps {
   children: React.ReactNode;
 }
 
-const HEALTH_URL = (import.meta.env.VITE_INJURY_API_BASE_URL ?? "http://localhost:8000") + "/health";
+import { INJURY_API_BASE_URL } from "../lib/apiClient";
+
+const HEALTH_URL = INJURY_API_BASE_URL + "/health";
 const POLL_INTERVAL_MS = 800;
 const SIMULATED_DURATION_MS = 4000; // Total animation time for the progress bar
 

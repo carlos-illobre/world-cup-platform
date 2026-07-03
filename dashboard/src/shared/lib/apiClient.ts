@@ -2,7 +2,11 @@
 export const INJURY_API_BASE_URL =
   typeof window === "undefined"
     ? "http://backend:8000"
-    : (import.meta.env.VITE_INJURY_API_BASE_URL ?? "http://localhost:8000");
+    : import.meta.env.VITE_INJURY_API_BASE_URL;
+
+if (typeof window !== "undefined" && !INJURY_API_BASE_URL) {
+  throw new Error("FATAL ERROR: VITE_INJURY_API_BASE_URL is missing in environment variables. Application aborted to prevent undefined behavior.");
+}
 
 /**
  * Función genérica para fetch JSON — usada como base para RTK Query

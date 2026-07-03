@@ -1,0 +1,11 @@
+{
+    email {$ACME_EMAIL}
+}
+
+{$API_HOST} {
+    reverse_proxy backend:8000
+}
+
+{$DASHBOARD_HOST} {
+    reverse_proxy dashboard:3000
+}

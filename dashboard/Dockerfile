@@ -18,7 +18,7 @@ FROM base AS build
 
 COPY . .
 
-ARG VITE_INJURY_API_BASE_URL=http://localhost:8000
+ARG VITE_INJURY_API_BASE_URL
 ENV VITE_INJURY_API_BASE_URL=$VITE_INJURY_API_BASE_URL
 
 RUN npm run build
@@ -28,9 +28,13 @@ FROM node:22-alpine AS runtime
 
 WORKDIR /app
 
-COPY --from=build /app/.output /app/.output
-COPY --from=build /app/node_modules /app/node_modules
-COPY --from=build /app/package.json /app/package.json
+# Copiar archivos asignándoles propiedad al usuario 'node'
+COPY --from=build --chown=node:node /app/.output /app/.output
+COPY --from=build --chown=node:node /app/node_modules /app/node_modules
+COPY --from=build --chown=node:node /app/package.json /app/package.json
+
+# Cambiar al usuario seguro preexistente en Alpine Node
+USER node
 
 EXPOSE 3000
 

@@ -1,20 +1,20 @@
 version: '3.8'
 
 services:
-  traefik:
-    image: traefik:v3.1
-    container_name: traefik
-    command:
-      - "--configFile=/traefik/traefik.yml"
-      - "--api.dashboard=true"
-      - "--api.insecure=true"
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
     ports:
-      - "${TRAEFIK_HTTP_PORT:-80}:80"
-      - "${TRAEFIK_HTTPS_PORT:-443}:443"
-      - "${TRAEFIK_DASHBOARD_PORT:-8080}:8080"
+      - "80:80"
+      - "443:443"
+    environment:
+      - API_HOST=${API_HOST}
+      - DASHBOARD_HOST=${DASHBOARD_HOST}
+      - ACME_EMAIL=${ACME_EMAIL}
     volumes:
-      - ./traefik/traefik.yml:/traefik/traefik.yml:ro
-      - ./traefik/traefik-routes.yml:/traefik/traefik-routes.yml:ro
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
     networks:
       - world-cup-platform
     restart: unless-stopped
@@ -24,11 +24,9 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: world-cup-api
-    ports:
-      - "${INJURY_API_HOST_PORT:-8000}:8000"
     environment:
       DATA_DIR: /app/data
-      CORS_ORIGINS: "*"
+      CORS_ORIGINS: "https://${DASHBOARD_HOST}"
     networks:
       - world-cup-platform
     restart: unless-stopped
@@ -37,18 +35,17 @@ services:
     build:
       context: ./dashboard
       dockerfile: Dockerfile
-      target: development
+      target: ${DASHBOARD_BUILD_TARGET:-development}
       args:
-        VITE_INJURY_API_BASE_URL: "${VITE_INJURY_API_BASE_URL:-http://localhost:8000}"
+        VITE_INJURY_API_BASE_URL: "${VITE_INJURY_API_BASE_URL:-https://api.localhost}"
     container_name: injury-dashboard
-    ports:
-      - "${DASHBOARD_HOST_PORT:-3000}:${DASHBOARD_CONTAINER_PORT:-3000}"
     volumes:
-      - ./dashboard:/app
+      # En dev monta el código local, en prod usa un volumen nombrado para no sobrescribir la build
+      - ${DASHBOARD_SRC_VOLUME:-./dashboard}:/app
       - /app/node_modules
     environment:
-      DASHBOARD_URL: "${DASHBOARD_URL:-http://localhost:3000}"
-    command: [ "/bin/sh", "-c", "echo \"Dashboard dev disponible en ${DASHBOARD_URL:-http://localhost:3000}\" && exec npm run dev -- --host 0.0.0.0 --port ${DASHBOARD_CONTAINER_PORT:-3000}" ]
+      DASHBOARD_URL: "https://${DASHBOARD_HOST}"
+      VITE_INJURY_API_BASE_URL: "${VITE_INJURY_API_BASE_URL}"
     depends_on:
       - backend
     networks:
@@ -58,3 +55,8 @@ services:
 networks:
   world-cup-platform:
     driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:
+  dashboard-prod-data:

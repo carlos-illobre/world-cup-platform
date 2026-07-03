@@ -218,10 +218,22 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Configuración dinámica y segura de CORS
+cors_origins_env = os.getenv("CORS_ORIGINS", "")
+if cors_origins_env == "*":
+    allow_origins = ["*"]
+    allow_credentials = False  # El estándar web prohíbe allow_credentials con origen "*"
+else:
+    allow_origins = [orig.strip() for orig in cors_origins_env.split(",") if orig.strip()]
+    allow_credentials = True
+
+if not allow_origins:
+    raise ValueError("FATAL ERROR: CORS_ORIGINS environment variable is required but missing or empty. Application will not start to ensure security.")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=allow_origins,
+    allow_credentials=allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
